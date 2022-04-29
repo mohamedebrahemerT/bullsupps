@@ -1,0 +1,1 @@
+        {{$price}}  {{trans('admin.pound')}}

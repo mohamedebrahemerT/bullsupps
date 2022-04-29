@@ -1,0 +1,1011 @@
+
+@media (max-width: 576px) 
+  {
+
+     .AddtoCartAddtoCart
+    {
+      width: 385px;
+height: 64px;
+left: 1060px;
+top: 514px;
+background: #904476;
+box-shadow: 0px 4px 3px rgba(109, 59, 92, 0.2);
+border-radius: 4px;
+color: #fff;
+    }
+
+    .navbar-brand > img {
+  height: 40%;
+  width: auto;
+  padding: 7px 14px 7px 0;
+  height: 73px;
+  margin-top: 16px;
+}
+
+     .xxxpreemohidefooter
+  {
+        display: block;
+  }
+
+      .Component00
+{ 
+height: 482px;
+background-color: #eee;
+margin-bottom: 5%;
+}
+
+
+.about-us-section
+{
+  height: 1152px;
+background: #E3DBD8;
+margin-bottom: 2%;
+}
+
+
+div.relative {
+ margin-bottom: 12%;
+} 
+
+div.absolute {
+position: absolute;
+top: 171px;
+right: 6px;
+width: 272px;
+height: 272px;
+  
+}
+
+.OwnDesigndiv {
+  height: 836px;
+  left: 0px;
+  top: 5444px;
+  background: #E3DBD8;
+  margin-bottom: 5%;
+  padding: 2%;
+}
+
+.OwnDesign
+ {
+   
+height: 86px;
+left: 634px;
+top: 5340px;
+margin-top: 3%;
+font-family: Montserrat;
+font-style: normal;
+font-weight: bold;
+font-size: 36px;
+line-height: 44px;
+padding: 3px;
+/* identical to box height */
+
+/* dark brown */
+color: #4A2F28;
+text-align: center;
+ }
+
+ .argoprice
+{
+  width: 80px;
+font-family: Montserrat;
+font-style: normal;
+font-weight: 500;
+font-size: 24px;
+line-height: 29px;
+color: #4A2F28;
+margin-left: -62%;
+margin-top: 3px;
+position: absolute;
+left: 78%;
+top: 88%;
+}
+
+
+ .bynbtn{
+      background: #885A42;
+width: 168px;
+height: 80px;
+left: 509px;
+top: 6057px;
+/* brown */
+border: 1px solid #885A42;
+box-sizing: border-box;color: #fff;
+    }
+
+  }
+
+
+
+    .panel-default > .panel-heading {
+  color: #333;
+  background-color: #dbd3d0;
+  border-color: #ddd;
+}
+.mySlides {display:none;}
+img
+{
+  max-width: 100%;
+}
+
+  a.buy-demo {
+
+    position: fixed;
+
+    bottom: 80px;
+
+    left: 40px;
+
+    background-color: #101010;
+
+    color: white;
+
+    font-size: 14px;
+
+    padding: 12px 20px 12px 16px;
+
+    border-radius: 35px;
+
+    line-height: 1;
+
+    z-index: 379;
+
+    display: none;
+
+}
+
+
+
+.dropdown-menu {
+   top: 100%;
+left: 0;
+z-index: 1000;
+float: left;
+min-width: 160px;
+padding: 5px 0;
+font-size: 14px;
+list-style: none;
+background-color: #fff;
+background-clip: padding-box;
+border: 1px solid rgba(0,0,0,.15);
+border-radius: 4px;
+box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    margin-left: 0%;
+    text-align: right !important;
+
+}
+
+
+
+                body, #wrapper
+                {
+                  font-family: 'Tajawal', sans-serif;          
+                }
+
+
+  @media only screen and (min-width: 1200px) {
+
+    .AddtoCartAddtoCart
+    {
+      width: 687px;
+height: 64px;
+left: 1060px;
+top: 514px;
+background: #904476;
+box-shadow: 0px 4px 3px rgba(109, 59, 92, 0.2);
+border-radius: 4px;
+color: #fff;
+    }
+
+.argoprice
+{
+  width: 80px;
+font-family: Montserrat;
+font-style: normal;
+font-weight: 500;
+font-size: 24px;
+line-height: 29px;
+color: #4A2F28;
+margin-left: -62%;
+margin-top: 3px;
+position: absolute;
+left: 75%;
+top: 85%;
+}
+
+    .bynbtn{
+      background: #885A42;
+width: 331px;
+height: 80px;
+left: 509px;
+top: 6057px;
+/* brown */
+border: 1px solid #885A42;
+box-sizing: border-box;color: #fff;
+    }
+
+     .OwnDesigndiv
+ {
+
+height: 651px;
+left: 0px;
+top: 5444px;
+background: #E3DBD8;
+margin-bottom: 5%;
+padding: 2%;
+ }
+
+.OwnDesign
+ {
+   
+height: 86px;
+left: 634px;
+top: 5340px;
+margin-top: 3%;
+font-family: Montserrat;
+font-style: normal;
+font-weight: bold;
+font-size: 36px;
+line-height: 44px;
+padding: 3px;
+/* identical to box height */
+
+/* dark brown */
+color: #4A2F28;
+text-align: center;
+ }
+  .Component00
+{
+ 
+ 
+height: 362px;
+ 
+background-color: #eee;
+margin-bottom: 5%;
+}
+
+.about-us-section
+{
+  height: 589px;
+background: #E3DBD8;
+margin-bottom: 2%;
+}
+
+div.relative {
+  position: relative;
+ width: 450px;
+height: 450px
+  border: 3px solid #73AD21;
+} 
+
+div.absolute {
+position: absolute;
+top: 276px;
+right: 6px;
+width: 272px;
+height: 272px;
+  
+}
+ div.OwnDesignrelative {
+  position: relative;
+  width: 400px;
+  height: 200px;
+ 
+} 
+
+div.OwnDesignabsolute {
+position: absolute;
+top: 71px;
+left: 86px;
+width: 321px;
+height: 100px;
+ 
+}
+
+.Giftforimg  
+{
+  height: 580px;
+}
+
+    
+  #xcxcxc  {
+    display:none;
+  }
+#sdsdv
+  {
+    display:none;
+  }
+}
+
+
+
+
+@media only screen and (max-width: 600px) 
+{
+  .header-middle
+  {
+        display: none;
+  }
+}
+
+
+  .brand-centered {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+/*demo styling only*/
+.navbar-brand {
+  padding: 0px; /* remove bootstrap padding on floated image containers -  */ 
+}
+
+.navbar-toggle {
+  z-index: 1;
+}
+
+  .Component00 img
+  {
+    width: 100%;
+  }
+  @media (min-width: 1200px) 
+  {
+
+    .navbar-brand>img {
+  height: 100%;
+  width: auto;
+  padding: 7px 14px 7px 0; /* padding for image ... text needs no padding */
+}
+
+ .navbar-default .navbar-nav > li > a 
+ {
+  color: #28201C;
+  font-size: 18px;
+line-height: 22px;
+}
+.container-fluid 
+{
+    padding-right: 4px;
+  padding-left: 16px;
+  margin-right: auto;
+  margin-left: auto;
+
+}
+.navbar-brand>img {
+ width: 205px;
+height: 90px;
+margin-top: 5px;
+}
+  .brand-centered {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 12px;
+}
+
+ .navbar-collapse.collapse {
+  display: block !important;
+  height: auto !important;
+  padding-bottom: 0;
+  overflow: visible !important;
+  margin-top: 2%;
+}
+
+ .imghight
+            {
+              height: 678px;
+
+            }
+
+
+  }
+/*********  mobile screen ****************/
+  .paddingbuut
+            {
+              padding-bottom: 5%;
+            }
+
+.spancc
+{
+ 
+bottom: 84.85%;
+
+background: #FFFBF8;
+box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.05);
+}
+
+.Vector {
+  position: absolute;
+left: 8.28%;
+right: 8.34%;
+top: 11.5%;
+bottom: 11.56%;
+
+/* brown */
+background: #885A42;
+}
+
+/* Our Catalog */
+.OurCatalog
+{
+ 
+ 
+
+font-family: Montserrat;
+font-style: normal;
+font-weight: bold;
+font-size: 36px;
+line-height: 44px;
+text-align: center;
+/* identical to box height */
+/* dark brown */
+color: #4A2F28;
+}
+.Enjoy
+{
+left: 671.5px;
+top: 1764px;
+font-family: Montserrat;
+font-style: normal;
+font-weight: bold;
+font-size: 36px;
+line-height: 44px;
+ text-align: center;
+color: #4A2F28;
+}
+.parg
+{
+font-family: Montserrat;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 26px;
+/* or 144% */
+text-align: center;
+color: #000000;
+}
+.parg2
+{
+font-family: Montserrat;
+font-style: normal;
+font-weight: 600;
+font-size: 24px;
+line-height: 26px;
+
+/* identical to box height, or 108% */
+
+/* black */
+color: #28201C;
+text-align: center;
+
+}
+.pnun
+{
+font-family: Montserrat;
+font-style: normal;
+font-weight: 600;
+font-size: 24px;
+line-height: 26px;
+/* identical to box height, or 108% */
+color: #000000;
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+margin: 0px 16px;
+}
+.Read_More
+{
+font-size: 18px;
+color: #885A42;
+}
+
+ .geeks {
+
+  float: left;
+                width:50%;
+                height:500px;
+            
+
+            }
+
+            .pading
+            {
+              padding-bottom: 1%;
+            }
+
+            .imggeeks {
+                
+                height:100%;
+                 padding-bottom: 1%;
+
+            }
+
+
+
+
+.imbox
+{
+      width: 100%;
+  height: 225px;
+ 
+}
+.m-p-4
+{
+    margin-bottom: 2%;
+}
+.m-t-2
+{
+    margin-top: 2%;
+}
+.border-radius
+{
+  border-radius: 4px;
+}
+.Christmasiscoming
+{
+    display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 10px;
+position: absolute;
+ background: #885A42;
+border-radius: 0px 50px 50px 0px;
+margin-top: -17%;
+}
+.Giftforspecialdiv
+{
+
+}
+.Christmasiscomingtest
+{
+   font-weight: bold;
+font-size: 24px;
+line-height: 29px;
+color: #FFFFFF;
+flex: none;
+  flex-grow: 0;
+order: 0;
+flex-grow: 0;
+margin: 0px 10px;
+}
+
+.Frame 
+{
+    display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 10px;
+position: absolute;
+width: 171px;
+height: 40px;
+
+background: #FFFFFF;
+border-radius: 0px 50px 50px 0px;
+margin-top: -82%;
+ color: #885A42;
+ font-weight: bold;
+font-size: 14px;
+}
+.Ellipse
+{
+position: absolute;
+background: #904476;
+height: 100px;
+width: 113px;
+border-radius: 83%;
+ 
+background: #904476;
+}
+.Ellipsetest
+{
+
+width: 94px;
+height: 28px;
+left: 935px;
+top: 4570px;
+
+font-family: Montserrat;
+font-style: normal;
+font-weight: 600;
+font-size: 20px;
+line-height: 28px;
+
+/* identical to box height, or 140% */
+text-align: center;
+
+/* white */
+color: #FFFFFF;
+
+
+}
+
+
+
+.Giftforspecial
+{
+  font-family: Montserrat;
+font-style: normal;
+font-weight: bold;
+font-size: 36px;
+line-height: 44px;
+
+/* identical to box height */
+text-align: center;
+/* dark brown */
+color: #4A2F28;
+}
+
+.b-5
+{
+  padding-bottom: 5px;
+}
+.heightimggift
+{
+  height: 292px;
+  width: 100%;
+}
+
+div.relativeEllipsegift {
+position: relative;
+width: 140px;
+height: 144px;
+background: #904476;
+right: -54px;
+top: -208px;
+border-radius: 54%;
+} 
+
+div.absoluteEllipsegift {
+ position: absolute;
+top: 59px;
+right: -29px;
+width: 200px;
+height: 94px;
+font-family: Montserrat;
+font-style: normal;
+font-weight: 600;
+font-size: 20px;
+line-height: 28px;
+text-align: center;
+color: #FFFFFF;
+
+
+}
+.OurAdvantage
+{
+  font-family: Montserrat;
+font-style: normal;
+font-weight: bold;
+font-size: 36px;
+line-height: 44px;
+
+/* identical to box height */
+
+/* dark brown */
+color: #4A2F28;
+text-align: center;
+}
+ .OurAdvantageFrame132
+ {
+  display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 20px;
+
+ 
+width: 400px;
+height: 270px;
+left: 310px;
+top: 4940px;
+
+background: #FFFFFF;
+box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
+border-radius: 4px;
+
+float: left;
+margin-bottom: 5%;
+ }
+ .OurAdvantageFrame132txt
+ {
+
+font-family: Montserrat;
+font-style: normal;
+font-weight: 600;
+font-size: 20px;
+line-height: 24px;
+
+/* brown */
+color: #885A42;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+margin: 20px 0px;
+ }
+
+ .OurAdvantageFrame132pp
+ {
+ 
+ 
+
+font-family: Montserrat;
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 26px;
+
+/* or 144% */
+
+/* black */
+color: #28201C;
+ }
+ 
+
+
+.ling
+{
+  width: 530px;
+height: 0px;
+left: 310px;
+top: 5537px;
+
+opacity: 0.4;
+
+/* black */
+border: 1px solid #28201C;
+}
+.footerdata
+{
+  font-family: Gilroy;
+font-style: normal;
+font-weight: bold;
+font-size: 16px;
+line-height: 28px;
+
+/* identical to box height, or 175% */
+
+/* White */
+color: #FFFFFF;
+
+
+}
+
+ .sadasdasd
+ {
+  font-family: Gilroy;
+font-style: normal;
+font-weight: bold;
+font-size: 16px;
+line-height: 28px;
+
+/* identical to box height, or 175% */
+
+/* White */
+color: #FFFFFF;
+
+
+ }
+ .menussdfsdfsdf
+ {
+  font-family: Larsseit;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 20px;
+
+/* White */
+color: #FFFFFF;
+
+opacity: 0.75;
+ }
+ .Subscribesss
+ {
+
+
+/* White */
+background: #FFFFFF;
+mix-blend-mode: normal;
+opacity: 0.1;
+ }
+
+ div.subsrelative {
+  position: relative;
+  width: 200px;
+  height: 200px;
+ 
+} 
+
+div.subsabsolute {
+  
+  top: 0px;
+  right: 0;
+  width: 324px;
+  height: 180px;
+ 
+  background-color: #5d443e;
+  padding: 31px;
+
+}
+
+.sustxt{
+  font-family: Gilroy;
+font-style: normal;
+font-weight: bold;
+font-size: 16px;
+line-height: 28px;
+
+/* identical to box height, or 175% */
+
+/* White */
+color: #FFFFFF;
+}
+
+.typefooter-2 .box-footer .modcontent ul li a {
+  border: 0 none;
+  
+  padding: 0;
+    padding-right: 0px;
+  font-weight: 400;
+  line-height: 30px;
+  position: relative;
+  padding-right: 20px;
+  display: inline-block;
+ font-family: Larsseit;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 20px;
+
+/* White */
+color: #FFFFFF;
+
+opacity: 0.75;
+}
+.sdffmemail
+{
+  background: #fff;
+border: 1.5px solid #E7E8F2;
+box-sizing: border-box;
+border-radius: 6px;
+}
+.sdfsdfbfdgdd
+{
+  font-family: Larsseit;
+font-style: normal;
+font-weight: normal;
+font-size: 12px;
+line-height: 20px;
+
+/* or 170% */
+
+/* White */
+color: #FFFFFF;
+
+opacity: 0.6;
+}
+div.heartrelative {
+  position: relative;
+ 
+  
+} 
+
+div.heartabsolute {
+position: absolute;
+top: 32px;
+right: 22px;
+width: 38px;
+height: 40px;
+padding-top: 8px;
+padding-right: 8px;
+padding-bottom: 6px;
+padding-left: 8px;
+border-radius: 18px;
+background-color: #fff;
+}
+
+.InsideBox
+{
+  font-family: Montserrat;
+font-style: normal;
+font-weight: bold;
+font-size: 36px;
+line-height: 44px;
+/* identical to box height */
+color: #000000;
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+margin: 0px 20px;
+text-align: center;
+margin-top: 5%;
+}
+.Recommendations 
+{
+  font-family: Montserrat;
+font-style: normal;
+font-weight: bold;
+font-size: 36px;
+line-height: 44px;
+
+/* identical to box height */
+
+/* dark brown */
+color: #4A2F28;
+text-align: center;
+
+}
+
+.navbar-default {
+  background-color: #f8f8f8;
+ 
+}
+.productseccart
+{
+transform: matrix(-1, 0, 0, 1, 0, 0);float: right;
+margin-right: 13%;
+margin-top: -14px;
+}
+
+.pfgsl
+{
+  font-family: Montserrat;
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 22px;
+color: #885A42;
+margin-left: 8%;
+}
+
+.prodycttitle
+{
+font-family: Montserrat;
+font-style: normal;
+font-weight: bold;
+font-size: 18px;
+line-height: 22px;
+color: #4A2F28;
+margin-left: 9%;
+margin-top: 4%;
+text-align: left;
+
+}
+
+.namesadasdads
+{
+  font-family: Montserrat;
+font-style: normal;
+font-weight: 500;
+font-size: 36px;
+line-height: 44px;
+
+/* identical to box height */
+
+/* brown */
+color: #885A42;
+
+}
+.float-ar-en
+{
+ float: right;
+position: absolute;
+right: 0;
+top: 18px;
+}
+.float-Ar-En
+{
+    float: right;
+}

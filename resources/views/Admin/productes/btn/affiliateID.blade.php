@@ -1,0 +1,1 @@
+  <a   target="_blank" class="btn   Orange" href="{{url('/')}}/shop/{{$id}}/{{ auth()->guard('admin')->user()->id }}"><i class="fa fa-edit"></i> {{trans('admin.affiliateID') }}   </a>

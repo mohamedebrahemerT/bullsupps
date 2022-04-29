@@ -1,0 +1,1 @@
+ <a class="btn btn-primary" href="SendSms/{{$id}}/edit"><i class="fa fa-envelope"></i> {{trans('admin.resend') }}   </a>

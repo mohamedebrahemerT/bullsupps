@@ -1,0 +1,1 @@
+<a  href="{{url('/')}}/admin/users/show/{{$id}}" class="btn btn-info"> {{trans('admin.show')}}</a>

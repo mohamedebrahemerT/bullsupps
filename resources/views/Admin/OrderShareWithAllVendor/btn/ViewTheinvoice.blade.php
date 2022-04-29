@@ -1,0 +1,1 @@
+   <a class="btn btn-primary" href="ViewTheinvoice/{{$order_id}}"><i class="fa fa-edit"></i> {{trans('admin.ViewTheinvoice') }}   </a>

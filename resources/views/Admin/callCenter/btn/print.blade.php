@@ -1,0 +1,1 @@
+ <a class="btn btn-primary" href="callCenterSearchAll/{{$id}}">  <i class="fa fa-print" ></i> {{trans('admin.print') }}   </a>
