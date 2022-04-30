@@ -28,24 +28,7 @@ use App\AfterPyment;
 
 class PaymentController extends Controller
 {
-    private $_api_context;
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-
-        /** PayPal api context **/
-        $paypal_conf = \Config::get('paypal');
-        $this->_api_context = new ApiContext(new OAuthTokenCredential(
-            $paypal_conf['client_id'],
-            $paypal_conf['secret'])
-        );
-        $this->_api_context->setConfig($paypal_conf['settings']);
-
-    }
+     
     public function index()
     {
         return view('paywithpaypal');

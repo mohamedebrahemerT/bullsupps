@@ -54,51 +54,7 @@
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="{{url('/')}}/Desgin/Adminlte/dist/css/skins/_all-skins.min.css">
 
-  <style type="text/css">
-    .skin-blue .sidebar-menu > li.header {
-  color: #fff;
-  background: #9d6c21;
-
-}
-
-.skin-blue .sidebar-menu > li:hover > a, .skin-blue .sidebar-menu > li.active > a, .skin-blue .sidebar-menu > li.menu-open > a {
-  color: #fff;
-  background: #904476;
-}
-
-.skin-blue .sidebar a {
-  color: #fff;
-}
-
-.skin-blue .main-header .logo {
-  background-color: #904476;
-  color: #fff;
-  border-bottom: 0 solid transparent;
-}
-
-.skin-blue .sidebar-menu > li > .treeview-menu {
-  margin: 0 1px;
-  background: #904476;
-}
-
-.skin-blue .sidebar-menu .treeview-menu > li > a {
-  color: #fff;
-}
-
-.skin-blue .sidebar-menu > li.header {
-  color: #fff;
-  background: #904476;
-}
-
-.user-panel > .image > img {
- 
-  background-color: #fff;
-  margin-top: 9%;
-}
-
-.skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
-  background-color: #9d6c21;
-}
+   
   </style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini" style="font: 400 14px/1.45 Open Sans;
@@ -117,7 +73,7 @@ color: #555;">
 
     <!-- Header Navbar: style can be found in header.less -->
 
-    <nav class="navbar navbar-static-top" style="background-color:#9D6C21">
+    <nav class="navbar navbar-static-top" >
 
       <!-- Sidebar toggle button-->
 
@@ -147,7 +103,7 @@ color: #555;">
 
  <!-- Left side column. contains the logo and sidebar -->
 
-  <aside class="main-sidebar" style="background-color:#904476">
+  <aside class="main-sidebar" >
 
     <!-- sidebar: style can be found in sidebar.less -->
 

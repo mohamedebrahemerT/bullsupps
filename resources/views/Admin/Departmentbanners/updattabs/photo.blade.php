@@ -109,7 +109,7 @@
 
             {!! Form::text('input_key[]',$data->input_key,['class'=>'form-control input_key']) !!}
 
-  <img src="{{url('/')}}/public/{{$data->input_value}}"  style="width: 1040px;">
+  <img src="{{url('/')}}/{{$data->input_value}}"  style="width: 1040px;">
 
          </div>
 

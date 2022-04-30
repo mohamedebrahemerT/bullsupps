@@ -51,21 +51,10 @@ use Carbon\Carbon;
  use App\cities;
  use App\states;
  use App\User;
- 
-
-
-
-
-
   use App\Product;
-
         use App\OrderProduct;
-
         use App\Mail\OrderPlaced;
-
         use App\OrderShareWithAllVendor;
-
-     
 
         use Illuminate\Support\Facades\Mail;
 
@@ -89,41 +78,7 @@ class PaymentController extends Controller
 
 {
 
-    private $_api_context;
-
-    /**
-
-     * Create a new controller instance.
-
-     *
-
-     * @return void
-
-     */
-
-    public function __construct()
-
-    {
-
-
-
-        /** PayPal api context **/
-
-        $paypal_conf = \Config::get('paypal');
-
-        $this->_api_context = new ApiContext(new OAuthTokenCredential(
-
-            $paypal_conf['client_id'],
-
-            $paypal_conf['secret'])
-
-        );
-
-        $this->_api_context->setConfig($paypal_conf['settings']);
-
-
-
-    }
+    
 
     public function index()
 
@@ -498,12 +453,7 @@ class PaymentController extends Controller
        protected function addToOrdersTablesPaypal($email, $name,$billing_address , $error)
 
             {
-
-
-
-               
-               
-
+ 
                      $order = Order::create([
 
             'user_id' => auth()->user() ? auth()->user()->id : null,
@@ -560,13 +510,15 @@ class PaymentController extends Controller
 
 
 
-                
+            
 
         // Insert into order_product table
 
         foreach (Cart::content() as $item) {
+                
+  
 
-            OrderProduct::create([
+            $OrderProduct=OrderProduct::create([
 
                 'order_id' => $order->id,
 
@@ -583,10 +535,10 @@ class PaymentController extends Controller
                 'Serial'=>substr(md5(microtime()),rand(0,1000000),10),
 
             ]);
-
+ 
         }
 
-
+    
 
         return $order;
 
@@ -743,7 +695,7 @@ class PaymentController extends Controller
     public function Confirmtheorderandpayonreceipt( )
 
     {
-        //return request();
+        
 
   if (request()->has('shipingupdate') and request('shipingupdate') =='shipingupdate')
               {
@@ -894,7 +846,7 @@ class PaymentController extends Controller
 
                       $amount =round( getNumbers()->get('newTotal') /100,2);
 
- 
+
 
            
 
@@ -908,7 +860,7 @@ class PaymentController extends Controller
 
 
 
-           Mail::send(new OrderPlaced($order));
+          // Mail::send(new OrderPlaced($order));
 
 
 

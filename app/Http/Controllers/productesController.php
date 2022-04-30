@@ -69,6 +69,8 @@ class productesController extends Controller
 
    {
 
+
+
           $productes=product::create(['title_name_ar'=>'']);
 
  
@@ -811,9 +813,9 @@ public function delete_imgofferphoto_dropzon_product($id)
 
    {
 
-      $productes = product::find($id);
+       $product = product::find($id);
 
-      $productes->delete();
+      $product->delete();
 
       session()->flash('success', trans('admin.datadeleted'));
 
