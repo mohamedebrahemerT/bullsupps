@@ -56,11 +56,13 @@
 
    
   </style>
+
+  @stack('css')
 </head>
 <body class="hold-transition skin-blue sidebar-mini" style="font: 400 14px/1.45 Open Sans;
 color: #555;">
 <div class="wrapper">
-  <header class="main-header" style="background-color:#904476">
+  <header class="main-header"  >
     <!-- Logo -->
     <a href="index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
@@ -365,70 +367,8 @@ color: #555;">
 
   </li>
 
-
-
  
-
-
-
- <!--li class="treeview {{ active_menu('Managementchat')[0] }}">
-
-    <a href="#">
-
-      <i class="fa fa-comments-o"></i> <span>{{ trans('admin.Managementchat') }}</span>
-
-      <span class="pull-right-container">
-
-        <i class="fa fa-comments-o"></i>
-
-      </span>
-
-    </a>
-
-    <ul class="treeview-menu" style="{{ active_menu('product')[1] }}">
-
-      <li class=""><a href="{{ url('Managementchat') }}"><i class="fa fa-comments-o"></i> {{ trans('admin.Managementchat') }}</a></li>
-
-
-
-     
-
-
-
-    </ul>
-
-  </li --> 
-
-
-
-
-
- <li class="treeview {{ active_menu('callCenter')[0] }}">
-
-    <a href="#">
-
-      <i class="fa fa-phone"></i> <span>{{ trans('admin.callCenter') }}</span>
-
-      <span class="pull-right-container">
-
-        <i class="fa fa-phone"></i>
-
-      </span>
-
-    </a>
-
-    <ul class="treeview-menu" style="{{ active_menu('product')[1] }}">
-
-      <li class=""><a href="{{ url('admin/callCenter') }}"><i class="fa fa-phone"></i> {{ trans('admin.callCenterrequiest') }}</a></li>
-
-      <li class=""><a href="{{ url('admin/callCenter/create') }}"><i class="fa fa-plus"></i> {{ trans('admin.addrquiest') }}</a></li>
-
-    </ul>
-
-  </li>
-
-
-
+ 
 
 
         <li class="treeview {{ active_menu('users')[0] }}">
@@ -969,17 +909,7 @@ color: #555;">
 
       <span>
 
-         @if(session('lang')== 'ar')
-
-          {{MenueControll()->departments_name_ar}} 
-
-          @endif
-
-           @if(session('lang')== 'en')
-
-          {{MenueControll()->departments_name_en}} 
-
-          @endif
+        categories
 
            
 
@@ -997,17 +927,7 @@ color: #555;">
 
       <li class=""><a href="{{ url('admin/departments') }}"><i class="fa fa-list"></i> 
 
-          @if(session('lang')== 'ar')
-
-          {{MenueControll()->departments_name_ar}} 
-
-          @endif
-
-           @if(session('lang')== 'en')
-
-          {{MenueControll()->departments_name_en}} 
-
-          @endif
+         categories
 
   
 
@@ -1032,7 +952,86 @@ color: #555;">
 
 
 
+ <li class="treeview {{ active_menu('attributes')[0] }}">
 
+    <a href="#">
+
+      <i class="fa fa-cube"></i> 
+
+
+
+      <span>
+
+         attributes
+
+        
+
+      </span>
+
+      <span class="pull-right-container">
+
+        <i class="fa fa-angle-left pull-right"></i>
+
+      </span>
+
+    </a>
+
+    <ul class="treeview-menu" style="{{ active_menu('attributes')[1] }}">
+
+      <li class=""><a href="{{ url('admin/attributes') }}"><i class="fa fa-cube"></i> 
+
+       attributes
+
+     
+
+    </a></li>
+
+      <li class=""><a href="{{ url('admin/attributes/create') }}"><i class="fa fa-plus"></i> {{ trans('admin.add') }}</a></li>
+
+    </ul>
+
+  </li>
+
+
+  <li class="treeview {{ active_menu('attribute_values')[0] }}">
+
+    <a href="#">
+
+      <i class="fa fa-cube"></i> 
+
+
+
+      <span>
+
+         attribute values
+
+        
+
+      </span>
+
+      <span class="pull-right-container">
+
+        <i class="fa fa-angle-left pull-right"></i>
+
+      </span>
+
+    </a>
+
+    <ul class="treeview-menu" style="{{ active_menu('attribute_values')[1] }}">
+
+      <li class=""><a href="{{ url('admin/attribute_values') }}"><i class="fa fa-cube"></i> 
+
+       attribute values
+
+     
+
+    </a></li>
+
+      <li class=""><a href="{{ url('admin/attribute_values/create') }}"><i class="fa fa-plus"></i> {{ trans('admin.add') }}</a></li>
+
+    </ul>
+
+  </li>
  
 
 
@@ -1047,17 +1046,7 @@ color: #555;">
 
       <span>
 
-         @if(session('lang')== 'ar')
-
-          {{MenueControll()->trademarks_name_ar}} 
-
-          @endif
-
-           @if(session('lang')== 'en')
-
-          {{MenueControll()->trademarks_name_en}} 
-
-          @endif
+         Brands
 
         
 
@@ -1075,17 +1064,7 @@ color: #555;">
 
       <li class=""><a href="{{ url('admin/trademarks') }}"><i class="fa fa-cube"></i> 
 
-        @if(session('lang')== 'ar')
-
-          {{MenueControll()->trademarks_name_ar}} 
-
-          @endif
-
-           @if(session('lang')== 'en')
-
-          {{MenueControll()->trademarks_name_en}} 
-
-          @endif
+       Brands
 
      
 
@@ -2117,17 +2096,7 @@ color: #555;">
 
       <span>
 
-         @if(session('lang')== 'ar')
-
-          {{MenueControll()->departments_name_ar}} 
-
-          @endif
-
-           @if(session('lang')== 'en')
-
-          {{MenueControll()->departments_name_en}} 
-
-          @endif
+        categories
 
            
 
@@ -2145,17 +2114,7 @@ color: #555;">
 
       <li class=""><a href="{{ url('admin/departments') }}"><i class="fa fa-list"></i> 
 
-          @if(session('lang')== 'ar')
-
-          {{MenueControll()->departments_name_ar}} 
-
-          @endif
-
-           @if(session('lang')== 'en')
-
-          {{MenueControll()->departments_name_en}} 
-
-          @endif
+         categories
 
   
 
@@ -2513,17 +2472,7 @@ color: #555;">
 
       <span>
 
-         @if(session('lang')== 'ar')
-
-          {{MenueControll()->departments_name_ar}} 
-
-          @endif
-
-           @if(session('lang')== 'en')
-
-          {{MenueControll()->departments_name_en}} 
-
-          @endif
+        categories
 
            
 
@@ -2541,17 +2490,7 @@ color: #555;">
 
       <li class=""><a href="{{ url('admin/departments') }}"><i class="fa fa-list"></i> 
 
-          @if(session('lang')== 'ar')
-
-          {{MenueControll()->departments_name_ar}} 
-
-          @endif
-
-           @if(session('lang')== 'en')
-
-          {{MenueControll()->departments_name_en}} 
-
-          @endif
+         categories
 
   
 

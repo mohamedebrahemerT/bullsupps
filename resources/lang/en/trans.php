@@ -189,6 +189,8 @@ return [
     'Back'=>'Back',
 'Submit'=>'Submit',
     'password'=>'password',
+    'value_ar'=>'value ar',
+    'value_en'=>'value en',
     ''=>'',
     ''=>'',
     ''=>'',

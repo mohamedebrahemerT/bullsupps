@@ -35,13 +35,18 @@
       
 
        <div class="form-group">
+           content name ar
              <textarea name="content_name_ar"  class="form-control content_name_ar" > {{$productes->content_name_ar}}</textarea>
          
        </div>
 
-                   
+             
+   <div class="form-group">
+     content name en
+             <textarea name="content_name_en"  class="form-control content_name_en" > {{$productes->content_name_en}}</textarea>
+         
+       </div>
 
- 
 
           
 

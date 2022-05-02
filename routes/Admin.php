@@ -498,25 +498,16 @@
 
       Route::resource('admin/shipping', 'ShippingController');
 
-
-
      Route::resource('admin/malls', 'MallsController');
-
-     
-
       Route::resource('admin/colors', 'ColorsController');
-
-      
-
       Route::resource('admin/sizes', 'sizesController');
-
       Route::resource('admin/Models', 'ModelsController');
 
-
-
-
-
       Route::resource('admin/weight', 'weightController');
+
+      Route::resource('admin/attributes', 'attributesController');
+      Route::resource('admin/attribute_values', 'attribute_valuesController');
+      
 
 
 
@@ -562,7 +553,7 @@
          Route::get('admin/load_dep_v_size_weight', 'productesController@load_dep_v_size_weight');
 
 
-
+  Route::post('admin/call_attributes', 'productesController@call_attributes');
 
 
    Route::post('admin/DELET_PRODUCT/{id}', 'productesController@DELET_PRODUCT');

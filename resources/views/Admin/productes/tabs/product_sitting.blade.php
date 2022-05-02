@@ -132,12 +132,18 @@
 
         </div>
 
+        
+ <div class="form-group col-md-3 col-lg-3 col-sm-3">
+            {!! Form::label('tradmark',trans('admin.select_tradmark')) !!}
+            <br>
+                   {!! Form::select('trad_id',App\TradeMark::pluck('name_'.session('lang'),'id'),$productes->trad_id,['class'=>'form-control','placeholder'=>trans('admin.select_color')]) !!}
+
+             </div>
 
 
           
         
 
-        
 
 
 
@@ -145,7 +151,8 @@
 
    <div class="form-group  col-md-6 "> 
 
-            {!! Form::select('status', [$productes->status=> $productes->status] + [ trans('admin.pending') => trans('admin.pending'),trans('admin.refused')=>trans('admin.refused'),trans('admin.active')=>trans('admin.active')], null, ['class' => 'form-control status']) !!}
+            {!! Form::select('status', [$productes->status=> $productes->status] +
+             [ trans('admin.pending') => trans('admin.pending'),trans('admin.refused')=>trans('admin.refused'),trans('admin.active')=>trans('admin.active')], null, ['class' => 'form-control status']) !!}
 
                      </div> 
 
@@ -176,8 +183,7 @@
                      </div> 
    
 
-
-
+ 
       
 
     </div>

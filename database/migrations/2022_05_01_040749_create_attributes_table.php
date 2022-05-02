@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAdminGroupsTable extends Migration
+class CreateAttributesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateAdminGroupsTable extends Migration
      */
     public function up()
     {
-        Schema::create('admin_groups', function (Blueprint $table) {
+        Schema::create('attributes', function (Blueprint $table) {
             $table->id();
-            $table->string('group_name');
-             $table->bigInteger('admin_id')->unsigned()->nullable();
-            $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
+            $table->string('name_ar');
+            $table->string('name_en');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateAdminGroupsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admin_groups');
+        Schema::dropIfExists('attributes');
     }
 }

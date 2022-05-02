@@ -23,6 +23,9 @@ use App\sizes;
 use App\weight;
 
 use App\otherData;
+use App\Models\attributes;
+use App\Models\product_variant;
+use App\Models\attribute_values;
 
  
 
@@ -583,14 +586,40 @@ public function delete_imgofferphoto_dropzon_product($id)
 
             }
 
+              public function call_attributes()
+
+            {
+
+
+
+              if (request()->ajax() && request()->has('attribute_ids') )
+
+               {
+
+                $attribute_ids=request('attribute_ids');
+
+ 
+$attributes=attributes::whereIn('id',$attribute_ids)->get();
+
+    return view('Admin.productes.ajax_attributes',[
+        'attributes'=>$attributes,
+         ])->render();
+ 
+
+              }
+
+              
+
+            }
+
 
 
    public function update($id)
 
    {  
                
+       
         
-
          $productes = product::find($id);   
 
 
@@ -699,6 +728,48 @@ public function delete_imgofferphoto_dropzon_product($id)
 
          ]);
 
+
+    if (request()->has('attribute_value_id') ) 
+
+               {
+
+
+ 
+             $product_variant=product_variant::where('product_id',$id);
+
+             $product_variant->delete();
+
+
+
+ foreach (request('attribute_value_id') as $key => $attribute_value_id )
+
+                 {  
+
+    $attribute_value=attribute_values::where('id',$attribute_value_id)->first();
+
+           $attribute_id=$attribute_value->attribute_id;
+           $value_ar=$attribute_value->value_ar;
+           $value_en=$attribute_value->value_en;
+  
+
+          product_variant::create([
+
+                'product_id'  =>$id,
+                'attribute_id'=> $attribute_id,
+                'attribute_value_id'   =>$attribute_value_id,
+                'value_ar'   =>$value_ar,
+                'value_en'   =>$value_en,
+ 
+
+                     ]);
+
+                   
+
+                }
+ 
+
+               }
+
     
 
  if (request()->has('input_key') && request()->has('input_value')) 
@@ -797,9 +868,13 @@ public function delete_imgofferphoto_dropzon_product($id)
 
  public function productesCEDT($id)
 {
+
+
+       
          $productes = product::find($id);   
 
        $productes->content_name_ar=request('content_name_ar');
+       $productes->content_name_en=request('content_name_en');
    
         $productes->save();
          return Response(['status'=>true,'message'=>trans('admin.dataaupdatedsuccessfully'),'data'=>'data'],200);

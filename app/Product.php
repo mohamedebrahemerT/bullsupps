@@ -142,6 +142,13 @@ class product extends Model
 
   }
 
+   public function productvariant() 
+   {
+
+    return $this->hasMany('App\Models\product_variant', 'product_id', 'id');
+
+  }
+
 
 
 

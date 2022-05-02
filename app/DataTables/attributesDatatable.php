@@ -2,46 +2,50 @@
 
 namespace App\DataTables;
 
-use App\TradeMark;
+use App\Models\attributes;
 use Yajra\DataTables\Services\DataTable;
 
-class TradeMarkDatatable extends DataTable {
-	/**
-	 * Build DataTable class.
-	 *
-	 * @param mixed $query Results from query() method.
-	 * @return \Yajra\DataTables\DataTableAbstract
-	 */
-	public function dataTable($query) {
-		return datatables($query)
-			->addColumn('checkbox', 'Admin.trademarks.btn.checkbox')
-			->addColumn('edit', 'Admin.trademarks.btn.edit')
-			->addColumn('logo', 'Admin.trademarks.btn.logo')
-			->addColumn('delete', 'Admin.trademarks.btn.delete')
-			->rawColumns([
-				'edit',
-				'delete',
-				'checkbox',
-				'logo'
-			]);
-	}
+class attributesDatatable extends DataTable
+{
+   /**
+    * Build DataTable class.
+    *
+    * @param mixed $query Results from query() method.
+    * @return \Yajra\DataTables\DataTableAbstract
+    */
+   public function dataTable($query)
+   {
+      return datatables($query)
+         ->addColumn('checkbox', 'Admin.attributes.btn.checkbox')
+         ->addColumn('edit', 'Admin.attributes.btn.edit')
+         ->addColumn('attribute_values', 'Admin.attributes.btn.attribute_values')
+ 
+         ->addColumn('delete', 'Admin.attributes.btn.delete')
+         ->rawColumns([
+            'edit',
+            'delete',
+         'attribute_values',
+            'checkbox',
+         ]);
+   }
 
-	/**
-	 * Get query source of dataTable.
-	 *
-	 * @param \App\User $model
-	 * @return \Illuminate\Database\Eloquent\Builder
-	 */
-	public function query() {
-		return TradeMark::query();
-	}
+   /**
+    * Get query source of dataTable.
+    *
+    * @param \App\User $model
+    * @return \Illuminate\Database\Eloquent\Builder
+    */
+   public function query()
+   {
+      return attributes::query();
+   }
 
-	/**
-	 * Optional method if you want to use html builder.
-	 *
-	 * @return \Yajra\DataTables\Html\Builder
-	 */
-	  public function html()
+   /**
+    * Optional method if you want to use html builder.
+    *
+    * @return \Yajra\DataTables\Html\Builder
+    */
+    public function html()
     {
         return $this->builder()
                     ->columns($this->getColumns())
@@ -134,77 +138,75 @@ class TradeMarkDatatable extends DataTable {
                     );
     }
 
-	/**
-	 * Get columns.
-	 *
-	 * @return array
-	 */
-	protected function getColumns() {
-		return [
-			[
-				'name'       => 'checkbox',
-				'data'       => 'checkbox',
+   /**
+    * Get columns.
+    *
+    * @return array
+    */
+   protected function getColumns()
+   {
+      return [
+         [
+            'name'       => 'checkbox',
+            'data'       => 'checkbox',
                'title'=>'<input type="checkbox" onclick="checkall()" class="checck_all">  ',
-				 
-				'exportable' => false,
-				'printable'  => false,
-				'orderable'  => false,
-				'searchable' => false,
-			], [
-				'name'  => 'id',
-				'data'  => 'id',
-				'title' => '#',
-			], [
-				'name'  => 'name_ar',
-				'data'  => 'name_ar',
-				'title' => trans('admin.name_ar'),
-			], [
-				'name'  => 'name_en',
-				'data'  => 'name_en',
-				'title' => trans('admin.name_en'),
-			] , 
+            
+            'exportable' => false,
+            'printable'  => false,
+            'orderable'  => false,
+            'searchable' => false,
+         ], [
+            'name'  => 'id',
+            'data'  => 'id',
+            'title' => '#',
+         ], [
+            'name'  => 'name_ar',
+            'data'  => 'name_ar',
+            'title' => trans('admin.name_ar'),
+         ], [
+            'name'  => 'name_en',
+            'data'  => 'name_en',
+            'title' => trans('admin.name_en'),
+         ] ,
+          [
+            'name'       => 'attribute_values',
+            'data'       => 'attribute_values',
+            'title'      => trans('admin.attribute_values'),
+            'exportable' => false,
+            'printable'  => false,
+            'orderable'  => false,
+            'searchable' => false,
+         ],
 
-			  
+         
+         [
+            'name'       => 'edit',
+            'data'       => 'edit',
+            'title'      => trans('admin.edit'),
+            'exportable' => false,
+            'printable'  => false,
+            'orderable'  => false,
+            'searchable' => false,
+         ], [
+            'name'       => 'delete',
+            'data'       => 'delete',
+            'title'      => trans('admin.delete'),
+            'exportable' => false,
+            'printable'  => false,
+            'orderable'  => false,
+            'searchable' => false,
+         ],
 
-			[
-				'name'       => 'logo',
-				'data'       => 'logo',
-				'title'      => trans('admin.logo'),
-				'exportable' => false,
-				'printable'  => false,
-				'orderable'  => false,
-				'searchable' => false,
-			], 
+      ];
+   }
 
-			
-
-			[
-				'name'       => 'edit',
-				'data'       => 'edit',
-				'title'      => trans('admin.edit'),
-				'exportable' => false,
-				'printable'  => false,
-				'orderable'  => false,
-				'searchable' => false,
-			], [
-				'name'       => 'delete',
-				'data'       => 'delete',
-				'title'      => trans('admin.delete'),
-				'exportable' => false,
-				'printable'  => false,
-				'orderable'  => false,
-				'searchable' => false,
-			],
-
-		];
-	}
-
-	/**
-	 * Get filename for export.
-	 *
-	 * @return string
-	 */
-	protected function filename() {
-		return 'trademarks_'.date('YmdHis');
-	}
+   /**
+    * Get filename for export.
+    *
+    * @return string
+    */
+   protected function filename()
+   {
+      return 'malls_' . date('YmdHis');
+   }
 }

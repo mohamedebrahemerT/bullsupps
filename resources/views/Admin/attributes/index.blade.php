@@ -1,260 +1,7 @@
-@extends('Admin.index')
+ @extends('Admin.index')
 @section('content')
 
- @push('js')
 
-
-      <script>
-
-                // Replace the <textarea id="editor1"> with a CKEditor
-
-                // instance, using default configuration.
-
-                CKEDITOR.replace( 'content_name_en' , {
-
-        language: '{{session('lang')}}',
-
-});
-
-                CKEDITOR.replace( 'content_name_ar' , {
-
-        language: '{{session('lang')}}',
-
-});
-
-        
-
-                   
-
-
-
-            </script>
-
-
-
-
-
-            <script type="text/javascript">
-
-              
-
-
-               $(document).on('click','.DELET_PRODUCT',function(){
-                   
-
-                $.ajax({
-              url:'{{ url('admin/DELET_PRODUCT/'.$productes->id ) }}',
-              dataType:'json',
-              type:'post',
-              data:{
-                _token:'{{ csrf_token()  }}'
-              } ,
-
-             beforeSend:function(){
-               $('.loading-save-c').removeClass('hidden');
-                   $('.sucess_message').html('');
-                   $('.sucess_message').addClass('hidden');
-
-                  $('.DELET_PRODUCT0').addClass('hidden');
-                
-              },
-              success:function(data){
-                  $('.DELET_PRODUCT0').removeClass('hidden');
-                      if (data.status==true)
-                  {
-          $('.DELET_PRODUCT1').html('<h1>'+data.message+'</h1>');
-
-                
-             $('#myModal').modal('show');
-                      
-                  }
-
-              },
-              error:function(response){
-              
-
-              },
-                });
-
-                return false;
-               });
-             
-             $(document).on('click','#save_from_data1',function(){
-
-
-            
-              
-               var From_data=$('#save_from_data').serialize();
-
-                       
-
-          var content_name_ar = $('.content_name_ar').val();  
-          var content_name_en = $('.content_name_en').val();  
-
-
-          var content_name_ar = CKEDITOR.instances.content_name_ar.getData();
-          var content_name_en = CKEDITOR.instances.content_name_en.getData();
-
-         /* var title_name_ar = $('.title_name_ar').val();  
-          var price = $('.price').val();  
-          var stock = $('.stock').val();  
-          var start_at = $('.start_at').val();  
-          var end_at = $('.end_at').val();  
-          var price_offer = $('.price_offer').val();  
-          var start_offer_at = $('.start_offer_at').val();  
-          var end_offer_at = $('.end_offer_at').val();  
-          var commistion = $('.commistion').val();  
-          var status = $('.status').val();  
-          var reason = $('.reason').val();  
-          var color_id = $('.color_id').val();  
-
-          var trad_id = $('.trad_id').val();  
-          var manuf_id = $('.manuf_id').val();  
-          var malls = $('.malls').val();  
-          var input_key = $('.input_key').val();  
-          var input_value = $('.input_value').val();  
-          var department_id = $('.department_id').val(); 
-
-          var size_id = $('.size_id').val();  
-          var size = $('.size').val();  
-          var weight_id = $('.weight_id').val();  
-          var weight = $('.weight').val();  */
-
-  
-               
-               $.ajax({
-                
-              url:'{{ url('admin/productes/'.$productes->id) }}',
-              dataType:'json',
-              type:'PUT',
-                data:From_data,
-
-
-              beforeSend:function(){
-                $('.loading-save-c').removeClass('hidden');
-                   $('.sucess_message').html('');
-                   $('.sucess_message').addClass('hidden');
-
-
-              },
-              success:function(data){
-                $('.loading-save-c').addClass('hidden');
-                 $('.validate_message').html('');
-                 
-               $('.error_messages').addClass('hidden');
-                 
-                 if (data.status==true)
-                  {
-          $('.sucess_message').html('<h1>'+data.message+'</h1>').removeClass('hidden');
-                  }
-
-               $('#clicktoED').click();
-
-
-
-               
-               
-              },
-              error:function(response){
-               $('.loading-save-c').addClass('hidden');
-               var error_li='';
-               $.each(response.responseJSON.errors,function(index,value)
-               {
-                 error_li +='<li>'+value+'</li>';
-
-               });
-
-               $('.validate_message').html(error_li);
-                 
-               $('.error_messages').removeClass('hidden');
-
-
-              },
-
-               });
-
-
-               
-                
-                return false;
-             });
-
-
-
-
-
-
-
-               $(document).on('click','#clicktoED',function(){
-
-
-              
- 
-         var content_name_ar = $('.content_name_ar').val();  
-          var content_name_ar = CKEDITOR.instances.content_name_ar.getData();
-
-     var content_name_en = CKEDITOR.instances.content_name_en.getData();
-          
-               $.ajax({
-                
-              url:'{{ url('admin/productesCEDT/'.$productes->id) }}',
-              dataType:'json',
-              type:'PUT',
-              data:{
-"_token": "{{ csrf_token() }}",
-"_method":"PUT",
-          'content_name_ar':content_name_ar,
-          'content_name_en':content_name_en,
-     
-             }
-              ,
-              beforeSend:function(){
-               
-
-              },
-              success:function(data){
-               
-                 
-                 if (data.status==true)
-                  {
-          $('.sucess_message').html('<h1>'+data.message+'</h1>').removeClass('hidden');
-                  }
-
-
-               
-               
-              },
-              error:function(response){
-               $('.loading-save-c').addClass('hidden');
-               var error_li='';
-               $.each(response.responseJSON.errors,function(index,value)
-               {
-                 error_li +='<li>'+value+'</li>';
-
-               });
-
-               $('.validate_message').html(error_li);
-                 
-               $('.error_messages').removeClass('hidden');
-
-
-              },
-
-               });
-
-
-               
-                
-                return false;
-             }); 
-
-              
-            </script>
-            @endpush
-
-
-
- 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -274,7 +21,6 @@
         <li><a href="#"><i class="fa fa-dashboard"></i>{{trans('admin.Home') }} </a></li>
         <li class="active"> {{trans('admin.Dashboard') }}</li>
       </ol>
-
        @include('Admin.layouts.message')
     </section>
 
@@ -783,161 +529,85 @@
       @include('Admin.layouts.message');
     </section>
     <!-- /.content -->
-  
-    <div class="box">
+               
+
+                            <div class="box">
             <div class="box-header">
-              <h3 class="box-title">{{ trans('admin.create') }}</h3>
-         
-
-
+              <h3 class="box-title">{{ trans('admin.DataTableWithFullFeatures') }}</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
 
-              <div>
 
- 
-<button type="button" class="btn btn-success" id="save_from_data1"><i class="fa fa-save">  <i class="fa fa-spin fa-spinner loading-save-c hidden"></i></i> {{trans('admin.save_continue')}}</button>
-<button type="button" class="btn btn-info"><i class="fa fa-copy"></i> {{trans('admin.copy')}}</button>
+    {!! Form::open(['id'=>'fromdata','url'=>'admin/colors/destroy/all','method'=>'delete']) !!}
+  <div class="table-responsive">
+{!! $dataTable->table(["class"=> "table table-striped table-bordered table-hover table-checkable dataTable no-footer"],true) !!}
+<div class="clearfix"></div>
+</div>
 
-<button type="button" class="DELET_PRODUCT btn btn-warning"><i class="fa fa-trash"></i> {{trans('admin.delete')}}</button>
-
-                
-              </div>
-              
-        
-
-<br> <div class="clearfix"> </div>
- 
-        <div class="alert alert-danger error_messages hidden">
-          
-          <ul class="validate_message">
-            
-          </ul>
-
-        </div>
-
-                 
-        <div class="alert alert-danger DELET_PRODUCT0 hidden">
-          
-           <ul class="DELET_PRODUCT1">
-            
-          </ul>
-
-        </div>
-
-            
-        <div class="alert alert-success sucess_message hidden">
-          
-          
-        </div>
-
-          <ul class="nav nav-tabs">
-       <li class="active"><a data-toggle="tab" href="#home"><i class="fa fa-info"></i> {{trans('admin.product_info')}}</a></li>
-
-       <li><a data-toggle="tab" href="#department"><i class="fa fa-circle"></i> {{trans('admin.department')}}</a></li>
-
-    <li><a data-toggle="tab" href="#menu1"><i class="fa fa-gear"></i> {{trans('admin.product_sitting')}}</a></li>
-
-     <li><a data-toggle="tab" href="#menu4"><i class="fa fa-gear"></i> {{trans('admin.attributes')}}</a></li>
-
-    <li><a data-toggle="tab" href="#menu2"><i class="fa fa-camera"></i> {{trans('admin.product_Media')}}</a></li>
- 
- 
-    
-  </ul>
-              
-           
-
-   {!! Form::open(['url'=>url('admin/productes/'.$productes->id),'files'=>true,'method'=>'put','id'=>'save_from_data' ]) !!}
-
-   
-
-  <div class="tab-content">
-
-          @include('Admin.productes.tabs.product_info')
-              @include('Admin.productes.tabs.department')
-          @include('Admin.productes.tabs.product_sitting')
-          @include('Admin.productes.tabs.attributes')
-          
-          @include('Admin.productes.tabs.product_Media')
- 
-
+    {!! Form::close() !!}
 
       
-
-
-            {!! Form::close() !!}
-
-
-
-
-
  
-
-
- 
-                 
-          
-  </div>
-
-     
-
-  
         
-<button type="button" class="btn btn-success" id="save_from_data1"><i class="fa fa-save"></i>      <i class="fa fa-spin fa-spinner loading-save-c hidden"></i>   {{trans('admin.save_continue')}}</button>
-<button type="button" class="btn btn-info"><i class="fa fa-copy"></i> {{trans('admin.copy')}}</button>
-<button type="button" class="DELET_PRODUCT btn btn-warning"><i class="fa fa-trash"></i> {{trans('admin.delete')}}</button>
-
- <button type="button" class="btn btn-success" id="clicktoED" style="display: none;"><i class="fa fa-save"></i>      <i class="fa fa-spin fa-spinner loading-save-c hidden"></i>   {{trans('admin.clicktoED')}}</button>
-
-
-
- 
-
- 
- 
-
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">{{trans('admin.info') }}</h4>
-      </div>
-      <div class="modal-body">
-        <p class="alert alert-danger"> {{trans('admin.datadeleted') }}</p>
-        {{trans('admin.productNAme_is') }}:{{ $productes->title  }}
-      </div>
-      <div class="modal-footer">
-          <a href="{{url('admin/productes') }}">  <button type="button" class="btn btn-default" >{{trans('admin.leave') }}</button>
-            </a>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
-</div>
-
-                     </div> 
-
-                   
- 
- 
 
    </div>
  </div>
-    
+                      
+                
+
+
+    <div class="modal fad" role="dialog" id="maltidelte">
+
+    <div class="modal-dialog">
+
+      <div class="modal-content">
+      <div class="modal-header">
+        <button class="btn-primary" data-dismiss='modal'>{{ trans('admin.close')}}</button>
+          
+      </div>
+      <div class="modal-body">
+        
+        <div class="alert alert-danger">
+
+          <div class="empty_recored hidden"> 
+          <h1 > {{ trans('admin.asketodelempty')}}  </h1>
+          </div>
+
+               <div class="not_empty_recored hidden"> 
+          <h1 > {{ trans('admin.asketodelnotempty')}} <span class="record_count"></span> </h1>
+                 </div>
+
+        </div>
+
+      </div>
+      <div class="modal-footer">
+
+        <div class="empty_recored hidden">
+             <button class="btn-primary" data-dismiss='modal'>{{ trans('admin.close')}}</button>
+         </div>
+
+               <div class="not_empty_recored hidden"> 
+
+    <input type="submit" name="dellall" class="btnt btn-danger dellallitem" value="{{ trans('admin.yes')}}">
+
+        <input type="submit" name="dellall" class="btnt btn-info dellall" value="{{ trans('admin.no')}}">
+          <div>
+
+      </div>
+      <dv>      
+    </div> 
+   </div> 
    </div> 
       
 
-     
+                @push('js')
+     <script type="text/javascript">
+             dellall();
+          </script>
        
+     {!! $dataTable->scripts() !!}
+                  @endpush
     
   </div>
   <!-- /.content-wrapper -->

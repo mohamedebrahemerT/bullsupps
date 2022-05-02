@@ -225,7 +225,9 @@ document.getElementById("x").innerHTML = d.toUTCString();
 @stack('js')
 
 
+   
 
+            
 
 
  <!-- DataTables -->

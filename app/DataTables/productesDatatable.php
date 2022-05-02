@@ -488,7 +488,7 @@ class productesDatatable extends DataTable
 
             'data'  => 'title_name_ar',
 
-            'title' => 'اسم المنتج ',
+            'title' => trans('admin.name'),
 
          ]  ,
 

@@ -198,7 +198,7 @@ return [
 	'type_of_size'=>'type of size',
 	'type_of_weight'=>'type of weight',
 	'select_color' =>'select color',
-	'select_tradmark'=>'select TradeMark',
+	'select_tradmark'=>'select Brand',
 	'select_Manufacturers'=>'select Manufacturers',
 	'input_key'=>'input key',
 	'input_value'=>'input value',
@@ -1109,6 +1109,11 @@ return [
 				'Low to High'=>'Low to High',
 				'New'=>'New',
 				'Availability'=>'Availability',
+				'value_ar'=>'value ar',
+           'value_en'=>'value en',
+           'attributes'=>'attribute',
+           'updated_record'=>'record updated',
+           'attribute_values'=>'attribute values'
 
 
 
