@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\User;
+use App\user;
 use Yajra\DataTables\Services\DataTable;
 
 class userssssdatatables extends DataTable
@@ -36,7 +36,7 @@ class userssssdatatables extends DataTable
     {   
        
 
-        return User::query();
+        return user::query();
            
     }
 
