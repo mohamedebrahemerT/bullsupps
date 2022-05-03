@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 
 
-use App\product;
+use App\Product;
 
 use App\Department;
 
