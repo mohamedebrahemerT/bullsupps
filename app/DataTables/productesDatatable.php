@@ -6,7 +6,7 @@ namespace App\DataTables;
 
 
 
-use App\product;
+use App\Product;
 
 use Yajra\DataTables\Services\DataTable;
 
