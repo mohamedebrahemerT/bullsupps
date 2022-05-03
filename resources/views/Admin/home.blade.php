@@ -278,7 +278,7 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>{{App\product::count()}}</h3>
+              <h3>{{App\Product::count()}}</h3>
 
               <p>{{trans('admin.numberofproduct')}}</p>
             </div>
