@@ -1542,7 +1542,7 @@ $(document).ready(function() {
                    <select name="product_id" class="form-control" id="status">
                     <option value="">..........</option>
 
-                         @foreach(App\product::get() as $product)
+                         @foreach(App\Product::get() as $product)
                     <option value="{{$product->id}}">{{ $product->title_name_ar }}</option>
                           @endforeach
 
