@@ -12,7 +12,7 @@ class Departmentbanners extends Model
 
 
 
-   protected $table="Departmentbanners";
+   protected $table="departmentbanners";
 
 
 

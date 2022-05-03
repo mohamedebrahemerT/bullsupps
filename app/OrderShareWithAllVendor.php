@@ -14,7 +14,7 @@ class OrderShareWithAllVendor extends Model
 
 {
 
-   protected $table="OrderShareWithAllVendor";
+   protected $table="ordersharewithallvendor";
 
    protected $fillable=[
 

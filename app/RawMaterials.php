@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class RawMaterials extends Model
 {
-   protected $table="RawMaterials";
+   protected $table="rawmaterials";
    protected $fillable=[
        "id",
      'title_name_en',

@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class AfterPaymentOrders extends Model {
-	protected $table    = 'AfterPaymentOrders';
+	protected $table    = 'afterpaymentorders';
 	protected $fillable = [
 			'id',
 			'user_id',

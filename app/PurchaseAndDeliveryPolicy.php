@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PurchaseAndDeliveryPolicy extends Model
 {
-   protected $table="PurchaseAndDeliveryPolicy";
+   protected $table="purchaseanddeliverypolicy";
    protected $fillable=[
        "id",
      'title_name_en',

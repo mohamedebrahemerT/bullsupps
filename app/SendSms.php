@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SendSms extends Model
 {
-   protected $table="SendSms";
+   protected $table="sendsms";
    protected $fillable=[
        "id",
      'number',

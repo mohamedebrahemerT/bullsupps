@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AffiliateRegister extends Model
 {
-   protected $table="AffiliateRegister";
+   protected $table="affiliateregister";
    protected $fillable=[
 "id",
 'firstname',

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SellerAccount extends Model
 {
-   protected $table="SellerAccount";
+   protected $table="selleraccount";
    protected $fillable=[
        'TelephoneNumber',
 'FirstAndLastName',

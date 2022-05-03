@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class VisionMission extends Model
 {
-   protected $table="VisionMission";
+   protected $table="visionmission";
    protected $fillable=[
        "id",
 	'VisionMission_name_en',

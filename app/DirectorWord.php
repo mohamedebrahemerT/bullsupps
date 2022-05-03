@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class DirectorWord extends Model
 {
-   protected $table="DirectorWord";
+   protected $table="directorword";
    protected $fillable=[
        "id",
      'title_name_en',

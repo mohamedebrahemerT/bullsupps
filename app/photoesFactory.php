@@ -5,7 +5,7 @@ class photoesFactory extends Model
 
 {
 
-   protected $table="photoesFactory";
+   protected $table="photoesfactory";
 
    protected $fillable=[
 

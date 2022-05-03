@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AdvantagesOfPipes extends Model
 {
-   protected $table="AdvantagesOfPipes";
+   protected $table="advantagesofpipes";
    protected $fillable=[
        "id",
      'title_name_en',

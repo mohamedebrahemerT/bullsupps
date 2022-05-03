@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class MenueControll extends Model
 {
-   protected $table="MenueControll";
+   protected $table="menuecontroll";
    protected $fillable=[
        "id",
      'admin_name_ar',

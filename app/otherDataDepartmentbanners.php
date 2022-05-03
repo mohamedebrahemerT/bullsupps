@@ -14,7 +14,7 @@ class  otherDataDepartmentbanners extends Model
 
 {
 
-        	protected $table='otherDataDepartmentbanners';
+        	protected $table='otherdatadepartmentbanners';
 
     protected $fillable = ['id','Departmentbanners_id', 'input_key','input_value'];
 

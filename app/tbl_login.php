@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class tbl_login extends Model
 {
-     protected $table='tbl_login';
+     protected $table='tbl_logins';
     protected $fillable = [
 			"first_name",
 			"last_name",

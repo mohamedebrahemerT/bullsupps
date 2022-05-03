@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Objectives extends Model
 {
-   protected $table="Objectives";
+   protected $table="objectives";
    protected $fillable=[
        "id",
      'title_name_en',

@@ -14,7 +14,7 @@ class Coupon extends Model
 
 {
 
-   protected $table    = 'Coupon';
+   protected $table    = 'coupon';
 
    protected $fillable = [
 

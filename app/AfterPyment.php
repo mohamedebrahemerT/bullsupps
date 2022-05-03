@@ -14,7 +14,7 @@ class AfterPyment extends Model
 
 {
 
-   protected $table="AfterPyment";
+   protected $table="afterpyment";
 
    protected $fillable=[
 

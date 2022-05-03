@@ -14,7 +14,7 @@ class WhoWeAre extends Model
 
 {
 
-   protected $table="WhoWeAre";
+   protected $table="whoweare";
 
    protected $fillable=[
 

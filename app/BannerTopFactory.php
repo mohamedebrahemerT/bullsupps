@@ -5,7 +5,7 @@ class BannerTopFactory extends Model
 
 {
 
-   protected $table="BannerTopFactory";
+   protected $table="bannertopfactory";
 
    protected $fillable=[
 

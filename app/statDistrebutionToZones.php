@@ -14,7 +14,7 @@ class statDistrebutionToZones extends Model
 
 {
 
-   protected $table="statDistrebutionToZones";
+   protected $table="statdistrebutiontozones";
 
    protected $fillable=[
 

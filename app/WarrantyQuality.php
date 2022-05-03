@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class WarrantyQuality extends Model
 {
-   protected $table="WarrantyQuality";
+   protected $table="warrantyquality";
    protected $fillable=[
        "id",
      'title_name_en',

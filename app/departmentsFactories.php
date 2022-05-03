@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class departmentsFactories extends Model {
-	protected $table    = 'departmentsFactories';
+	protected $table    = 'departmentsfactories';
 	protected $fillable = [
 		'dep_name_ar',
 		'dep_name_en',

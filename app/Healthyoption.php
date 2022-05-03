@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Healthyoption extends Model
 {
-   protected $table="Healthyoption";
+   protected $table="healthyoption";
    protected $fillable=[
        "id",
      'title_name_en',

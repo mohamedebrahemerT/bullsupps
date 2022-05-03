@@ -5,7 +5,7 @@ class photoesEN extends Model
 
 {
 
-   protected $table="photoesEN";
+   protected $table="photoesen";
 
    protected $fillable=[
 
