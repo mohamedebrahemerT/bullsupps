@@ -5,7 +5,7 @@ class BannerTop extends Model
 
 {
 
-   protected $table="bannertop";
+   protected $table="BannerTop";
 
    protected $fillable=[
 
