@@ -8,7 +8,7 @@ use App\DataTables\productesDatatable;
 
 use App\Http\Controllers\Controller;
 
-use App\product;
+use App\Product;
 
 use Illuminate\Http\Request;
 
@@ -74,7 +74,7 @@ class productesController extends Controller
 
 
 
-          $productes=product::create(['title_name_ar'=>'']);
+          $productes=Product::create(['title_name_ar'=>'']);
 
  
 
@@ -130,7 +130,7 @@ class productesController extends Controller
 
 
 
-      product::create($data);
+      Product::create($data);
 
       session()->flash('success', trans('admin.record_added'));
 
@@ -182,7 +182,7 @@ class productesController extends Controller
 
    
 
-      $productes = product::find($id);
+      $productes = Product::find($id);
 
           
 
@@ -222,7 +222,7 @@ class productesController extends Controller
 
 
 
-                  $DELET_PRODUCT=product::where('id',$id);
+                  $DELET_PRODUCT=Product::where('id',$id);
 
              $DELET_PRODUCT->delete();
 
@@ -272,9 +272,9 @@ class productesController extends Controller
 
 
 
-                    $productes = product::find($id);  
+                    $productes = Product::find($id);  
 
-      product::where('id', $id)->update($data);
+      Product::where('id', $id)->update($data);
 
 
 
@@ -329,9 +329,9 @@ class productesController extends Controller
 
 
 
-                    $productes = product::find($id);  
+                    $productes = Product::find($id);  
 
-      product::where('id', $id)->update($data);
+      Product::where('id', $id)->update($data);
 
 
 
@@ -356,7 +356,7 @@ class productesController extends Controller
 
                {
 
-                    $productes = product::find($id);
+                    $productes = Product::find($id);
 
 
 
@@ -381,7 +381,7 @@ public function delete_imgofferphoto_dropzon_product($id)
 
                {
 
-                    $productes = product::find($id);
+                    $productes = Product::find($id);
 
 
 
@@ -566,7 +566,7 @@ public function delete_imgofferphoto_dropzon_product($id)
 
         'weight'=>$weight,
 
-         'productcc'=>product::find(request('product_id'))
+         'productcc'=>Product::find(request('product_id'))
 
          ])->render();
 
@@ -620,7 +620,7 @@ $attributes=attributes::whereIn('id',$attribute_ids)->get();
                
        
         
-         $productes = product::find($id);   
+         $productes = Product::find($id);   
 
 
 
@@ -838,7 +838,7 @@ $attributes=attributes::whereIn('id',$attribute_ids)->get();
                 }
   
 
-      product::where('id', $id)->update($data);
+      Product::where('id', $id)->update($data);
 
      
 
@@ -871,7 +871,7 @@ $attributes=attributes::whereIn('id',$attribute_ids)->get();
 
 
        
-         $productes = product::find($id);   
+         $productes = Product::find($id);   
 
        $productes->content_name_ar=request('content_name_ar');
        $productes->content_name_en=request('content_name_en');
@@ -888,7 +888,7 @@ $attributes=attributes::whereIn('id',$attribute_ids)->get();
 
    {
 
-       $product = product::find($id);
+       $product = Product::find($id);
 
       $product->delete();
 
@@ -908,7 +908,7 @@ $attributes=attributes::whereIn('id',$attribute_ids)->get();
 
          foreach (request('item') as $id) {
 
-            $malls = product::find($id);
+            $malls = Product::find($id);
 
             $malls->delete();
 
@@ -916,7 +916,7 @@ $attributes=attributes::whereIn('id',$attribute_ids)->get();
 
       } else {
 
-         $malls = product::find(request('item'));
+         $malls = Product::find(request('item'));
 
          $malls->delete();
 
