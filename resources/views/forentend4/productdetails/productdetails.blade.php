@@ -905,959 +905,577 @@ a.thumbnail.active, a.thumbnail:focus, a.thumbnail:hover {
  
 
 
-
- 
-
-<div class="breadcrumbs ">
-
-  <div class="container">
-
-       <div class="current-name">   
-
-                          
-
-                  
-
-              
-
-                
-
-           @if(session('lang')=='ar')
-
-{{$product->title_name_ar }}
-
-@endif
-
-  @if(session('lang')=='en')
-
-{{$product->title_name_en }} 
-
-@endif  
-
-
-            
-
-              </div>
-
-      <ul class="breadcrumb">
-
-                <li><a href="{{url('/')}}">{{trans('admin.home2')}}</a></li>
-
-          <li><a href="{{url('/')}}/shop?id={{$product->department_id}}">
-
-              @if(session('lang') == 'ar')
-
-            {{$product->department_name->dep_name_ar}}
-
-            @endif
-
-              @if(session('lang') == 'en')
-
-            {{$product->department_name->dep_name_en}}
-
-            @endif
-
-          </a></li>
-
-                <li><a href="{{url('/')}}/shop/{{$product->id}}">
-
-
-
-                 @if(session('lang')=='ar')
-
-{{$product->title_name_ar }}
-
-@endif
-
-  @if(session('lang')=='en')
-
-{{$product->title_name_en }} 
-
-@endif
-
-              </a></li>
-
-              </ul>
-
-    </div>
-
-</div>
-
-
-
- 
-
-
- 
-<div class="content-main container product-detail  "   >
-
-
- 
-  <div class="row">
-
-    
- 
-
-      
-
-                                       @if($product->stock  > 0)
-
-    <div id="content" class="product-view col-md-12 col-sm-12 col-xs-12 fluid-sidebar"> 
-
-    @else
-    <div id="content" class="product-view col-md-9 col-sm-12 col-xs-12 fluid-sidebar" style="background-color: #f3ca90"> 
-
-    @endif
-
-                      
- 
-
-      <div class="sidebar-overlay "></div>
-
-    
-
-
-
-    <div class="content-product-mainheader clearfix"> 
-
-      <div class="row"> 
-
-            <div class="content-product-left  col-md-5 col-sm-12 col-xs-12" >
-
-                  <div class="so-loadeding" ></div>
-
-<div class="large-image  " >
-
-  <img  class="product-image-zoom lazyload" data-sizes="auto" src="{{Storage::url($product->photo)}}" data-src="{{Storage::url($product->photo)}}" data-zoom-image="{{Storage::url($product->photo)}}" title="{{$product->title_name_ar}}" alt="{{$product->title_name_ar}}"  style=" max-width: 100%;
-    max-height: 100%;" />
-</div>
-
-
-
-
-
-<div id="thumb-slider" class="full_slider  contentslider" data-rtl="yes" data-autoplay="no"  data-pagination="no" data-delay="4" data-speed="0.6" data-margin="10"  data-items_column0="5" data-items_column1="3" data-items_column2="5" data-items_column3="3" data-items_column4="3" data-arrows="yes" data-lazyload="yes" data-loop="no" data-hoverpause="yes">
-
-
-
-       <div class="image-additional">
-
-    <a data-index="0" class="img thumbnail " data-image="{{Storage::url($product->photo)}}" title="Corem ipsum dolor">
-
-      <img class="lazyload" data-sizes="auto" src="{{Storage::url($product->photo)}}" data-src="{{Storage::url($product->photo)}}" title="Corem ipsum dolor" alt="Corem ipsum dolor"   style="height:50px;width: 50px"  />
-
-    </a>
-
-    </div>
-
-
-
-       
-
-<script type="text/javascript"><!--
-
-  $(document).ready(function() {
-
-    var zoomCollection = '.large-image img';
-
-    $( zoomCollection ).elevateZoom({
-
-      //value zoomType (window,inner,lens)
-
-            zoomType        : "inner",
-
-            lensSize    :'250',
-
-      easing:false,
-
-      scrollZoom : true,
-
-      gallery:'thumb-slider',
-
-      cursor: 'pointer',
-
-      galleryActiveClass: "active",
-
-    });
-
-    $(zoomCollection).bind('touchstart', function(){
-
-        $(zoomCollection).unbind('touchmove');
-
-    });
-
-    
-
-        $('.large-image img').magnificPopup({
-
-      items: [],
-
-      gallery: { enabled: true, preload: [0,2] },
-
-      type: 'image',
-
-      mainClass: 'mfp-fade',
-
-      callbacks: {
-
-        open: function() {
-
-                      var activeIndex = parseInt($('#thumb-slider .img.active').attr('data-index'));
-
-                    var magnificPopup = $.magnificPopup.instance;
-
-          magnificPopup.goTo(activeIndex);
-
-        }
-
-      }
-
-
-
-    });
-
-      });
-
-//--></script>
-
-
-
-       
-
-     
-
-     
-
-    
-
-            @foreach($filess as $file)
-
-
-
-      <div class="image-additional">
-
-    <a data-index="1" class="img thumbnail " data-image="{{Storage::url($file->full_file)}}" title="Corem ipsum dolor">
-
-      <img class="lazyload" data-sizes="auto" src="{{Storage::url($file->full_file)}}" data-src="{{Storage::url($file->full_file)}}" title="Corem ipsum dolor" alt="Corem ipsum dolor"  style="height:50px;width: 50px" />
-
-    </a>
-
-    </div>
-
-
-
-                      @endforeach
-
-
-
-
-
-    </ul>
-
-</div>
-
-
- 
-                        </div>
-
-          
-
-            <div class="content-product-right col-md-7 col-sm-12 col-xs-12"  >
-
-
-
-        <div class="title-product">
-
-             <h1  class="namesadasdads">
-
-                 @if(session('lang')=='ar')
-
-{{$product->title_name_ar }}
-
-@endif
-
-  @if(session('lang')=='en')
-
-{{$product->title_name_en }} 
-
-@endif
-
-
-
- <a href="{{url('/')}}/wishlist/{{$product->id}}">
-       <img   class="float-ar-en"  src="{{url('/')}}/forentend4/img/heart.png">
-</a>
-
-
-             </h1>
-<h5>    360 chochatte</h5>
-          </div>
-
-        
-
-                            <div class="box-review"  itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-
-                        
- 
-
-          
-
-                          
-
-                      
-
-          </div>
-
-          
-
-                            <div class="product_page_price price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-
-                          <span class="price-new">
-
-                <span itemprop="price" content="" id="price-old">
-
-                    <div class="price" id="zzzzzzzzzzzzz2" style="display: none;">
-
-                                          
-
-      <span style="float: right; font-size: 25px"> 
-
-    
-           <span class="price_size"></span> 
-
-     </span>
-
-     </div>                 
-
- 
- <div class="price  " id="zzzzzzzzzzzzz">
-
-                                          
-
-      <span style="float: right; font-size: 25px"> 
-
-    
-             @if($product->price_offer  > 0)   
-        {{$product->price_offer }}  {{trans('admin.pound')}}  
-            @endif
-
-     </span>
-
-
-&nbsp;&nbsp;
-
-         @if($product->price_offer  > 0)
-         <span style="text-decoration: line-through;
-
-font-size: 17px;
-
- 
-
-color: #c0aec3;
-
- ">
-
-                                            
-
-        {{$product->price }}  {{trans('admin.pound')}}
-
-                                          </span>
-
-              @endif                    
-
-
-         @if($product->price_offer  == 0)
-                <span  >
-
-                                            
-
-        {{$product->price }}  {{trans('admin.pound')}}
-
-                                          </span>
-              @endif                    
-
-                            
-
-                                                        </div>
-
-                               
-
-                            
-
-                            </span>
-
-                <meta itemprop="priceCurrency" content="" />
-
-              </span>
-
-
-
-                        
-
-             
-
-
-
-            
-
-                           
-
-          </div>
-
-                    
-
- 
-
-
-            <div id="product">  
-
-     
- 
-
-
-    <div class="size_and_weight_cc">
-  </div>
-
-
-<input  type="hidden"   name="price" class="price">
-
-
-
- <input type="hidden"   name="color" class="color">
-
-
-
-  <input type="hidden"   name="sizes"   class="sizes">
-
-
-
-  <input type="hidden"   name="PID"   value="{{$product->id}}">
-
-
-
-  <input type="hidden"   name="SRC" class="SRC">
-
-     
-
- 
-
-    </ul>
-
-</div>
-
- 
-
-               
-
-                    
-
-            
-
-                        
-
-                    
-
-          <div class="box-cart clearfix form-group">
-
-                        
-
-            <div class="form-group box-info-product">
-
-
-
-             <div style="display: flex;">
-                  <div class="option quantity">
- 
-
-
-
-                <div class="input-group quantity-control">
-
-
-                    <span class="input-group-addon product_quantity_down fa fa-minus">
-
-                      
-
-                    </span>
-
-                    
-
-                    <input class="form-control" type="text" name="quantity" value="1" />
-
-                    <input type="hidden" name="product_id" value="101" />                 
-
-                    <span class="input-group-addon product_quantity_up fa fa-plus"></span>
-
- 
-
-              </div>
-
-                      </div>
-  <span style="background: #52B788;
-flex: none;
-margin: 0px 5px;
-  margin-top: 0px;
-margin-top: 0px;
-margin-top: 0px;
-width: 2px;
-height: 4px;
-padding: 5px;
-border-radius: 92%;
-top: 3px;
-margin-top: 10px;"></span>
-{{trans('admin.In Stock')}}
- 
-              
-             </div>
-
-      
-                    @if($product->stock > 0 )
-
-              <div class="detail-action">
-                                <div class="cart">
-                  <input type="button" value="{{trans('admin.AddtoCart')}}" data-loading-text="جاري ..." id="button-cart"  
-                  class="AddtoCartAddtoCart" 
- >
-
-       
-
-         
-
-         </a>
+  <!-- START SECTION BREADCRUMB -->
+    <div class="breadcrumb_section page-title-mini">
+        <div class="custom-container">
+            <!-- START CONTAINER -->
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="page-title">
+                        <!-- <h1>Product Detail</h1> -->
+                        <ol class="breadcrumb justify-content-md-start">
+                            <li class="breadcrumb-item"><a href="{{url('/')}}/#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{url('/')}}/#">Pages</a></li>
+                            <li class="breadcrumb-item active">Product Detail</li>
+                        </ol>
+                    </div>
                 </div>
+            </div>
+        </div>
+        <!-- END CONTAINER-->
+    </div>
+    <!-- END SECTION BREADCRUMB -->
 
-              @else
-                      <h1 style="    color: red;
-    border: 1px solid #000;
-    padding: 6px;
-    text-align: center;
-    background: border-box;"> تم  نفاذ الكمية</h1>
-              @endif
-   
- 
+    <!-- START MAIN CONTENT -->
+    <div class="main_content">
+        <aside class="sidebar bg-black">
+            <div class="toggle">
+                <a href="{{url('/')}}/#" class="burger js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
+                    <span class="bg-darkgray"></span>
+                </a>
+
+                <span class="bag-label">Your Cart</span>
+            </div>
+            <div class="side-inner">
+
+                <div class="cart_box cart_right dropdown-menu-right">
+                    <ul class="cart_list">
+                        <li>
+                            <a href="{{url('/')}}/#" class="item_remove"><i class="ion-close"></i></a>
+                            <a href="{{url('/')}}/#"><img src="{{url('/')}}/assets/images/products/pr-01.png" alt="cart_thumb1"></a>Variable product 001
+                            <span class="cart_quantity"> 1 x <span class="cart_amount"> <span class="price_symbole">AED</span></span>78.00</span>
+                        </li>
+
+                        <li>
+                            <a href="{{url('/')}}/#" class="item_remove"><i class="ion-close"></i></a>
+                            <a href="{{url('/')}}/#"><img src="{{url('/')}}/assets/images/products/pr-02.png" alt="cart_thumb2"></a>Ornare sed consequat
+                            <span class="cart_quantity"> 1 x <span class="cart_amount"> <span class="price_symbole">AED</span></span>81.00</span>
+                        </li>
+                        <li>
+                            <a href="{{url('/')}}/#" class="item_remove"><i class="ion-close"></i></a>
+                            <a href="{{url('/')}}/#"><img src="{{url('/')}}/assets/images/products/pr-02.png" alt="cart_thumb2"></a>Ornare sed consequat
+                            <span class="cart_quantity"> 1 x <span class="cart_amount"> <span class="price_symbole">AED</span></span>81.00</span>
+                        </li>
+                        <li>
+                            <a href="{{url('/')}}/#" class="item_remove"><i class="ion-close"></i></a>
+                            <a href="{{url('/')}}/#"><img src="{{url('/')}}/assets/images/products/pr-02.png" alt="cart_thumb2"></a>Ornare sed consequat
+                            <span class="cart_quantity"> 1 x <span class="cart_amount"> <span class="price_symbole">AED</span></span>81.00</span>
+                        </li>
+                    </ul>
+                    <div class="cart_footer">
+                        <p class="cart_total"><strong>Subtotal:</strong> <span class="cart_price"> <span class="price_symbole">AED</span></span>159.00</p>
+                        <p class="cart_buttons"><a href="{{url('/')}}/#" class="btn btn-secondary view-cart">View Cart</a><a href="{{url('/')}}/#" class="btn btn-primary checkout">Checkout</a></p>
+                        <p class="cart_buttons"><a href="{{url('/')}}/#" class="btn btn-primary btn-block">Continue Shopping</a></p>
+
+                    </div>
+
+                </div>
 
             </div>
 
-<div class="wrapper center-block">
-  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-  <div class="panel panel-default">
-    <div class="panel-heading  " role="tab" id="headingOne">
-      <h4 class="panel-title">
-        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-       <i class="fa fa-angle-double-down"></i>  <img src="{{url('/')}}/forentend4/img/pro.png">  {{trans('admin.Product Description')}}
-        </a>
-      </h4>
-    </div>
-    <div id="collapseOne" class="panel-collapse collapse  " role="tabpanel" aria-labelledby="headingOne">
-      <div class="panel-body">
-        @if(session('lang')=='ar')
+        </aside>
+        <!-- START SECTION SHOP -->
+        <div class="section">
+            <div class="custom-container">
+                <div class="row">
+                    <div class="col-xl-9 col-lg-8">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 mb-4 mb-md-0">
+                                <div class="product-image">
+
+                                    <div class="product_img_box">
+        <img id="product_img" src="{{Storage::url($product->photo)}}"data-zoom-image="{{Storage::url($product->photo)}}" alt="product_img1"   />
+                                        <a href="#" class="product_img_zoom" title="Zoom">
+                                            <span class="linearicons-zoom-in"></span>
+                                        </a>
+                                    </div>
+
+                                    <div id="pr_item_gallery" class="product_gallery_item slick_slider" data-slides-to-show="4" data-slides-to-scroll="1" data-infinite="false">
+            @foreach($filess as $key => $file)
+
+                                        <div class="item">
+    <a href="{{url('/')}}/" class="product_gallery_item @if($key == 0) active @endif"
+                                             data-image="{{Storage::url($file->full_file)}}" data-zoom-image="{{Storage::url($file->full_file)}}">
+                                              
+                                                <img src="{{Storage::url($file->full_file)}}" alt="product_small_img1"  />
+
+                                            </a>
+                                        </div>
+                      @endforeach
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="product_description">
+                                            <h4 class="product_title"><a href="{{url('/')}}/shop/{{$product->id }} ">
+
+                                          @if(session('lang')=='ar')
+
+{{$product->title_name_ar }}
+
+@endif
+
+  @if(session('lang')=='en')
+
+{{$product->title_name_en }} 
+
+@endif
+                                        </a></h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="product_description">
+                                            <div class="rating_wrap">
+                                                <div class="rating">
+                                                    <div class="product_rate" style="width:80%"></div>
+                                                </div>
+                                                <span class="rating_num"><a href="{{url('/')}}/">(21)</a></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="product_description">
+                                            <div class="product_price">
+                                                <ul class="product-meta product_price">
+                                                    <li>Was: <del>AED {{$product->price }}</del></li>
+                                                    <li>Now: <span class="price pe-3">AED {{$product->price_offer }}</span> (Inclusive of VAT)</li>
+                                                    <li>Saving:
+                                                        <div class="on_sale">
+                 <span>AED {{$product->price - $product->price_offer }} ({{ ratio($product->price,$product->price_offer) }}% Off)</span>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @php
+                $product_variants = DB::table('product_variants')
+             ->select('attribute_id')
+             ->where('product_id', $product->id)
+             ->whereIn('attribute_id',[1,4,6])
+             ->groupBy('attribute_id')
+
+             ->get();
+                                    @endphp
+                                 
+
+                 @foreach($product_variants  as $attribut)
+
+                                    <div class="col-12 mt-3">
+                                        <div class="product_description">
+                                            <div class="pr_switch_wrap">
+        <span class="switch_lable">
+            @php
+           if(App\Models\attributes::where('id',$attribut->attribute_id)->first())
+           {
+            $attribute_ar =App\Models\attributes::where('id',$attribut->attribute_id)->first()->name_ar;
+         $attribute_en=App\Models\attributes::where('id',$attribut->attribute_id)->first()->name_en;
+
+           }
+           else
+           {
+        $attribute_ar ='';
+         $attribute_en='';
+
+
+           }
+            @endphp
+            @if($attribut->attribute_id)
+
+  @if(session('lang')=='ar')
+{{$attribute_ar }}
+@endif
+  @if(session('lang')=='en')
+{{$attribute_en }} 
+@endif
+
+
+
+            @else
+            no attribut
+            @endif
+
+
+             :
+        </span>
+       <div class="product_size_switch">
+        @foreach(
+        App\Models\product_variant::
+        where('product_id',$product->id)->
+        where('attribute_id',$attribut->attribute_id)->get() as $attribute_value )
+                   <span>
+                   {{ $attribute_value->value_en}}
+                  
+               </span>
+                   @endforeach
+                     
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+       @endforeach
+
+
+                                    
+                                    <div class="col-12">
+                                        <div class="product_description">
+                                            <div class="deliveryinst product_sort_info">
+                                                <ul>
+                                                    <li>Order in 3 hrs 24 mins</li>
+                                                    <li>Free delivery by Tomorrow,{{ Carbon\Carbon::now()->addDay()->format('d-M-Y') }}</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="pr_detail">
+                                    <hr />
+                                    <div class="cart_extra">
+                                        <div class="cart-product-quantity">
+                                            <div class="quantity">
+                                                <input type="button" value="-" class="minus">
+                                                <input type="text" name="quantity" value="1" title="Qty" class="qty" size="4">
+                                                <input type="button" value="+" class="plus">
+                                            </div>
+                                        </div>
+                                        <div class="cart_btn">
+                                            <a href="{{url('/')}}/#" class="cart js-cart">
+
+                                                <button class="btn btn-primary btn-lg btn-addtocart cart js-cart " type="button">Add to cart</button>
+                                                <a class="add_wishlist" href="{{url('/')}}/#"><i class="icon-heart"></i></a>
+                                        </div>
+
+                                    </div>
+                                    <hr />
+
+                                    <div class="product_share">
+                                        <span>Share:</span>
+                                        <ul class="social_icons">
+                                            <li><a href="{{url('/')}}/#"><i class="ion-social-facebook"></i></a></li>
+                                            <li><a href="{{url('/')}}/#"><i class="ion-social-twitter"></i></a></li>
+                                            <li><a href="{{url('/')}}/#"><i class="ion-social-googleplus"></i></a></li>
+                                            <li><a href="{{url('/')}}/#"><i class="ion-social-youtube-outline"></i></a></li>
+                                            <li><a href="{{url('/')}}/#"><i class="ion-social-instagram-outline"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-xl-3 col-lg-4 mt-4 pt-2 mt-lg-0 pt-lg-0">
+                        <div class="sidebar">
+                            <div class="widget">
+                                <h5 class="widget_title">TOP RELATED</h5>
+                                <ul class="widget_recent_post">
+      @foreach(App\product::
+      where('status','active')->
+      where('department_id',$product->department_id)
+      ->InrandomOrder()
+      ->take(3)->get() as  $product)
+
+                                    <li>
+                                        <div class="post_img">
+                                            <a href="{{url('/')}}/shop/{{$product->id}}"><img src="{{Storage::url($product->photo)}}" alt="shop_small1"></a>
+                                        </div>
+                                        <div class="post_content">
+                                            <h6 class="product_title"><a href="{{url('/')}}/shop/{{$product->id}}">  
+                @if(session('lang') == 'ar')
+ {{$product->title_name_ar}}
+  @elseif(session('lang') == 'en')
+ {{$product->title_name_en}}
+ @else
+ {{$product->title_name_en}}
+      @endif</a></h6>
+
+                                            <div class="rating_wrap">
+                                                <div class="rating">
+                                                    <div class="product_rate" style="width:68%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="product_price"><span class="price">AED {{$product->price_offer }}</span></div>
+                                        </div>
+                                    </li>
+        @endforeach
+                                    
+                                </ul>
+                            </div>
+                            <div class="widget">
+                                <h5 class="widget_title">tags</h5>
+                                <div class="tags">
+                                    <!--a href="{{url('/')}}/#">General</a>
+                                    <a href="{{url('/')}}/#">Design</a>
+                                    <a href="{{url('/')}}/#">jQuery</a>
+                                    <a href="{{url('/')}}/#">Branding</a>
+                                    <a href="{{url('/')}}/#">Modern</a>
+                                    <a href="{{url('/')}}/#">Blog</a>
+                                    <a href="{{url('/')}}/#">Quotes</a>
+                                    <a href="{{url('/')}}/#">Advertisement</a -->
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <!--div class="custom-container mt-5 mb-3 border border-radius2 box_shadow1 p-4 ">
+                        <div class="row ">
+                            <div class="col-12">
+                                <div class="table-title">
+                                    <h3>Nutrition Info</h3>
+                                </div>
+                                <table class="table-fill">
+
+                                    <tbody class="table-hover">
+                                        <tr>
+                                            <td class="text-left">Nullam a dui vel magna.</td>
+                                            <td class="text-left">Vestibulum ante ipsum, semper at aliquet eu, ultrices eget lectus. </td>
+                                            <td class="text-left">Nullam a dui vel magna.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">Nullam a dui vel magna.</td>
+                                            <td class="text-left">Vestibulum ante ipsum, semper at aliquet eu, ultrices eget lectus. </td>
+                                            <td class="text-left">Nullam a dui vel magna.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">Nullam a dui vel magna.</td>
+                                            <td class="text-left">Vestibulum ante ipsum, semper at aliquet eu, ultrices eget lectus. </td>
+                                            <td class="text-left">Nullam a dui vel magna.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">Nullam a dui vel magna.</td>
+                                            <td class="text-left">Vestibulum ante ipsum, semper at aliquet eu, ultrices eget lectus. </td>
+                                            <td class="text-left">Nullam a dui vel magna.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">Nullam a dui vel magna.</td>
+                                            <td class="text-left">Vestibulum ante ipsum, semper at aliquet eu, ultrices eget lectus. </td>
+                                            <td class="text-left">Nullam a dui vel magna.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">Nullam a dui vel magna.</td>
+                                            <td class="text-left">Vestibulum ante ipsum, semper at aliquet eu, ultrices eget lectus. </td>
+                                            <td class="text-left">Nullam a dui vel magna.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+
+                    </div -->
+
+                    <!-- Reviews Start -->
+                    <div class="custom-container mb-3 border border-radius2 box_shadow1 p-4">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h5 class="product_tab_title">Product Details</h5>
+                                <div class="col-lg-12">
+                                      @if(session('lang')=='ar')
 {!! $product->content_name_ar !!}
 @endif
   @if(session('lang')=='en')
 {!! $product->content_name_ar !!} 
 @endif
-      </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingTwo">
-      <h4 class="panel-title">
-        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-        <i class="fa fa-angle-double-down"></i><img src="{{url('/')}}/forentend4/img/Ingridients.png">  {{trans('admin.Ingridients')}}  
-        </a>
-      </h4>
-    </div>
-    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-      <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingThree">
-      <h4 class="panel-title">
-        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-      <i class="fa fa-angle-double-down"></i>  <img src="{{url('/')}}/forentend4/img/pro.png">  {{ trans('admin.Naturation Values') }}
-        </a>
-      </h4>
-    </div>
-    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-      <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-</div>
-</div>
+                                </div>
+                            </div>
 
+                        </div>
 
-            <div class="clearfix"></div>
+                    </div>
 
-                      </div>
+                    <!-- Reviews Start -->
+                    <div class="custom-container mb-3 border border-radius2 box_shadow1 p-4">
+                        <div class="row">
+                            <h5 class="product_tab_title">Reviews (2)</h5>
+                            <div class="col-lg-6">
+                                <ul class="list_none comment_list mt-4">
+                                    <li>
+                                        <div class="comment_img">
+                                            <img src="{{url('/')}}/assets/images/user1.jpg" alt="user1" />
+                                        </div>
+                                        <div class="comment_block">
+                                            <div class="rating_wrap">
+                                                <div class="rating">
+                                                    <div class="product_rate" style="width:80%"></div>
+                                                </div>
+                                            </div>
+                                            <p class="customer_meta">
+                                                <span class="review_author">Alea Brooks</span>
+                                                <span class="comment-date">March 5, 2018</span>
+                                            </p>
+                                            <div class="description">
+                                                <p>Lorem Ipsumin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-6">
+                                <ul class="list_none comment_list mt-4">
+                                    <li>
+                                        <div class="comment_img">
+                                            <img src="{{url('/')}}/assets/images/user1.jpg" alt="user1" />
+                                        </div>
+                                        <div class="comment_block">
+                                            <div class="rating_wrap">
+                                                <div class="rating">
+                                                    <div class="product_rate" style="width:80%"></div>
+                                                </div>
+                                            </div>
+                                            <p class="customer_meta">
+                                                <span class="review_author">Grace Wong</span>
+                                                <span class="comment-date">June 17, 2018</span>
+                                            </p>
+                                            <div class="description">
+                                                <p>Lorem Ipsumin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
 
-
-
-                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
-
-          <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-529be2200cc72db5"></script>
-
-          
- 
-
-
-          
-
-        </div>
-
-      </div>
-
-
-
-
-
-
-
-            </div>
-
-    </div>
-
-
-<div class="row">
-
-
-<div class="clearfix module related-horizontal ">
-
-  <h3 class="InsideBox"> 
-<img src="{{url('/')}}/forentend4/img/insidebox.png">
-    <span>{{trans('admin.What’s Inside the Box')}}  </span></h3>
-
-  
-
-    <div style="margin-top:1%;"  class="related-products products-list  contentslider" data-rtl="yes" data-autoplay="no"  data-pagination="no" data-delay="4" data-speed="0.6" data-margin="30"  data-items_column0="4" data-items_column1="3" data-items_column2="3"
-
-      data-items_column3="1" data-items_column4="1" data-arrows="yes" data-lazyload="yes" data-loop="no" data-hoverpause="yes">
-
-    <!-- Products list -->
-
-                  @foreach($ProductFromSamCats  as $Most)
-
-            <div class="product-layout product-grid">
-
-          <div class="product-item-container">
-
-          <div class="left-block">                    
-
-                            
-
-              <div class="square"  >
-
-                          <a href="{{url('/')}}/shop/{{$Most->id}}" target="_self" 
-
-                        title=" @if(session('lang')=='ar')
-
-
-
-        {{$Most->title_name_ar }}
-
-@endif
-
-  @if(session('lang')=='en')
-
-{{$Most->title_name_en }} 
-
-@endif"  >
-
-                  
-
-                 <img data-sizes="auto" src="{{Storage::url($Most->photo)}}" 
-                 data-src="{{Storage::url($Most->photo)}}" alt=" @if(session('lang')=='ar')
-
-
-
-        {{$Most->title_name_ar }}
-
-@endif
-
-  @if(session('lang')=='en')
-
-{{$Most->title_name_en }} 
-
-@endif"     
-style="max-width: 100%;
-    max-height: 100%;">
-
-                    
-
-                </a>            
-
-              </div>
-
-              
-
-            <div class="box-label">
-
+                        <div class="row">
+                            <div class="col">
+                                <div class="review_form field_form">
+                                    <h5>Add a review</h5>
+                                    <form class="row mt-3">
+                                        <div class="form-group col-12 mb-3">
+                                            <div class="star_rating">
+                                                <span data-value="1"><i class="far fa-star"></i></span>
+                                                <span data-value="2"><i class="far fa-star"></i></span>
+                                                <span data-value="3"><i class="far fa-star"></i></span>
+                                                <span data-value="4"><i class="far fa-star"></i></span>
+                                                <span data-value="5"><i class="far fa-star"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-12 mb-3">
+                                            <textarea required="required" placeholder="Your review *" class="form-control" name="message" rows="4"></textarea>
+                                        </div>
+                                        <div class="form-group col-md-6 mb-3">
+                                            <input required="required" placeholder="Enter Name *" class="form-control" name="name" type="text">
+                                        </div>
+                                        <div class="form-group col-md-6 mb-3">
+                                            <input required="required" placeholder="Enter Email *" class="form-control" name="email" type="email">
                                         </div>
 
+                                        <div class="form-group col-12 mb-3">
+                                            <button type="submit" class="btn btn-primary" name="submit" value="Submit">Submit Review</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Reviews End -->
 
 
-             
+                    <!-- Related Products Start -->
+                    <div class="custom-container mt-4">
+                        <div class="row">
+                            <div class="col">
+                                <div class="col-12">
+                                    <div class="heading_s1">
+                                        <h3>Releted Products</h3>
+                                    </div>
+                                    <div class="product_slider carousel_slider owl-carousel owl-theme nav_style10" data-loop="true" data-dots="false" data-nav="true" data-margin="20" data-responsive='{"0":{"items": "1"}, "481":{"items": "2"}, "768":{"items": "3"}, "1199":{"items": "4"}}'>
+ @foreach($mightAlsoLikes  as  $product)
 
-              <div class="button-group so-quickview cartinfo--left">
+                                        <div class="item">
+                                            <div class="product">
 
-                 
-
-                
-
-                    <a href="{{url('/')}}/cart/{{$Most->id}}" type="button" class="addToCart btn-button" title="اضافة للسلة" ><i class="fa fa-shopping-basket"></i><span>اضافة للسلة </span></a>
-
-                            
-
-                 
-
-                 
-
-                <a href="{{url('/')}}/wishlist/{{$Most->id}}"  type="button" class="wishlist btn-button" title="إضافة لرغباتي"  ><i class="fa fa-heart"></i><span>إضافة لرغباتي</span>
-                </a>
-
-                 
-
-              
-
-
-
-              
-
-                
-
-              </div>
-
-             
-
-          </div>
-
-     
-<div class="jsx-564649128 detailsContainer" style="    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-">
-
-   
-  @php
-
- if(session('lang') == 'ar')
-{
-       $strlen=$product->title_name_ar;
-}
-
-elseif(session('lang') == 'en')
-{
-   $strlen=$product->title_name_en ;
-}
- 
-
-    
-       @endphp
-
-       
-
-       @if($strlen  < 50)
-
-         <div class="jsx-564649128 name" style="min-height: 32px; margin-bottom: 22px;
-">
-    <div class="prodycttitle">
-      <span class="prodycttitle">
- @if(session('lang') == 'ar')
-        {{ str_limit($Most->title_name_ar, $limit = 50, $end = '...') }}  
-@elseif(session('lang') == 'en')
-        {{ str_limit($Most->title_name_en, $limit = 50, $end = '...') }}  
-
-@endif
- 
-      </span>
-    </div>
-  </div>
-
-       @else
-
-
-  <div class="jsx-564649128 name" style="min-height: 32px; margin-bottom: 4px;
-">
-    <div style="overflow: hidden;">
-      <span class="prodycttitle">
-
-        {{ str_limit($Most->title_name_ar, $limit = 40, $end = '...') }}   
- 
-      </span>
-    </div>
-  </div>
-
-  @endif
-
-  
-
- 
-        </div>
-            
- 
-
-
-        </div>
-
-
-            </div>
-
-      
-
-       
-
-          
-
-          
-
-          @endforeach
-
-      
-
-    </div>
-
-  
-
-</div>
-
-
-    
-</div>
-           
- 
-  <div class="row" style="margin-bottom: 6%;">
-               
-               <h4  class="Recommendations">
-                                     {{ trans('admin.Recommendations') }}
-                                 </h4>
- 
-      @foreach(App\product::take(4)->get() as  $product)
-        <div class="col-sm-3">
-           <div class="Component00">
-            
-            
-                  
-
-
-<div class="heartrelative">
-
-    <a href="{{url('/')}}/shop/{{$product->id}}">
- <img src="{{Storage::url($product->photo)}}" class="img-fluid">
- </a>
-
-  <div class="heartabsolute">
-    <a href="{{url('/')}}/wishlist/{{$product->id}}">
-       <img     src="{{url('/')}}/forentend4/img/heart.png">
-</a>
-
-
-  </div>
-</div>   
-         
-             
-
-               <h3  class="prodycttitle">
-<a href="{{url('/')}}/shop/{{$product->id}}">
-
-
- @if(session('lang') == 'ar')
+                                                <div class="product_img2">
+                                                    <a href="{{url('/')}}/shop/{{$product->id}}">
+                                                        <img src="{{Storage::url($product->photo)}}" class="proimg" alt="product_img2">
+                                                    </a>
+                                                    <div class="product_action_box">
+                                                        <ul class="list_none pr_action_btn">
+                                                            <li class="add-to-cart"><a href="{{url('/')}}/#" class="cart js-cart"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
+                                                            <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
+                                                            <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="product_info">
+                                                    <h5 class="product_title"><a href="{{url('/')}}/shop/{{$product->id}}">
+                  @if(session('lang') == 'ar')
  {{$product->title_name_ar}}
   @elseif(session('lang') == 'en')
  {{$product->title_name_en}}
  @else
  {{$product->title_name_en}}
       @endif
-</a>
+                                                    </a></h5>
+                                                    <p>
+                    @if(session('lang') == 'ar')
+ {{$product->BRAND->name_ar}}
+  @elseif(session('lang') == 'en')
+ {{$product->BRAND->name_en}}
+ @else
+ {{$product->BRAND->name_en}}
+      @endif
+                                                    </p>
+                                                    <div class="row">
+                                                        <div class="col-auto me-auto">
+                                                            <div class="product_price">
+                 <span class="price xtra">AED {{$product->price_offer }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-auto">
+                                                            <div class="product_price">
+                           <del>AED {{$product->price }}</del>
+                                                                <div class="on_sale">
+           <span>{{ ratio($product->price,$product->price_offer) }}% OFF</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
-</h3>
-
-<span class="pfgsl">{{$product->price}} {{trans('admin.pound')}}</span>
-
-<span class="productseccart"   >
-<a href="{{url('/')}}/cart/{{$product->id}}">
-<img src="{{url('/')}}/forentend4/img/cart.png">
-</a>
-</span>
-         </div>
-             
-  
-        </div>
-
-
+                                                    <div class="row">
+                                                        <div class="col-auto me-auto">
+                                                            <div class="rating_wrap pt-2">
+                                                                <div class="rating">
+                                                                    <div class="product_rate" style="width:68%"></div>
+                                                                </div>
+                                                                <span class="rating_num">(15)</span>
+                                                            </div>
+                                                        </div>
+                                                        <!-- <div class="col-auto">
+                                                            <a href="{{url('/')}}/#"><img src="{{url('/')}}/assets/images/Addtocart_BTN.svg" alt="Add to cart"></a>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
         @endforeach
-                  </div>
+                                         
+                                    </div>
+                                </div>
 
-      
+                            </div>
 
-
-
- <div class="row">
-            
-              <h6  class="OurAdvantage">
-                                     {{ trans('admin.Our Advantages') }}
-                                 </h6>
-
-
-                 @foreach(App\Objectives::take(3)->get() as  $Objectives)
-                                 <div class="OurAdvantageFrame132">
-                                    <img src="{{Storage::url($Objectives->photo)}}">
-                                   
-                                       <h3 class="OurAdvantageFrame132txt">
-                   @if(session('lang')=='ar')
-                                
-{!! $Objectives->title_name_ar !!}
-
-@endif
-
-  @if(session('lang')=='en')
-
-{!! $Objectives->title_name_en !!} 
-
-@endif  
-                  </h3>
-                               <p class="OurAdvantageFrame132pp">
-                            @if(session('lang')=='ar')
-
-{!! $Objectives->Objectives_name_ar !!}
-
-@endif
-
-  @if(session('lang')=='en')
-
-{!! $Objectives->Objectives_name_en !!} 
-
-@endif  
+                        </div>
+                    </div>
+                    <!-- Related Products End -->
+                </div>
+                <!-- END SECTION SHOP -->
 
 
-                                
-                            </p>
-                                 </div>
-                                 @endforeach
-
-                                  
-               
-           </div>  
-
-
+            </div>
+            <!-- END MAIN CONTENT -->
+        </div>
     </div>
-
-         
-
-     </div>
-
-</div>
-
  
 
 

@@ -1,30 +1,26 @@
-
-
-
- @extends('forentend4.index')
-
-
-
+@extends('forentend4.index')
 @section('content')
-
-  
-
     <div class="custom-container plr-0">
         <!-- START SECTION BANNER -->
         <div class="banner_section slide_medium shop_banner_slider staggered-animation-wrap">
             <div id="carouselExampleControls" class="carousel slide carousel-fade light_arrow" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                    <div class="carousel-item background_bg active" data-img-src="{{url('/')}}/assets/images/banner03.png">
-                    </div>
-                    <div class="carousel-item background_bg" data-img-src="{{url('/')}}/assets/images/banner04.png">
+   @foreach($otherDataDepartmentbannersHomeSliders as $key =>  $data)
+
+                    <div class="carousel-item background_bg @if($key == 0) active @endif"  >
+<a href="{{$data->input_key}}"> 
+                        <img src="{{url('/')}}/{{$data->input_value}}">
+            </a>
 
                     </div>
-                    <div class="carousel-item background_bg" data-img-src="{{url('/')}}/assets/images/banner05.png">
+            </a>
 
-                    </div>
+                              @endforeach
+ 
+
                 </div>
-                <a class="carousel-control-prev" href="{{url('/')}}/#carouselExampleControls" role="button" data-bs-slide="prev"><i class="ion-chevron-left"></i></a>
-                <a class="carousel-control-next" href="{{url('/')}}/#carouselExampleControls" role="button" data-bs-slide="next"><i class="ion-chevron-right"></i></a>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev"><i class="ion-chevron-left"></i></a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next"><i class="ion-chevron-right"></i></a>
             </div>
         </div>
         <!-- END SECTION BANNER -->
@@ -86,7 +82,7 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                        <a href="{{url('/')}}/#" alt="Mega Sale"><img class="headerimg" src="{{url('/')}}/assets/images/megaBG.svg" alt="mega sale header" /></a>
+                        <a href="{{url('/')}}/shop" alt="Mega Sale"><img class="headerimg" src="{{url('/')}}/assets/images/megaBG.svg" alt="mega sale header" /></a>
 
                     </div>
 
@@ -98,20 +94,31 @@
                             <div class="col-md-12">
                                 <div class="heading_tab_header pt-2 pb-2">
                                     <div class="deal_timer">
-                                        <div class="countdown_time countdown_style1" data-time="2021/12/28 13:22:15"></div>
+                                        <div class="countdown_time countdown_style1" data-time="2022/06/06 13:22:15"></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="product_slider carousel_slider owl-carousel owl-theme nav_style1" data-loop="true" data-dots="false" data-nav="true" data-margin="20" data-responsive='{"0":{"items": "1"}, "481":{"items": "2"}, "768":{"items": "3"}, "1199":{"items": "4"}}'>
+      @foreach(App\product::where('status','active')->InrandomOrder()->take(5)->get() as  $product)
+
                                     <div class="item">
                                         <div class="product">
                                             <div class="megahearder">
-                                                <h6 class="product_title">CATEGORY TITLE11</h6>
+                            <h6 class="product_title">
+          @if(session('lang') == 'ar')
+ {{$product->name_ar}}
+  @elseif(session('lang') == 'en')
+ {{$product->department->dep_name_en}}
+ @else
+ {{$product->title_name_en}}
+      @endif
+                                               
+                                            </h6>
                                             </div>
                                             <div class="product_img">
-                                                <a href="{{url('/')}}/shop-product-detail.html">
-                                                    <img src="{{url('/')}}/assets/images/products/pr-01.png" alt="product_img2">
+                                                <a href="{{url('/')}}/shop/{{$product->id}}">
+ <img src="{{Storage::url($product->photo)}}" alt="product_img2"  >
                                                 </a>
                                                 <div class="product_action_box">
                                                     <ul class="list_none pr_action_btn">
@@ -122,8 +129,25 @@
                                                 </div>
                                             </div>
                                             <div class="product_info">
-                                                <h5 class="product_title"><a href="{{url('/')}}/shop-product-detail.html">Product Title Goes Here</a></h5>
-                                                <p>BRAND NAME</p>
+                                                <h5 class="product_title"><a href="{{url('/')}}/shop/{{$product->id}}">
+        @if(session('lang') == 'ar')
+ {{$product->title_name_ar}}
+  @elseif(session('lang') == 'en')
+ {{$product->title_name_en}}
+ @else
+ {{$product->title_name_en}}
+      @endif
+                                                </a></h5>
+
+        @if(session('lang') == 'ar')
+ {{$product->BRAND->name_ar}}
+  @elseif(session('lang') == 'en')
+ {{$product->BRAND->name_en}}
+ @else
+ {{$product->BRAND->name_en}}
+      @endif
+                                                    
+                                                </p>
                                                 <div class="rating_wrap">
                                                     <div class="rating">
                                                         <div class="product_rate" style="width:68%"></div>
@@ -134,14 +158,14 @@
                                                 <div class="row">
                                                     <div class="col-auto me-auto">
                                                         <div class="product_price">
-                                                            <span class="price xtra">AED 25.60</span>
+              <span class="price xtra">AED {{$product->price }}</span>
                                                         </div>
                                                     </div>
                                                     <div class="col-auto">
-                                                        <div class="product_price">
-                                                            <del>AED 32.00</del>
-                                                            <div class="on_sale">
-                                                                <span>30% OFF</span>
+                      <div class="product_price">
+                        <del>AED {{$product->price_offer }}</del>
+                              <div class="on_sale">
+     <span>{{ ratio($product->price,$product->price_offer) }}% OFF</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -149,186 +173,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="item">
-                                        <div class="product">
-                                            <div class="megahearder">
-                                                <h6 class="product_title">CATEGORY TITLE</h6>
-                                            </div>
-                                            <div class="product_img">
-                                                <a href="{{url('/')}}/shop-product-detail.html">
-                                                    <img src="{{url('/')}}/assets/images/products/pr-02.png" alt="product_img2">
-                                                </a>
-                                                <div class="product_action_box">
-                                                    <ul class="list_none pr_action_btn">
-                                                        <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                        <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                        <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="product_info">
-                                                <h5 class="product_title"><a href="{{url('/')}}/shop-product-detail.html">Product Title Goes Here</a></h5>
-                                                <p>BRAND NAME</p>
-                                                <div class="rating_wrap">
-                                                    <div class="rating">
-                                                        <div class="product_rate" style="width:68%"></div>
-                                                    </div>
-                                                    <span class="rating_num">(15)</span>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-auto me-auto">
-                                                        <div class="product_price">
-                                                            <span class="price xtra">AED 25.60</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <div class="product_price">
-                                                            <del>AED 32.00</del>
-                                                            <div class="on_sale">
-                                                                <span>30% OFF</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="product">
-                                            <div class="megahearder">
-                                                <h6 class="product_title">CATEGORY TITLE</h6>
-                                            </div>
-                                            <div class="product_img">
-                                                <a href="{{url('/')}}/shop-product-detail.html">
-                                                    <img src="{{url('/')}}/assets/images/products/pr-03.png" alt="product_img2">
-                                                </a>
-                                                <div class="product_action_box">
-                                                    <ul class="list_none pr_action_btn">
-                                                        <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                        <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                        <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="product_info">
-                                                <h5 class="product_title"><a href="{{url('/')}}/shop-product-detail.html">Product Title Goes Here</a></h5>
-                                                <p>BRAND NAME</p>
-                                                <div class="rating_wrap">
-                                                    <div class="rating">
-                                                        <div class="product_rate" style="width:68%"></div>
-                                                    </div>
-                                                    <span class="rating_num">(15)</span>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-auto me-auto">
-                                                        <div class="product_price">
-                                                            <span class="price xtra">AED 25.60</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <div class="product_price">
-                                                            <del>AED 32.00</del>
-                                                            <div class="on_sale">
-                                                                <span>30% OFF</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="product">
-                                            <div class="megahearder">
-                                                <h6 class="product_title">CATEGORY TITLE</h6>
-                                            </div>
-                                            <div class="product_img">
-                                                <a href="{{url('/')}}/shop-product-detail.html">
-                                                    <img src="{{url('/')}}/assets/images/products/pr-04.png" alt="product_img2">
-                                                </a>
-                                                <div class="product_action_box">
-                                                    <ul class="list_none pr_action_btn">
-                                                        <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                        <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                        <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="product_info">
-                                                <h5 class="product_title"><a href="{{url('/')}}/shop-product-detail.html">Product Title Goes Here</a></h5>
-                                                <p>BRAND NAME</p>
-                                                <div class="rating_wrap">
-                                                    <div class="rating">
-                                                        <div class="product_rate" style="width:68%"></div>
-                                                    </div>
-                                                    <span class="rating_num">(15)</span>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-auto me-auto">
-                                                        <div class="product_price">
-                                                            <span class="price xtra">AED 25.60</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <div class="product_price">
-                                                            <del>AED 32.00</del>
-                                                            <div class="on_sale">
-                                                                <span>30% OFF</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="product">
-                                            <div class="megahearder">
-                                                <h6 class="product_title">CATEGORY TITLE</h6>
-                                            </div>
-                                            <div class="product_img">
-                                                <a href="{{url('/')}}/shop-product-detail.html">
-                                                    <img src="{{url('/')}}/assets/images/products/pr-02.png" alt="product_img2">
-                                                </a>
-                                                <div class="product_action_box">
-                                                    <ul class="list_none pr_action_btn">
-                                                        <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                        <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                        <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="product_info">
-                                                <h5 class="product_title"><a href="{{url('/')}}/shop-product-detail.html">Product Title Goes Here</a></h5>
-                                                <p>BRAND NAME</p>
-                                                <div class="rating_wrap">
-                                                    <div class="rating">
-                                                        <div class="product_rate" style="width:68%"></div>
-                                                    </div>
-                                                    <span class="rating_num">(15)</span>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-auto me-auto">
-                                                        <div class="product_price">
-                                                            <span class="price xtra">AED 25.60</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <div class="product_price">
-                                                            <del>AED 32.00</del>
-                                                            <div class="on_sale">
-                                                                <span>30% OFF</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+        @endforeach
+                                    
                                 </div>
                             </div>
                         </div>
@@ -343,7 +189,7 @@
                 <div class="container-fluid bg-darkgray plr-0">
                     <div class="row">
                         <div class="col-lg-12">
-                            <a href="{{url('/')}}/#" alt="NEW ARRIVAL"><img class="headerimg" src="{{url('/')}}/assets/images/NewArrival_BG.svg" alt="mega sale header" class="center" /></a>
+                            <a href="{{url('/')}}/shop" alt="NEW ARRIVAL"><img class="headerimg" src="{{url('/')}}/assets/images/NewArrival_BG.svg" alt="mega sale header" class="center" /></a>
 
                         </div>
                     </div>
@@ -355,12 +201,13 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="product_slider carousel_slider owl-carousel owl-theme nav_style10" data-loop="true" data-dots="false" data-nav="true" data-margin="20" data-responsive='{"0":{"items": "1"}, "481":{"items": "2"}, "768":{"items": "3"}, "1199":{"items": "4"}}'>
+ @foreach(App\product::where('status','active')->InrandomOrder()->take(5)->get() as  $product)
                                     <div class="item">
                                         <div class="product">
 
                                             <div class="product_img2">
-                                                <a href="{{url('/')}}/shop-product-detail.html">
-                                                    <img src="{{url('/')}}/assets/images/products/pr-01.png" alt="product_img2">
+                                                <a href="{{url('/')}}/shop/{{$product->id}}">
+                                                    <img src="{{Storage::url($product->photo)}}" alt="product_img2">
                                                 </a>
                                                 <div class="product_action_box">
                                                     <ul class="list_none pr_action_btn">
@@ -371,8 +218,24 @@
                                                 </div>
                                             </div>
                                             <div class="product_info">
-                                                <h5 class="product_title"><a href="{{url('/')}}/shop-product-detail.html">Product Title Goes Here</a></h5>
-                                                <p>BRAND NAME</p>
+                                                <h5 class="product_title"><a href="{{url('/')}}/shop/{{$product->id}}">
+                                                     @if(session('lang') == 'ar')
+ {{$product->title_name_ar}}
+  @elseif(session('lang') == 'en')
+ {{$product->title_name_en}}
+ @else
+ {{$product->title_name_en}}
+      @endif
+                                                </a></h5>
+                                                <p> 
+    @if(session('lang') == 'ar')
+ {{$product->BRAND->name_ar}}
+  @elseif(session('lang') == 'en')
+ {{$product->BRAND->name_en}}
+ @else
+ {{$product->BRAND->name_en}}
+      @endif
+  </p>
                                                 <div class="rating_wrap">
                                                     <div class="rating">
                                                         <div class="product_rate" style="width:68%"></div>
@@ -383,14 +246,14 @@
                                                 <div class="row">
                                                     <div class="col-auto me-auto">
                                                         <div class="product_price">
-                                                            <span class="price xtra">AED 25.60</span>
+                                                            <span class="price xtra">AED {{$product->price_offer }}</span>
                                                         </div>
                                                     </div>
                                                     <div class="col-auto">
                                                         <div class="product_price">
-                                                            <del>AED 32.00</del>
+                                                            <del>AED {{$product->price }}</del>
                                                             <div class="on_sale">
-                                                                <span>30% OFF</span>
+                                                                <span>{{ ratio($product->price,$product->price_offer) }}% OFF</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -398,176 +261,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="item">
-                                        <div class="product">
-                                            <div class="product_img2">
-                                                <a href="{{url('/')}}/shop-product-detail.html">
-                                                    <img src="{{url('/')}}/assets/images/products/pr-02.png" alt="product_img2">
-                                                </a>
-                                                <div class="product_action_box">
-                                                    <ul class="list_none pr_action_btn">
-                                                        <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                        <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                        <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-
-                                            <div class="product_info">
-                                                <h5 class="product_title"><a href="{{url('/')}}/shop-product-detail.html">Product Title Goes Here</a></h5>
-                                                <p>BRAND NAME</p>
-                                                <div class="rating_wrap">
-                                                    <div class="rating">
-                                                        <div class="product_rate" style="width:68%"></div>
-                                                    </div>
-                                                    <span class="rating_num">(15)</span>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-auto me-auto">
-                                                        <div class="product_price">
-                                                            <span class="price xtra">AED 25.60</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <div class="product_price">
-                                                            <del>AED 32.00</del>
-                                                            <div class="on_sale">
-                                                                <span>30% OFF</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="product">
-                                            <div class="product_img2">
-                                                <a href="{{url('/')}}/shop-product-detail.html">
-                                                    <img src="{{url('/')}}/assets/images/products/pr-03.png" alt="product_img2">
-                                                </a>
-                                                <div class="product_action_box">
-                                                    <ul class="list_none pr_action_btn">
-                                                        <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                        <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                        <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="product_info">
-                                                <h5 class="product_title"><a href="{{url('/')}}/shop-product-detail.html">Product Title Goes Here</a></h5>
-                                                <p>BRAND NAME</p>
-                                                <div class="rating_wrap">
-                                                    <div class="rating">
-                                                        <div class="product_rate" style="width:68%"></div>
-                                                    </div>
-                                                    <span class="rating_num">(15)</span>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-auto me-auto">
-                                                        <div class="product_price">
-                                                            <span class="price xtra">AED 25.60</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <div class="product_price">
-                                                            <del>AED 32.00</del>
-                                                            <div class="on_sale">
-                                                                <span>30% OFF</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="product">
-                                            <div class="product_img2">
-                                                <a href="{{url('/')}}/shop-product-detail.html">
-                                                    <img src="{{url('/')}}/assets/images/products/pr-04.png" class="proimg" alt="product_img2">
-                                                </a>
-                                                <div class="product_action_box">
-                                                    <ul class="list_none pr_action_btn">
-                                                        <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                        <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                        <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="product_info">
-                                                <h5 class="product_title"><a href="{{url('/')}}/shop-product-detail.html">Product Title Goes Here</a></h5>
-                                                <p>BRAND NAME</p>
-                                                <div class="rating_wrap">
-                                                    <div class="rating">
-                                                        <div class="product_rate" style="width:68%"></div>
-                                                    </div>
-                                                    <span class="rating_num">(15)</span>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-auto me-auto">
-                                                        <div class="product_price">
-                                                            <span class="price xtra">AED 25.60</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <div class="product_price">
-                                                            <del>AED 32.00</del>
-                                                            <div class="on_sale">
-                                                                <span>30% OFF</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="product">
-                                            <div class="product_img2">
-                                                <a href="{{url('/')}}/shop-product-detail.html">
-                                                    <img src="{{url('/')}}/assets/images/products/pr-02.png" alt="product_img2">
-                                                </a>
-                                                <div class="product_action_box">
-                                                    <ul class="list_none pr_action_btn">
-                                                        <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                        <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                        <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="product_info">
-                                                <h5 class="product_title"><a href="{{url('/')}}/shop-product-detail.html">Product Title Goes Here</a></h5>
-                                                <p>BRAND NAME</p>
-                                                <div class="rating_wrap">
-                                                    <div class="rating">
-                                                        <div class="product_rate" style="width:68%"></div>
-                                                    </div>
-                                                    <span class="rating_num">(15)</span>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-auto me-auto">
-                                                        <div class="product_price">
-                                                            <span class="price xtra">AED 25.60</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <div class="product_price">
-                                                            <del>AED 32.00</del>
-                                                            <div class="on_sale">
-                                                                <span>30% OFF</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+        @endforeach
+                                     
                                 </div>
                             </div>
                         </div>
@@ -584,7 +279,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-12">
-                                <a href="{{url('/')}}/#"><img src="{{url('/')}}/assets/images/MegaSale_Banner.svg" class=" mx-auto d-block" alt="Mega Sale Banner" /></a>
+                                <a href="{{url('/')}}/shop"><img src="{{url('/')}}/assets/images/MegaSale_Banner.svg" class=" mx-auto d-block" alt="Mega Sale Banner" /></a>
                             </div>
                         </div>
 
@@ -605,7 +300,7 @@
                                         <h2>TOP SELLERS</h2>
                                     </div>
                                     <div class="view_all">
-                                        <a href="{{url('/')}}/#" class="seeall"><span>SEE ALL</span></a>
+                                        <a href="{{url('/')}}/shop" class="seeall"><span>SEE ALL</span></a>
                                     </div>
                                 </div>
                             </div>
@@ -614,42 +309,43 @@
                             <div class="col-12">
                                 <div class="tab-style1 ptb3">
                                     <ul class="nav nav-tabs justify-content-center" role="tablist">
+  @foreach(App\Department::where('parent','!=',null)->take(8)->get() as $key =>  $Department)
                                         <li class="nav-item mb-10">
-                                            <a class="nav-link active" id="arrival-tab" data-bs-toggle="tab" href="{{url('/')}}/#arrival" role="tab" aria-controls="arrival" aria-selected="true">New Arrival</a>
+                                            <a class="nav-link  @if($key == 0)active @endif" 
+                    id="arrival{{$key}}-tab" data-bs-toggle="tab" href="#arrival{{$key}}" role="tab" aria-controls="arrival{{$key}}" aria-selected="true">
+                                                
+      @if(session('lang') == 'ar')
+ {{$Department->dep_name_ar}}
+  @elseif(session('lang') == 'en')
+ {{$Department->dep_name_en}}
+ @else
+ {{$Department->dep_name_en}}
+      @endif
+                                            </a>
                                         </li>
-                                        <li class="nav-item mb-10">
-                                            <a class="nav-link" id="sellers-tab" data-bs-toggle="tab" href="{{url('/')}}/#sellers" role="tab" aria-controls="sellers" aria-selected="false">Best Sellers</a>
-                                        </li>
-                                        <li class="nav-item mb-10">
-                                            <a class="nav-link" id="featured-tab" data-bs-toggle="tab" href="{{url('/')}}/#featured" role="tab" aria-controls="featured" aria-selected="false">Featured</a>
-                                        </li>
-                                        <li class="nav-item mb-10">
-                                            <a class="nav-link" id="special-tab" data-bs-toggle="tab" href="{{url('/')}}/#special" role="tab" aria-controls="special" aria-selected="false">Special Offer
-            </a>
-                                        </li>
-                                        <li class="nav-item mb-10">
-                                            <a class="nav-link" id="arrival-tab" data-bs-toggle="tab" href="{{url('/')}}/#arrival" role="tab" aria-controls="arrival" aria-selected="true">New Arrival</a>
-                                        </li>
-                                        <li class="nav-item mb-10">
-                                            <a class="nav-link" id="sellers-tab" data-bs-toggle="tab" href="{{url('/')}}/#sellers" role="tab" aria-controls="sellers" aria-selected="false">Best Sellers</a>
-                                        </li>
-                                        <li class="nav-item mb-10">
-                                            <a class="nav-link" id="featured-tab" data-bs-toggle="tab" href="{{url('/')}}/#featured" role="tab" aria-controls="featured" aria-selected="false">Featured</a>
-                                        </li>
-                                        <li class="nav-item mb-10">
-                                            <a class="nav-link" id="special-tab" data-bs-toggle="tab" href="{{url('/')}}/#special" role="tab" aria-controls="special" aria-selected="false">Special Offer
-            </a>
-                                        </li>
+        @endforeach
+
+                                       
+                                      
+                                       
+                                       
                                     </ul>
                                 </div>
                                 <div class="tab_slider">
-                                    <div class="tab-pane fade show active" id="arrival" role="tabpanel" aria-labelledby="arrival-tab">
+  @foreach(App\Department::take(7)->get() as $key =>  $Department)
+
+                                    <div class="tab-pane fade @if($key == 0) show active @endif" id="arrival{{$key}}" role="tabpanel" aria-labelledby="arrival{{$key}}-tab">
                                         <div class="product_slider carousel_slider owl-carousel owl-theme nav_style10" data-loop="true" data-dots="false" data-nav="true" data-margin="20" data-responsive='{"0":{"items": "1"}, "481":{"items": "2"}, "768":{"items": "3"}, "1199":{"items": "4"}}'>
+    @foreach(App\product::
+    where('status','active')->
+    where('department_id',$Department->id)
+    ->InrandomOrder()->take(7)
+    ->get() as  $product)
                                             <div class="item">
                                                 <div class="product">
                                                     <div class="product_img2">
-                                                        <a href="{{url('/')}}/shop-product-detail.html">
-                                                            <img src="{{url('/')}}/assets/images/products/pr-01.png" alt="product_img2">
+                                                        <a href="{{url('/')}}/shop/{{$product->id}}">
+     <img src="{{Storage::url($product->photo)}}" alt="product_img2">
                                                         </a>
                                                         <div class="product_action_box">
                                                             <ul class="list_none pr_action_btn">
@@ -660,8 +356,25 @@
                                                         </div>
                                                     </div>
                                                     <div class="product_info">
-                                                        <h5 class="product_title"><a href="{{url('/')}}/shop-product-detail.html">Product Title Goes Here</a></h5>
-                                                        <p>BRAND NAME</p>
+           <h5 class="product_title">
+            <a href="{{url('/')}}/shop/{{$product->id}}">
+     @if(session('lang') == 'ar')
+ {{$product->title_name_ar}}
+  @elseif(session('lang') == 'en')
+ {{$product->title_name_en}}
+ @else
+ {{$product->title_name_en}}
+      @endif
+                                                        </a></h5>
+                                                        <p>
+          @if(session('lang') == 'ar')
+ {{$product->BRAND->name_ar}}
+  @elseif(session('lang') == 'en')
+ {{$product->BRAND->name_en}}
+ @else
+ {{$product->BRAND->name_en}}
+      @endif
+                                                        </p>
                                                         <div class="rating_wrap">
                                                             <div class="rating">
                                                                 <div class="product_rate" style="width:68%"></div>
@@ -672,14 +385,14 @@
                                                         <div class="row">
                                                             <div class="col-auto me-auto">
                                                                 <div class="product_price">
-                                                                    <span class="price xtra">AED 25.60</span>
+            <span class="price xtra">AED {{$product->price_offer }}</span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-auto">
                                                                 <div class="product_price">
-                                                                    <del>AED 32.00</del>
+                                    <del>AED {{$product->price }}</del>
                                                                     <div class="on_sale">
-                                                                        <span>30% OFF</span>
+                                         <span>{{ ratio($product->price,$product->price_offer) }}% OFF</span>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -687,986 +400,13 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="item">
-                                                <div class="product">
-                                                    <div class="product_img2">
-                                                        <a href="{{url('/')}}/shop-product-detail.html">
-                                                            <img src="{{url('/')}}/assets/images/products/pr-02.png" alt="product_img2">
-                                                        </a>
-                                                        <div class="product_action_box">
-                                                            <ul class="list_none pr_action_btn">
-                                                                <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                                <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                                <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product_info">
-                                                        <h5 class="product_title"><a href="{{url('/')}}/shop-product-detail.html">Product Title Goes Here</a></h5>
-                                                        <p>BRAND NAME</p>
-                                                        <div class="rating_wrap">
-                                                            <div class="rating">
-                                                                <div class="product_rate" style="width:68%"></div>
-                                                            </div>
-                                                            <span class="rating_num">(15)</span>
-                                                        </div>
+        @endforeach
 
-                                                        <div class="row">
-                                                            <div class="col-auto me-auto">
-                                                                <div class="product_price">
-                                                                    <span class="price xtra">AED 25.60</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-auto">
-                                                                <div class="product_price">
-                                                                    <del>AED 32.00</del>
-                                                                    <div class="on_sale">
-                                                                        <span>30% OFF</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="product">
-                                                    <div class="product_img2">
-                                                        <a href="{{url('/')}}/shop-product-detail.html">
-                                                            <img src="{{url('/')}}/assets/images/products/pr-05.png" alt="product_img2">
-                                                        </a>
-                                                        <div class="product_action_box">
-                                                            <ul class="list_none pr_action_btn">
-                                                                <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                                <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                                <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product_info">
-                                                        <h5 class="product_title"><a href="{{url('/')}}/shop-product-detail.html">Product Title Goes Here</a></h5>
-                                                        <p>BRAND NAME</p>
-                                                        <div class="rating_wrap">
-                                                            <div class="rating">
-                                                                <div class="product_rate" style="width:68%"></div>
-                                                            </div>
-                                                            <span class="rating_num">(15)</span>
-                                                        </div>
-
-                                                        <div class="row">
-                                                            <div class="col-auto me-auto">
-                                                                <div class="product_price">
-                                                                    <span class="price xtra">AED 25.60</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-auto">
-                                                                <div class="product_price">
-                                                                    <del>AED 32.00</del>
-                                                                    <div class="on_sale">
-                                                                        <span>30% OFF</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="product">
-                                                    <div class="product_img2">
-                                                        <a href="{{url('/')}}/shop-product-detail.html">
-                                                            <img src="{{url('/')}}/assets/images/products/pr-04.png" alt="product_img2">
-                                                        </a>
-                                                        <div class="product_action_box">
-                                                            <ul class="list_none pr_action_btn">
-                                                                <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                                <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                                <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product_info">
-                                                        <h5 class="product_title"><a href="{{url('/')}}/shop-product-detail.html">Product Title Goes Here</a></h5>
-                                                        <p>BRAND NAME</p>
-                                                        <div class="rating_wrap">
-                                                            <div class="rating">
-                                                                <div class="product_rate" style="width:68%"></div>
-                                                            </div>
-                                                            <span class="rating_num">(15)</span>
-                                                        </div>
-
-                                                        <div class="row">
-                                                            <div class="col-auto me-auto">
-                                                                <div class="product_price">
-                                                                    <span class="price xtra">AED 25.60</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-auto">
-                                                                <div class="product_price">
-                                                                    <del>AED 32.00</del>
-                                                                    <div class="on_sale">
-                                                                        <span>30% OFF</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="product">
-                                                    <div class="product_img2">
-                                                        <a href="{{url('/')}}/shop-product-detail.html">
-                                                            <img src="{{url('/')}}/assets/images/products/pr-02.png" alt="product_img2">
-                                                        </a>
-                                                        <div class="product_action_box">
-                                                            <ul class="list_none pr_action_btn">
-                                                                <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                                <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                                <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product_info">
-                                                        <h5 class="product_title"><a href="{{url('/')}}/shop-product-detail.html">Product Title Goes Here</a></h5>
-                                                        <p>BRAND NAME</p>
-                                                        <div class="rating_wrap">
-                                                            <div class="rating">
-                                                                <div class="product_rate" style="width:68%"></div>
-                                                            </div>
-                                                            <span class="rating_num">(15)</span>
-                                                        </div>
-
-                                                        <div class="row">
-                                                            <div class="col-auto me-auto">
-                                                                <div class="product_price">
-                                                                    <span class="price xtra">AED 25.60</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-auto">
-                                                                <div class="product_price">
-                                                                    <del>AED 32.00</del>
-                                                                    <div class="on_sale">
-                                                                        <span>30% OFF</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="product">
-                                                    <div class="product_img2">
-                                                        <a href="{{url('/')}}/shop-product-detail.html">
-                                                            <img src="{{url('/')}}/assets/images/products/pr-04.png" alt="product_img2">
-                                                        </a>
-                                                        <div class="product_action_box">
-                                                            <ul class="list_none pr_action_btn">
-                                                                <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                                <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                                <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product_info">
-                                                        <h5 class="product_title"><a href="{{url('/')}}/shop-product-detail.html">Product Title Goes Here</a></h5>
-                                                        <p>BRAND NAME</p>
-                                                        <div class="rating_wrap">
-                                                            <div class="rating">
-                                                                <div class="product_rate" style="width:68%"></div>
-                                                            </div>
-                                                            <span class="rating_num">(15)</span>
-                                                        </div>
-
-                                                        <div class="row">
-                                                            <div class="col-auto me-auto">
-                                                                <div class="product_price">
-                                                                    <span class="price xtra">AED 25.60</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-auto">
-                                                                <div class="product_price">
-                                                                    <del>AED 32.00</del>
-                                                                    <div class="on_sale">
-                                                                        <span>30% OFF</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            
                                         </div>
                                     </div>
-                                    <div class="tab-pane fade" id="sellers" role="tabpanel" aria-labelledby="sellers-tab">
-                                        <div class="product_slider carousel_slider owl-carousel owl-theme nav_style10" data-loop="true" data-dots="false" data-nav="true" data-margin="20" data-responsive='{"0":{"items": "1"}, "481":{"items": "2"}, "768":{"items": "3"}, "1199":{"items": "4"}}'>
-                                            <div class="item">
-                                                <div class="product">
-                                                    <div class="product_img2">
-                                                        <a href="{{url('/')}}/shop-product-detail.html">
-                                                            <img src="{{url('/')}}/assets/images/products/pr-01.png" alt="product_img2">
-                                                        </a>
-                                                        <div class="product_action_box">
-                                                            <ul class="list_none pr_action_btn">
-                                                                <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                                <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                                <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product_info">
-                                                        <h5 class="product_title"><a href="{{url('/')}}/shop-product-detail.html">Product Title Goes Here</a></h5>
-                                                        <p>BRAND NAME</p>
-                                                        <div class="rating_wrap">
-                                                            <div class="rating">
-                                                                <div class="product_rate" style="width:68%"></div>
-                                                            </div>
-                                                            <span class="rating_num">(15)</span>
-                                                        </div>
-
-                                                        <div class="row">
-                                                            <div class="col-auto me-auto">
-                                                                <div class="product_price">
-                                                                    <span class="price xtra">AED 25.60</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-auto">
-                                                                <div class="product_price">
-                                                                    <del>AED 32.00</del>
-                                                                    <div class="on_sale">
-                                                                        <span>30% OFF</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="product">
-                                                    <div class="product_img2">
-                                                        <a href="{{url('/')}}/shop-product-detail.html">
-                                                            <img src="{{url('/')}}/assets/images/products/pr-02.png" alt="product_img2">
-                                                        </a>
-                                                        <div class="product_action_box">
-                                                            <ul class="list_none pr_action_btn">
-                                                                <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                                <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                                <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product_info">
-                                                        <h5 class="product_title"><a href="{{url('/')}}/shop-product-detail.html">Product Title Goes Here</a></h5>
-                                                        <p>BRAND NAME</p>
-                                                        <div class="rating_wrap">
-                                                            <div class="rating">
-                                                                <div class="product_rate" style="width:68%"></div>
-                                                            </div>
-                                                            <span class="rating_num">(15)</span>
-                                                        </div>
-
-                                                        <div class="row">
-                                                            <div class="col-auto me-auto">
-                                                                <div class="product_price">
-                                                                    <span class="price xtra">AED 25.60</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-auto">
-                                                                <div class="product_price">
-                                                                    <del>AED 32.00</del>
-                                                                    <div class="on_sale">
-                                                                        <span>30% OFF</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="product">
-                                                    <div class="product_img2">
-                                                        <a href="{{url('/')}}/shop-product-detail.html">
-                                                            <img src="{{url('/')}}/assets/images/products/pr-03.png" alt="product_img2">
-                                                        </a>
-                                                        <div class="product_action_box">
-                                                            <ul class="list_none pr_action_btn">
-                                                                <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                                <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                                <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product_info">
-                                                        <h5 class="product_title"><a href="{{url('/')}}/shop-product-detail.html">Product Title Goes Here</a></h5>
-                                                        <p>BRAND NAME</p>
-                                                        <div class="rating_wrap">
-                                                            <div class="rating">
-                                                                <div class="product_rate" style="width:68%"></div>
-                                                            </div>
-                                                            <span class="rating_num">(15)</span>
-                                                        </div>
-
-                                                        <div class="row">
-                                                            <div class="col-auto me-auto">
-                                                                <div class="product_price">
-                                                                    <span class="price xtra">AED 25.60</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-auto">
-                                                                <div class="product_price">
-                                                                    <del>AED 32.00</del>
-                                                                    <div class="on_sale">
-                                                                        <span>30% OFF</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="product">
-                                                    <div class="product_img2">
-                                                        <a href="{{url('/')}}/shop-product-detail.html">
-                                                            <img src="{{url('/')}}/assets/images/products/pr-04.png" alt="product_img2">
-                                                        </a>
-                                                        <div class="product_action_box">
-                                                            <ul class="list_none pr_action_btn">
-                                                                <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                                <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                                <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product_info">
-                                                        <h5 class="product_title"><a href="{{url('/')}}/shop-product-detail.html">Product Title Goes Here</a></h5>
-                                                        <p>BRAND NAME</p>
-                                                        <div class="rating_wrap">
-                                                            <div class="rating">
-                                                                <div class="product_rate" style="width:68%"></div>
-                                                            </div>
-                                                            <span class="rating_num">(15)</span>
-                                                        </div>
-
-                                                        <div class="row">
-                                                            <div class="col-auto me-auto">
-                                                                <div class="product_price">
-                                                                    <span class="price xtra">AED 25.60</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-auto">
-                                                                <div class="product_price">
-                                                                    <del>AED 32.00</del>
-                                                                    <div class="on_sale">
-                                                                        <span>30% OFF</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="product">
-                                                    <div class="product_img2">
-                                                        <a href="{{url('/')}}/shop-product-detail.html">
-                                                            <img src="{{url('/')}}/assets/images/products/pr-02.png" alt="product_img2">
-                                                        </a>
-                                                        <div class="product_action_box">
-                                                            <ul class="list_none pr_action_btn">
-                                                                <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                                <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                                <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product_info">
-                                                        <h5 class="product_title"><a href="{{url('/')}}/shop-product-detail.html">Product Title Goes Here</a></h5>
-                                                        <p>BRAND NAME</p>
-                                                        <div class="rating_wrap">
-                                                            <div class="rating">
-                                                                <div class="product_rate" style="width:68%"></div>
-                                                            </div>
-                                                            <span class="rating_num">(15)</span>
-                                                        </div>
-
-                                                        <div class="row">
-                                                            <div class="col-auto me-auto">
-                                                                <div class="product_price">
-                                                                    <span class="price xtra">AED 25.60</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-auto">
-                                                                <div class="product_price">
-                                                                    <del>AED 32.00</del>
-                                                                    <div class="on_sale">
-                                                                        <span>30% OFF</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="product">
-                                                    <div class="product_img2">
-                                                        <a href="{{url('/')}}/shop-product-detail.html">
-                                                            <img src="{{url('/')}}/assets/images/products/pr-04.png" alt="product_img2">
-                                                        </a>
-                                                        <div class="product_action_box">
-                                                            <ul class="list_none pr_action_btn">
-                                                                <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                                <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                                <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product_info">
-                                                        <h5 class="product_title"><a href="{{url('/')}}/shop-product-detail.html">Product Title Goes Here</a></h5>
-                                                        <p>BRAND NAME</p>
-                                                        <div class="rating_wrap">
-                                                            <div class="rating">
-                                                                <div class="product_rate" style="width:68%"></div>
-                                                            </div>
-                                                            <span class="rating_num">(15)</span>
-                                                        </div>
-
-                                                        <div class="row">
-                                                            <div class="col-auto me-auto">
-                                                                <div class="product_price">
-                                                                    <span class="price xtra">AED 25.60</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-auto">
-                                                                <div class="product_price">
-                                                                    <del>AED 32.00</del>
-                                                                    <div class="on_sale">
-                                                                        <span>30% OFF</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="featured" role="tabpanel" aria-labelledby="featured-tab">
-                                        <div class="product_slider carousel_slider owl-carousel owl-theme nav_style10" data-loop="true" data-dots="false" data-nav="true" data-margin="20" data-responsive='{"0":{"items": "1"}, "481":{"items": "2"}, "768":{"items": "3"}, "1199":{"items": "4"}}'>
-                                            <div class="item">
-                                                <div class="product">
-                                                    <div class="product_img2">
-                                                        <a href="{{url('/')}}/shop-product-detail.html">
-                                                            <img src="{{url('/')}}/assets/images/products/pr-01.png" alt="product_img2">
-                                                        </a>
-                                                        <div class="product_action_box">
-                                                            <ul class="list_none pr_action_btn">
-                                                                <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                                <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                                <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product_info">
-                                                        <h5 class="product_title"><a href="{{url('/')}}/shop-product-detail.html">Product Title Goes Here</a></h5>
-                                                        <p>BRAND NAME</p>
-                                                        <div class="rating_wrap">
-                                                            <div class="rating">
-                                                                <div class="product_rate" style="width:68%"></div>
-                                                            </div>
-                                                            <span class="rating_num">(15)</span>
-                                                        </div>
-
-                                                        <div class="row">
-                                                            <div class="col-auto me-auto">
-                                                                <div class="product_price">
-                                                                    <span class="price xtra">AED 25.60</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-auto">
-                                                                <div class="product_price">
-                                                                    <del>AED 32.00</del>
-                                                                    <div class="on_sale">
-                                                                        <span>30% OFF</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="product">
-                                                    <div class="product_img2">
-                                                        <a href="{{url('/')}}/shop-product-detail.html">
-                                                            <img src="{{url('/')}}/assets/images/products/pr-02.png" alt="product_img2">
-                                                        </a>
-                                                        <div class="product_action_box">
-                                                            <ul class="list_none pr_action_btn">
-                                                                <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                                <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                                <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product_info">
-                                                        <h5 class="product_title"><a href="{{url('/')}}/shop-product-detail.html">Product Title Goes Here</a></h5>
-                                                        <p>BRAND NAME</p>
-                                                        <div class="rating_wrap">
-                                                            <div class="rating">
-                                                                <div class="product_rate" style="width:68%"></div>
-                                                            </div>
-                                                            <span class="rating_num">(15)</span>
-                                                        </div>
-
-                                                        <div class="row">
-                                                            <div class="col-auto me-auto">
-                                                                <div class="product_price">
-                                                                    <span class="price xtra">AED 25.60</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-auto">
-                                                                <div class="product_price">
-                                                                    <del>AED 32.00</del>
-                                                                    <div class="on_sale">
-                                                                        <span>30% OFF</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="product">
-                                                    <div class="product_img2">
-                                                        <a href="{{url('/')}}/shop-product-detail.html">
-                                                            <img src="{{url('/')}}/assets/images/products/pr-03.png" alt="product_img2">
-                                                        </a>
-                                                        <div class="product_action_box">
-                                                            <ul class="list_none pr_action_btn">
-                                                                <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                                <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                                <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product_info">
-                                                        <h5 class="product_title"><a href="{{url('/')}}/shop-product-detail.html">Product Title Goes Here</a></h5>
-                                                        <p>BRAND NAME</p>
-                                                        <div class="rating_wrap">
-                                                            <div class="rating">
-                                                                <div class="product_rate" style="width:68%"></div>
-                                                            </div>
-                                                            <span class="rating_num">(15)</span>
-                                                        </div>
-
-                                                        <div class="row">
-                                                            <div class="col-auto me-auto">
-                                                                <div class="product_price">
-                                                                    <span class="price xtra">AED 25.60</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-auto">
-                                                                <div class="product_price">
-                                                                    <del>AED 32.00</del>
-                                                                    <div class="on_sale">
-                                                                        <span>30% OFF</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="product">
-                                                    <div class="product_img2">
-                                                        <a href="{{url('/')}}/shop-product-detail.html">
-                                                            <img src="{{url('/')}}/assets/images/products/pr-04.png" alt="product_img2">
-                                                        </a>
-                                                        <div class="product_action_box">
-                                                            <ul class="list_none pr_action_btn">
-                                                                <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                                <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                                <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product_info">
-                                                        <h5 class="product_title"><a href="{{url('/')}}/shop-product-detail.html">Product Title Goes Here</a></h5>
-                                                        <p>BRAND NAME</p>
-                                                        <div class="rating_wrap">
-                                                            <div class="rating">
-                                                                <div class="product_rate" style="width:68%"></div>
-                                                            </div>
-                                                            <span class="rating_num">(15)</span>
-                                                        </div>
-
-                                                        <div class="row">
-                                                            <div class="col-auto me-auto">
-                                                                <div class="product_price">
-                                                                    <span class="price xtra">AED 25.60</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-auto">
-                                                                <div class="product_price">
-                                                                    <del>AED 32.00</del>
-                                                                    <div class="on_sale">
-                                                                        <span>30% OFF</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="product">
-                                                    <div class="product_img2">
-                                                        <a href="{{url('/')}}/shop-product-detail.html">
-                                                            <img src="{{url('/')}}/assets/images/products/pr-02.png" alt="product_img2">
-                                                        </a>
-                                                        <div class="product_action_box">
-                                                            <ul class="list_none pr_action_btn">
-                                                                <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                                <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                                <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product_info">
-                                                        <h5 class="product_title"><a href="{{url('/')}}/shop-product-detail.html">Product Title Goes Here</a></h5>
-                                                        <p>BRAND NAME</p>
-                                                        <div class="rating_wrap">
-                                                            <div class="rating">
-                                                                <div class="product_rate" style="width:68%"></div>
-                                                            </div>
-                                                            <span class="rating_num">(15)</span>
-                                                        </div>
-
-                                                        <div class="row">
-                                                            <div class="col-auto me-auto">
-                                                                <div class="product_price">
-                                                                    <span class="price xtra">AED 25.60</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-auto">
-                                                                <div class="product_price">
-                                                                    <del>AED 32.00</del>
-                                                                    <div class="on_sale">
-                                                                        <span>30% OFF</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="product">
-                                                    <div class="product_img2">
-                                                        <a href="{{url('/')}}/shop-product-detail.html">
-                                                            <img src="{{url('/')}}/assets/images/products/pr-04.png" alt="product_img2">
-                                                        </a>
-                                                        <div class="product_action_box">
-                                                            <ul class="list_none pr_action_btn">
-                                                                <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                                <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                                <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product_info">
-                                                        <h5 class="product_title"><a href="{{url('/')}}/shop-product-detail.html">Product Title Goes Here</a></h5>
-                                                        <p>BRAND NAME</p>
-                                                        <div class="rating_wrap">
-                                                            <div class="rating">
-                                                                <div class="product_rate" style="width:68%"></div>
-                                                            </div>
-                                                            <span class="rating_num">(15)</span>
-                                                        </div>
-
-                                                        <div class="row">
-                                                            <div class="col-auto me-auto">
-                                                                <div class="product_price">
-                                                                    <span class="price xtra">AED 25.60</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-auto">
-                                                                <div class="product_price">
-                                                                    <del>AED 32.00</del>
-                                                                    <div class="on_sale">
-                                                                        <span>30% OFF</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="special" role="tabpanel" aria-labelledby="special-tab">
-                                        <div class="product_slider carousel_slider owl-carousel owl-theme nav_style10" data-loop="true" data-dots="false" data-nav="true" data-margin="20" data-responsive='{"0":{"items": "1"}, "481":{"items": "2"}, "768":{"items": "3"}, "1199":{"items": "4"}}'>
-                                            <div class="item">
-                                                <div class="product">
-                                                    <div class="product_img2">
-                                                        <a href="{{url('/')}}/shop-product-detail.html">
-                                                            <img src="{{url('/')}}/assets/images/products/pr-01.png" alt="product_img2">
-                                                        </a>
-                                                        <div class="product_action_box">
-                                                            <ul class="list_none pr_action_btn">
-                                                                <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                                <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                                <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product_info">
-                                                        <h5 class="product_title"><a href="{{url('/')}}/shop-product-detail.html">Product Title Goes Here</a></h5>
-                                                        <p>BRAND NAME</p>
-                                                        <div class="rating_wrap">
-                                                            <div class="rating">
-                                                                <div class="product_rate" style="width:68%"></div>
-                                                            </div>
-                                                            <span class="rating_num">(15)</span>
-                                                        </div>
-
-                                                        <div class="row">
-                                                            <div class="col-auto me-auto">
-                                                                <div class="product_price">
-                                                                    <span class="price xtra">AED 25.60</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-auto">
-                                                                <div class="product_price">
-                                                                    <del>AED 32.00</del>
-                                                                    <div class="on_sale">
-                                                                        <span>30% OFF</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="product">
-                                                    <div class="product_img2">
-                                                        <a href="{{url('/')}}/shop-product-detail.html">
-                                                            <img src="{{url('/')}}/assets/images/products/pr-02.png" alt="product_img2">
-                                                        </a>
-                                                        <div class="product_action_box">
-                                                            <ul class="list_none pr_action_btn">
-                                                                <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                                <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                                <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product_info">
-                                                        <h5 class="product_title"><a href="{{url('/')}}/shop-product-detail.html">Product Title Goes Here</a></h5>
-                                                        <p>BRAND NAME</p>
-                                                        <div class="rating_wrap">
-                                                            <div class="rating">
-                                                                <div class="product_rate" style="width:68%"></div>
-                                                            </div>
-                                                            <span class="rating_num">(15)</span>
-                                                        </div>
-
-                                                        <div class="row">
-                                                            <div class="col-auto me-auto">
-                                                                <div class="product_price">
-                                                                    <span class="price xtra">AED 25.60</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-auto">
-                                                                <div class="product_price">
-                                                                    <del>AED 32.00</del>
-                                                                    <div class="on_sale">
-                                                                        <span>30% OFF</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="product">
-                                                    <div class="product_img2">
-                                                        <a href="{{url('/')}}/shop-product-detail.html">
-                                                            <img src="{{url('/')}}/assets/images/products/pr-03.png" alt="product_img2">
-                                                        </a>
-                                                        <div class="product_action_box">
-                                                            <ul class="list_none pr_action_btn">
-                                                                <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                                <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                                <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product_info">
-                                                        <h5 class="product_title"><a href="{{url('/')}}/shop-product-detail.html">Product Title Goes Here</a></h5>
-                                                        <p>BRAND NAME</p>
-                                                        <div class="rating_wrap">
-                                                            <div class="rating">
-                                                                <div class="product_rate" style="width:68%"></div>
-                                                            </div>
-                                                            <span class="rating_num">(15)</span>
-                                                        </div>
-
-                                                        <div class="row">
-                                                            <div class="col-auto me-auto">
-                                                                <div class="product_price">
-                                                                    <span class="price xtra">AED 25.60</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-auto">
-                                                                <div class="product_price">
-                                                                    <del>AED 32.00</del>
-                                                                    <div class="on_sale">
-                                                                        <span>30% OFF</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="product">
-                                                    <div class="product_img2">
-                                                        <a href="{{url('/')}}/shop-product-detail.html">
-                                                            <img src="{{url('/')}}/assets/images/products/pr-04.png" alt="product_img2">
-                                                        </a>
-                                                        <div class="product_action_box">
-                                                            <ul class="list_none pr_action_btn">
-                                                                <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                                <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                                <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product_info">
-                                                        <h5 class="product_title"><a href="{{url('/')}}/shop-product-detail.html">Product Title Goes Here</a></h5>
-                                                        <p>BRAND NAME</p>
-                                                        <div class="rating_wrap">
-                                                            <div class="rating">
-                                                                <div class="product_rate" style="width:68%"></div>
-                                                            </div>
-                                                            <span class="rating_num">(15)</span>
-                                                        </div>
-
-                                                        <div class="row">
-                                                            <div class="col-auto me-auto">
-                                                                <div class="product_price">
-                                                                    <span class="price xtra">AED 25.60</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-auto">
-                                                                <div class="product_price">
-                                                                    <del>AED 32.00</del>
-                                                                    <div class="on_sale">
-                                                                        <span>30% OFF</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="product">
-                                                    <div class="product_img2">
-                                                        <a href="{{url('/')}}/shop-product-detail.html">
-                                                            <img src="{{url('/')}}/assets/images/products/pr-02.png" alt="product_img2">
-                                                        </a>
-                                                        <div class="product_action_box">
-                                                            <ul class="list_none pr_action_btn">
-                                                                <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                                <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                                <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product_info">
-                                                        <h5 class="product_title"><a href="{{url('/')}}/shop-product-detail.html">Product Title Goes Here</a></h5>
-                                                        <p>BRAND NAME</p>
-                                                        <div class="rating_wrap">
-                                                            <div class="rating">
-                                                                <div class="product_rate" style="width:68%"></div>
-                                                            </div>
-                                                            <span class="rating_num">(15)</span>
-                                                        </div>
-
-                                                        <div class="row">
-                                                            <div class="col-auto me-auto">
-                                                                <div class="product_price">
-                                                                    <span class="price xtra">AED 25.60</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-auto">
-                                                                <div class="product_price">
-                                                                    <del>AED 32.00</del>
-                                                                    <div class="on_sale">
-                                                                        <span>30% OFF</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="product">
-                                                    <div class="product_img2">
-                                                        <a href="{{url('/')}}/shop-product-detail.html">
-                                                            <img src="{{url('/')}}/assets/images/products/pr-04.png" alt="product_img2">
-                                                        </a>
-                                                        <div class="product_action_box">
-                                                            <ul class="list_none pr_action_btn">
-                                                                <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                                <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                                <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product_info">
-                                                        <h5 class="product_title"><a href="{{url('/')}}/shop-product-detail.html">Product Title Goes Here</a></h5>
-                                                        <p>BRAND NAME</p>
-                                                        <div class="rating_wrap">
-                                                            <div class="rating">
-                                                                <div class="product_rate" style="width:68%"></div>
-                                                            </div>
-                                                            <span class="rating_num">(15)</span>
-                                                        </div>
-
-                                                        <div class="row">
-                                                            <div class="col-auto me-auto">
-                                                                <div class="product_price">
-                                                                    <span class="price xtra">AED 25.60</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-auto">
-                                                                <div class="product_price">
-                                                                    <del>AED 32.00</del>
-                                                                    <div class="on_sale">
-                                                                        <span>30% OFF</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+        @endforeach
+                                    
                                 </div>
                             </div>
                         </div>
@@ -1680,7 +420,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-12">
-                                <a href="{{url('/')}}/#"><img src="{{url('/')}}/assets/images/Flash_Banner.svg" class=" mx-auto d-block" alt="Mega Sale Banner" /></a>
+                                <a href="{{url('/')}}/shop"><img src="{{url('/')}}/assets/images/Flash_Banner.svg" class=" mx-auto d-block" alt="Mega Sale Banner" /></a>
                             </div>
                         </div>
 
@@ -1700,7 +440,7 @@
                                         <h2>SHOP BY BRAND</h2>
                                     </div>
                                     <div class="view_all">
-                                        <a href="{{url('/')}}/#" class="seeall"><span>SEE ALL</span></a>
+                                        <a href="{{url('/')}}/shop" class="seeall"><span>SEE ALL</span></a>
                                     </div>
                                 </div>
                             </div>
@@ -1709,62 +449,27 @@
                             <div class="col-12 ptb">
 
                                 <div class="brand product_slider carousel_slider owl-carousel owl-theme nav_style10" data-loop="true" data-dots="true" data-nav="true" data-margin="20" data-responsive='{"0":{"items": "1"}, "480":{"items": "2"}, "767":{"items": "3"}, "1199":{"items": "5"}}'>
+  @foreach(App\TradeMark::get() as  $TradeMark)
                                     <div class="item">
                                         <div class="product">
                                             <div class="brand-img">
-                                                <img src="{{url('/')}}/assets/images/Brands/Brand01.png" alt="Brand Name">
+                                                <a href="{{url('/')}}/shop">
+ <img src="{{ Storage::url($TradeMark->logo) }}" alt="
+@if(session('lang') == 'ar')
+ {{$TradeMark->name_ar}}
+  @elseif(session('lang') == 'en')
+ {{$TradeMark->name_en}}
+ @else
+ {{$TradeMark->name_en}}
+      @endif
+ ">
+ </a>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="item">
-                                        <div class="product">
-                                            <div class="brand-img">
-                                                <img src="{{url('/')}}/assets/images/Brands/Brand02.png" alt="Brand Name">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="product">
-                                            <div class="brand-img">
-                                                <img src="{{url('/')}}/assets/images/Brands/Brand03.png" alt="Brand Name">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="product">
-                                            <div class="brand-img">
-                                                <img src="{{url('/')}}/assets/images/Brands/Brand04.png" alt="Brand Name">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="product">
-                                            <div class="brand-img">
-                                                <img src="{{url('/')}}/assets/images/Brands/Brand05.png" alt="Brand Name">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="product">
-                                            <div class="brand-img">
-                                                <img src="{{url('/')}}/assets/images/Brands/Brand01.png" alt="Brand Name">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="product">
-                                            <div class="brand-img">
-                                                <img src="{{url('/')}}/assets/images/Brands/Brand04.png" alt="Brand Name">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="product">
-                                            <div class="brand-img">
-                                                <img src="{{url('/')}}/assets/images/Brands/Brand01.png" alt="Brand Name">
-                                            </div>
-                                        </div>
-                                    </div>
+        @endforeach
+                             
+                                 
                                 </div>
                             </div>
                         </div>

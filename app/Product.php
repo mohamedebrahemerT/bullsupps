@@ -119,10 +119,15 @@ class product extends Model
 
 
 
-
      public function filesss() {
 
-      return $this->hasMany('App\filess', 'relation_id', 'id')->where('file_type','productes');
+      return $this->hasMany('App\filess', 'relation_id', 'id')->where('file_type','productes')->orderBy('id','desc');
+
+    }
+
+     public function productvariantgroup() {
+
+      return $this->hasMany('App\Models\product_variant', 'product_id', 'id');
 
     }
 
@@ -167,6 +172,12 @@ class product extends Model
 ///////////////////////////
 
 	  public function trad_idd() {
+
+        return $this->hasOne('App\TradeMark', 'id', 'trad_id');
+
+    }
+ public function BRAND() 
+ {
 
         return $this->hasOne('App\TradeMark', 'id', 'trad_id');
 
@@ -223,8 +234,10 @@ class product extends Model
 
 public function getPriceAttribute($price)
     {
-          return  number_format($price , 2);
+          return  number_format($price , 0);
     }
+
+
 
     public function getPriceOfferAttribute($price_offer)
     {

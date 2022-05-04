@@ -177,7 +177,7 @@ public function etisalatemirates()
 
     $arrcolor=0;
 
-  $productsgrid = Product::where('status','مفعل')->orderBy('id','desc')->paginate(25); 
+  $productsgrid = Product::where('status','active')->orderBy('id','desc')->paginate(25); 
 
       return view('Admin.productes.ajax',[
 
@@ -207,7 +207,7 @@ public function etisalatemirates()
 
        
 
-      $productsgrid = Product::where('status','مفعل')->inRandomOrder()->paginate(25);
+      $productsgrid = Product::where('status','active')->inRandomOrder()->paginate(25);
 
 
 
@@ -241,9 +241,9 @@ public function etisalatemirates()
 
        
 
-          $productsgrid = Product::where('status','مفعل')->orderBy('price')->paginate(25);
+          $productsgrid = Product::where('status','active')->orderBy('price')->paginate(25);
 
-   $TopRateds=Product::where('status','مفعل')->inRandomOrder()->take(33)->get();
+   $TopRateds=Product::where('status','active')->inRandomOrder()->take(33)->get();
 
         $arrcolor=1;
 
@@ -273,7 +273,7 @@ public function etisalatemirates()
 
        
 
-          $productsgrid = Product::where('status','مفعل')->orderBy('price')->paginate(25);
+          $productsgrid = Product::where('status','active')->orderBy('price')->paginate(25);
 
   
 
@@ -307,7 +307,7 @@ public function etisalatemirates()
 
 
 
-        $productsgrid = Product::where('status','مفعل')->orderBy('price','desc')->paginate(25);
+        $productsgrid = Product::where('status','active')->orderBy('price','desc')->paginate(25);
 
         $arrcolor=2;
 
@@ -401,11 +401,11 @@ public function etisalatemirates()
  
 
 
-      $bestoffers1=product::where('stock','>',0)->where('status','مفعل')->take(20)->inrandomOrder()->get();
+      $bestoffers1=product::where('stock','>',0)->where('status','active')->take(20)->inrandomOrder()->get();
 
 
 
-            $bestoffers2=product::where('stock','>',0)->where('status','مفعل')
+            $bestoffers2=product::where('stock','>',0)->where('status','active')
             ->inrandomOrder()->take(20)->get();
 
 
@@ -574,61 +574,61 @@ public function etisalatemirates()
 
       
 
-      $newalymarket1=product::where('status','مفعل')
+      $newalymarket1=product::where('status','active')
 
       -> orWhere('Storepremsion', 1)
 
       ->inrandomOrder()->take(3)->get();
 
-      $newalymarket2=product::where('status','مفعل')->inrandomOrder()->take(3)->get();
+      $newalymarket2=product::where('status','active')->inrandomOrder()->take(3)->get();
 
 
 
-      $newalymarketsmalles1=product::where('status','مفعل')->inrandomOrder()->take(15)->get();
+      $newalymarketsmalles1=product::where('status','active')->inrandomOrder()->take(15)->get();
 
-      $newalymarketsmalles2=product::where('status','مفعل')->inrandomOrder()->take(15)->get();
+      $newalymarketsmalles2=product::where('status','active')->inrandomOrder()->take(15)->get();
 
-      $newalymarketsmalles3=product::where('status','مفعل')->inrandomOrder()->take(15)->get();
+      $newalymarketsmalles3=product::where('status','active')->inrandomOrder()->take(15)->get();
 
-      $newalymarketsmalles4=product::where('status','مفعل')->inrandomOrder()->take(15)->get();
+      $newalymarketsmalles4=product::where('status','active')->inrandomOrder()->take(15)->get();
 
-      $newalymarketsmalles5=product::where('status','مفعل')->inrandomOrder()->take(15)->get();
+      $newalymarketsmalles5=product::where('status','active')->inrandomOrder()->take(15)->get();
 
-      $newalymarketsmalles15=product::where('status','مفعل')->inrandomOrder()->take(15)->get();
+      $newalymarketsmalles15=product::where('status','active')->inrandomOrder()->take(15)->get();
 
-      $newalymarketsmalles115=product::where('status','مفعل')->inrandomOrder()->take(15)->get();
+      $newalymarketsmalles115=product::where('status','active')->inrandomOrder()->take(15)->get();
 
-      $newalymarketsmalles6=product::where('status','مفعل')->inrandomOrder()->take(15)->get();
+      $newalymarketsmalles6=product::where('status','active')->inrandomOrder()->take(15)->get();
 
-      $newalymarketsmalles7=product::where('status','مفعل')->inrandomOrder()->take(15)->get();
+      $newalymarketsmalles7=product::where('status','active')->inrandomOrder()->take(15)->get();
 
-      $newalymarketsmalles8=product::where('status','مفعل')->inrandomOrder()->take(15)->get();
-
-
-
-      $newalymarketsmalles9=product::where('status','مفعل')->where('VideoExst',1)->inrandomOrder()->take(2)->get();
+      $newalymarketsmalles8=product::where('status','active')->inrandomOrder()->take(15)->get();
 
 
 
-      $newalymarketsmalles55=product::where('status','مفعل')->inrandomOrder()->take(15)->get();
+      $newalymarketsmalles9=product::where('status','active')->where('VideoExst',1)->inrandomOrder()->take(2)->get();
+
+
+
+      $newalymarketsmalles55=product::where('status','active')->inrandomOrder()->take(15)->get();
 
 
 
 
 
-      $newalymarketsmalles10=product::where('status','مفعل')->inrandomOrder()->take(15)->get();
+      $newalymarketsmalles10=product::where('status','active')->inrandomOrder()->take(15)->get();
 
-      $newalymarketsmalles110=product::where('status','مفعل')->inrandomOrder()->take(15)->get();
+      $newalymarketsmalles110=product::where('status','active')->inrandomOrder()->take(15)->get();
 
-      $newalymarketsmalles1110=product::where('status','مفعل')->inrandomOrder()->take(15)->get();
+      $newalymarketsmalles1110=product::where('status','active')->inrandomOrder()->take(15)->get();
 
-      $newalymarketsmalles2=product::where('status','مفعل')->inrandomOrder()->take(15)->get();
+      $newalymarketsmalles2=product::where('status','active')->inrandomOrder()->take(15)->get();
 
 
 
-      $wechoseforyou=product::where('status','مفعل')->inrandomOrder()->take(8)->get();
+      $wechoseforyou=product::where('status','active')->inrandomOrder()->take(8)->get();
 
-      $wechoseforyouactive=product::where('status','مفعل')->inrandomOrder()->take(1)->get();
+      $wechoseforyouactive=product::where('status','active')->inrandomOrder()->take(1)->get();
 
       
 
@@ -640,7 +640,7 @@ public function etisalatemirates()
 
 
 
-      $Morefeaturedproducts=product::where('status','مفعل')->inrandomOrder()->get();
+      $Morefeaturedproducts=product::where('status','active')->inrandomOrder()->get();
 
 
 
@@ -660,7 +660,7 @@ public function etisalatemirates()
 
 
 
-      $BestSellers=product::where('status','مفعل') ->Where('discriminationForhome', 1)->take(5)->get();
+      $BestSellers=product::where('status','active') ->Where('discriminationForhome', 1)->take(5)->get();
 
 
 
@@ -706,23 +706,23 @@ public function etisalatemirates()
 
 
 
-      $bestevers1=product::where('status','مفعل')->take(6)->get();
+      $bestevers1=product::where('status','active')->take(6)->get();
 
-         $bestevers2=product::where('status','مفعل')->take(6)->get();
-
-
+         $bestevers2=product::where('status','active')->take(6)->get();
 
 
 
-         $moreorders1=product::where('status','مفعل')->take(5)->get();
-
-         $moreorders2=product::where('status','مفعل')->take(5)->get();
 
 
+         $moreorders1=product::where('status','active')->take(5)->get();
 
-               $fact1=product::where('status','مفعل')->inrandomOrder()->take(3)->get();
+         $moreorders2=product::where('status','active')->take(5)->get();
 
-         $fact2=product::where('status','مفعل')->inrandomOrder()->take(3)->get();
+
+
+               $fact1=product::where('status','active')->inrandomOrder()->take(3)->get();
+
+         $fact2=product::where('status','active')->inrandomOrder()->take(3)->get();
 
   
 
@@ -991,7 +991,7 @@ public function etisalatemirates()
 
 
 
-          $BestSellers=product::where('status','مفعل')
+          $BestSellers=product::where('status','active')
 
                                   -> Where('discriminationForhome', 1)
 

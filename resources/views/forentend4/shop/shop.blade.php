@@ -5,422 +5,262 @@
  @push('js')
 
 
- <style type="text/css">
-  @media only screen and (min-width: 1200px) 
-  {
-.Component00 {
-  height: 280px;
-  background-color: #eee;
-  margin-bottom: 5%;
-}
-}
- </style>
+ 
  
  @endpush
 
-
-
-
-
-
-
-
-
-
-
-<div class="breadcrumbs ">
-
-	<div class="container">
-
- 
-
-		<ul class="breadcrumb">
-
-			<li><a href="{{url('/')}}">{{trans('admin.Home')}}  </a></li>
-
-			<li><a href="{{url('/')}}/shop">{{$categoryName}}</a></li>
-
-		</ul>
-
-	</div>
-
-</div>
-
-
-<div class="container">
-
-   <div class="row">
-   		 
-   		
-<aside class="col-md-3 col-sm-4 col-xs-12 content-aside left_column sidebar-offcanvas ">
-
-		<span id="close-sidebar" class="fa fa-times"></span>
-
-		<div class="module so_filter_wrap block-shopby">
-
-			<h3 class="modtitle">	{{trans('admin.Filters')}}  </h3>
-
-
-
-			<div class="modcontent">
-
-				<ul data-product_id="101,100,96,86,52,99,51,66,95,91,104,102,97,98,103">
-
-				  
-
- 														 
-
-
-
-								@foreach(AllCategoriesshop()  as  $Department)
-
-
-		<li class="so-filter-options" data-option="Subcategory">
-
-				  
-								           <div class="so-filter-content-opts">
-
-							<div class="so-filter-content-opts-container">
-
-				 
-		 
-
-							 
-
-			 
-
-<a href="{{url('/')}}/shop?id={{$Department->id}}" >
-
-										<img class="hidden" src="{{Storage::url($Department->icon)}}" style="height: 20px;width: 20px">
-
-  @if(session('lang')=='ar')
-
-					{{$Department->dep_name_ar }}
-
-					@endif
-
-					@if(session('lang')=='en')
-
-					{{$Department->dep_name_en }}  
-
-					@endif
-
-				</a>
-
-<i class="fa fa-angle-down float-Ar-En"></i>
-
-
-
-							 
-									<hr>
-
-												 
- 
-
-												 
-
-
-
- 
-								           </li>
-@endforeach
-
-
-
-
-
-																						</ul>
-
-
-
-																	 
-
-																					</div>
-
-																				</div>
- 
-</aside>
-   	<div class="col-lg-9">
-
-   	<span style="height: 22px;
-left: 464px;
-top: 294px;
-
-font-family: Montserrat;
-font-style: normal;
-font-weight: 500;
-font-size: 18px;
-line-height: 22px;
-
-/* identical to box height */
-
-/* black */
-color: #28201C;
-
-opacity: 0.8;">
-   			{{$products2->count()}}  {{trans('admin.items')}}  
-   		</span>
-
-   		<div  class="row" style="
-font-family: Montserrat;
-font-style: normal;
-font-weight: 500;
-font-size: 18px;
-line-height: 22px;
-
-/* identical to box height */
-
-color: #000000;
-
-">
-   		<div style="display:flex;" class="col-sm-6">
-   			<div style="font-family: Montserrat;
-font-style: normal;
-font-weight: 500;
-font-size: 18px;
-line-height: 22px;
-color: #000000;
-margin-top: 10px;
-
-">{{trans('admin.Selected Filters')}} 
-   		 : 
-   		</div>	
-
-   		<div  style=" 
-flex-direction: row;
-justify-content: center;
-align-items: center;
-padding: 10px 12px;
-
-position: static;
-width: 180.63px;
-height: 42.63px;
-left: 155px;
-top: 0px;
-
-background: rgba(208, 192, 179, 0.4);
-border-radius: 4px;
-
-/* Inside auto layout */
-flex: none;
-order: 1;
-flex-grow: 0;
-margin: 0px 10px;
-">
-{{$categoryName}}  &nbsp; <a  href="{{url('/')}}/shop">X</a>
-   		</div>
- 
-   			
-   		</div>
-<div  class="col-sm-6">
-	   <div class="products-header">
-                 
-                <div>
-                    <strong>{{trans('admin.Price')}} : </strong>
- <a href="{{ route('shop.index',['category'=>request()->category,'sort'=>'low_high']) }}">{{trans('admin.Low to High')}}</a> |
-                    <a href="{{ route('shop.index',['category'=>request()->category,'sort'=>'high_low']) }}">{{trans('admin.High to Low')}}</a>
- |
-                     <a href="{{ route('shop.index',['category'=>request()->category,'sort'=>'Availability']) }}">{{trans('admin.Availability')}} </a>
- |
-                      <a href="{{ route('shop.index',['category'=>request()->category,'sort'=>'New']) }}">  {{trans('admin.New')}}</a>
-
-                    
-
+  <!-- START SECTION BREADCRUMB -->
+    <div class="breadcrumb_section page-title-mini">
+        <div class="custom-container">
+            <!-- STRART CONTAINER -->
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="page-title">
+                        <!-- <h1>Product Detail</h1> -->
+                        <ol class="breadcrumb justify-content-md-start">
+                            <li class="breadcrumb-item"><a href="{{url('/')}}/#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{url('/')}}/shop">All Categories </a></li>
+                            <li class="breadcrumb-item active">
+                         {{ $categoryName}}</li>
+                        </ol>
+                    </div>
                 </div>
             </div>
-</div>
- 
-
-   		</div>
-<hr>
-   		@foreach($products2 as  $product)
-         <div class="col-sm-3">
-           <div class="Component00">
-            
-            
-                  
+        </div>
+        <!-- END CONTAINER-->
+    </div>
+    <!-- END SECTION BREADCRUMB -->
 
 
-<div class="heartrelative">
+    <!-- START MAIN CONTENT -->
+    <div class="main_content">
 
-    <a href="{{url('/')}}/shop/{{$product->id}}">
- <img src="{{Storage::url($product->photo)}}" class="img-fluid">
- </a>
+        <!-- START SECTION SHOP -->
+        <div class="section">
+            <div class="custom-container">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="row align-items-center mb-4 pb-1">
+                            <div class="col-12">
+                                <div class="product_header">
+                                    <div class="product_header_left">
+                                        <div class="custom_select">
+                                            <select class="form-control form-control-sm">
+                                        <option value="order">Default sorting</option>
+                                        <option value="popularity">Sort by popularity</option>
+                                        <option value="date">Sort by newness</option>
+                                        <option value="price">Sort by price: low to high</option>
+                                        <option value="price-desc">Sort by price: high to low</option>
+                                    </select>
+                                        </div>
+                                    </div>
+                                    <div class="product_header_right">
+                                        <div class="products_view">
+                                            <a href="javascript:Void(0);" class="shorting_icon grid active"><i class="ti-view-grid"></i></a>
+                                            <a href="javascript:Void(0);" class="shorting_icon list"><i class="ti-layout-list-thumb"></i></a>
+                                        </div>
+                                        <div class="custom_select">
+                                            <select class="form-control form-control-sm">
+                                        <option value="">Showing</option>
+                                        <option value="9">9</option>
+                                        <option value="12">12</option>
+                                        <option value="18">18</option>
+                                    </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row shop_container">
+	@foreach($products2 as  $product)
 
-  <div class="heartabsolute">
-    <a href="{{url('/')}}/wishlist/{{$product->id}}">
-       <img     src="{{url('/')}}/forentend4/img/heart.png">
-</a>
-
-
-  </div>
-</div>   
-         
-             
-
-               <h3  class="prodycttitle">
-<a href="{{url('/')}}/shop/{{$product->id}}">
-
-
- @if(session('lang') == 'ar')
+                             <div class="col-md-4 col-6">
+                                <div class="product">
+                                    <div class="product_img2">
+                                        <a href="{{url('/')}}/shop/{{$product->id}}">
+                                            <img src="{{Storage::url($product->photo)}}" alt="product_img2">
+                                        </a>
+                                        <div class="product_action_box">
+                                            <ul class="list_none pr_action_btn">
+                                                <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
+                                                <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
+                                                <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="product_info">
+                                        <h6 class="product_title"><a href="{{url('/')}}/shop/{{$product->id}}">
+          @if(session('lang') == 'ar')
  {{$product->title_name_ar}}
   @elseif(session('lang') == 'en')
  {{$product->title_name_en}}
  @else
  {{$product->title_name_en}}
       @endif
-</a>
+                                        </a></h6>
+                                        <div class="product_price">
+                                            <span class="price">AED {{$product->price_offer }}</span>
+                                            <del>AED {{$product->price }}</del>
+          <span>{{ ratio($product->price,$product->price_offer) }}% OFF</span>
+                                            </div>
+                                        </div>
+                                        <div class="rating_wrap">
+                                            <div class="rating">
+                                                <div class="product_rate" style="width:68%"></div>
+                                            </div>
+                                            <span class="rating_num">(15)</span>
+                                        </div>
+                                        <div class="pr_desc">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim. Nullam id varius nunc id varius nunc.</p>
+                                        </div>
 
-</h3>
+                                        <div class="list_product_action_box">
+                                            <ul class="list_none pr_action_btn">
+                                                <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i></a></li>
+                                                <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
+                                                <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                   @endforeach
 
-<span class="pfgsl">{{$product->price}} {{trans('admin.pound')}}</span>
+                           
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                          {{ $products2->links('forentend4.pages.blocks.pagination') }}
 
-<span class="productseccart"   >
-<a href="{{url('/')}}/cart/{{$product->id}}">
-<img src="{{url('/')}}/forentend4/img/cart.png">
-</a>
-</span>
-         </div>
-             
-  
-        </div>
-
-
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 order-lg-first mt-4 pt-2 mt-lg-0 pt-lg-0">
+                        <div class="sidebar">
+                            <div class="widget">
+                                <h5 class="widget_title">FILTER BY:</h5>
+                                <ul class="widget_categories">
+           @foreach(App\Department::InrandomOrder()->where('parent' ,'!=',null)->take(4)->get() as $key =>  $DepartmentFILTER)
+                                    <li><a href="{{url('/')}}/#">
+                                    	<span class="categories_name">
+           @if(session('lang') == 'ar')
+ {{$DepartmentFILTER->dep_name_ar}}
+  @elseif(session('lang') == 'en')
+ {{$DepartmentFILTER->dep_name_en}}
+ @else
+ {{$DepartmentFILTER->dep_name_en}}
+      @endif
+                                    </span>
+                  <span class="categories_num">(9)</span></a></li>
         @endforeach
-   	</div>
-   	
-   </div>
-	
-</div>
- 
- 
+                                   
+                                </ul>
+                            </div>
+                            <div class="widget">
+                                <h5 class="widget_title">Filter</h5>
+                                <div class="filter_price">
+                                    <div id="price_filter" data-min="0" data-max="500" data-min-value="50" data-max-value="300" data-price-sign="AED"></div>
+                                    <div class="price_range">
+                                        <span>Price: <span id="flt_price"></span></span>
+                                        <input type="hidden" id="price_first">
+                                        <input type="hidden" id="price_second">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widget">
+                                <h5 class="widget_title">Gender</h5>
+                                <ul class="list_brand">
+     @foreach(App\Models\attribute_values::where('attribute_id',2)->get() as $Gender)
+                                    <li>
+                <div class="custome-checkbox">
+     <input class="form-check-input" type="checkbox" name="checkbox" 
+     id="{{$Gender->id}}"  >
+            <label class="form-check-label" for="{{$Gender->id}}"><span>
+     @if(session('lang') == 'ar')
+ {{$Gender->value_ar}}
+  @elseif(session('lang') == 'en')
+ {{$Gender->value_en}}
+ @else
+ {{$Gender->value_en}}
+      @endif
+                                        </span></label>
+                                        </div>
+                                    </li>
+                                   @endforeach
+
+                                    
+                                </ul>
+                            </div>
+                            <div class="widget">
+                                <h5 class="widget_title">Weight</h5>
+                                <div class="product_size_switch">
+  	@foreach(App\Models\attribute_values::where('attribute_id',6)->get() as $Weight)
+                                    <span>
+                                    	 @if(session('lang') == 'ar')
+ {{$Weight->value_ar}}
+  @elseif(session('lang') == 'en')
+ {{$Weight->value_en}}
+ @else
+ {{$Weight->value_en}}
+      @endif
+                                    </span>
+                                   @endforeach
+                                     
+                                </div>
+                            </div>
+                            <div class="widget">
+                                <h5 class="widget_title">Brand</h5>
+                                <ul class="list_brand">
+
+  	@foreach(App\TradeMark::get() as $Brand)
+
+                                    <li>
+                                        <div class="custome-checkbox">
+                                            <input class="form-check-input" type="checkbox" name="checkbox" id="{{$Brand->id}}" value="{{$Brand->id}}">
+                                            <label class="form-check-label" for="{{$Brand->id}}"><span>
+            	 @if(session('lang') == 'ar')
+ {{$Brand->name_ar}}
+  @elseif(session('lang') == 'en')
+ {{$Brand->name_en}}
+ @else
+ {{$Brand->name_en}}
+      @endif
+                                            </span></label>
+                                        </div>
+                                    </li>
+                                   @endforeach
+                                    
+                                    
+                                   
+                                </ul>
+                            </div>
+                            <div class="widget">
+                                <h5 class="widget_title">Flavor</h5>
+                                <div class="product_size_switch">
+ 	@foreach(App\Models\attribute_values::where('attribute_id',1)->get() as $Flavor)
+                                    <span>
+            	 @if(session('lang') == 'ar')                         	
+   {{$Flavor->value_ar}}
+  @elseif(session('lang') == 'en')
+ {{$Flavor->value_en}}
+ @else
+ {{$Flavor->value_en}}
+      @endif
+                                    </span>
+                                   @endforeach
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END SECTION SHOP -->
 
 
 
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    </div>
+    <!-- END MAIN CONTENT -->
 
-	<div class="w3-container">
-
-
-
-		<button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black" id="control-qid13228" style="display: none;">Open Modal</button>
-
-
-
-		<div id="id01" class="w3-modal">
-
-			<div class="w3-modal-content">
-
-				<header class="w3-container w3-teal"> 
-
-					<span onclick="document.getElementById('id01').style.display='none'" 
-
-					class="w3-button w3-display-topright">&times;</span>
-
-					<h2 style="margin-right:35px;"><span class="productName"> </span></h2>
-
-				</header>
-
-				<div class="w3-container">
-
-
-
-
-
-					<div class="homepdata">
-
-
-
-						<u style="list-style:none; display:inline-flex;">
-
-
-
-							<li>  <p><span class="productimage" > </span></p></li>
-
-							<li style="margin-right:15px;text-align: right;">
-
-								<span class="cart_sucess"> </span>
-
-
-
-								<p>{{trans('admin.name')}}:<span class="productName"> </span></p>
-
-								<p>{{trans('admin.price')}}:<span class="productprice"> </span></p>
-
-								<p>{{trans('admin.price_offer')}}:<span class="price_offer"> </span></p>
-
-								<p>{{trans('admin.content_name_ar')}}:<span class="content_name_ar"> </span></p>
-
-								<p>{{trans('admin.admin_id')}}:<span class="admin_id"> </span></p>
-
-								<p>{{trans('admin.alymarketcode')}}:<span class="alymarketcode"> </span></p>
-
-								<p>{{trans('admin.department_id')}}:<span class="department_id"> </span></p>
-
-
-
-
-
-
-
-
-
-								<a href="{{ route('shop.index') }}" class="btn--secondary update-cart">
-
-									{{trans('admin.ContinueShopping')}}
-
-									<span class="icon icon-arrow-right" aria-hidden="true"></span>
-
-
-
-								</a>
-
-
-
-								<a href="{{ route('wishlist.index') }}" class="btn cart__checkout">
-
-									{{trans('admin.wishlist')}}
-
-									<span class="icon icon-arrow-right" aria-hidden="true"></span>
-
-
-
-								</a>
-
-
-
-
-
-							</li>
-
-						</u>
-
-
-
-
-
-					</div>
-
-
-
-
-
-
-
-				</div>
-
-				<footer class="w3-container w3-teal">
-
-					 
-
-				</footer>
-
-			</div>
-
-		</div>
-
-	</div>
-<br>
-<br>
 @endsection
 

@@ -290,6 +290,11 @@
     <script src="{{url('/')}}/assets/js/scripts.js "></script>
     <script src="{{url('/')}}/assets/js/main.js"></script>
 
+
+
+    <script src="{{url('/')}}/assets/js/jquery-ui.js"></script>
+  
+
      @push('js')
 @endpush
 </body>

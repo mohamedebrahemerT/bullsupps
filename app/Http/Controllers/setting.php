@@ -25,9 +25,7 @@ class setting extends Controller
              'namear' =>'sometimes|nullable',
              'nameaen' => 'sometimes|nullable',
              'email' => 'sometimes|nullable',
-           'siteflag' => 'sometimes|nullable',
            'siteflag_ar' => 'sometimes|nullable',
-            'sitesymol' => 'sometimes|nullable',
              'sitesdiscreption' => 'sometimes|nullable',
              'sitemeta' => 'sometimes|nullable',
              'language' => 'sometimes|nullable',
@@ -76,22 +74,11 @@ class setting extends Controller
                 ]);  
  
  
-              /*   $data= $this->validate(request(),
-               ['siteflag' => 'required| image|mimes:jpg,png,gif,jpeg|max:2048',
-            'sitesymol' => 'required|image|mimes:jpg,png,gif,jpeg|max:2048'],
            
              
-            
-        [],[
-            'siteflag'=>trans('admin.siteflag'),
-            'sitesymol'=>trans('admin.sitesymol'),
-            
-            ]);
-         */
-                 //return request();
-             
-             
-                  $data['siteflag']  = up::upload(
+                 if (request('siteflag')) {
+                     // code...
+                     $data['siteflag']  = up::upload(
                      [
                         "file"=>"siteflag",
                         "upload_type"=> "single",
@@ -103,7 +90,10 @@ class setting extends Controller
                      ]
 
                   ); 
+                 }
 
+                  if (request('siteflag_ar')) {
+                     
                    $data['siteflag_ar']  = up::upload(
                      [
                         "file"=>"siteflag_ar",
@@ -116,10 +106,12 @@ class setting extends Controller
                      ]
 
                   ); 
+                 }
 
-                  
 
-                     $data['sitesymol']  = up::upload(
+                  if (request('sitesymol')) {
+                      // code...
+                        $data['sitesymol']  = up::upload(
                      [
                         "file"=>"sitesymol",
                         "upload_type"=> "single",
@@ -130,8 +122,12 @@ class setting extends Controller
                      ]
 
                   ); 
+                  }
 
-                      $data['profile']  = up::upload(
+                 
+
+                if (request('profile')) {
+                        $data['profile']  = up::upload(
                      [
                         "file"=>"profile",
                         "upload_type"=> "single",
@@ -142,36 +138,11 @@ class setting extends Controller
                      ]
 
                   ); 
+                   }
 
 
                      
-                  /*
- 
-                 if (request()->has('siteflag') ) 
-                 {
-                    if (!empty(settings()->siteflag))
-                     {
-                        Storage::delete(settings()->siteflag);
-                     }
-                   $data['siteflag']=request()->file('siteflag')->store('settings');
-
-                      
                   
-                 }
-                 if (request()->hasfile('sitesymol'))
-                  {
-                    if (!empty(settings()->sitesymol))
-                     {
-                        Storage::delete(settings()->sitesymol);
-                     }
-                     $data['sitesymol']=request()->file('sitesymol')->store('settings');
-                     
-                 
-                     
-                 }
-                 */
-
-             // $data=request()->except('_token','_method');  
 
                settings::orderBy('id','desc')->update($data);
              session()->flash('success',trans('admin.dataaddsuccessfully'));

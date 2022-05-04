@@ -87,7 +87,7 @@ public function Tags($id)
                 $Departments = DB::table('tags')->take(8)->get();
                          
           $products = Product::where('tag_id',
-                  $id)->where('status','مفعل')->inrandomOrder()->paginate(9);
+                  $id)->where('status','active')->inrandomOrder()->paginate(9);
 
 
                 return view('forentend3.Tags.Tags')->with([
@@ -113,7 +113,7 @@ public function Tags($id)
             
 
    $products = Product::where('department_id',
-                  $id)->where('status','مفعل')->orderBy('price')->paginate(10);
+                  $id)->where('status','active')->orderBy('price')->paginate(10);
 
               if(session('lang') =='ar')
         {
@@ -129,10 +129,10 @@ public function Tags($id)
             ->where('parent',$id)->inrandomOrder()->get();
 
 
-    $Bestsellers=Product::where('status','مفعل')->inrandomOrder()->paginate(9);
-      $NewArrivals=Product::where('status','مفعل')->inrandomOrder()->paginate(9);
+    $Bestsellers=Product::where('status','active')->inrandomOrder()->paginate(9);
+      $NewArrivals=Product::where('status','active')->inrandomOrder()->paginate(9);
 
-                    $products2 = Product::where('status','مفعل')->inrandomOrder()->orderBy('id','DESC')->paginate(15);
+                    $products2 = Product::where('status','active')->inrandomOrder()->orderBy('id','DESC')->paginate(15);
                   
 
               return view('forentend4.shop.shop')->with([
@@ -151,7 +151,7 @@ public function Tags($id)
 
                       $id=request('id');
    $products = Product::where('department_id',
-                  $id)->where('status','مفعل')->orderBy('price','desc')->paginate(10);
+                  $id)->where('status','active')->orderBy('price','desc')->paginate(10);
 
               if(session('lang') =='ar')
         {
@@ -167,10 +167,10 @@ public function Tags($id)
             ->where('parent',$id)->inrandomOrder()->get();
 
 
-    $Bestsellers=Product::where('status','مفعل')->inrandomOrder()->paginate(9);
-      $NewArrivals=Product::where('status','مفعل')->inrandomOrder()->paginate(9);
+    $Bestsellers=Product::where('status','active')->inrandomOrder()->paginate(9);
+      $NewArrivals=Product::where('status','active')->inrandomOrder()->paginate(9);
 
-                    $products2 = Product::where('status','مفعل')->inrandomOrder()->orderBy('id','DESC')->paginate(15);
+                    $products2 = Product::where('status','active')->inrandomOrder()->orderBy('id','DESC')->paginate(15);
   
 
               return view('forentend4.shop.shop')->with([
@@ -192,7 +192,7 @@ public function Tags($id)
 
                       $id=request('id');
      $products = Product::where('department_id',
-                  $id)->where('status','مفعل')->orderBy('id','desc')->paginate(10);
+                  $id)->where('status','active')->orderBy('id','desc')->paginate(10);
 
               if(session('lang') =='ar')
         {
@@ -208,10 +208,10 @@ public function Tags($id)
             ->where('parent',$id)->inrandomOrder()->get();
 
 
-    $Bestsellers=Product::where('status','مفعل')->inrandomOrder()->paginate(9);
-      $NewArrivals=Product::where('status','مفعل')->inrandomOrder()->paginate(9);
+    $Bestsellers=Product::where('status','active')->inrandomOrder()->paginate(9);
+      $NewArrivals=Product::where('status','active')->inrandomOrder()->paginate(9);
 
-                    $products2 = Product::where('status','مفعل')->inrandomOrder()->orderBy('id','DESC')->paginate(15);
+                    $products2 = Product::where('status','active')->inrandomOrder()->orderBy('id','DESC')->paginate(15);
   
 
               return view('forentend4.shop.shop')->with([
@@ -233,7 +233,7 @@ public function Tags($id)
 
                       $id=request('id');
       $products = Product::where('department_id',
-                  $id)->where('status','مفعل')->inRandomOrder()->paginate(10);
+                  $id)->where('status','active')->inRandomOrder()->paginate(10);
 
               if(session('lang') =='ar')
         {
@@ -249,10 +249,10 @@ public function Tags($id)
             ->where('parent',$id)->inrandomOrder()->get();
 
 
-    $Bestsellers=Product::where('status','مفعل')->inrandomOrder()->paginate(9);
-      $NewArrivals=Product::where('status','مفعل')->inrandomOrder()->paginate(9);
+    $Bestsellers=Product::where('status','active')->inrandomOrder()->paginate(9);
+      $NewArrivals=Product::where('status','active')->inrandomOrder()->paginate(9);
 
-                    $products2 = Product::where('status','مفعل')->inrandomOrder()->orderBy('id','DESC')->paginate(15);
+                    $products2 = Product::where('status','active')->inrandomOrder()->orderBy('id','DESC')->paginate(15);
   
 
               return view('forentend4.shop.shop')->with([
@@ -291,7 +291,7 @@ public function Tags($id)
 
                       $id=request('id');
        $products = Product::whereIn('id',$IDOFPRODCUTS)->where('department_id',
-                  $id)->where('status','مفعل')->inRandomOrder()->paginate(10);
+                  $id)->where('status','active')->inRandomOrder()->paginate(10);
 
               if(session('lang') =='ar')
         {
@@ -307,10 +307,10 @@ public function Tags($id)
             ->where('parent',$id)->inrandomOrder()->get();
 
 
-    $Bestsellers=Product::where('status','مفعل')->inrandomOrder()->paginate(9);
-      $NewArrivals=Product::where('status','مفعل')->inrandomOrder()->paginate(9);
+    $Bestsellers=Product::where('status','active')->inrandomOrder()->paginate(9);
+      $NewArrivals=Product::where('status','active')->inrandomOrder()->paginate(9);
 
-                    $products2 = Product::where('status','مفعل')->inrandomOrder()->orderBy('id','DESC')->paginate(15);
+                    $products2 = Product::where('status','active')->inrandomOrder()->orderBy('id','DESC')->paginate(15);
   
 
               return view('forentend4.shop.shop')->with([
@@ -349,7 +349,7 @@ public function Tags($id)
 
                       $id=request('id');
         $products = Product::whereIn('id',$IDOFPRODCUTS)->where('department_id',
-                  $id)->where('status','مفعل')->inRandomOrder()->paginate(10);
+                  $id)->where('status','active')->inRandomOrder()->paginate(10);
 
               if(session('lang') =='ar')
         {
@@ -365,10 +365,10 @@ public function Tags($id)
             ->where('parent',$id)->inrandomOrder()->get();
 
 
-    $Bestsellers=Product::where('status','مفعل')->inrandomOrder()->paginate(9);
-      $NewArrivals=Product::where('status','مفعل')->inrandomOrder()->paginate(9);
+    $Bestsellers=Product::where('status','active')->inrandomOrder()->paginate(9);
+      $NewArrivals=Product::where('status','active')->inrandomOrder()->paginate(9);
 
-                    $products2 = Product::where('status','مفعل')->inrandomOrder()->orderBy('id','DESC')->paginate(15);
+                    $products2 = Product::where('status','active')->inrandomOrder()->orderBy('id','DESC')->paginate(15);
   
 
               return view('forentend4.shop.shop')->with([
@@ -400,7 +400,7 @@ public function Tags($id)
 
                       $id=request('id');
         $products = Product::where('trad_id',$TradeMark_id)->where('department_id',
-                  $id)->where('status','مفعل')->inRandomOrder()->paginate(10);
+                  $id)->where('status','active')->inRandomOrder()->paginate(10);
 
               if(session('lang') =='ar')
         {
@@ -416,10 +416,10 @@ public function Tags($id)
             ->where('parent',$id)->inrandomOrder()->get();
 
 
-    $Bestsellers=Product::where('status','مفعل')->inrandomOrder()->paginate(9);
-      $NewArrivals=Product::where('status','مفعل')->inrandomOrder()->paginate(9);
+    $Bestsellers=Product::where('status','active')->inrandomOrder()->paginate(9);
+      $NewArrivals=Product::where('status','active')->inrandomOrder()->paginate(9);
 
-                    $products2 = Product::where('status','مفعل')->inrandomOrder()->orderBy('id','DESC')->paginate(15);
+                    $products2 = Product::where('status','active')->inrandomOrder()->orderBy('id','DESC')->paginate(15);
   
 
               return view('forentend4.shop.shop')->with([
@@ -451,7 +451,7 @@ public function Tags($id)
             $products = Product::
         where('title_name_ar', 'LIKE', "%{$query}%")
         ->where('department_id',$id)
-        ->where('status','مفعل')->inRandomOrder()->paginate(10);
+        ->where('status','active')->inRandomOrder()->paginate(10);
 
 
 
@@ -469,11 +469,11 @@ public function Tags($id)
             ->where('parent',$id)->inrandomOrder()->get();
 
 
-    $Bestsellers=Product::where('status','مفعل')->inrandomOrder()->paginate(9);
-      $NewArrivals=Product::where('status','مفعل')->inrandomOrder()->paginate(9);
+    $Bestsellers=Product::where('status','active')->inrandomOrder()->paginate(9);
+      $NewArrivals=Product::where('status','active')->inrandomOrder()->paginate(9);
 
   
-                    $products2 = Product::where('status','مفعل')->inrandomOrder()->orderBy('id','DESC')->paginate(15);
+                    $products2 = Product::where('status','active')->inrandomOrder()->orderBy('id','DESC')->paginate(15);
 
               return view('forentend4.shop.shop')->with([
             'products' => $products,
@@ -561,8 +561,8 @@ foreach ($Department2 as   $Department)
             ->where('parent',$id)->inrandomOrder()->get();
 
 
-    $Bestsellers=Product::where('status','مفعل')->inrandomOrder()->paginate(9);
-     $NewArrivals=Product::where('status','مفعل')->inrandomOrder()->paginate(9);
+    $Bestsellers=Product::where('status','active')->inrandomOrder()->paginate(9);
+     $NewArrivals=Product::where('status','active')->inrandomOrder()->paginate(9);
 
  
 
@@ -594,8 +594,8 @@ foreach ($Department2 as   $Department)
         
   
 
-                    $products = Product::where('status','مفعل')->inrandomOrder()->orderBy('id','DESC')->paginate(15);
-                    $products2 = Product::where('status','مفعل')->inrandomOrder()->orderBy('id','DESC')->paginate(15);
+                    $products = Product::where('status','active')->inrandomOrder()->orderBy('id','DESC')->paginate(15);
+                    $products2 = Product::where('status','active')->inrandomOrder()->orderBy('id','DESC')->paginate(15);
 
                     if (session('lang')=='ar')
                                  {
@@ -604,14 +604,14 @@ foreach ($Department2 as   $Department)
 
                                   elseif (session('lang')=='en')
                                  {
-                $categoryName = 'Catalog';
+                $categoryName = 'All Categories ';
                                  }     
            
      
   
         
- $Bestsellers=Product::where('status','مفعل')->inrandomOrder()->paginate(9);
-    $NewArrivals=Product::where('status','مفعل')->inrandomOrder()->paginate(9);
+ $Bestsellers=Product::where('status','active')->inrandomOrder()->paginate(9);
+    $NewArrivals=Product::where('status','active')->inrandomOrder()->paginate(9);
            
 
     $Departments = DB::table('departments')
@@ -668,17 +668,17 @@ foreach ($Department2 as   $Department)
  
 
 
-          $product = Product::where('status','مفعل')->where('id', $id)->firstOrFail();
+          $product = Product::where('status','active')->where('id', $id)->firstOrFail();
           $department_id=$product->department_id;
          
-     $mightAlsoLikes = Product::where('status','مفعل')->where('department_id',$department_id)->inRandomOrder()->take(10)->get();
+     $mightAlsoLikes = Product::where('status','active')->where('department_id',$department_id)->inRandomOrder()->take(10)->get();
 
-     $mightAlsoLikes2 = Product::where('status','مفعل')->where('department_id',$department_id)->inRandomOrder()->take(10)->get();
+     $mightAlsoLikes2 = Product::where('status','active')->where('department_id',$department_id)->inRandomOrder()->take(10)->get();
                          
-                  $filess=filess::where('file_type','productes')->
-                where('relation_id',$id)->get();
+                   $filess=filess::where('file_type','productes')->
+                where('relation_id',$id)->orderBy('id','desc')->get();
    
-     $ProductFromSamCats = Product::where('status','مفعل')->where('department_id',$department_id)->inRandomOrder()->take(10)->get();
+     $ProductFromSamCats = Product::where('status','active')->where('department_id',$department_id)->inRandomOrder()->take(10)->get();
 
                    $filessitems=[];
                    
@@ -718,19 +718,19 @@ foreach ($Department2 as   $Department)
 
                     
         
-          $product = Product::where('status','مفعل')->where('id', $id)->firstOrFail();
+          $product = Product::where('status','active')->where('id', $id)->firstOrFail();
                session()->put('ProdcutTitle',$product->title_name_ar);
           
           $department_id=$product->department_id;
          
-     $mightAlsoLikes = Product::where('status','مفعل')->where('department_id',$department_id)->inRandomOrder()->take(10)->get();
+     $mightAlsoLikes = Product::where('status','active')->where('department_id',$department_id)->inRandomOrder()->take(10)->get();
 
-     $mightAlsoLikes2 = Product::where('status','مفعل')->where('department_id',$department_id)->inRandomOrder()->take(10)->get();
+     $mightAlsoLikes2 = Product::where('status','active')->where('department_id',$department_id)->inRandomOrder()->take(10)->get();
                          
                   $filess=filess::where('file_type','productes')->
                 where('relation_id',$id)->get();
    
-     $ProductFromSamCats = Product::where('status','مفعل')->where('department_id',$department_id)->inRandomOrder()->take(10)->get();
+     $ProductFromSamCats = Product::where('status','active')->where('department_id',$department_id)->inRandomOrder()->take(10)->get();
 
 
               
@@ -769,16 +769,16 @@ foreach ($Department2 as   $Department)
                  
               
      
-         $product = Product::where('status','مفعل')->where('id', $id)->firstOrFail();
+         $product = Product::where('status','active')->where('id', $id)->firstOrFail();
           $department_id=$product->department_id;
          
-     $mightAlsoLikes = Product::where('status','مفعل')->where('department_id',$department_id)->inRandomOrder()->take(5)->get();
-     $mightAlsoLikes2 = Product::where('status','مفعل')->where('department_id',$department_id)->inRandomOrder()->take(5)->get();
+     $mightAlsoLikes = Product::where('status','active')->where('department_id',$department_id)->inRandomOrder()->take(5)->get();
+     $mightAlsoLikes2 = Product::where('status','active')->where('department_id',$department_id)->inRandomOrder()->take(5)->get();
                          
                   $filess=filess::where('file_type','productes')->
                 where('relation_id',$id)->get();
    
-     $ProductFromSamCats = Product::where('status','مفعل')->where('department_id',$department_id)->inRandomOrder()->take(10)->get();
+     $ProductFromSamCats = Product::where('status','active')->where('department_id',$department_id)->inRandomOrder()->take(10)->get();
            
           return view('forentend4.productdetails.productdetails')->with([
             'product' => $product,
@@ -998,7 +998,7 @@ foreach ($Department2 as   $Department)
           $products=DB::table('productes')
         ->where('title_name_ar', 'LIKE', "%{$query}%")
         ->where('department_id',
-                  $id)->where('status','مفعل')->inRandomOrder()->paginate(10);
+                  $id)->where('status','active')->inRandomOrder()->paginate(10);
         
 
               if(session('lang') =='ar')
@@ -1015,8 +1015,8 @@ foreach ($Department2 as   $Department)
             ->where('parent',$id)->inrandomOrder()->take(7)->get();
 
 
-    $Bestsellers=Product::where('status','مفعل')->inrandomOrder()->paginate(9);
-      $NewArrivals=Product::where('status','مفعل')->inrandomOrder()->paginate(9);
+    $Bestsellers=Product::where('status','active')->inrandomOrder()->paginate(9);
+      $NewArrivals=Product::where('status','active')->inrandomOrder()->paginate(9);
 
   
 
@@ -1042,7 +1042,7 @@ foreach ($Department2 as   $Department)
 
                     
               $arrcolor=0;
-  $productsgrid = Product::where('status','مفعل')->orderBy('id','desc')->paginate(10); 
+  $productsgrid = Product::where('status','active')->orderBy('id','desc')->paginate(10); 
     return view('forentend4.productsgrid',[
         'productsgrid'=>$productsgrid,
         'arrcolor'=>$arrcolor,
@@ -1055,8 +1055,8 @@ foreach ($Department2 as   $Department)
          {    
 
       
-     $productsgrid = Product::where('status','مفعل')->orderBy('price')->paginate(10);
-   $TopRateds=Product::where('status','مفعل')->inRandomOrder()->take(33)->get();
+     $productsgrid = Product::where('status','active')->orderBy('price')->paginate(10);
+   $TopRateds=Product::where('status','active')->inRandomOrder()->take(33)->get();
         $arrcolor=1;
 
       
@@ -1064,7 +1064,7 @@ foreach ($Department2 as   $Department)
         
         } elseif ( request()->sort == 'high_lowHome' )
          {
-   $TopRateds=Product::where('status','مفعل')->inRandomOrder()->take(33)->get();
+   $TopRateds=Product::where('status','active')->inRandomOrder()->take(33)->get();
 
         $arrcolor=2;
 
@@ -1081,7 +1081,7 @@ foreach ($Department2 as   $Department)
                {
 
               $arrcolor=0;
-  $productsgrid = Product::where('status','مفعل')->orderBy('id','desc')->paginate(10);
+  $productsgrid = Product::where('status','active')->orderBy('id','desc')->paginate(10);
 
       
  
@@ -1095,7 +1095,7 @@ foreach ($Department2 as   $Department)
             
     
 
-      $productsgrid = Product::where('status','مفعل')->inRandomOrder()->paginate(10);
+      $productsgrid = Product::where('status','active')->inRandomOrder()->paginate(10);
 
       $arrcolor=0;
 

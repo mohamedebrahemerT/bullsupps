@@ -45,6 +45,19 @@
     <!-- <link rel="stylesheet" href="{{url('/')}}/assets/css/rtl-style.css"> -->
     <link rel="stylesheet" href="{{url('/')}}/assets/css/responsive.css">
 
+
+   
+
+    <!-- Animation CSS -->
+    <link rel="stylesheet" href="assets/css/animate.css">
+
+ 
+    <link rel="stylesheet" href="assets/css/jquery-ui.css">
+    <!-- Slick CSS -->
+ 
+ 
+
+
 </head>
 
 <body>
