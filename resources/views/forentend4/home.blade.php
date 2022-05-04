@@ -100,7 +100,7 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="product_slider carousel_slider owl-carousel owl-theme nav_style1" data-loop="true" data-dots="false" data-nav="true" data-margin="20" data-responsive='{"0":{"items": "1"}, "481":{"items": "2"}, "768":{"items": "3"}, "1199":{"items": "4"}}'>
-      @foreach(App\product::where('status','active')->InrandomOrder()->take(5)->get() as  $product)
+      @foreach(App\Product::where('status','active')->InrandomOrder()->take(5)->get() as  $product)
 
                                     <div class="item">
                                         <div class="product">
@@ -201,7 +201,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="product_slider carousel_slider owl-carousel owl-theme nav_style10" data-loop="true" data-dots="false" data-nav="true" data-margin="20" data-responsive='{"0":{"items": "1"}, "481":{"items": "2"}, "768":{"items": "3"}, "1199":{"items": "4"}}'>
- @foreach(App\product::where('status','active')->InrandomOrder()->take(5)->get() as  $product)
+ @foreach(App\Product::where('status','active')->InrandomOrder()->take(5)->get() as  $product)
                                     <div class="item">
                                         <div class="product">
 

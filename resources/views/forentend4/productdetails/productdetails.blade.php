@@ -1174,7 +1174,7 @@ a.thumbnail.active, a.thumbnail:focus, a.thumbnail:hover {
                             <div class="widget">
                                 <h5 class="widget_title">TOP RELATED</h5>
                                 <ul class="widget_recent_post">
-      @foreach(App\product::
+      @foreach(App\Product::
       where('status','active')->
       where('department_id',$product->department_id)
       ->InrandomOrder()
