@@ -5,12 +5,11 @@
 @section('content')
 
 
-
-                 @push('js')
-
+ @section('javascript')
+ 
  
 
-
+       
 
 
 
@@ -37,96 +36,6 @@
     <script src="{{ asset('js/jquery.min.js') }}"></script>
 
  
-
-  <script type="text/javascript">
-
-      $(document).on('click','#Removeshop',function(){
-
-
-
-                 $(this).closest("div.cart-table-row").hide();
-
-
-
-              var tr = $(this).closest('div.cart-table-row');
-
-                          tr.fadeOut(1000, function(){ // **addd this
-
-                            $(this).remove();
-
-                        });
-
-
-
-              var text =$(this).text();
-
-
-
-              text=text.toString();
-
-                  
-
-            
-
-        $.ajax({
-
-            url:"{{ route('cart.destroy') }}",
-
-            method:"POST",
-
-           data :{
-
-            _token:'{{ csrf_token() }}',
-
-            id:text,
-
-
-
-           },
-
-            dataType:"json",
-
-            beforeSend:function(){
-
-                      $('.cart_sucess').html('');
-
-                       
-
-                      $('.cc').addClass('hidden');
-
-                     
-
-                
-
-                      
-
-            },
-
-            success:function(data)
-
-            {
-
-             
-
-             $('.cart_sucess').html(data.success);  
-
-
-
-            }
-
-        });
-
-             return false;
-
-    
-
-                    
-
-                     
-
-                    });
-
-  </script>
 
 
 
@@ -560,216 +469,292 @@
 
     <script src="{{ asset('js/app.js') }}"></script>
 
-    <script>
-
-        (function()
-        {
-
-            const classname = document.querySelectorAll('.quantity')
-
-
-
-            Array.from(classname).forEach(function(element) {
-
-                element.addEventListener('change', function() {
-
-                    const id = element.getAttribute('data-id')
-
-                    const productQuantity = element.getAttribute('data-productQuantity')
-
-                     
-
-                    axios.post(`{{ url('/cart/update')}}/${id}`, {
-
-                        quantity: this.value,
-
-                        productQuantity: productQuantity
-
-                    })
-
-
-
-                   
-
-                    .then(function (response) {
-
-                      //  console.log(response);
-
-                        window.location.href = '{{ route('cart.index') }}'
-
-                    })
-
-                    .catch(function (error) {
-
-                       //console.log(error);
-
-                      window.location.href = '{{ route('cart.index') }}'
-
-                    });
-
-                })
-
-            })
-
-        })();
-
-    </script>
-
  
 
   
-
-    @endpush
-
-
-
-
-
-
-
-
-
-<div id="checkout-cart" class="container">
-
-  <ul class="breadcrumb">
-
-        <li><a href="{{url('/')}}">
-
-            {{trans('admin.Home')}}
-
-    </a></li>
-
-        <li>
-
-            <a href="{{url('/')}}/cart">{{trans('admin.cart')}}</a></li>
-
-      </ul>
-
-    
-
-                                                                                 
-
-                              
-
-    <div class="row">
-
-                <div id="content" class="col-sm-12">
-
      
+<script type="text/javascript">
+    $("#quantity").bind("change   keyup", function() {
+
+     var rowId  = $(this).attr("data-id");
+
+          var  qty=$(this).val();
 
 
-          <span class="cart_sucess"></span>
+      $.ajax({
+            url:"{{url('/cartquantity')}}",
+            method:"POST",
+           data :{
+          _token:'{{ csrf_token() }}',
+            id:rowId,
+            qty:qty,
+          
 
-            @if (session()->has('success_message'))
+           },
+            dataType:"json",
+            beforeSend:function(){
+          
+ $('.cart_sucess').html('');
 
-                <div class="alert alert-success cc">
+            },
+            success:function(data)
+            {
+               $('.total').html(data.total);
+   $('.subtotal').html(data.total);
+   $('.tax').html(data.tax);
 
-                    {{ session()->get('success_message') }}
-
-                </div>
-
-            @endif
-
-
-
-            @if(count($errors) > 0)
-
-                <div class="alert alert-danger">
-
-                    <ul>
-
-                        @foreach ($errors->all() as $error)
-
-                            <li>{{ $error }}</li>
-
-                        @endforeach
-
-                    </ul>
-
-                </div>
-
-            @endif
-
-      <form action="{{url('/')}}/cart/edit" method="post" enctype="multipart/form-data">
-
-        <div class="table-responsive">
-
-          <table class="table table-bordered" 
-           @if(session('lang') == 'ar') style="direction: rtl !important;" @endif >
-
-            <thead>
-
-              <tr>
-
-                <td class="text-center">{{trans('admin.picture')}}</td>
-
-                <td class="text-left">{{trans('admin.name')}}</td>
-
-       
-
-                <td class="text-left">{{trans('admin.Quantity')}} </td>
-
-                       <td>{{trans('admin.operation')}}</td>
-
-                <td class="text-right" style="text-align: center;"> {{trans('admin.unitprice')}} </td>
-
-
-
-                <td class="text-right" style="text-align: center;">{{trans('admin.Total')}} </td>
-
-              </tr>
-
-            </thead>
-
-            <tbody>
-
-                @foreach (Cart::content() as $item)
-
-            
-
-                        <tr>
-
-              <td class="text-center">
-
-               <a href="{{url('/')}}/shop/{{ $item->model->id}}">
-
-
-
-                <?php if(session('SRC'.$item->model->id)) {?>
-
-
-
-                <img src="{{url('/')}}/{{session('SRC'.$item->model->id)}}" alt="Drutick lanaeger" title="Drutick lanaeger" class="img-thumbnail"  style="width:47px;height:47px" />
-
-
-
-              <?php   }  else {?>
 
                
+  document.getElementById(data.totIDS).innerHTML = data.totprice;
+ // document.getElementById('qty'+data.totIDS).innerHTML = data.qty;
+   $('.cart_sucess').html(data.success);  
+        
 
-                 <img src="{{Storage::url($item->model->photo)}}" alt="Drutick lanaeger" title="Drutick lanaeger" class="img-thumbnail" style=" height:100px" />
-
-
-
-
-
-               <?php  } ?>
-
-
-
+            }
+        });
+             return false;
+    
 
 
-            </a> 
+});
 
-            </td>
-
-              <td class="text-left">
-
-                <a href="{{url('/')}}/shop/{{ $item->model->id}}">
+</script>
 
 
 
-               @if(session('lang')=='ar')
+  <script type="text/javascript">
+   
+
+       $(document).on('click','#plusservicesselected',function(){
+              
+        
+ 
+     var rowId  = $(this).attr("data-id");
+
+
+        $.ajax({
+            url:"{{url('/plusservices')}}",
+            method:"POST",
+           data :{
+          _token:'{{ csrf_token() }}',
+            id:rowId,
+          
+
+           },
+            dataType:"json",
+            beforeSend:function(){
+          
+ $('.cart_sucess').html('');
+
+            },
+            success:function(data)
+            {
+               $('.total').html(data.total);
+   $('.subtotal').html(data.total);
+   $('.tax').html(data.tax);
+
+
+               
+  document.getElementById(data.totIDS).innerHTML = data.totprice;
+ // document.getElementById('qty'+data.totIDS).innerHTML = data.qty;
+   $('.cart_sucess').html(data.success);  
+        
+
+            }
+        });
+             return false;
+    
+                    
+                     
+                    });
+
+  </script>
+
+
+       <script type="text/javascript">
+   
+
+       $(document).on('click','#minusservicesselected',function(){
+              
+     var rowId  = $(this).attr("data-id");
+
+     
+        $.ajax({
+            url:"{{url('/minusservices')}}",
+            method:"POST",
+           data :{
+          _token:'{{ csrf_token() }}',
+            id:rowId,
+          
+
+           },
+            dataType:"json",
+            beforeSend:function(){
+          
+ $('.cart_sucess').html('');
+
+            },
+            success:function(data)
+            {
+             $('.total').html(data.total);
+   $('.subtotal').html(data.total);
+   $('.tax').html(data.tax);
+
+
+               
+  document.getElementById(data.totIDS).innerHTML = data.totprice;
+  //document.getElementById('qty'+data.totIDS).innerHTML = data.qty;
+         $('.cart_sucess').html(data.success); 
+
+            }
+        });
+             return false;
+    
+                    
+                     
+                    });
+
+  </script>
+
+
+            <!---------------endselected------------------------------>
+
+
+
+<script type="text/javascript">
+  
+         @if (!session()->has('ceapon'))
+
+           $('#AC').removeClass('hidden');
+          
+         @endif
+</script>
+
+  <script type="text/javascript">
+      $(document).on('click','#apply_coupon',function(){
+
+    
+    var coupon_code =$('#code').val();
+
+    
+        $.ajax({
+            url:"{{url('/apply_coupon')}}",
+            method:"POST",
+           data :{
+            _token:'{{ csrf_token() }}',
+            coupon_code:coupon_code,
+
+           },
+            dataType:"json",
+            beforeSend:function(){
+                      $('.cart_sucess').html('');
+                      $('.cc').addClass('hidden');
+                  $('.loading-save-c').removeClass('hidden');
+
+                 $('.cart_sucessCoupon').html(''); 
+
+                      
+            },
+            success:function(data)
+            {
+                   
+
+
+             
+             $('.cart_sucessCoupon').html(data.success); 
+          
+
+
+        $('.total').html(data.total);
+   $('.subtotal').html(data.total);
+   $('.tax').html(data.tax);
+ 
+
+
+            }
+        });
+             return false;
+    
+                    
+                     
+                    });
+  </script>
+
+
+
+
+      
+@endsection
+                
+
+
+ 
+    <!-- START SECTION BREADCRUMB -->
+    <div class="breadcrumb_section page-title-mini">
+        <div class="custom-container">
+            <!-- STRART CONTAINER -->
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="page-title">
+                        <!-- <h1>Product Detail</h1> -->
+                        <ol class="breadcrumb justify-content-md-start">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                            <li class="breadcrumb-item active">Shopping Cart</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END CONTAINER-->
+    </div>
+    <!-- END SECTION BREADCRUMB -->
+
+
+    <!-- START MAIN CONTENT -->
+    <div class="main_content">
+
+        <!-- START SECTION SHOP -->
+        <div class="section">
+            <div class="custom-container">
+
+                <div class="row">
+                    <div class="col-lg-8 mb-4">
+
+                        <div class="border border-radius2 box_shadow1 p-3 p-md-4">
+
+                            <div class="heading_s1 pb-3 underline">
+                                <h5 class="">Your Order</h5>
+                            </div>
+                            <div class="table-responsive shop_cart_table">
+                               
+   <span class="cart_sucess"></span>
+
+                @if (session()->has('success_message'))
+
+                    <div class="alert alert-success cc">
+
+                        {{ session()->get('success_message') }}
+
+                    </div>
+
+                @endif
+
+                                      @if (Cart::count() > 0)
+
+
+                                <table class=" table-fill">
+
+                                    <tbody class="table-hover cart">
+                @foreach (Cart::content() as $item)
+
+                                        <tr class="noborder">
+                                            <td class="product-thumbnail">
+                                                <a href="{{url('/')}}/shop/{{ $item->model->id}}"><img src="{{Storage::url($item->model->photo)}}" alt="product1"></a>
+                                            </td>
+                                            <td class="product-name" data-title="Product">
+                                                <a href="{{url('/')}}/shop/{{ $item->model->id}}">
+                                                @if(session('lang')=='ar')
 
    {{ $item->model->title_name_ar }}
 
@@ -786,592 +771,143 @@
 
 
     @endif
-
-
-
-          </a>                                  <br />
-
-                <small>
-
-         
-
-
-
-            </small>                 </td>
-
-       
-
-              <td class="text-left"><div class="input-group btn-block" style="max-width: 200px;">
-
-
-
-                  <div class="input-group quantity-control">
-
-  <select class="quantity" data-id="{{ $item->rowId }}" data-productQuantity="{{ $item->model->quantity }}">
-
-                                @for ($i = 1; $i < 5 + 1 ; $i++)
-
-                                    <option {{ $item->qty == $i ? 'selected' : '' }}>{{ $i }}</option>
-
-                                @endfor
-
-                            </select>
-
-&nbsp;
-
-&nbsp;
-
  
 
-
-
    
+      {{$item->options}}
 
-          
+ 
+     
+ 
+                                            </a>
+                                            </td>
+
+                                            <td class="product-quantity" data-title="Quantity">
+                                                <div class="quantity">
+             <input type="button" value="-" class="minus"  
+    id="minusservicesselected" data-id="{{$item->rowId}}">
+    <input type="text" name="quantity" value="{{$item->qty}}" title="Qty" class="qty" size="4" id="quantity" data-id="{{$item->rowId}}">
+         <input type="button" value="+" class="plus" id="plusservicesselected" data-id="{{$item->rowId}}">
+                                                </div>
+                                            </td>
+                                            <td class="product-subtotal" data-title="Total">
+           <span id="{{$item->rowId}}"> AED  {{$item->subtotal}}</span>
+                                            </td>
+                                            <td class="product-remove" data-title="Remove">
+
+                                                <form action="{{ route('cart.destroy', $item->rowId) }}" method="POST" id="dellshop">
+                           
+                       <span>
+                           
+                                                     {{ csrf_field() }}
+                         
+    <input type="hidden" name="rowId" value="{{ $item->rowId }}">
+    
+<a class="cart-options" id="Removeshop"><span class="hidden">{{ $item->rowId }}</span> <i class="ti-close"></i></a>
+                
+
+                            </form>
+
 
                        
 
-
-
-
-
-
-
-
-
-
-
-                </div>
-
-
-
-                @push('js')
-
-                <style type="text/css">
-
-     .quantity-control {
-
-    position: relative;
-
-    border: 1px solid #d6d6d6;
-
-    border-radius: 0px;
-
-}
-
-
-
-.quantity-control span {
-
-    width: 33px;
-
-    height: 32px;
-
-    border: none;
-
-    color: #999;
-
-    float: left;
-
-    line-height: 32px;
-
-    padding: 0;
-
-    background-color: #f9f9f9;
-
-    border-radius: 0px;
-
-}
-
-
-
- .quantity-control input.form-control {
-
-    float: left;
-
-    width: 40px;
-
-    height: 32px;
-
-    line-height: 32px;
-
-    padding: 0;
-
-    text-align: center;
-
-    font-size: 16px;
-
-    background-color: #fff;
-
-    border-left: 1px solid #d6d6d6;
-
-    border-right: 1px solid #d6d6d6;
-
-}
-
-                </style>
-
-                @endpush
-
-&nbsp;
-
-
-
-                  
-
-
-
-                  <!--button type="submit" data-toggle="tooltip" title="{{trans('admin.Updatequantity')}}" class="btn btn-primary"><i class="fa fa-refresh">
-
-                      
-
-                  </i>
-
-              </button -->
-
-
-
-                 
-
-                 
-
-              </div>
-
-                 
-
-
-
-          </td>
-
-
-
-          <td>
-
-        
-
-               <form action="#" method="POST">
-
-                                {{ csrf_field() }}                  
-
-        <a class="cart-options" id="saveForLater"><span class="hidden">{{ $item->rowId }}</span>Save for Later </a>
-
-                            </form>
-
-
-
-
-
-                              <form action="{{ route('cart.destroy', $item->rowId) }}" method="POST" id="dellshop">
-
-                           
-
-                       <span>
-
-                           
-
-                                                     {{ csrf_field() }}
-
-                         
-
-                <input type="hidden" name="rowId" value="{{ $item->rowId }}">
-
-<a class="cart-options" id="Removeshop"><span class="hidden">{{ $item->rowId }}</span>Remove</a>
-
-                
-
-
-
-                            </form>
-
-          </td>
-
-              <td class="text-right" style="text-align: center;">
-
-     
-
-                <?php if(session('price'.$item->model->id)) {?>
-
-                   {{session('price'.$item->model->id)}} {{trans('admin.pound')}} 
-
-
-
-                      <?php   }  else {?>
-
-
-         @if($item->model->price_offer  > 0)
-
-           {{ $item->model->price_offer }}  {{trans('admin.pound')}}  
-            @else
-            
-           {{ $item->model->price }}  {{trans('admin.pound')}}  
-
+                    </td>
+                                        </tr>
+                @endforeach
+                                        
+                                    </tbody>
+
+                                </table>
+
+                                  @else
+          <h3> {{__('No items in Cart!')}}</h3>
             @endif
-
-
-
-
-                              <?php  } ?>
-
-              
-
-               
-
-
-
-          </td>
-
-              <td class="text-right" style="text-align: center;">
-
-               {{$item->subtotal}} {{trans('admin.pound')}}
-
-          </td>
-
-            </tr>
-
-          @endforeach
-
-
-
-
-
-
-
-                                      </tbody>
-
-            
-
-          </table>
-
-        </div>
-
-      </form>
-
-            <!--h2>
-
-               {{trans('admin.Cartoptions')}}
-
-             
-
-
-
-         </h2>
-
-      <p>{{trans('admin.Cartoptions2')}}
-
-  </p>
-
-      <div class="panel-group" id="accordion">         <div class="panel panel-default">
-
-  
-
-  <div id="collapse-shipping" class="panel-collapse collapse">
-
-    <div class="panel-body">
-
-      <p>
-
-       {{trans('admin.Expectedshipping2')}}
-
-
-
-       
-
-
-
-  </p>
-
-      <div class="form-horizontal">
-
-        
-
-     
-
-       
-
-        <button type="button" id="button-quote" data-loading-text="جاري ..." class="btn btn-primary">
-
-      {{trans('admin.update')}} 
-
-
-
-    </button>
-
-      </div>
-
-
-
-    </div>
-
-  </div>
-
-</div>
-
-
-
-                <div class="panel panel-default">
-
-  <div class="panel-heading">
-
-    <h4 class="panel-title"><a href="#collapse-voucher" data-toggle="collapse" data-parent="#accordion" class="accordion-toggle">
-
-      {{trans('admin.Usegiftvouchers')}} 
-
-       
-
- 
-
-
-
-     <i class="fa fa-caret-down"></i></a></h4>
-
-  </div>
-
-  <div id="collapse-voucher" class="panel-collapse collapse">
-
-    <div class="panel-body">
-
-      <label class="col-sm-2 control-label" for="input-voucher">
-
-      {{trans('admin.Pleaseenterthegiftvouchercode')}} 
-
-   </label>
-
-   
-@if(session()->has('success') )
-  <div class="alert alert-success">
-
-    {{session('success')}}
-    
-  </div>
-@endif
-
-
-   
-@if(session()->has('danger') )
-  <div class="alert alert-danger">
-
-    {{session('danger')}}
-    
-  </div>
-@endif
-
-                    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
-
-    <form action="{{ route('coupon.store') }}" method="POST">
-                        {{ csrf_field() }}
-
-      <div class="input-group">
-
-        <input type="text" name="coupon_code" value="" placeholder=" {{trans('admin.Pleaseenterthegiftvouchercode')}}" id="input-voucher" class="form-control" />
-
-        <span class="input-group-btn">
-
-        <input type="submit" value="أرسل"   data-loading-text="جاري ..."  class="btn btn-primary" />
-
-        </span> </div>
-
-                    </form>
-
-
-     
-
-    </div>
-
-  </div>
-
-</div>
-
-
-
-         </div -->
-
-       <br />
-
-      <div class="row">
-
-        <div class="col-sm-4 col-sm-offset-8">
-
-          <table class="table table-bordered" 
-           @if(session('lang') == 'ar') style="direction: rtl !important;" @endif>
-
-                        <tr>
-
-              <td class="text-right"><strong>{{trans('admin.totol')}}  ..</strong></td>
-
-              <td class="text-right">{{Cart::Total()}} {{trans('admin.pound')}}</td>
-
-            </tr>
-
-                        <!--tr>
-
-              <td class="text-right"><strong>Eco Tax (-2.00):</strong></td>
-
-              <td class="text-right">$2.00</td>
-
-            </tr -->
-
-                        <tr>
-
-              <td class="text-right"><strong>{{trans('admin.shipingprice')}} :</strong></td>
-
-              <td class="text-right">
-                        @if( auth()->guard('web')->user())
-       
-                          @php
-
-                          if(  auth()->user()->country_id  and  auth()->user()->city_id )
-                          {
-
-                      
-              $city_id=App\cities::where('id',auth()->user()->city_id )->first()->id;
-                    }
-
-                    if(App\statDistrebutionToZones::where('city_id',$city_id)->first())
-                    {
-
-                         $zone_id=App\statDistrebutionToZones::where('city_id',$city_id)->first()->zone_id;
-
-              $zoneprice=App\zones::where('id',$zone_id)->first()->price;
-
-                    }
-
-           
-
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="border border-radius2 box_shadow1 p-3 p-md-4">
+                            <div class="heading_s1 mb-3">
+                                <h5>Add Promo Code</h5>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                        <form action="#" method="post">
+
+                                        <div class="form-row">
+
+                                            <div class="form-group col-lg-12 mb-3">
+    <input required="required" placeholder="Add Promo Code" class="form-control" name="code" type="text" id="code" >
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-lg-12 mb-3">
+                                                <span class="cart_sucessCoupon"></span>
+                                                <button id="apply_coupon"  class="btn btn-primary" type="submit">Add</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                            <div class="heading_s1 mb-3">
+                                <h6>Order Summary</h6>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tbody class="">
+                                        <tr class="noborder">
+                                            <td class="cart_total_label">Subtotal</td>
+                                            <td class="cart_total_amount subtotal">AED {{Cart::Subtotal()  }} </td>
+                                        </tr>
+                                        <tr class="noborder">
+                                            <td class="cart_total_label">Shipping Fee</td>
+                                            <td class="cart_total_amount">Free Shipping</td>
+                                        </tr>
+                                        <tr class="noborder">
+                                            <td class="cart_total_label">Total<span class="text_gray float-end"> (Inclusive  of VAT)</span></td>
+                                            <td class="cart_total_amount total"><strong>AED {{Cart::Total()  }} </strong></td>
+                                        </tr>
+                                        <tr class="noborder">
+                                            <td class="cart_total_label "><span class="text_gray">Estimate VAT</span>
+                                            </td>
+                                            <td class="cart_total_amount text_gray">
+                                                <span class="text_gray tax">AED {{ Cart::tax() }}</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 mb-2">
+                                    <div class="d-grid gap-2">
+                  
+                 <a href="{{url('/')}}/Checkout" class="btn btn-primary m-0" type="button">
+                    Proceed To CheckOut</a>
                  
 
-
-                 @endphp
-
-                 @if(App\statDistrebutionToZones::where('city_id',$city_id)->first())
                 
+                                        <a href="{{url('/')}}/shop" class="btn btn-secondary m-0" type="button">Continue Shopping</a>
+                                        
 
-                {{$zoneprice}}
-             {{trans('admin.pound')}}
+                                    </div>
 
-            
-           @else
-               @php
-$zoneprice = DB::table('zones')->max('price');
-
-
-               @endphp
-
-                         {{$zoneprice}}
-             {{trans('admin.pound')}}
-
-           @endif
-
-   
-                
-
-           @endif
-
-
-           </td>
-            
-
-            </tr>
-
-            @php
-          $vat_value=0;
-  foreach (Cart::content() as $item)
-  { 
-     if($item->model->vat == 1)
-     {
-          $vat_value=$vat_value + $item->model->vat_value; 
-
-     }
-   }
-@endphp
-           @isset($vat_value)
-               <tr>
-
-              <td class="text-right"><strong>    {{trans('admin.vat')}}  </strong></td>
-              <td class="text-right">{{$vat_value}} {{trans('admin.pound')}}</td>
-           
-
-            
-            </tr>
-            @endisset
-
-                        <tr>
-
-              <td class="text-right"><strong>{{trans('admin.Final')}}</strong></td>
-
-              @php
-              $zoneprice=0;
-              $vat_value=0;
-              @endphp
-
-              @if(auth()->guard('web')->user())
-
-              <td class="text-right">{{Cart::Total() +      $zoneprice + $vat_value  }} {{trans('admin.pound')}}</td>
-           @else
-              <td class="text-right">{{Cart::Total()  }} {{trans('admin.pound')}}</td>
-
-           @endif
-
-
-
-            
-            </tr>
- 
-
-    
+                                </div>
+                            </div>
 
 
 
 
-   @if(session('cpn'))
-
-
-               <tr>
-
-              <td class="text-right"><strong> مجموع العربيه بعد الخصم هو  </strong></td>
-              <td class="text-right">{{session('newsubtotalcpn')}} {{trans('admin.pound')}}</td>
-           
-
-            
-            </tr>
-     @endif
-                      </table>
-
+                            <!-- <a href="#" class="btn btn-primary">Proceed To CheckOut</a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        <!-- END SECTION SHOP -->
 
-      </div>
-
-      <div class="buttons clearfix">
-
-        <div class="pull-left"><a href="{{url('/')}}/shop" class="btn btn-default">{{trans('admin.continushoping')}}</a></div>
-
-        <div class="pull-right">
-
-            <a href="{{url('/')}}/Checkout" class="btn btn-primary">{{trans('admin.payment')}} </a></div>
-
-      </div>
-
-      </div>
 
     </div>
-
-</div>
-
-
-
-<br>
-
-<br>
-
- 
+    <!-- END MAIN CONTENT -->
 
 @endsection
 

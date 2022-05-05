@@ -21,6 +21,13 @@ class attribute_values extends Model
 
    ];
 
+     public function attribute() {
+
+        return $this->hasOne('App\Models\attributes', 'id', 'attribute_id');
+
+    }
+
+
 
 
 }

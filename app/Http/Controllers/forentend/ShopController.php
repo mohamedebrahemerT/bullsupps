@@ -646,29 +646,10 @@ foreach ($Department2 as   $Department)
 
 
 
+  
+          Session()->forget('attribute_value_ids');
 
-                if (session('affiliateID'))
-
-
-                 {
-                   'affiliateID is exit';
-
-                      
-                     $showaffiliateID =session('affiliateID');
-                     
-              $url='/'.'shop'.'/'.$id.'/'.$showaffiliateID ; 
-
-              return redirect($url);
-
-
-                 
-                }
-        
-
- 
-
-
-          $product = Product::where('status','active')->where('id', $id)->firstOrFail();
+           $product = Product::where('status','active')->where('id', $id)->firstOrFail();
           $department_id=$product->department_id;
          
      $mightAlsoLikes = Product::where('status','active')->where('department_id',$department_id)->inRandomOrder()->take(10)->get();

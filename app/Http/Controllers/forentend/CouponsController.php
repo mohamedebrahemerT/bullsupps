@@ -47,27 +47,7 @@ class CouponsController extends Controller
     public function store(Request $request)
 
     {
-
-               
-
-if (Auth::guard('admin')->user())
-
- {
-	  if ( auth()->guard('admin')->user()->level =='affiliate' and  auth()->guard('admin')->user()->Status ==1 )
-                  {
-
-                    
-               
-                
-                session()->flash('danger',trans('غير مسموح بستخدام الكوبون للأفليت'));
-         
-
-
-              return back()->withInput();
-               
-                  }
-}
-
+ 
                 
 
 

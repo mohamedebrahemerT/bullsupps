@@ -6,901 +6,82 @@
 
         
 
-   @push('js')
-
-
-
-        <script type="text/javascript">
-
-           $('.panel-collapse').on('show.bs.collapse', function () {
-    $(this).siblings('.panel-heading').addClass('active');
-  });
-
-  $('.panel-collapse').on('hide.bs.collapse', function () {
-    $(this).siblings('.panel-heading').removeClass('active');
-  });
-
-          $(document).on('click','#button-checkout',function()
-
-  {
-
-                  alert('alymarket');
-
-  }
-
-        </script>
-
-
-
-
-
-
-
-   <script type="text/javascript">
-
-
-
-      $(document).on('click','.product-section-thumbnail2',function(){
-
-
-
-
-                      var text =$(this).text();
-
-               sessionStorage.setItem("old", text);
-
-
-
-            var old = sessionStorage.getItem("old");
-
-
-  
-
-                        $('.bbb').css('border-color', '#ddd');
-
-
-
-    $('a.thumbnail.active').css('border-color', 'red');
-
-                        
-
-
-
-              text=text.toString();    
-
-        $.ajax({
-
-
-
-            url:"{{ url('changePriceDependOncolors') }}",
-
-
-
-            method:"POST",
-
-
-
-           data :{
-
-
-
-            _token:'{{ csrf_token() }}',
-
-
-
-            id:text,
-
-
-
-
-
-
-
-           },
-
-
-
-            dataType:"html",
-
-
-
-            beforeSend:function(){
-
-
-
-            },
-
-
-
-            success:function(data)
-
-
-
-            {
-
-               
-            
-            
-       $('.size_and_weight_cc').html(data);
-           
-
-             
-
-
-
-            }
-
-
-
-        });
-
-
-
-          $.ajax({
-
-
-
-            url:"{{ url('changePriceDependOncolors2') }}",
-
-
-
-            method:"POST",
-
-
-
-           data :{
-
-
-
-            _token:'{{ csrf_token() }}',
-
-
-
-            id:text,
-
-
-
-
-
-
-
-           },
-
-
-
-            dataType:"json",
-
-
-
-            beforeSend:function(){
-
-
-
-            },
-
-
-
-            success:function(data)
-
-
-
-            {
-
-               
-            
- 
-            
-               $('#zzzzzzzzzzzzz').addClass('hidden');
-             
-                   document.getElementById("zzzzzzzzzzzzz2").style.display = "block"; 
-
-
-
-             $('.cart_sucess').html(data.success+" {{trans('admin.pound')}}");
-
-
-
-
- 
-
-
-
-            
-
-             $('.price_offer').html(data.price_offer);
-
-
-
-             $('.content_name_ar').html(data.content_name_ar);
-
-
-
-             $('.admin_id').html(data.admin_id);
-
-
-
-             $('.alymarketcode').html(data.alymarketcode);
-
-
-
-             $('.department_id').html(data.department_id);
-
-
-
-                  $('#zzzzzzzzzzzzz').addClass('hidden');
-
-             
-
-             $('.price_size').html(data.colorprice +"{{trans('admin.pound')}}");
-
-                 
-
-                   document.getElementById("ccccccc").style.display = "block"; 
-
-
-             $('.price_size').html(data.colorprice);
-
-
-
-
-
-                  $('.price').val(data.success);
-
-
-
-                  $('.sizes').val(data.sizeType);
-
-                     
-
-                       
-
-
-
-
-             
-
-
-
-            }
-
-
-
-        });
-
-
-
-
-             return false;
-
-
-
-    
-
-
-
-                    
-
-
-
-                     
-
-
-
-                    });
-
-
-
-  </script>
-
-
-
-
-
-
-
-<style type="text/css">
-
-
-img
-{
-    max-width: 100%;
-}
-.panel-default > .panel-heading {
-  color: #333;
-  background-color: #fff;
-  border-color: #fff;
-}
-
-  a.thumbnail:hover {
-
-    border-color:   blue !important;
-
-}
-
- 
-@media(max-width:992px){
- .wrapper{
-  width:100%;
-} 
-}
-.panel-heading {
-  padding: 0;
-    border:0;
-}
-.panel-title>a, .panel-title>a:active{
-    display:block;
-    padding:15px;
-  color:#555;
-  font-size:16px;
-  font-weight:bold;
-    text-transform:uppercase;
-    letter-spacing:1px;
-  word-spacing:3px;
-    text-decoration:none;
-}
- 
-.panel-heading.active a:before {
-    -webkit-transform: rotate(180deg);
-    -moz-transform: rotate(180deg);
-    transform: rotate(180deg);
-} 
-
-</style>
-
-
-
-   <script type="text/javascript">
-
-      $(document).on('click','#sizes',function(){
-
-
-
-
-
-
-
-                      var text =$(this).text();
-
-
-
-
-
-
-
-              text=text.toString();   
-
-
-
-
-
-
-
-               $(".backgroundmenucard").removeClass("backgroundmenucard");
-
-
-
-     $(this).addClass("backgroundmenucard");
-
-
-
-                 $('.cccc').css('border-color', '#ddd');
-
-
-
-    $('a.thumbnail.active').css('border-color', 'red');
-
-
-
-var text = parseInt(text, 10); 
-
-
-
-      
-
-
-
-        $.ajax({
-
-
-
-            url:"{{ url('changePriceDependOnsize') }}",
-
-
-
-            method:"POST",
-
-
-
-           data :{
-
-
-
-            _token:'{{ csrf_token() }}',
-
-
-
-            id:text,
-
-
-
-
-
-
-
-           },
-
-
-
-            dataType:"json",
-
-
-
-            beforeSend:function(){
-
-
-
-                      
-
-
-
-                         $('.cc').addClass('hidden');
-
-
-
-                         $('.CF').addClass('hidden');
-
-
-
-
-
-
-
-
-
-
-
-            }, 
-
-
-
-            success:function(data)
-
-
-
-            {
-
-
-
-               $('#zzzzzzzzzzzzz').addClass('hidden');
-             
-                   document.getElementById("zzzzzzzzzzzzz2").style.display = "block"; 
-
-
-
-             $('.cart_sucess').html(data.success+" {{trans('admin.pound')}}");
-
-
-
-
-
-            
-
-
-
-             $('.productName').html(data.productName);
-
-
-
-        
-
-
-
-            
-
-             $('.price_offer').html(data.price_offer);
-
-
-
-             $('.content_name_ar').html(data.content_name_ar);
-
-
-
-             $('.admin_id').html(data.admin_id);
-
-
-
-             $('.alymarketcode').html(data.alymarketcode);
-
-
-
-             $('.department_id').html(data.department_id);
-
-
-
-                  $('#zzzzzzzzzzzzz').addClass('hidden');
-
-             
-
-             $('.price_size').html(data.success +"{{trans('admin.pound')}}");
-
-                 
-
-                   document.getElementById("ccccccc").style.display = "block"; 
-
-
-             $('.price_size').html(data.success);
-
-
-
-
-
-                  $('.price').val(data.success);
-
-
-
-                  $('.sizes').val(data.sizeType);
-
-                     
-
-                       
-
-
-
-
-
-            }
-
-
-
-        });
-
-
-
-             return false;
-
-
-
-    
-
-
-
-                    
-
-
-
-                     
-
-
-
-                    });
-
-
-
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<style type="text/css">
-
-  .content-aside .product-simple .so-extraslider .extraslider-inner .item .item-inner .item-info
-
-  {
-
-  margin-right: 130px;
-
-  }
-
-
-
-  .content-aside .product-simple .so-extraslider .extraslider-inner .item .item-inner .item-image {
-
-  width: 120px;
-
-  float: right;
-
-}
-
-
-
-a.thumbnail.active, a.thumbnail:focus, a.thumbnail:hover {
-
-    border-color: red;
-
-}
-
-
-
-</style>
-
-
-
-
-
-   <script type="text/javascript">
-
-             
-
-
-
-      $(document).on('click','#switchToSaveForLaterHome',function(){
-
-
-
-                      var tr = $(this).closest('tr');
-
-                          tr.fadeOut(1000, function(){ // **addd this
-
-                            $(this).remove();
-
-                        });
-
-                  
-
-
-
-                      var text =$(this).text();
-
-
-
-              text=text.toString();
-
-
-
-      
-
-         
-
-            
-
-        $.ajax({
-
-            url:"{{ url('switchToSaveForLaterHome') }}",
-
-            method:"POST",
-
-           data :{
-
-            _token:'{{ csrf_token() }}',
-
-                id:'{{$product->id}}',
-
-
-
-           },
-
-            dataType:"json",
-
-            beforeSend:function(){
-
-                      $('.cart_sucess').html('');
-
-                         $('.cc').addClass('hidden');
-
-            },
-
-            success:function(data)
-
-            {
-
-             
-
-
-
-
-
-
-
-             $('.cart_sucess').html(data.success);
-
-             $('.productName').html(data.productName);
-
-             $('.productimage').html(data.productimage);
-
-             $('.productprice').html(data.productprice);
-
-             $('.price_offer').html(data.price_offer);
-
-             $('.content_name_ar').html(data.content_name_ar);
-
-             $('.admin_id').html(data.admin_id);
-
-             $('.alymarketcode').html(data.alymarketcode);
-
-             $('.department_id').html(data.department_id);
-
-                  
-
-  $('#previewModal').modal('show'); 
-
-        $('#previewModal .modal-body').load('index.php?route=extension/soconfig/cart/info&product_id='+ 75);
-
-
-
-
-
-               $("#control-qid13228").click();  
-
-
-
-            }
-
-        });
-
-             return false;
-
-    
-
-                    
-
-                     
-
-                    });
-
-  </script>
-
-
-
+   @section('javascript')
 
 
  <script type="text/javascript">
+      $(document).on('click','#cartEffect1',function(){
 
+       
+
+
+          var frm=$('#frm').serialize() ;
+         
+            
+        $.ajax({
+            url:"{{ url('/') }}/addToCart",
+            method:"POST",
+           data :frm,
+            dataType:"json",
+            beforeSend:function(){
+                      $('.cart_sucess').html('');
+            },
+            success:function(data)
+            {
              
+             $('.cart_sucess').html(data.success);  
+
+
+$.notify("{{__('product added to cart')}}", "success");
+
+
+            $('#cartEffect').text("{{__('Data add to cart')}}");
+           
+             
+                $('.cart_count').html(data.count);
+               $('.homesubtotal').html(data.total);
+
+             $('.cart_listhide').hide();
+             $('.cart_listhide').html('');
+               
+               $('.Cartcontent').html(data.Cartcontent);
+             
+   
+             
+
+            }
+        });
+             return false;
+    
+                    
+                     
+                    });
+  </script>
+
+
+  <script type="text/javascript">
+    $('.product_color_switch span,.product_size_switch span')
+    .on("click", function() {
+        $(this).siblings(this).removeClass('active').end().addClass('active');
+
+ 
+ 
+var arr = [] //create arry
+     $(".product_size_switch span.active").each(function() {
+  arr.push($(this).attr('data-attribute_value_id')) //push value in array
+})
+
+     
+
+  $('input[name="attribute_value_ids"]').val(arr);
+    });
+      
+  </script>
 
   
 
 
-
-
-
-      $(document).on('click','#button-cart',function(){
-
-
-
-                      var tr = $(this).closest('tr');
-
-                          tr.fadeOut(1000, function(){ // **addd this
-
-                            $(this).remove();
-
-                        });
-
-                  
-
-
-
-                      var text =$(this).text();
-
-
-
-              text=text.toString();
-
-
-
-      
-
-         
-
-            
-
-        $.ajax({
-
-            url:"{{url('/')}}/addToCart",
-
-            method:"POST",
-
-           data :{
-
-            _token:'{{ csrf_token() }}',
-
-            id:'{{$product->id}}',
-
-
-
-           },
-
-            dataType:"json",
-
-            beforeSend:function(){
-
-                      $('.cart_sucess').html('');
-
-                         $('.cc').addClass('hidden');
-
-            },
-
-            success:function(data)
-
-            {
-
-      
-
-             $('.cart_sucess').html(data.success);
-
-             $('.productName').html(data.productName);
-
-          
-
-             $('.content_name_ar').html(data.content_name_ar);
-
-             $('.admin_id').html(data.admin_id);
-
-             $('.alymarketcode').html(data.alymarketcode);
-
-             $('.department_id').html(data.department_id);
-
-             $('.qty').html(data.qty);
-
- 
-
-
-
-
-
-  $('#previewModal').modal('show'); 
-
-        $('#previewModal .modal-body').load('index.php?route=extension/soconfig/cart/info&product_id='+ 75);
-
-
-
-
-
-               $("#control-qid13228").click();  
-
-
-
-            }
-
-        });
-
-             return false;
-
-    
-
-                    
-
-                     
-
-                    });
-
-  </script>
-
-
-
-
-
-
-
- 
-
-
-
-
-
-</style>
-
-
-
-@endpush
+@endsection
 
  
 
@@ -1051,6 +232,12 @@ a.thumbnail.active, a.thumbnail:focus, a.thumbnail:hover {
                                             </div>
                                         </div>
                                     </div>
+                                      <span class="cart_sucess"> </span>
+ <form action="{{ url('/') }}/addToCart" method="POST" id="frm" >
+                             {{ csrf_field() }}
+
+    <input type="hidden" name="id" value="{{$product->id}}">
+
                                     @php
                 $product_variants = DB::table('product_variants')
              ->select('attribute_id')
@@ -1106,8 +293,11 @@ a.thumbnail.active, a.thumbnail:focus, a.thumbnail:hover {
         App\Models\product_variant::
         where('product_id',$product->id)->
         where('attribute_id',$attribut->attribute_id)->get() as $attribute_value )
-                   <span>
+
+    <span data-attribute_value_id="{{ $attribute_value->attribute_value_id}}">
                    {{ $attribute_value->value_en}}
+
+
                   
                </span>
                    @endforeach
@@ -1140,16 +330,24 @@ a.thumbnail.active, a.thumbnail:focus, a.thumbnail:hover {
                                         <div class="cart-product-quantity">
                                             <div class="quantity">
                                                 <input type="button" value="-" class="minus">
-                                                <input type="text" name="quantity" value="1" title="Qty" class="qty" size="4">
+          <input type="text" name="qty" value="1" title="Qty" class="qty" size="4">
                                                 <input type="button" value="+" class="plus">
                                             </div>
                                         </div>
                                         <div class="cart_btn">
                                             <a href="{{url('/')}}/#" class="cart js-cart">
 
-                                                <button class="btn btn-primary btn-lg btn-addtocart cart js-cart " type="button">Add to cart</button>
-                                                <a class="add_wishlist" href="{{url('/')}}/#"><i class="icon-heart"></i></a>
+             <button id="cartEffect1" class="btn btn-primary btn-lg btn-addtocart cart js-cart " type="button">Add to cart</button>
+
+             <a  class="add_wishlist" id="add_to_Wishlist" href="javascript:void(0)" data-tip="{{__('Add to Wishlist')}}"><i class="icon-heart"></i>
+<span class="hidden">{{ $product->id }}</span>
+</a>
+
+   
                                         </div>
+<input type="hidden" name="attribute_value_ids" value="">
+                             </form>
+
 
                                     </div>
                                     <hr />

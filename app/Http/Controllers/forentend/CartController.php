@@ -5,10 +5,12 @@ namespace App\Http\Controllers\forentend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Product;
+use App\Coupon;
+use App\Models\attribute_values;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Validator;
 use Storage;
-
+use   Session;
 class CartController extends Controller
 {
      /**
@@ -19,7 +21,7 @@ class CartController extends Controller
             public function index()
               {
 
-
+            
                     $tax = config('cart.tax') / 100;
 
        $discount = session()->get('coupon')['discount'] ?? 0;
@@ -76,15 +78,36 @@ class CartController extends Controller
 
               }
 
-              public function addToCart()
+              public function store_attribute_value_id( )
+              {
+
+  
+        $attribute_value_id=request('attribute_value_id');
+
+     Session::store('attribute_value_ids', $attribute_value_id);
+
+
+
+   return session('attribute_value_ids');
+
+      
+               
+                 
+              }
+
+              public function addToCart(Request $request)
 {
 
-         $id=request('id');
+                
+
+           
+
+          $id=request('id');
                              $product=product::where('id',$id)->first();
 
                            $productprice=$product->price;
 
-                           $productimage='<img src="'.Storage::url('/').$product->photo.'" width="500" height="300" style="margin-top:1px;">';
+                 $productimage='<img src="'.Storage::url('/').$product->photo.'" width="500" height="300" style="margin-top:1px;">';
                            
                            $price_offer=$product->price_offer;
                   $alymarketcode=$product->alymarketcode;
@@ -159,26 +182,102 @@ class CartController extends Controller
     }
 
 
+   if ($request->attribute_value_ids !=null ) 
+    {
+          $attribute_value_ids = request('attribute_value_ids');
+$attribute_value_ids = explode(',', $attribute_value_ids);
+
+   $attribute_values =attribute_values::whereIn('id',$attribute_value_ids)->get();
+
+
+        
+         $options=[];
+        foreach ($attribute_values as $key => $value) 
+        {
+         $attribute=  $value->attribute->name_en;
+          $attributevalue =$value->value_en;
+       $arr1 = array($attribute => $attributevalue);
+           
+ array_push($options,$arr1);
+        }
+          
+
+Cart::add(['id' => $product->id, 'name' => $name, 'qty' =>$qty, 'price' => $price, 'weight' => 0 , 'options' => 
+    $options
+])  ->associate('App\Product');
+
+    
+
+
+
+    
+
+    }
+    else
+    {
+
          Cart::add($product->id, $name,$qty, $price)
             ->associate('App\Product');
+
+    }
+
+
+
+
+
               $success_output = '<div class="alert alert-success">
               '.trans('admin.Dataaddtocart').'
                 </div>';  
+
+                $count=Cart::count();
+            $total='AED '.Cart::total();
+            $subtotal='AED '.Cart::subtotal();
+             $cart_add=Cart::content();
+            $tax='AED '.Cart::tax();
+
+               $items='';
+             foreach ($cart_add as   $item) 
+        {
+            $items.='
+            <li id="b'.$item->rowId.'">
+     <form action="'.url('/').'/cartdestroy?'.$item->rowId.'" method="POST" id="dellshop">  
+      <input type="hidden" name="_token" value="'.csrf_token().'">
+    <input type="hidden" name="rowId" value="'.$item->rowId.'">
+
+      <a class="item_remove" id="Removeshop"><span class="hidden">'.$item->rowId.'</span>  <i class="ion-close"></i></a>
+
+                        </form>
+
+                 <a href="'.url('/').'/shop/'.$item->model->id.'">
+                 <img src="'.Storage::url($item->model->photo).'" alt="cart_thumb1">
+      '.$item->model->title_name_en.'
+                                            </a>
+         <span class="cart_quantity"> '.$item->qty.' x <span class="cart_amount"> <span class="price_symbole">AED</span></span>'.$item->subtotal.'</span>
+                                    </li>
+            ';
+             
+        }
+
+
+               $Cartcontent ='<ul class="cart_list">
+                
+                                     '.$items.'
+                 
+                                </ul>';
+
                           $output = array(
                         'success'     =>  $success_output,
-                        'productName'     =>  $productName,
-                        'productimage'     =>  $productimage,
-                        'productprice'     =>  $productprice,
-                        'price_offer'     =>  $price_offer, 
-                        'content_name_ar'     =>  $content_name_ar,
-                        'admin_id'     =>  $admin_id,
-                        'alymarketcode'     =>  $alymarketcode,
-                        'department_id'     =>  $department_id,
-                        'qty'=>$qty
+                        'count'     =>  $count,
+                        'total'     =>  $total,
+                        'subtotal'     =>  $subtotal,
+                        'cart_add'     =>  $cart_add,
+                        'tax'     =>  $tax,
+                        'Cartcontent'=>$Cartcontent
+                        
                       );
 
             return  $output;
-                    return $output;
+                   
     
 }
 
@@ -429,17 +528,28 @@ else
 
                
 
-                      $id=substr($id, 0, -6);
-                      // $id=Request('id');
+                    //  $id=substr($id, 0, -6);
+                     $id=Request('id');
 
-                         Cart::remove($id);
+                          Cart::remove($id);
 
-           $success_output = '<div class="alert alert-danger" style="text-align: center;">
-           '.trans('admin.Theproducthasbeenremovedfromthecart').'
-           </div>';  
-                      $output = array('success'     =>  $success_output);
-               
-                    return $output;
+            $count=Cart::count();
+            $total='AED '.Cart::total();
+            $subtotal='AED '.Cart::subtotal();
+            $cart_add=Cart::content();
+            $tax='AED '.Cart::tax();
+
+            $success_output = '<div class="alert alert-danger">
+                '.__("Item has been removed!").' 
+            </div>';  
+         return   $output = array(
+                'success'     =>  $success_output,
+                'count'     =>  $count,
+                'total'     =>  $total,
+                'subtotal'     =>  $subtotal,
+                'cart_add'     =>  $cart_add,
+                'tax'     =>  $tax
+            );
                   }
                   else
                   {
@@ -723,6 +833,477 @@ else
               
                  return view('forentend4.featured.featured');
             }
+
+              public function cartquantity()
+            {
+
+                      $id=request('id');
+                
+                  if (request()->has('id'))
+                   {
+
+              
+
+                  $Cart=Cart::get($id);
+            
+               $qty= request('qty');
+
+               if ($qty==0) 
+               {
+                                 $qty=1;
+
+               }
+           Cart::instance('default')->update($id,$qty);
+
+                           $Cart=Cart::get($id);
+
+                    
+
+            $count=Cart::count();
+            $total='AED '.Cart::total();
+            $subtotal='AED '.Cart::subtotal();
+            $cart_add=Cart::content();
+            $tax='AED '.Cart::tax();
+
+                $totprice='AED '.$Cart->subtotal;
+                $totIDS=$Cart->rowId; 
+
+
+            
+                       $output = array(
+                        'count'     =>  $count,
+                        'total'     =>  $total,
+                        'subtotal'     =>  $subtotal,
+                        'cart_add'     =>  $cart_add,
+                        'tax'     =>  $tax,
+                        'totprice'     =>  $totprice,
+                        'totIDS'     =>  $totIDS,
+                          'qty'=>$qty
+                         
+                       
+                    
+                    );
+     
+                   
+                    return $output;
+     
+                   
+                   
+                  }
+                  else
+                  {
+                    return 'no  id';
+                  }
+
+             
+        
+            }
+
+             public function plusservices()
+            {
+
+                      $id=request('id');
+                
+                  if (request()->has('id'))
+                   {
+
+              
+
+                  $Cart=Cart::get($id);
+               $qty=$Cart->qty;
+               $qty= $qty + 1;
+           Cart::instance('default')->update($id,$qty);
+
+                           $Cart=Cart::get($id);
+
+                    
+
+            $count=Cart::count();
+            $total='AED '.Cart::total();
+            $subtotal='AED '.Cart::subtotal();
+            $cart_add=Cart::content();
+            $tax='AED '.Cart::tax();
+
+                $totprice='AED '.$Cart->subtotal;
+                $totIDS=$Cart->rowId; 
+
+
+            
+                       $output = array(
+                        'count'     =>  $count,
+                        'total'     =>  $total,
+                        'subtotal'     =>  $subtotal,
+                        'cart_add'     =>  $cart_add,
+                        'tax'     =>  $tax,
+                        'totprice'     =>  $totprice,
+                        'totIDS'     =>  $totIDS,
+                          'qty'=>$qty
+                         
+                       
+                    
+                    );
+     
+                   
+                    return $output;
+     
+                   
+                   
+                  }
+                  else
+                  {
+                    return 'no  id';
+                  }
+
+             
+        
+            }
+
+            
+
+             public function minusservices()
+            {
+
+                     $id=request('id');
+              
+                  if (request()->has('id'))
+                   {
+ 
+
+                  $Cart=Cart::get($id);
+               $qty=$Cart->qty;
+               if ($qty != 1) 
+               {
+                  $qty= $qty - 1;
+               }
+              
+           Cart::instance('default')->update($id,$qty);
+
+                            $Cart=Cart::get($id);
+
+                    
+
+            $count=Cart::count();
+            $total='AED '.Cart::total();
+            $subtotal='AED '.Cart::subtotal();
+            $cart_add=Cart::content();
+            $tax='AED '.Cart::tax();
+
+                $totprice='AED '.$Cart->subtotal;
+                $totIDS=$Cart->rowId; 
+            
+                       $output = array(
+                        'count'     =>  $count,
+                        'total'     =>  $total,
+                        'subtotal'     =>  $subtotal,
+                        'cart_add'     =>  $cart_add,
+                        'tax'     =>  $tax,
+                        'totprice'     =>  $totprice,
+                        'totIDS'     =>  $totIDS,
+                          'qty'=>$qty
+                         
+                       
+                    
+                    );
+     
+               
+     
+                   
+                    return $output;
+                  }
+                  else
+                  {
+                    return 'no  id';
+                  }
+
+             
+        
+            }
+
+             public function apply_coupon(Request $request)
+    {
+             
+      
+              $data = $request->all();
+             $validator = Validator::make($data, [
+                   'coupon_code' => 'required|max:50',
+        ],[],
+        [
+        'coupon_code'=>trans('trans.coupon_code'),
+      
+        ]);
+
+                $count=Cart::count();
+            $total='AED '.Cart::total();
+            $subtotal='AED '.Cart::subtotal();
+            $cart_add=Cart::content();
+            $tax='AED '.Cart::tax();
+               
+      if ($validator->fails()) 
+        {
+              $success_output = '<div class="alert alert-danger">
+            '.'The code field is required'.' 
+           </div>';  
+                      $output = array(
+                        'success'     =>  $success_output,
+                        'count'     =>  $count,
+                        'total'     =>  $total,
+                        'subtotal'     =>  $subtotal,
+                        'cart_add'     =>  $cart_add,
+                        'tax'     =>  $tax
+                    
+                    );
+                    return $output;
+       
+
+        }
+
+
+
+      
+        $code=Coupon::where('value',$request->coupon_code)->first();
+        if (empty($code)) 
+        {
+              
+
+           $success_output = '<div class="alert alert-danger">
+            '.__("Coupon Code Not Found.").' 
+           </div>';  
+                      $output = array(
+                        'success'     =>  $success_output,
+                        'count'     =>  $count,
+                        'total'     =>  $total,
+                        'subtotal'     =>  $subtotal
+                    
+                    );
+                    return $output;
+
+        }
+         
+       
+            $coupon = Coupon::where('value', $request->coupon_code)->first();
+
+
+
+        if (!$coupon) 
+
+        {
+
+             
+         
+
+   $success_output = '<div class="alert alert-danger">
+            '.__("Invalid coupon number. Try again.").' 
+           </div>';  
+                      $output = array(
+                        'success'     =>  $success_output,
+                        'count'     =>  $count,
+                        'total'     =>  $total,
+                        'subtotal'     =>  $subtotal
+                    
+                    );
+                    return $output;
+                
+
+        }
+
+        elseif($coupon->status == 0)
+        {
+
+ 
+
+
+               $success_output = '<div class="alert alert-danger">
+            '.__("This coupon has been used before").' 
+           </div>';  
+                      $output = array(
+                        'success'     =>  $success_output,
+                        'count'     =>  $count,
+                        'total'     =>  $total,
+                        'subtotal'     =>  $subtotal
+                    
+                    );
+                    return $output;
+        }
+
+            $coupon = Coupon::where('value', $request->coupon_code)->first();
+
+            $prcentage = Coupon::where('value', $request->coupon_code)->first()->prcentage;
+
+            $department_id = Coupon::where('value', $request->coupon_code)->first()->department_id;
+            $product_id = Coupon::where('value', $request->coupon_code)->first()->product_id;
+
+         
+
+
+            if($department_id and $product_id) 
+                   {
+
+                         $department_idproduct_id='department_id, product_id';
+
+                            $prcentage;
+
+             session()->put('cpn',$coupon);
+
+
+
+               $prcentage2= $prcentage * Cart::subtotal()/100;
+
+                $newsubtotal=Cart::subtotal()-$prcentage2;
+
+          
+
+             session()->put('newsubtotalcpn',$newsubtotal);
+
+                $coupon->status=0;
+                $coupon->save();
+
+              Cart::setGlobalDiscount($code->prcentage);
+
+
+               $success_output = '<div class="alert alert-success">
+
+            '.'Your discount percentage is'.$prcentage.'%'.'The amount of capacity has been deducted'.$prcentage2.' AED '  .'The sum of the Arabic after the discount is'.$newsubtotal.' 
+           </div>';  
+                      $output = array(
+                        'success'     =>  $success_output,
+                        'count'     =>  $count,
+                        'total'     =>  $total,
+                        'subtotal'     =>  $subtotal
+                    
+                    );
+                    return $output;
+
+
+                   }
+
+            elseif ($department_id)
+              {
+                foreach (Cart::content() as $item)
+                {
+                  $department_idcart=$item->model->department_id;
+
+                  if ($department_id == $department_idcart ) 
+                  {
+                    $department_idcart ='department_idcart='.$department_idcart;
+
+                       $prcentage;
+
+             session()->put('cpn',$coupon);
+
+
+
+               $prcentage2= $prcentage * Cart::subtotal()/100;
+
+                $newsubtotal=Cart::subtotal()-$prcentage2;
+ 
+
+             session()->put('newsubtotalcpn',$newsubtotal);
+
+                $coupon->status=0;
+                $coupon->save();
+
+               
+                    
+                  }
+                }
+
+
+                  $success_output = '<div class="alert alert-success">
+
+            '.'Your discount percentage is'.$prcentage.'%'.'The amount of capacity has been deducted'.$prcentage2.'  AED '  .'The sum of the Arabic after the discount is'.$newsubtotal.' 
+           </div>';  
+
+              $output = array(
+                        'success'     =>  $success_output,
+                        'count'     =>  $count,
+                        'total'     =>  $total,
+                        'subtotal'     =>  $subtotal
+                    
+                    );
+                    return $output;
+
+                }
+
+                 elseif ($product_id) 
+                  {
+
+                    foreach (Cart::content() as $item)
+                {
+                  $product_idcart=$item->model->id;
+
+                  if ($product_id == $product_idcart ) 
+                  {
+                    $product_idcart= 'product_idcart='.$product_idcart;
+                       $prcentage;
+
+             session()->put('cpn',$coupon);
+
+
+
+               $prcentage2= $prcentage * Cart::subtotal()/100;
+
+                $newsubtotal=Cart::subtotal()-$prcentage2;
+
+          
+             session()->put('newsubtotalcpn',$newsubtotal);
+
+                $coupon->status=0;
+                $coupon->save();
+
+               
+
+              
+
+                    
+                  }
+                }
+
+                  $success_output = '<div class="alert alert-success">
+
+            '.'Your discount percentage is'.$prcentage.'%'.'The amount of capacity has been deducted'.$prcentage2.'  AED '  .'The sum of the Arabic after the discount is'.$newsubtotal.' 
+           </div>';  
+
+              $output = array(
+                        'success'     =>  $success_output,
+                        'count'     =>  $count,
+                        'total'     =>  $total,
+                        'subtotal'     =>  $subtotal
+                    
+                    );
+                    return $output;
+                     
+                  }
+
+                  
+
+                  else
+
+                  {
+                    
+
+ 
+
+
+              $success_output = '<div class="alert alert-danger">
+
+            '.'The coupon must be specific to a department or product and not a general coupon'.' 
+           </div>';  
+
+              $output = array(
+                        'success'     =>  $success_output,
+                        'count'     =>  $count,
+                        'total'     =>  $total,
+                        'subtotal'     =>  $subtotal
+                    
+                    );
+                    return $output;
+                  }
+
+       
+  
+
+    }
+
 
             
 }

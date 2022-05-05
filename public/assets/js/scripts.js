@@ -659,9 +659,7 @@ PAGE JS
         $(this).css("background-color", get_color);
     });
 
-    $('.product_color_switch span,.product_size_switch span').on("click", function() {
-        $(this).siblings(this).removeClass('active').end().addClass('active');
-    });
+    
 
     /*===================================*
     21. QUICKVIEW POPUP + ZOOM IMAGE + PRODUCT SLIDER JS

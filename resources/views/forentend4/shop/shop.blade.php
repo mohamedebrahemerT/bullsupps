@@ -72,6 +72,8 @@
                             </div>
                         </div>
                         <div class="row shop_container">
+
+                @if($products2->count() > 0 )
 	@foreach($products2 as  $product)
 
                              <div class="col-md-4 col-6">
@@ -82,9 +84,25 @@
                                         </a>
                                         <div class="product_action_box">
                                             <ul class="list_none pr_action_btn">
-                                                <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
+                                              
+                                                <li class="add-to-cart">
+           
+
+ <a  id="add_to_cart" href="javascript:void(0)" data-tip="{{__('Add To Cart')}}" class="cart js-cart">
+  <i class="icon-basket-loaded"></i>
+<span class="hidden">{{ $product->id }}</span>
+
+                   </a>
+
+
+            </li>
+                                                
                                                 <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
+                                                <li>
+                                                    <a id="add_to_Wishlist" href="javascript:void(0)" data-tip="{{__('Add to Wishlist')}}"><i class="icon-heart"></i>
+<span class="hidden">{{ $product->id }}</span>
+</a>
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
@@ -117,13 +135,24 @@
                                         <div class="list_product_action_box">
                                             <ul class="list_none pr_action_btn">
                                                 <li class="add-to-cart"><a href="{{url('/')}}/#"><i class="icon-basket-loaded"></i></a></li>
+                                                
                                                 <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
+                                              
+                                                <li>
+        <a id="add_to_Wishlist" href="javascript:void(0)" data-tip="{{__('Add to Wishlist')}}"><i class="icon-heart"></i>
+<span class="hidden">{{ $product->id }}</span>
+</a>
+     </li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                                    @endforeach
+
+                                   @else
+   <img src="{{url('/')}}/assets/images/no-product.png" class="img-fluid">
+
+                                   @endif
 
                            
                         </div>

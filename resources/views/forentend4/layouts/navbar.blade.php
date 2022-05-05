@@ -10,7 +10,7 @@
                         </div>
                         <div class="lng_dropdown">
                             <select name="countries" class="custome_select">
-                            <option value='UAE' data-image="assets/images/UAE.svg" data-title="English"> <a href="#" alt="UAE-country"><span>UAE</span></a></option>
+                            <option value='UAE' data-image="{{url('/')}}/assets/images/UAE.svg" data-title="English"> <a href="#" alt="UAE-country"><span>UAE</span></a></option>
                             <option value='KSA' data-image="assets/images/KSA.svg" data-title="France"> <a href="#" alt="KSA-country"><span>KSA</span></a></option>
                         </select>
                         </div>
@@ -213,7 +213,7 @@
                                 <div class="lng_dropdown">
                                     <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                         <select name="countries" class="custome_select" disabled>
-                                    <option value='UAE' data-image="assets/images/UAE.svg" data-title="English"> <a href="#" alt="UAE-country" ><span>UAE</span></a></option>
+                                    <option value='UAE' data-image="{{url('/')}}/assets/images/UAE.svg" data-title="English"> <a href="#" alt="UAE-country" ><span>UAE</span></a></option>
                                     <!-- <option value='KSA' data-image="assets/images/KSA.svg" data-title="France"> <a href="#" alt="KSA-country"><span>KSA</span></a></option> -->
                                 </select>
                                     </a>
@@ -293,34 +293,59 @@
 
                         <li class="li-divider"></li>
                         <li class="dropdown cart_dropdown">
-                            <a class="nav-link cart_trigger" href="#" data-bs-toggle="dropdown"><img src="{{url('/')}}/assets/images/cart_outline.svg"><span class="cart_count">2</span><span class="amount">Cart</span></a>
-                            <div class="cart_box cart_right dropdown-menu dropdown-menu-right">
-                                <ul class="cart_list">
-                                    <li>
-                                        <a href="#" class="item_remove"><i class="ion-close"></i></a>
-                                        <a href="#"><img src="assets/images/products/pr-01.png" alt="cart_thumb1">Variable product 001</a>
-                                        <span class="cart_quantity"> 1 x <span class="cart_amount"> <span class="price_symbole">AED</span></span>78.00</span>
-                                    </li>
+                            <a class="nav-link cart_trigger" href="#" data-bs-toggle="dropdown"><img src="{{url('/')}}/assets/images/cart_outline.svg"><span class="cart_count">
 
-                                    <li>
-                                        <a href="#" class="item_remove"><i class="ion-close"></i></a>
-                                        <a href="#"><img src="assets/images/products/pr-02.png" alt="cart_thumb2">Ornare sed consequat</a>
-                                        <span class="cart_quantity"> 1 x <span class="cart_amount"> <span class="price_symbole">AED</span></span>81.00</span>
+                                {{Cart::instance('default')->count()}}
+                            </span><span class="amount">Cart</span></a>
+                            <div class="cart_box cart_right dropdown-menu dropdown-menu-right">
+                @if (Cart::count() > 0)
+    <span class="Cartcontent"></span>
+                                <ul class="cart_list cart_listhide">
+                @foreach (Cart::content() as $item)
+
+                                    <li id="b{{$item->rowId}}">
+     <form action="{{ route('cart.destroy', $item->rowId) }}" method="POST" id="dellshop">  
+      {{ csrf_field() }}
+    <input type="hidden" name="rowId" value="{{ $item->rowId }}">
+
+      <a class="item_remove" id="Removeshop"><span class="hidden">{{ $item->rowId }}</span>  <i class="ion-close"></i></a>
+
+                        </form>
+
+                                        <a href="{{url('/')}}/shop/{{ $item->model->id}}"><img src="{{Storage::url($item->model->photo)}}" alt="cart_thumb1">
+  @if(session('lang')=='ar')
+   {{ $item->model->title_name_ar }}
+   @endif
+   @if(session('lang')=='en')
+   {{ $item->model->title_name_en }}
+    @endif
+                                        </a>
+                                        <span class="cart_quantity"> {{$item->qty}} x <span class="cart_amount"> <span class="price_symbole">AED</span></span>    {{ $item->model->price_offer }}</span>
                                     </li>
-                                    <li>
-                                        <a href="#" class="item_remove"><i class="ion-close"></i></a>
-                                        <a href="#"><img src="assets/images/products/pr-02.png" alt="cart_thumb2">Ornare sed consequat</a>
-                                        <span class="cart_quantity"> 1 x <span class="cart_amount"> <span class="price_symbole">AED</span></span>81.00</span>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="item_remove"><i class="ion-close"></i></a>
-                                        <a href="#"><img src="assets/images/products/pr-02.png" alt="cart_thumb2">Ornare sed consequat</a>
-                                        <span class="cart_quantity"> 1 x <span class="cart_amount"> <span class="price_symbole">AED</span></span>81.00</span>
-                                    </li>
+                @endforeach
+ 
                                 </ul>
+                                  @else
+          
+            @endif
                                 <div class="cart_footer">
-                                    <p class="cart_total"><strong>Subtotal:</strong> <span class="cart_price"> <span class="price_symbole">AED</span></span>159.00</p>
-                                    <p class="cart_buttons"><a href="#" class="btn btn-secondary view-cart">View Cart</a><a href="#" class="btn btn-primary checkout">Checkout</a></p>
+                                    <p class="cart_total"><strong>Subtotal:</strong> 
+
+        <span class="cart_price">
+
+
+
+<span class="homesubtotal">
+<span class="price_symbole">AED</span>
+
+{{Cart::Subtotal()  }}
+</span>
+</span>
+
+</p>
+                                    <p class="cart_buttons">
+    <a href="{{url('/')}}/cart" class="btn btn-secondary view-cart">View Cart</a>
+        <a href="{{url('/')}}/Checkout" class="btn btn-primary checkout">Checkout</a></p>
                                 </div>
                             </div>
                         </li>

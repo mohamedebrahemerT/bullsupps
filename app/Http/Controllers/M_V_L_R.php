@@ -154,31 +154,22 @@ class M_V_L_R extends Controller
 		     $data=$this->Validate(request(),[
 
             'name' => ['required', 'string', 'max:255'],
-            'lastname' => ['required', 'string', 'max:255'],
+       
 
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required'],
-            'phone' => ['required'],
-            'level'   =>'sometimes|nullable',
-            'country_id'   =>'required',
-            'city_id'   =>'required',
-            'stat_id'   =>'sometimes|nullable',
-            'MoreDetailsAboutYourAddress'   =>'required',
+          
+           
+         
             
 		     ],[],[
          'name' =>    'name',
-		     'lastname' =>    'lastname',
+		    
          
             'email' =>    'email' ,
-            'phone' =>    'phone',
+       
             'password' => 'password',
-            'level' => 'level',
-
-            'country_id' => trans('admin.country_id'),
-            'city_id' => trans('admin.city_id'),
-            'stat_id' => trans('admin.stat_id'),
-            'MoreDetailsAboutYourAddress' => trans('admin.MoreDetailsAboutYourAddress'),
-
+             
           
 
 		     ]);   

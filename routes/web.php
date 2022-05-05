@@ -373,10 +373,20 @@ Route::post('affiliate/register', 'affiliateController@post_register');
  Route::get('{name}_id={id}','ShopController@TheProductsOfThisMerchant')->name('shop.TheProductsOfThisMerchant');
  
 
- 
+  Route::post('plusservices', 'CartController@plusservices');
+    Route::post('minusservices', 'CartController@minusservices');
+
+  Route::post('cartquantity', 'CartController@cartquantity');
+    
+
+     Route::post('apply_coupon', 'CartController@apply_coupon')->name('apply_coupon');
 
  Route::get('/cart','CartController@index')->name('cart.index');
+
+
  Route::post('/addToCart','CartController@addToCart')->name('cart.addToCart');
+
+  Route::post('/store_attribute_value_id','CartController@store_attribute_value_id');
 
 
  
@@ -401,7 +411,8 @@ Route::post('affiliate/register', 'affiliateController@post_register');
  Route::post('/switchToSaveForLaterHome','CartController@switchToSaveForLaterHome');
 
 
- 
+    Route::post('/add_wishlist_new/{id}', 'CartController@add_wishlist');
+        Route::post('/add_wishlist_new', 'CartController@switchToSaveForLaterHome');
 
  Route::post('/cart','SaveForLaterController@destroy')->name('cart.Deletelater');
 
@@ -659,6 +670,9 @@ Route::get('/Storage-Linked', function () {
     \Illuminate\Support\Facades\Artisan::call('storage:link');
     return 'Storage Linked';
 });
+
+
+ 
 
 
 
