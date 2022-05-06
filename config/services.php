@@ -58,7 +58,7 @@ return [
      'client_id' => '3118669771779285',
      'client_secret' =>'bc0d5e386616a292e19d2d17722d2b52',
     // 'redirect' => 'https://ac4mt.org/callback/facebook/',
-     'redirect' => 'https://bullsupps.shoplystock.com/callback/facebook/',
+     'redirect' => 'https://shoplystock.com/callback/facebook/',
    ], 
 
 
