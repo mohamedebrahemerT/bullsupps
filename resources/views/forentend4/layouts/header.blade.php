@@ -20,8 +20,8 @@
     <link rel="stylesheet" href="{{url('/')}}/assets/bootstrap/css/bootstrap.min.css">
     <!-- <link rel="stylesheet" href="{{url('/')}}/assets/bootstrap/css/rtl_bootstrap.min.css"> -->
     <!-- Google Font -->
-    <link href="{{url('/')}}/https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap" rel="stylesheet">
-    <link href="{{url('/')}}/https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
     <!-- Icon Font CSS -->
     <link rel="stylesheet" href="{{url('/')}}/assets/css/all.min.css">
     <link rel="stylesheet" href="{{url('/')}}/assets/css/ionicons.min.css">
