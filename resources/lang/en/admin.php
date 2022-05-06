@@ -1114,7 +1114,8 @@ return [
            'attributes'=>'attribute',
            'updated_record'=>'record updated',
            'attribute_values'=>'attribute values',
-           'address0'=>''
+           'address0'=>'',
+           'dataCretedsucsufully'=>'successfully registered',
 
 
 
