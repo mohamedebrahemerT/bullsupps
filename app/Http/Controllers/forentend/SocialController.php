@@ -16,7 +16,7 @@ use App\Http\Controllers\Controller;
 
 
 
- use App\User;
+ use App\user;
 
 
 
@@ -69,7 +69,7 @@ use App\Http\Controllers\Controller;
  
       $email=$getInfo->email;
 
- $user = User::where('email', $email)->first();
+ $user = user::where('email', $email)->first();
 
  if ($user)
   {
@@ -119,7 +119,7 @@ return redirect('/');
 
 
 
- $user = User::where('provider_id', $getInfo->id)->first();
+ $user = user::where('provider_id', $getInfo->id)->first();
 
 
 
