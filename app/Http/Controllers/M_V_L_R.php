@@ -22,7 +22,7 @@ use Validator;
 
 
 
-use App\User;
+use App\user;
 
 
 

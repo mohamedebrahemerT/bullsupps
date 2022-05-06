@@ -121,7 +121,7 @@ th, td {
 
         
                              @php 
-                            $User= App\User::where('id',$order->user_id )->first();
+                            $User= App\user::where('id',$order->user_id )->first();
                             @endphp
            {{$User->phone}}
 :

@@ -607,7 +607,7 @@ Route::get('/Category_HightoLow/{id}', 'shopPageController@Category_HightoLow')-
 Route::get('barcode', 'HomeController@barcode');
  
     
-use App\User;
+use App\user;
 use App\Http\Resources\UserCollection;
 
  

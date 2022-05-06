@@ -577,7 +577,7 @@ $lng = !empty(old('lng'))?old('lng'):'31.24238681793213';
     </div>
     <div class="form-group">
       {!! Form::label('user_id',trans('admin.owner_id')) !!}
-      {!! Form::select('user_id',App\User::where('level','company')->pluck('name','id'),old('user_id'),['class'=>'form-control']) !!}
+      {!! Form::select('user_id',App\user::where('level','company')->pluck('name','id'),old('user_id'),['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
       <div id="us1" style="width: 100%; height: 400px;"></div>

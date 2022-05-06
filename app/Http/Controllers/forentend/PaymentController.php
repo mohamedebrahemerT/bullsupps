@@ -50,7 +50,7 @@ use Carbon\Carbon;
  use App\countries;
  use App\cities;
  use App\states;
- use App\User;
+ use App\user;
   use App\Product;
         use App\OrderProduct;
         use App\Mail\OrderPlaced;

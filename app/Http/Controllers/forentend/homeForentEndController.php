@@ -45,7 +45,7 @@ use App\Departmentbanners;
 use Storage;
 
 
-use App\User;
+use App\user;
 
 use Illuminate\Support\Facades\Auth;
 

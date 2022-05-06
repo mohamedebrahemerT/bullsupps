@@ -164,7 +164,7 @@
 
           {{trans('admin.phone')}}:
                              @php 
-                            $User= App\User::where('email',$order->billing_email)->first();
+                            $User= App\user::where('email',$order->billing_email)->first();
                             @endphp
            {{$User->phone}}
                        
