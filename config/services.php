@@ -70,7 +70,7 @@ return [
  'google' => [
     'client_id'=>'54017306227-ududif17bj6i7f22ka6ops3kqmj0e46i.apps.googleusercontent.com',
     'client_secret' =>'t7h9Ruml1PGCK4NfoFxxh63K',
-     'redirect'      =>'https://xpremo.com/callback/google',
+     'redirect'      =>'https://bullsupps.shoplystock.com/callback/google',
 ], 
  
     
