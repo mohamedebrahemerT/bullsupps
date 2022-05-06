@@ -93,7 +93,7 @@ return [
         ],
         'cc' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\user::class,
         ],
       
 
