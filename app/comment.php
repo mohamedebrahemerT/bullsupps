@@ -18,20 +18,20 @@ class comment extends Model
     public function user_id()   
                   
     {
-    	return $this->hasOne('App\User','id','user_id');
+    	return $this->hasOne('App\user','id','user_id');
     	 
     }
                   // to  direct interactive  with  object  like  this  user->name
     //// to  direct interactive    {{ $comment->user->name }}  
       public function user()
     {
-    	return $this->hasOne('App\User','id','user_id');
+    	return $this->hasOne('App\user','id','user_id');
     	 
     }
 
        public function user1() //the  same hasOne but we reverse paramter or no paramters
     {
-    	return $this->belongsTo('App\User','user_id','id');
+    	return $this->belongsTo('App\user','user_id','id');
     	 
     }
 }

@@ -7,60 +7,18 @@
      function TotalAfterShipingPrice()
 
    {
+           $city_id=null;
 
-
-
- 
-
-                  if(auth()->user()->shapingplace     == 'address2')
-
+        if ($city_id) {
+              if(App\statDistrebutionToZones::where('city_id',$city_id)->first())
                   {
-                    if(auth()->user()->city_id2 )
-                    {
-
-
-                      $city_id=App\cities::where('id',auth()->user()->city_id2 )->first()->id;
-
-
-
-                    }
-
-                  }
-
-
-                  if(auth()->user()->shapingplace     == 'address1')
-
-                  {
-                    if(auth()->user()->city_id )
-                    {
-
-
-                      $city_id=App\cities::where('id',auth()->user()->city_id )->first()->id;
-
-
-
-                    }
-
-                  }
-
-
-
-
-                  if(App\statDistrebutionToZones::where('city_id',$city_id)->first())
-                  {
-
-                   $zone_id=App\statDistrebutionToZones::where('city_id',$city_id)->first()->zone_id;
+  $zone_id=App\statDistrebutionToZones::where('city_id',$city_id)->first()->zone_id;
 
                    $zoneprice=App\zones::where('id',$zone_id)->first()->price;
 
                  }
 
-
-
-                 
-
-
-              
+ 
 
                  if(App\statDistrebutionToZones::where('city_id',$city_id)->first())
 
@@ -75,6 +33,17 @@
 
 
                  }
+        }
+
+        else
+        {
+                 $zoneprice = DB::table('zones')->max('price');
+
+        }
+   
+
+
+                 
 
                  return $zoneprice  ;
                   
@@ -1920,7 +1889,7 @@ if (!function_exists('UserRegistration'))
 
    {
 
-         return   App\User::count('id');
+         return   App\user::count('id');
 
 
 

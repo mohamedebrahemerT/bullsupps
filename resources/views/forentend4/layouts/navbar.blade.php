@@ -1,3 +1,6 @@
+   @guest
+                        @else
+
  <!-- Home Popup Section -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -16,13 +19,20 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="modal-body bg_light_gray">
                     <div class="container-fluid">
-                        <form class="form cf">
+      <form class="form cf" method="post"  action="{{url('/')}}/Select_Delivery_Address">
+        @csrf
                             <section class="plan cf">
 
-                                <input type="radio" name="radio1" id="free" value="free" checked>
-                                <label class="free-label four mb-2" for="free">
+                      
+
+     @foreach(App\Models\user_addresses::where('user_id',auth()->user()->id)->get() as  $address)
+  <input type="radio" name="radio1" id="free{{$address->id}}" value="{{$address->id}}" checked>
+
+                       <label class="free-label four mb-2" 
+                       for="free{{$address->id}}">
                                     <div class="col-12">
                                     <div class="border border-radius2 box_shadow1 p-3 p-md-4" style="background-color:#ffffff">
                                         <div class="contact_text">
@@ -33,16 +43,20 @@
                                                             <div class="kolonat-hom align-content-center">
                                                                 <div class="ikonat-home"> <i class="linearicons-map"></i> </div>
                                                                 <div class="contact_text">
-                                                                    <span>Home</span>
+                                                                    <span>{{$address->type}}</span>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="p-2 bd-highlight">
-                                                        <a class="alink" href="#" Alt="Edit"><span><i class="linearicons-pencil5 text_green pe-2"></i>Edit</span></a>
+             <a class="alink" href="{{url('/')}}/Add_New_Address_Step2/{{$address->id}}" Alt="Edit"><span><i class="linearicons-pencil5 text_green pe-2"></i>Edit</span></a>
                                                     </div>
                                                     <div class="p-2 bd-highlight">
+                   @if($address->Primary == 1)
+                                                        
                                                         <div class="defultaddress">Default</div>
+               @endif
+
                                                         <!-- <a class="alink" href="#" Alt="Delete"><span><i class="linearicons-trash2 text_default pe-2"></i>Delete</span></a> -->
                                                     </div>
                                                 </div>
@@ -52,15 +66,15 @@
                                                             <tbody class="">
                                                                 <tr class="noborderall">
                                                                     <td class="cart_total_label noborderall text_gray">Name:</td>
-                                                                    <td class="cart_total_amount  noborderall">Ahmed Abo Ibrahim</td>
+                                                                    <td class="cart_total_amount  noborderall">{{$address->Name}}</td>
                                                                 </tr>
                                                                 <tr class="noborderall">
                                                                     <td class="cart_total_label noborderall text_gray">Address:</td>
-                                                                    <td class="cart_total_amount  noborderall">2500, Escape Tower - 57R6+QR - Dubai, United Arab Emirates</td>
+                                                                    <td class="cart_total_amount  noborderall">{{$address->address}}</td>
                                                                 </tr>
                                                                 <tr class="noborderall">
                                                                     <td class="cart_total_label noborderall text_gray">Mobile Number:</td>
-                                                                    <td class="cart_total_amount  noborderall">+971-50-10101010</td>
+                                                                    <td class="cart_total_amount  noborderall">{{$address->Mobile}}</td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -72,108 +86,14 @@
         
                                 </div>
                             </label>
-                                <input type="radio" name="radio1" id="basic" value="basic">
-                                <label class="basic-label four mb-2" for="basic">
-                                    <div class="col-12 ">
-                                    <div class="border border-radius2 box_shadow1 p-3 p-md-4" style="background-color:#ffffff">
-                                        <div class="contact_text">
-                                            <row>
-                                                <div class="d-flex bd-highlight">
-                                                    <div class="p-2 flex-grow-1 bd-highlight">
-                                                        <div class="bardhe">
-                                                            <div class="kolonat-hom align-content-center">
-                                                                <div class="ikonat-home"> <i class="linearicons-map"></i> </div>
-                                                                <div class="contact_text">
-                                                                    <span>Home</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="p-2 bd-highlight">
-                                                        <a class="alink" href="#" Alt="Edit"><span><i class="linearicons-pencil5 text_green pe-2"></i>Edit</span></a>
-                                                    </div>
-                                                    <div class="p-2 bd-highlight">
-                                                        <a class="alink" href="#" Alt="Delete"><span><i class="linearicons-trash2 text_default pe-2"></i>Delete</span></a>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="table-responsive">
-                                                        <table class="table mb-0">
-                                                            <tbody class="">
-                                                                <tr class="noborderall">
-                                                                    <td class="cart_total_label noborderall text_gray">Name:</td>
-                                                                    <td class="cart_total_amount  noborderall">Ahmed Abo Ibrahim</td>
-                                                                </tr>
-                                                                <tr class="noborderall">
-                                                                    <td class="cart_total_label noborderall text_gray">Address:</td>
-                                                                    <td class="cart_total_amount  noborderall">2500, Escape Tower - 57R6+QR - Dubai, United Arab Emirates</td>
-                                                                </tr>
-                                                                <tr class="noborderall">
-                                                                    <td class="cart_total_label noborderall text_gray">Mobile Number:</td>
-                                                                    <td class="cart_total_amount  noborderall">+971-50-10101010</td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </row>
-                                        </div>
-                                    </div>
-        
-                                </div>
-                            </label>
-                                <input type="radio" name="radio1" id="premium" value="premium">
-                                <label class="premium-label four mb-2" for="premium"> 
-                                    <div class="col-12 ">
-                                    <div class="border border-radius2 box_shadow1 p-3 p-md-4" style="background-color:#ffffff">
-                                        <div class="contact_text">
-                                            <row>
-                                                <div class="d-flex bd-highlight">
-                                                    <div class="p-2 flex-grow-1 bd-highlight">
-                                                        <div class="bardhe">
-                                                            <div class="kolonat-hom align-content-center">
-                                                                <div class="ikonat-home"> <i class="linearicons-map"></i> </div>
-                                                                <div class="contact_text">
-                                                                    <span>Home</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="p-2 bd-highlight">
-                                                        <a class="alink" href="#" Alt="Edit"><span><i class="linearicons-pencil5 text_green pe-2"></i>Edit</span></a>
-                                                    </div>
-                                                    <div class="p-2 bd-highlight">
-                                                        <a class="alink" href="#" Alt="Delete"><span><i class="linearicons-trash2 text_default pe-2"></i>Delete</span></a>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="table-responsive">
-                                                        <table class="table mb-0">
-                                                            <tbody class="">
-                                                                <tr class="noborderall">
-                                                                    <td class="cart_total_label noborderall text_gray">Name:</td>
-                                                                    <td class="cart_total_amount  noborderall">Ahmed Abo Ibrahim</td>
-                                                                </tr>
-                                                                <tr class="noborderall">
-                                                                    <td class="cart_total_label noborderall text_gray">Address:</td>
-                                                                    <td class="cart_total_amount  noborderall">2500, Escape Tower - 57R6+QR - Dubai, United Arab Emirates</td>
-                                                                </tr>
-                                                                <tr class="noborderall">
-                                                                    <td class="cart_total_label noborderall text_gray">Mobile Number:</td>
-                                                                    <td class="cart_total_amount  noborderall">+971-50-10101010</td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </row>
-                                        </div>
-                                    </div>
-        
-                                </div>
-                            </label>
+
+                    @endforeach
+                    
+                                
+
+                                
                             </section>
-                        </form>
+                       
 
 
 
@@ -181,16 +101,18 @@
                 </div>
                 <div class="modal-footer">
                     <div class="p-2 flex-grow-1 bd-highlight">
-                        <a class="alink" href="#" Alt="Edit"><span><i class="linearicons-plus pe-2"></i>Add New Address</span></a>
+                        <a class="alink" href="{{url('/')}}/Add_New_Address_Map_Step" Alt="Edit"><span><i class="linearicons-plus pe-2"></i>Add New Address</span></a>
                     </div>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary">Confirm</button>
+                    <button type="submit" class="btn btn-primary">Confirm</button>
+
+                     </form>
                 </div>
             </div>
         </div>
     </div>
     <!-- End Screen Load Popup Section -->
-
+    @endguest
 
 
     <!-- START HEADER -->
@@ -242,6 +164,8 @@
                         </form>
                     </div>
                     <ul class="navbar-nav attr-nav align-items-center">
+                        @guest
+
                         <li class="dropdown cart_dropdown">
                             <a class="nav-link cart_trigger" 
                             href="sadasd" data-bs-toggle="dropdown">
@@ -289,6 +213,48 @@
                                 </div> -->
                             </div>
                         </li>
+                        @else
+
+                          <li class="dropdown cart_dropdown">
+                            <a class="nav-link cart_trigger" 
+                            href="sadasd" data-bs-toggle="dropdown">
+
+                                <img src="{{url('/')}}/assets/images/User.svg"><span class="amount">{{ Auth::user()->name }}</span></a>
+
+                            <div class="cart_box cart_right dropdown-menu dropdown-menu-right">
+                                <ul class="cart_list">
+                                    
+
+                                      <li>
+                                        <span class="cart_quantity mb-2">My Profile</span>
+                                          <a href="{{url('/')}}/my-profile"> 
+                                        <button type="submit" class="btn btn-secondary btn-block" name="login">My Profile</button>
+                                          <a href="{{url('/')}}/my-profile"> 
+                                    </li>
+
+                                    <li>
+            <span class="cart_quantity mb-2">Welcome  {{ Auth::user()->name }}</span>
+                                         <a href="{{ route('logout') }}"  onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"> 
+                                        <button type="submit" class="btn btn-primary btn-block" name="login">
+                               Logout
+                                      
+                                    </button>
+                                    </a>
+
+                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+
+  
+                                    
+                                </ul>
+                               
+                            </div>
+                        </li>
+
+                        @endguest
 
 
                         <li class="li-divider"></li>

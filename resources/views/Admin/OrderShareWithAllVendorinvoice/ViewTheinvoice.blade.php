@@ -23,7 +23,7 @@ table, th, td {
 }
 th, td {
   padding: 5px;
-  text-align: right;    
+  text-align: left;    
 }
 </style>
  @endpush
@@ -31,58 +31,42 @@ th, td {
   
  
  
-<table style="width:100% ;direction:ltr;">
+<table style="width:100% ;direction:rtl; text-align:left;">
 
  <tr  > 
   <td  >
 
     <h4>
       
-      عنوان الشحن
+    Shipping Address
     </h4>
 
-    @if(App\user::where('id',$order->user_id)->first()->shapingplace     == 'address1')
+    
+               @php
 
+            $user_addresses_id  =$order->address_id;
 
-                @if(App\countries::where('id',App\user::where('id',$order->user_id)->first()->country_id )->first())
-  الدولة     :{{ App\countries::where('id',App\user::where('id',$order->user_id)->first()->country_id )->first()->countries_name_ar  }}
+         if(App\Models\user_addresses::
+              where('id',$user_addresses_id)
+              ->first())
+                                            {
+             $user_address=App\Models\user_addresses::
+             where('id',$user_addresses_id)
+              ->first();  
+                                            }
+          
+                                            @endphp
 
-          @endif
- 
-
-           <br>
-           المحافظة: {{ App\cities::where('id',App\user::where('id',$order->user_id)->first()->city_id )->first()->cities_name_ar  }}
-           <br>
-                         @isset(App\states::where('id',App\user::where('id',$order->user_id)->first()->stat_id )->first()->states_name_ar)
-          المركز : {{ App\states::where('id',App\user::where('id',$order->user_id)->first()->stat_id )->first()->states_name_ar  }}
-           <br>
-           @endisset
-
-          {{trans('admin.MoreDetailsAboutYourAddress')}}:  : {{ App\user::where('id',$order->user_id)->first()->MoreDetailsAboutYourAddress }}
-
-          @endif
-
-
-
-           @if(App\user::where('id',$order->user_id)->first()->shapingplace     == 'address2')
-  الدولة     :{{ App\countries::where('id',App\user::where('id',$order->user_id)->first()->country_id2 )->first()->countries_name_ar  }}
-
-
-           <br>
-           المحافظة: {{ App\cities::where('id',App\user::where('id',$order->user_id)->first()->city_id2 )->first()->cities_name_ar  }}
-           <br>
-
-           @if( App\states::where('id',App\user::where('id',$order->user_id)->first()->stat_id2 )->first())
-                  المركز : {{ App\states::where('id',App\user::where('id',$order->user_id)->first()->stat_id2 )->first()->states_name_ar  }}
-           @endif
-
-   
-           <br>
-
-          {{trans('admin.MoreDetailsAboutYourAddress')}}:  : {{ App\user::where('id',$order->user_id)->first()->MoreDetailsAboutYourAddress2 }}
-
-          @endif
-
+                                           Name: 
+                                       {{$user_address->Name}}<br>
+                                                            
+                                      {{$user_address->address}} 
+                                      <br>
+                                        
+                                      Mobile Number:
+                                                       
+                                    {{$user_address->Mobile}} 
+                                                  
         
    </td> 
 
@@ -111,22 +95,8 @@ th, td {
  
   <tr> <td rowspan="3">
 
-       @if( App\countries::where('id',App\user::where('id',$order->user_id)->first()->country_id )->first()) 
-    
-     @if(App\user::where('id',$order->user_id)->first()->shapingplace     == 'address1')
-  الدولة     :{{ App\countries::where('id',App\user::where('id',$order->user_id)->first()->country_id )->first()->countries_name_ar  }}
-
-   @endif
-        
-   @if(App\user::where('id',$order->user_id)->first()->shapingplace     == 'address2')
-
-
-  الدولة     :{{ App\countries::where('id',App\user::where('id',$order->user_id)->first()->country_id2 )->first()->countries_name_ar  }}
-
-   @endif
-
-
-   @endif
+     {{$user_address->additional_info}}
+                                        
 
 
 
@@ -146,18 +116,20 @@ th, td {
 
       <td>
         
-            <strong>{{$order->billing_name}}  </strong>    :   الاسم  <br>
+            <strong>billing_name </strong>    : {{$order->billing_name}}  <br>
 
 
-          {{trans('admin.phone')}}:
+        
                              @php 
                             $User= App\User::where('id',$order->user_id )->first();
                             @endphp
            {{$User->phone}}
+:
+             {{trans('admin.phone')}}
                        
             <br>
 
-         {{$order->billing_email}}   :  {{trans('admin.email')}}<br>
+        {{trans('admin.email')}}    :   {{$order->billing_email}}<br>
 
               
 
@@ -174,7 +146,7 @@ th, td {
 
   <table  style="width:100% ">
 
-      <caption style="text-align: center;">    معلومات المشتريات   </caption>
+      <caption style="text-align: center;">     Purchasing information </caption>
 
             <thead>
 
@@ -275,13 +247,10 @@ th, td {
 
                 <td>
 
-                 @if($order->payment_gateway == ' الدفع عند الاستلام  ')
-         {{TotalAfterShipingPriceadmin($order->user_id)}} {{trans('admin.pound')}}
+                
+            00 {{trans('admin.pound')}}
 
-          @else
-            30 {{trans('admin.pound')}}
-
-          @endif
+         
 
                   
 

@@ -70,7 +70,7 @@ class AfterPaymentorder_productdatatables extends DataTable
 
      *
 
-     * @param \App\User $model
+     * @param \App\user $model
 
      * @return \Illuminate\Database\Eloquent\Builder
 

@@ -369,68 +369,16 @@ public function etisalatemirates()
 
       session()->forget('ProdcutTitle');
             
-       
       
-
-        $photoes=photoes::orderBy('id','desc')->first();
-
-      $photoes=$photoes->id;
-
-      $file_id=$photoes;      
-
-            $HomeSliders=filess::where('file_type','HomeSlider')->
-
-      where('relation_id',$file_id)->orderBy('id','desc')->get(); 
-
-
-
-           $Banner=BannerTop::orderBy('id','desc')->first();
-
-      $Banner=$Banner->id;
-
-      $file_id_Banner=$Banner;
-
-        $BannerTops = DB::table('files')->
-
-      where('file_type','BannerTop')->
-
-      where('relation_id',$file_id_Banner)
-
-      ->get();
-
- 
-
-
-      $bestoffers1=product::where('stock','>',0)->where('status','active')->take(20)->inrandomOrder()->get();
-
-
-
-            $bestoffers2=product::where('stock','>',0)->where('status','active')
-            ->inrandomOrder()->take(20)->get();
-
-
- 
-
-
-      $newes=newes::inrandomOrder()->take(10)->get();
-
-
-
-    
-
-
-
-     $otherDataDepartmentbanners= otherDataDepartmentbanners::inrandomOrder()->take(4)->get();
-
 
 
          $DepartmentbannersHomesliderID=Departmentbanners::where('catname','بنرات رئيسية')->first()->id;
 
      $otherDataDepartmentbannersHomeSliders= otherDataDepartmentbanners::where('Departmentbanners_id',$DepartmentbannersHomesliderID)->inrandomOrder()->take(4)->get();
           
-      
+       $Products1=Product::where('status','active')->InrandomOrder()->take(5)->get();
 
-      return view('forentend4.home', compact('HomeSliders','BannerTops','bestoffers1','bestoffers2','newes','otherDataDepartmentbanners','otherDataDepartmentbannersHomeSliders'));
+      return view('forentend4.home', compact( 'otherDataDepartmentbannersHomeSliders','Products1'));
 
 
 

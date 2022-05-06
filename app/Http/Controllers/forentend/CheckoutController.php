@@ -23,7 +23,7 @@ use App\Mail\ExceptionOccured;
        
           //require 'vendor/autoload.php';
            use Mailgun\Mailgun;
-
+ use App\Models\user_addresses;
         class CheckoutController extends Controller
         {
           public function testpaypal()
@@ -112,20 +112,22 @@ use App\Mail\ExceptionOccured;
             {
             return redirect()->route('shop.index');
              }
-              if (auth()->user() && request()->is('guestCheckout')) {
+
+              if (auth()->user() && request()->is('guestCheckout')) 
+              {
             return redirect('Checkout');
-        }
+                }
+
+    if (user_addresses::where('user_id',auth()->user()->id)->count() ==0) 
+              {
+     
+       return redirect('Add_New_Address');
+              }
+              
 
 
-             return view('forentend4.checkout.checkout')->with([
-            
-            'discount' => getNumbers()->get('discount'),
-            'newSubtotal' => getNumbers()->get('newSubtotal'),
-            'newTax' => getNumbers()->get('newTax'),
-            'newTotal' => getNumbers()->get('newTotal'),
-        ]);
+                   return view('forentend4.checkout.Payment_Method');
 
-               return view('forentend4.checkout.checkout');
             }
 
 

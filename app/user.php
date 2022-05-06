@@ -41,7 +41,8 @@ class User extends Authenticatable
 'shapingplace',
 'lastname',
 'MoreDetailsAboutYourAddress',
-'MoreDetailsAboutYourAddress2'
+'MoreDetailsAboutYourAddress2',
+'dname'
     ];
 
     

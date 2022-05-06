@@ -1,3 +1,9 @@
+
+
+
+
+
+
    <!-- Footer Start -->
     <footer class="bg_light_gray mt-5">
 
@@ -257,6 +263,11 @@
         </div>
 
     </footer>
+
+ 
+
+ 
+
     <!-- footer End -->
 
     <a href="{{url('/')}}/# " class="scrollup " style="display: none; "><i class="ion-ios-arrow-up "></i></a>

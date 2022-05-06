@@ -43,6 +43,14 @@ class ShopController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function quickview()
+{
+   
+      return    view('forentend4.productdetails.quickview');
+
+ 
+}
+
 public function Testzoom()
 {
    $product=product::where('id',1)->first();

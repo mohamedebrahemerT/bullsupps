@@ -5,7 +5,7 @@ namespace App\Http\Controllers\forentend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Gloudemans\Shoppingcart\Facades\Cart;
-
+use Storage;
 class SaveForLaterController extends Controller
 {
      
@@ -18,16 +18,16 @@ class SaveForLaterController extends Controller
     public function destroy()
     {
             
-               $id=request('id');
+                $id=request('id');
                   if (request()->has('id'))
                    {
 
-                    $id=substr($id, 0, -6);
+                    
                 
         Cart::instance('saveForLater')->remove($id);
                       
                        
-           $success_output = '<div class="alert alert-danger">تمت إزالة العنصر من الحفظ!</div>';  
+           $success_output = '<div class="alert alert-danger">Item removed from  Wishlist !</div>';  
 
                       $output = array('success'     =>  $success_output);
      
@@ -52,16 +52,15 @@ class SaveForLaterController extends Controller
      */
     public function switchToCart()
     {
-         $id=request('id');
-             $id=substr($id, 0, -13);
-        // $id = trim(preg_replace('/\s+/','', $id));
+          $id=request('id');
+               
+       
 
-                
-        
+           
 
-         $item = Cart::instance('saveForLater')->get($id);
+          $item = Cart::instance('saveForLater')->get($id);
 
-         Cart::instance('saveForLater')->remove($id);
+      
         
 
         $duplicates = Cart::instance('default')->search(function ($cartItem, $rowId) use ($id) {
@@ -70,10 +69,11 @@ class SaveForLaterController extends Controller
 
         if ($duplicates->isNotEmpty()) {
 
-                  $success_output = '<div class="alert alert-danger" style="text-align: center;"> العنصر موجود بالفعل في سلة التسوق الخاصة بك! </div>';
+                  $success_output = '<div class="alert alert-danger" style="text-align: center;"> The item is already in your cart! </div>';
 
 
                       $output = array('success'     =>  $success_output);
+                                   Cart::instance('saveForLater')->remove($id);
 
 
                       return $output;
@@ -97,12 +97,60 @@ class SaveForLaterController extends Controller
         Cart::instance('default')->add($item->id, $item->name, 1, $price)
             ->associate('App\Product');
 
-      $success_output = '<div class="alert alert-success" style="text-align: center;"> تم نقل العنصر إلى سلة التسوق!</div>';  
+      $success_output = '<div class="alert alert-success">
+              '.trans('admin.Dataaddtocart').'
+                </div>';  
 
+                $count=Cart::count();
+            $total='AED '.Cart::total();
+            $subtotal='AED '.Cart::subtotal();
+             $cart_add=Cart::content();
+            $tax='AED '.Cart::tax();
+
+               $items='';
+             foreach ($cart_add as   $item) 
+        {
+            $items.='
+            <li id="b'.$item->rowId.'">
+     <form action="'.url('/').'/cartdestroy?'.$item->rowId.'" method="POST" id="dellshop">  
+      <input type="hidden" name="_token" value="'.csrf_token().'">
+    <input type="hidden" name="rowId" value="'.$item->rowId.'">
+
+      <a class="item_remove" id="Removeshop"><span class="hidden">'.$item->rowId.'</span>  <i class="ion-close"></i></a>
+
+                        </form>
+
+                 <a href="'.url('/').'/shop/'.$item->model->id.'">
+                 <img src="'.Storage::url($item->model->photo).'" alt="cart_thumb1">
+      '.$item->model->title_name_en.'
+                                            </a>
+         <span class="cart_quantity"> '.$item->qty.' x <span class="cart_amount"> <span class="price_symbole">AED</span></span>'.$item->subtotal.'</span>
+                                    </li>
+            ';
+             
+        }
+
+
+               $Cartcontent ='<ul class="cart_list">
+                
+                                     '.$items.'
                  
+                                </ul>';
 
-                      $output = array('success'     =>  $success_output);
-                      return $output;
+                                   Cart::instance('saveForLater')->remove($id);
+
+                          $output = array(
+                        'success'     =>  $success_output,
+                        'count'     =>  $count,
+                        'total'     =>  $total,
+                        'subtotal'     =>  $subtotal,
+                        'cart_add'     =>  $cart_add,
+                        'tax'     =>  $tax,
+                        'Cartcontent'=>$Cartcontent
+                        
+                      );
+
+            return  $output;
 
  
        

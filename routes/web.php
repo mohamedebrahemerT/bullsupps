@@ -323,6 +323,7 @@ Route::post('affiliate/register', 'affiliateController@post_register');
 
 
  Route::get('/shop','ShopController@index')->name('shop.index');
+ Route::get('/quickview','ShopController@quickview');
 
  
  Route::get('/shopHome','ShopController@indexHome')->name('shopHome.index');
@@ -505,6 +506,39 @@ Route::middleware('auth')->group(function () {
     Route::get('/my-profile', 'UsersController@edit')->name('users.edit');
     
     Route::patch('/my-profile', 'UsersController@update')->name('users.update');
+
+    Route::get('/Add_New_Address', 'UsersController@Add_New_Address');
+
+    
+    Route::get('/Add_New_Address_Map_Step', 'UsersController@Add_New_Address_Map_Step');
+
+    Route::get('/edit_New_Address_Map_Step/{id}', 'UsersController@edit_New_Address_Map_Step');
+
+
+    
+
+     Route::post('/Add_New_Address_Map', 'UsersController@Add_New_Address_Map');
+
+       Route::post('/edit_New_Address_Map', 'UsersController@edit_New_Address_Map');
+
+     
+
+      Route::get('/Add_New_Address_Step2/{id}', 'UsersController@Add_New_Address_Step2');
+
+    Route::get('/Payment_Method', 'UsersController@Payment_Method');
+    Route::get('/Placed_Order_Confirmation/{id}', 'UsersController@Placed_Order_Confirmation');
+
+
+
+
+         Route::post('/Save_AddressAddress_Step2', 'UsersController@Save_AddressAddress_Step2');
+
+          Route::post('/active_user_addresses_id', 'UsersController@active_user_addresses_id');
+
+           Route::post('/Select_Delivery_Address', 'UsersController@Select_Delivery_Address');
+
+
+    
 
         Route::get('/my-orders', 'OrdersController@index')->name('orders.index');
 

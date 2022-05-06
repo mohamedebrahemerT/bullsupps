@@ -11,7 +11,7 @@ class posts extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User'); // links this->course_id to courses.id
+        return $this->belongsTo('App\user'); // links this->course_id to courses.id
     }
 
 

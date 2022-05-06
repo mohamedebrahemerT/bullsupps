@@ -462,6 +462,7 @@ class PaymentController extends Controller
 
             'billing_name' => $name,
             'billing_address' => $billing_address,
+            'address_id' => $billing_address,
 
             'billing_discount' => getNumbers()->get('discount'),
 
@@ -475,7 +476,7 @@ class PaymentController extends Controller
 
             'error' => $error,
 
-            'payment_gateway' => ' الدفع عند الاستلام  ',
+            'payment_gateway' => '  Pay With Cash ',
 
             'Invoice '=>substr(md5(microtime()),rand(0,1000000),10),
 
@@ -695,161 +696,17 @@ class PaymentController extends Controller
     public function Confirmtheorderandpayonreceipt( )
 
     {
-        
-
-  if (request()->has('shipingupdate') and request('shipingupdate') =='shipingupdate')
-              {
-
          
-
-         $this->validate(request(),[    
-               'shapingplace' => ['required', 'string', 'max:1000'],
-                 
-            ],[],[
-            'shapingplace'=>trans('admin.shapingplace'),
-          
-
-
-            ]);
-
-                   
-              $data['shapingplace']=Request('shapingplace');
-    
-
-          User::where('id',auth()->user()->id)->update($data);
-            session()->flash('success',' تم اختيار العنوان وتحديث قيمة الشحن ');
-
-
-               return redirect('/Checkout');
-             }
-
-
-
-
-
-             if (request()->has('updateadress') and request('updateadress') =='updateadress')
-              {
-
-   
-
-         $this->validate(request(),[    
-               'country_id' => ['required', 'string', 'max:1000'],
-                'city_id' => ['required', 'string', 'max:1000'],
-               // 'stat_id' => ['required', 'string', 'max:1000'],
-            ],[],[
-            'country_id'=>trans('admin.country_id'),
-            'city_id'=>trans('admin.city_id'),
-             //'stat_id'=>trans('admin.stat_id'),
-
-
-            ]);
-
-                   
-             $data['country_id2']=Request('country_id');
-             $data['city_id2']=Request('city_id');
-           //  $data['stat_id2']=Request('stat_id');
-             $data['MoreDetailsAboutYourAddress2']=Request('MoreDetailsAboutYourAddress2');
-      
-
-
-
-          User::where('id',auth()->user()->id)->update($data);
-            session()->flash('success',' تم تحديث العنوان بنجاح ');
-
-
-               return redirect('/Checkout');
-             }
-
-
-            
-
-
-
-
-
-               $PAYID=rand(1,1000);
+ 
 
                 $email= auth()->user()->email  ;
 
                $first_name=  auth()->user()->name    ;
 
                $last_name= auth()->user()->lastname   ;
+               $billing_address= request('user_addresses_id') ;   
 
-             
-
-               $payer_id= rand(1,1000);
-
-             $recipient_name= rand(1,1000);
-
-               $line1=
-               countries::where('id',auth()->user()->country_id )->first()->countries_name_ar .
-              cities::where('id',auth()->user()->city_id )->first()->cities_name_ar 
-       
-    // states::where('id',auth()->user()->stat_id )->first()->states_name_ar  
-
-               
-               ;  
-
-               $billing_address= request('billing_address') ;   
-
-               $city=auth()->user()->city_id   ;
-
-               $state= auth()->user()->stat_id; 
-
-               $postal_code= rand(1,1000);
-
-               $country_code=rand(1,1000);
-
-          
- 
- 
-
-
-
-                    $AfterPyment = AfterPyment::create([
-
-            'PAYID' =>rand(1,1000),
-
-            'email' =>$email,
-
-            'first_name' =>$first_name,
-
-            'last_name' =>$last_name,
-
-            'last_name' =>$last_name,
-
-            'payer_id' =>$payer_id,
-
-            'recipient_name' =>$recipient_name,
-
-            'line1' =>$line1,
-
-            'city' =>$city,
-
-            'state' =>'',
-
-            'postal_code' =>rand(1,1000),
-
-            'country_code' =>rand(1,1000),
-
-            'total' =>rand(1,1000),
-
-            'currency' =>rand(1,1000),
-
-         
-
-        ]);
-
-
-
-
-
-                      $amount =round( getNumbers()->get('newTotal') /100,2);
-
-
-
-           
-
+    $amount =round( getNumbers()->get('newTotal') /100,2);
                $order = $this->addToOrdersTablesPaypal($email,
 
                 $first_name.' '.$last_name,$billing_address,
@@ -860,7 +717,7 @@ class PaymentController extends Controller
 
 
 
-          // Mail::send(new OrderPlaced($order));
+         //Mail::send(new OrderPlaced($order));
 
 
 
@@ -868,46 +725,14 @@ class PaymentController extends Controller
 
             $this->decreaseQuantities();
 
-
-                if (session()->get('affiliateID')) 
-                {
-                       $affiliateID= session()->get('affiliateID');
-
-                   $commistion=0;
-
-                foreach (Cart::content() as $item)
-                   {
-
-                $commistion=$item->model->commistion +$commistion; 
-
-                   }
-
-
-             $affiliateMan= admin::where('id',$affiliateID)->first();
-
-             $oldcommistion=$affiliateMan->Totolcommistion;
-
-             $FinalTotolcommistion=$oldcommistion+$commistion;
-
-            $affiliateMan->Totolcommistion=$FinalTotolcommistion;
-
-            $affiliateMan->save();
-
-           session()->forget('affiliateID');
-            
-             
-                }
-
-       
-
-
+ 
             Cart::instance('default')->destroy();
 
             session()->forget('coupon');
 
             session()->flash('success',trans('admin.Paymentsuccess'));
 
-            return Redirect::to('/ThankYou');
+            return Redirect::to('/Placed_Order_Confirmation/'.$order->id);
 
        
 
@@ -1015,7 +840,7 @@ class PaymentController extends Controller
 
 
 
-           Mail::send(new OrderPlaced($order));
+          // Mail::send(new OrderPlaced($order));
 
 
 

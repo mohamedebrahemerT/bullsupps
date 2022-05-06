@@ -221,7 +221,7 @@ return [
 	'ContinueShopping'=>'Continue Shopping',
 	'SignUp'=>'SignUp',
 	'Login'=>'Login',
-	'address'=>'14, Al-Balat Workshop Street, Abu El-Nemros, Giza Center, Egypt',
+	'address'=>' ',
 	'GetinTouch'=>'GetinTouch',
 	'alymarket'=>'aly market',
 	'WelcometoE-shop!'=>'Welcome to aly-market !',
@@ -284,7 +284,7 @@ return [
 	'agreebill'=>'The bill was approved',
 	'Productbalance'=>'Product balance',
 	'moneybalance'=>'money balance',
-	'pound'=>'SAR',
+	'pound'=>'AED',
 	'moneybalancesalled'=>'The balance of the products that were sold',
 	'Productbalancesalled'=>'The number of products sold',
 	'BounceRate'=>'Sales',
@@ -430,7 +430,7 @@ return [
 	'CloseCart'=>'Close Cart',
 	'NoitemsInCart!'=>'Noitems In Cart !',
 	'Subtotal'=>'Subtotal',
-	'pound'=>'SAR',
+	'pound'=>'AED',
 	'saC'=>'Shipping, taxes, and discounts calculated at checkout',
 	'ShoppingCart'=>'Shopping Cart',
 	'CheckOut'=>'Check Out',
@@ -971,7 +971,7 @@ return [
 				
 				'Gift Cards'=>'Gift Cards',
 				'Our Catalog'=>'Our Catalog',
-				'pound '=>'SAR',
+				'pound '=>'AED',
 				'My Profile'=>'My Profile',
 				'What’s Inside the Box'=>'What’s Inside the Box',
 				'Recommendations'=>'Recommendations',
@@ -990,9 +990,9 @@ return [
 				'Picture'=>'Picture',
 				'Shapes'=>'Shapes',
 				'Text'=>'Text',
-				'SAR'=>'SAR',
+				'SAR'=>'AED',
 				'Buy Now'=>'Buy Now',
-				'In Stock'=>'In Stock',
+				'In Stock'=>'`In Stock',
 				'Product Description'=>'Product Description',
 				'Ingridients'=>'Ingridients',
 				'Naturation Values'=>'Naturation Values',
@@ -1113,7 +1113,8 @@ return [
            'value_en'=>'value en',
            'attributes'=>'attribute',
            'updated_record'=>'record updated',
-           'attribute_values'=>'attribute values'
+           'attribute_values'=>'attribute values',
+           'address0'=>''
 
 
 

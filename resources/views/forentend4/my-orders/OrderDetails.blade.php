@@ -6,426 +6,116 @@
 
 @section('content')
 
-
-
-   
-
- 
-
-
-
-    <div class="container">
-
-        @if (session()->has('success_message'))
-
-            <div class="alert alert-success">
-
-                {{ session()->get('success_message') }}
-
+   <!-- START SECTION BREADCRUMB -->
+    <div class="breadcrumb_section page-title-mini">
+        <div class="custom-container">
+            <!-- START CONTAINER -->
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="page-title">
+                        <ol class="breadcrumb justify-content-md-start">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">User Profile</li>
+                        </ol>
+                    </div>
+                </div>
             </div>
-
-        @endif
-
-
-
-        @if(count($errors) > 0)
-
-            <div class="alert alert-danger">
-
-                <ul>
-
-                    @foreach ($errors->all() as $error)
-
-                        <li>{{ $error }}</li>
-
-                    @endforeach
-
-                </ul>
-
-            </div>
-
-        @endif
-
-    </div>
-
-
-
-<div class="breadcrumbs ">
-
-    <div class="container">
-
-        <div class="current-name">    
-
         </div>
-
-        <ul class="breadcrumb">
-
-              <li><a href="{{url('/')}}/my-profile">{{trans('admin.MyProfile')}}</a></li>
-
-              <li class="active"><a href="{{ route('orders.index') }}">{{trans('admin.MyOrders')}}</a></li>
-
-        </ul>
-
+        <!-- END CONTAINER-->
     </div>
+    <!-- END SECTION BREADCRUMB -->
 
-</div>
+    <!-- START MAIN CONTENT -->
+    <div class="main_content">
 
-    
-
-
-
-    <div class="products-section my-orders container">
-
-        
-
-        <div class="my-profile">
-
-            <div class="products-header">
-
-                <h1 class="stylish-heading">{{trans('admin.MyOrders')}}</h1>
-
-            </div>
-
-
-
-            <div>
-
-            
-
-                <div class="order-container" style="background-color: #fff;
-
-border: 2px solid #000;
-
-margin-right: 1%;
-
-padding: 2%;
-
-height: 450px;
-
-">
-
-                    <div class="order-header">
-
-                        
-
-                        <div class="order-header-items">
-
-                            <div>
-
-                                <div class="uppercase font-bold">{{trans('admin.OrderPlaced')}}</div>
-
-                                <div>{{ presentDate($order->created_at) }}</div>
-
-                            </div>
-
-                            <div>
-
-                                <div class="uppercase font-bold">{{trans('admin.OrderID')}}</div>
-
-                                <div>{{ $order->id }}</div>
-
-                            </div><div>
-
-                                <div class="uppercase font-bold">{{trans('admin.Total')}}</div>
-
-                                <div>{{ presentPrice($order->billing_total) }}</div>
-
-                            </div>
-
-                        </div>
-
-                        <div>
-
-                            <div class="order-header-items">
-
-                                <div><a href="{{ route('orders.show', $order->id) }}">{{trans('admin.OrderDetails')}}</a></div>
-
+        <!-- START SECTION SHOP -->
+        <div class="section">
+            <div class="custom-container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-12 mb-4">
+                        <div class="dashboard_menu">
+                            <ul class="nav nav-tabs flex-column" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active"   href="{{url('/')}}/my-profile"  ><i class="icon-basket-loaded"></i>Order Details </a>
+                                </li>
                                 
-
-                   
-
-                            </div>
-
+                                <li class="nav-item">
+                                    <a class="nav-link" href="login.html"><i class="ti-lock"></i>Logout</a>
+                                </li>
+                            </ul>
                         </div>
-
                     </div>
+                    <div class="col-lg-9 col-md-12 border border-radius2 box_shadow1 p-3 p-md-4">
+                        <div class="tab-content dashboard_content ">
 
-                     
-
-                    <div class="order-products">
-
-                        @foreach ($products as $product)
-
-                            <div class="order-product-item col-sm-2">
-
-                                <div>
-
-                        <img src="{{Storage::url($product->photo)}}" alt="Product Image" width="100" height="100"></div>
-
-                                <div>
-
-                                    <div>
-
-         <a href="{{url('/')}}//shop/{{$product->id}}">{{ $product->name }}</a>
-
+                            <div class="tab-pane fade active show" id="orders" role="tabpanel" aria-labelledby="order-tab">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3>Orders</h3>
                                     </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                              <table class=" table-fill">
 
-                                    <div>{{ presentPrice($product->price) }}</div>
+                                    <tbody class="table-hover cart">
 
-                                    <div>Quantity: {{ $product->pivot->quantity }}</div>
+               @foreach ($products as $product)
 
+                                        <tr class="noborder">
+                                            <td class="product-thumbnail">
+                              <a href="{{url('/')}}//shop/{{$product->id}}"><img src="{{Storage::url($product->photo)}}" alt="product1"></a>
+                                            </td>
+                                            <td class="product-name" data-title="Product">
+                          <a href="{{url('/')}}//shop/{{$product->id}}">
+
+
+                                                 @if(session('lang')=='ar')
+
+                {{$product->title_name_ar}}
+
+                @endif
+
+                 @if(session('lang')=='en')
+
+                {{$product->title_name_en}}
+
+                @endif
+                                            </a>
+                                            </td>
+                                            <td class="product-quantity" data-title="Quantity">
+                                                <div class="quantity">
+                                                    <input class="form-control qtydisabled" type="text" size="4" value="{{ $product->pivot->quantity }}" title="Qty" aria-label="" disabled readonly>
+                                                </div>
+                                                <div class="quantity">
+                                                </div>
+                                            </td>
+                                            <td class="product-subtotal" data-title="Total">AED {{ presentPrice($product->price) }}</td>
+                                        </tr>
+            @endforeach
+                                         
+                                    </tbody>
+
+                                </table>
+                                        </div>
+                                    </div>
                                 </div>
-
                             </div>
-
-                        @endforeach
-
-
-
+                           
+                        </div>
                     </div>
+                </div>
 
-                                        <!-- Button trigger modal -->
-<a  class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
-  {{trans('admin.returning')}}
-</a>
+                <!-- END SECTION SHOP -->
 
-
-
- 
-
- 
-
-
-<!-- Button trigger modal -->
-<a  class="btn btn-warning" data-toggle="modal" data-target="#exampleModal2">
- {{trans('admin.openticket')}}  
-</a>
-
-
-
-
-
-                    </div>
-
-
-
-
-@php
-
-$status=App\OrderShareWithAllVendor::where('order_id',$order->id)->first()->status;
-$ReasonForReturn=App\OrderShareWithAllVendor::where('order_id',$order->id)->first()->ReasonForReturn;
-$openticket=App\OrderShareWithAllVendor::where('order_id',$order->id)->first()->openticket;
-
-
-
-@endphp
-
- <br>
- {{trans('admin.product status')}}  
-  :
-
-
-
-<span style="font-size:15px; " class="label
-
- {{$status=='neworder'?'label-primary' :'' }}
-
- {{$status=='waitshiping'?'label-info' :'' }}
-
-  {{$status=='shipped'?'label-success' :'' }}
-  {{$status=='returned'?'label-success' :'' }}
-  {{$status=='Received'?'label-success' :'' }}
-
-
-
-">
-
-   @if($status == 'neworder')
- {{trans('admin.New order')}}
- 
-
-   @endif
-
-      @if($status == 'waitshiping')
- {{trans('admin.Waiting for shipment')}}
-      
-
-   @endif
-
-
-      @if($status == 'shipped')
- {{trans('admin.charged')}}
-   
-
-   @endif
-
-
-      @if($status == 'returned')
- {{trans('admin.return')}}
-    
-
-   @endif
-
-
-      @if($status == 'Received')
- {{trans('admin.The recipient')}}
-
-  
-
-   @endif
-
-
-
- </span>
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
- @if($status == 'returned' )
- {{trans('admin.Reason for return')}}
-
-
-
- :   {{$ReasonForReturn}}
-
- @endif
-
-
-  <br>
-  <br>
-  <br>
- 
-
- @if($status == 'returned' )
- {{trans('admin.product complaint')}}
-
-
-
- :   {{$openticket}}
-
- @endif
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">      {{trans('admin.areusureuwanttoreturn')}}      </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-
-
-      <div class="modal-body">
-         
-
-          <form method="post" action="{{url('/')}}/returningOrder">
-
-            @csrf
-
-            <input type="hidden" name="orderID" value="{{$order->id}}">
-
-            <label>{{trans('admin.couseofreturn')}}</label>
-
-          <textarea name="ReasonForReturn" class="form-control">
-              
-          </textarea>
-              
-   
-
-                  
-      </div>
-
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{trans('admin.no')}}</button>
-
-
-
-        <button type="submit" class="btn btn-primary">{{trans('admin.yes')}}</button>
-
-      </div>
-       </form>
-
-
-    </div>
-  </div>
-</div>
-
-                
-
-               
 
             </div>
-
-
-
-            <div class="spacer"></div>
-
+            <!-- END MAIN CONTENT -->
         </div>
-
     </div>
-
-<br>
-
-<br>
-
-<br>
-
-<br>
-
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"> 
-
-{{trans('admin.Complaints')}}
-             </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-  <form method="post" action="{{url('/')}}/openticket">
-
-            @csrf
-
-            <input type="hidden" name="orderID" value="{{$order->id}}">
-
-            <label>{{trans('admin.Do you want to open a complaint for this product?')}} </label>
-
-          <textarea name="openticket" class="form-control">
-              
-          </textarea>
-              
-   
-
-                  
-      </div>
-
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{trans('admin.no')}}</button>
-
-
-
-        <button type="submit" class="btn btn-primary">{{trans('admin.yes')}}</button>
-
-      </div>
-       </form>
-      </div>
-      
-    </div>
-  </div>
-</div>
+  
 
 @endsection
 
 
 
  
-

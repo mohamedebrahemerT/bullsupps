@@ -25,7 +25,7 @@ class newes extends Model {
 
       	     public function user_id()
     {
-    	return $this->hasOne('App\User','id','adby');
+    	return $this->hasOne('App\user','id','adby');
     	 
     }
         public function comment()

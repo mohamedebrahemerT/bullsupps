@@ -16,7 +16,7 @@ class AfterPaymentOrders extends Model {
 	];
 
 		   public function user_idc() {
-        return $this->hasOne('App\User', 'id', 'user_id');
+        return $this->hasOne('App\user', 'id', 'user_id');
     }
 
       public function order_idc() 

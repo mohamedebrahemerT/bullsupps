@@ -772,9 +772,11 @@
 
     @endif
  
-
+@isset($item->options)
+ {{$item->options}}
+@endif
    
-      {{$item->options}}
+     
 
  
      

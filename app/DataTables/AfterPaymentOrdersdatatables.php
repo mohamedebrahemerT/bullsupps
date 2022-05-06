@@ -360,7 +360,7 @@ class AfterPaymentOrdersdatatables extends DataTable
 
     {
 
-        return 'Users_' . date('YmdHis');
+        return 'users_' . date('YmdHis');
 
     }
 
