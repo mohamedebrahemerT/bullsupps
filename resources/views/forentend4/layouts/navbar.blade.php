@@ -50,6 +50,8 @@
                                                     </div>
                                                     <div class="p-2 bd-highlight">
              <a class="alink" href="{{url('/')}}/Add_New_Address_Step2/{{$address->id}}" Alt="Edit"><span><i class="linearicons-pencil5 text_green pe-2"></i>Edit</span></a>
+
+              <a class="alink" href="{{url('/')}}/Delete_user_Address/{{$address->id}}" Alt="Delete"><span><i class="linearicons-trash2 text_default pe-2"></i>Delete</span></a> 
                                                     </div>
                                                     <div class="p-2 bd-highlight">
                    @if($address->Primary == 1)
@@ -57,7 +59,7 @@
                                                         <div class="defultaddress">Default</div>
                @endif
 
-                                                        <!-- <a class="alink" href="#" Alt="Delete"><span><i class="linearicons-trash2 text_default pe-2"></i>Delete</span></a> -->
+           
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
@@ -168,9 +170,10 @@
 
                         <li class="dropdown cart_dropdown">
                             <a class="nav-link cart_trigger" 
-                            href="sadasd" data-bs-toggle="dropdown">
+                            href="{{url('/')}}/login" >
 
-                                <img src="{{url('/')}}/assets/images/User.svg"><span class="amount">Login</span></a>
+                                <img src="{{url('/')}}/assets/images/User.svg"><span class="amount">Login</span>
+                            </a>
 
                             <div class="cart_box cart_right dropdown-menu dropdown-menu-right">
                                 <ul class="cart_list">

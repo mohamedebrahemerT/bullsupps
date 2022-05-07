@@ -30,7 +30,7 @@ class upload extends Controller
                      {
                         Storage::delete($test['delte_file']);
                      }
-              return $test['file']=request()->file($test['file'])->store($test['path']);
+       return $test['file']=request()->file($test['file'])->store($test['path']);
    
                   
                  }

@@ -535,6 +535,8 @@ Route::middleware('auth')->group(function () {
 
       Route::get('/Add_New_Address_Step2/{id}', 'UsersController@Add_New_Address_Step2');
 
+        Route::get('/Delete_user_Address/{id}', 'UsersController@Delete_user_Address');
+
     Route::get('/Payment_Method', 'UsersController@Payment_Method');
     Route::get('/Placed_Order_Confirmation/{id}', 'UsersController@Placed_Order_Confirmation');
 

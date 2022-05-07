@@ -426,7 +426,7 @@ class PaymentController extends Controller
 
 
 
-            session()->flash('success',trans('admin.Paymentsuccess'));
+           // session()->flash('success',trans('admin.Paymentsuccess'));
 
 
 
@@ -730,7 +730,7 @@ class PaymentController extends Controller
 
             session()->forget('coupon');
 
-            session()->flash('success',trans('admin.Paymentsuccess'));
+          //  session()->flash('success',trans('admin.Paymentsuccess'));
 
             return Redirect::to('/Placed_Order_Confirmation/'.$order->id);
 
@@ -885,7 +885,7 @@ class PaymentController extends Controller
 
             session()->forget('coupon');
 
-            session()->flash('success',trans('admin.Paymentsuccess'));
+            //session()->flash('success',trans('admin.Paymentsuccess'));
 
             return Redirect::to('/ThankYou');
 

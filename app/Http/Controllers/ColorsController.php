@@ -42,12 +42,12 @@ class ColorsController extends Controller
          [
             'name_ar' => 'required',
             'name_en' => 'required',
-            'color'   => 'required|string',
+          
 
          ], [], [
             'name_ar' => trans('admin.name_ar'),
             'name_en' => trans('admin.name_en'),
-            'color'   => trans('admin.color'),
+          
          ]);
 
       Color::create($data);
@@ -93,11 +93,11 @@ class ColorsController extends Controller
          [
             'name_ar' => 'required',
             'name_en' => 'required',
-            'color'   => 'required|string',
+            
          ], [], [
             'name_ar' => trans('admin.name_ar'),
             'name_en' => trans('admin.name_en'),
-            'color'   => trans('admin.color'),
+            
          ]);
 
       Color::where('id', $id)->update($data);

@@ -139,10 +139,13 @@
                                 <div class="row bardhe mb-2">
                                     <div class="feature-col col-xs-12 col-sm-6 col-md-6 kolonat-hom align-content-center">
                                         <div class="ikonat-home"> <i class="linearicons-map2"></i> </div>
+                                        
                                         <div class="contact_text">
                                             <span>{{$address->type}}</span>
                                         </div>
+ 
                                     </div>
+
                                 </div>
                                 <row>
                                     <div class="col-12">

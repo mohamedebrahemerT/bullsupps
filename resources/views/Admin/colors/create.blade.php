@@ -547,11 +547,7 @@
       {!! Form::label('name_en',trans('admin.name_en')) !!}
       {!! Form::text('name_en',old('name_en'),['class'=>'form-control']) !!}
     </div>
-    <div class="form-group">
-      {!! Form::label('color',trans('admin.color')) !!}
-      {!! Form::color('color',old('color'),['class'=>'form-control']) !!}
-    </div>
-
+    
     {!! Form::submit(trans('admin.add'),['class'=>'btn btn-primary']) !!}
     {!! Form::close() !!}
 

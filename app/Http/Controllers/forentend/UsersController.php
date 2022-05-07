@@ -199,6 +199,17 @@ return view('forentend4.my-profile.my-profile',compact('user', 'orders'));
         
     }
 
+
+    public function Delete_user_Address($id)
+    {
+     $user_address =user_addresses::where('id',$id)->first();
+     $user_address->delete();
+      session()->flash('danger','Address Delete succesfully');
+       
+     
+         return back();
+    }
+
     public function Save_AddressAddress_Step2( )
     {
         

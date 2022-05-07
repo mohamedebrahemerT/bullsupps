@@ -61,6 +61,13 @@
     {
         display: none;
     }
+
+    .alert-info {
+background-color: #000;
+color: #fff;
+border: 1px solid #000;
+ 
+}
     
 </style>
 

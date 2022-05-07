@@ -152,8 +152,9 @@
                                                             <div class="form-group mb-3 mt-3">
                                                                 <div class="chek-form">
                                                                     <div class="custome-checkbox">
-      <input class="form-check-input" type="checkbox" name="checkbox" id="createaccount" disabled readonly>
-                                                                        <label class="form-check-label label_info" for="createaccount"><span>I agree to the <u><strong>
+
+      <input class="form-check-input" type="checkbox" name="checkbox" id="456"    >
+              <label class="form-check-label label_info" for="456"><span>I agree to the <u><strong>
                    <a href="{{url('/')}}/term-condition">
                                                                         Terms & Conditions
                                                                         </a>
@@ -197,8 +198,15 @@
                                                     <div class="form-group mb-3 mt-3">
                                                         <div class="chek-form">
                                                             <div class="custome-checkbox">
-          <input class="form-check-input" type="checkbox" name="checkbox" id="createaccount">
-                <label class="form-check-label label_info" for="createaccount"><span>I agree to the <u><strong>Terms & Conditions</strong></u></span></label>
+
+          <input class="form-check-input" type="checkbox" name="checkbox" id="createaccount22">
+                <label class="form-check-label label_info" for="createaccount22"><span>I agree to the <u><strong>
+
+                <a href="{{url('/')}}/term-condition">
+                Terms & Conditions
+            </a>
+
+            </strong></u></span></label>
                                                             </div>
 
                                                         </div>

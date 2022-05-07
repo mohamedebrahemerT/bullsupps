@@ -286,7 +286,7 @@ $.notify("{{__('product added to cart')}}", "success");
                                                       </td>
                                                         <td>Processing</td>
                                                         <td> 
-                         {{ presentPrice($order->billing_total) }} for {{$order->products->count()}} item</td>
+                         {{ presentPrice($order->billing_total) }} for {{$order->products->count()}}  product (s)</td>
                                                         <td><a href="{{ route('orders.show', $order->id) }}" class="btn btn-primary btn-sm">View</a></td>
                                                     </tr>
                         @endforeach
@@ -347,7 +347,14 @@ $.notify("{{__('product added to cart')}}", "success");
                                                                             </tr>
                                                                             <tr class="noborderall">
                                                                                 <td class="cart_total_label noborderall text_gray"> </td>
-                                                                                <td class="cart_total_amount text-right noborderall "><a href="{{url('/')}}/Add_New_Address_Step2/{{$address->id}}" class="btn btn-primary btn-sm">Edit</a></td>
+                                                                                <td class="cart_total_amount text-right noborderall ">
+
+                                                                                    <a href="{{url('/')}}/Add_New_Address_Step2/{{$address->id}}" class="btn btn-primary btn-sm">Edit</a>
+<br>
+<br>
+                                                                                        <a class="alink" href="{{url('/')}}/Delete_user_Address/{{$address->id}}" Alt="Delete"><span><i class="linearicons-trash2 text_default pe-2"></i>Delete</span></a> 
+
+                                                                                </td>
                                                                             </tr>
 
                                                                         </tbody>

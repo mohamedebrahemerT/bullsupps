@@ -102,7 +102,8 @@ class product extends Model
 
           'commistion',
           'vat',
-          'vat_value'
+          'vat_value',
+          'productzoomphoto'
 
 
 

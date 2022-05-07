@@ -27,7 +27,7 @@ use App\Models\attributes;
 use App\Models\product_variant;
 use App\Models\attribute_values;
 
- 
+ use ImageResize;
 
 
 
@@ -238,7 +238,7 @@ class productesController extends Controller
 
 
 
-   public function update_img_dropzon_product($id)
+   public function update_img_dropzon_product($id ,Request $request) 
 
                {
 
@@ -272,6 +272,32 @@ class productesController extends Controller
 
 
 
+  $image                   =       $request->file('file');
+        $input['productzoomphoto']      =       time().'.'.$image->extension();
+
+        $destinationPath         =    "productes".$id."/zoom";
+
+            if (!file_exists($destinationPath))
+             {
+            mkdir($destinationPath, 666, true);
+            }
+
+
+
+        $img                     =       ImageResize::make($image->path());
+
+
+    
+
+
+        // --------- [ Resize Image ] ---------------
+
+        $img->resize(810, 810, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save($destinationPath.'/'.$input['productzoomphoto']);
+               
+
+          $data['productzoomphoto']=$destinationPath.'/'.$input['productzoomphoto'];
                     $productes = Product::find($id);  
 
       Product::where('id', $id)->update($data);
@@ -407,7 +433,7 @@ public function delete_imgofferphoto_dropzon_product($id)
    {
 
 
-
+     
            if (request()->has('file'))
 
             {

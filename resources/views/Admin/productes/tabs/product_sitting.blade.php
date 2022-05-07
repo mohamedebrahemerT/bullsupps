@@ -184,7 +184,12 @@
    
 
  
-      
+        <div class="form-group col-sm-12 col-md-12 col-lg-12 col-xs-12">
+            {!! Form::label('color',trans('admin.select_color')) !!}
+            <br>
+         {!! Form::select('color_id',App\Color::pluck('name_'.session('lang'),'id'),$productes->color_id,['class'=>'form-control','placeholder'=>trans('admin.select_color')]) !!}
+
+             </div>
 
     </div>
 

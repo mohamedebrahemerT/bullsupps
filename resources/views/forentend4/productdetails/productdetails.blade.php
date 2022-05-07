@@ -111,6 +111,8 @@ var arr = [] //create arry
 
     <!-- START MAIN CONTENT -->
     <div class="main_content">
+
+
         <aside class="sidebar bg-black">
             <div class="toggle">
                 <a href="{{url('/')}}/#" class="burger js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
@@ -157,6 +159,8 @@ var arr = [] //create arry
             </div>
 
         </aside>
+
+
         <!-- START SECTION SHOP -->
         <div class="section">
             <div class="custom-container">
@@ -167,8 +171,8 @@ var arr = [] //create arry
                                 <div class="product-image">
 
                                     <div class="product_img_box">
-        <img id="product_img" src="{{Storage::url($product->photo)}}"data-zoom-image="{{Storage::url($product->photo)}}" alt="product_img1"   />
-                                        <a href="#" class="product_img_zoom" title="Zoom">
+        <img id="product_img" src="{{Storage::url($product->photo)}}"data-zoom-image="{{url('/')}}/{{$product->productzoomphoto}}" alt="product_img1"   />
+                            <a href="#" class="product_img_zoom" title="Zoom">
                                             <span class="linearicons-zoom-in"></span>
                                         </a>
                                     </div>
@@ -409,14 +413,13 @@ var arr = [] //create arry
                             <div class="widget">
                                 <h5 class="widget_title">tags</h5>
                                 <div class="tags">
-                                    <!--a href="{{url('/')}}/#">General</a>
-                                    <a href="{{url('/')}}/#">Design</a>
-                                    <a href="{{url('/')}}/#">jQuery</a>
-                                    <a href="{{url('/')}}/#">Branding</a>
-                                    <a href="{{url('/')}}/#">Modern</a>
-                                    <a href="{{url('/')}}/#">Blog</a>
-                                    <a href="{{url('/')}}/#">Quotes</a>
-                                    <a href="{{url('/')}}/#">Advertisement</a -->
+                                    @foreach(App\Color::get() as $tag)
+                                    <a href="{{url('/')}}/shop">
+                                       {{  $tag->name_en}}
+                                    </a>
+                                    
+        @endforeach
+                                   
                                 </div>
                             </div>
 

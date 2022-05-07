@@ -124,9 +124,10 @@ use App\Mail\ExceptionOccured;
        return redirect('Add_New_Address');
               }
               
+       return redirect('Add_New_Address');
 
 
-                   return view('forentend4.checkout.Payment_Method');
+                    
 
             }
 
@@ -273,7 +274,7 @@ use App\Mail\ExceptionOccured;
             Cart::instance('default')->destroy();
             session()->forget('coupon');
              
-            \Session::put('success', trans('admin.Paymentsuccess'));
+             
             return Redirect::to('/');
 
         }

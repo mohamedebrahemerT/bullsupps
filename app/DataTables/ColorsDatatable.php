@@ -166,19 +166,7 @@ class ColorsDatatable extends DataTable
             'name'  => 'name_en',
             'data'  => 'name_en',
             'title' => trans('admin.name_en'),
-         ], [
-            'name'  => 'color',
-            'data'  => 'color',
-            'title' => trans('admin.colors'),
-         ], [
-            'name'  => 'created_at',
-            'data'  => 'created_at',
-            'title' => trans('admin.created_at'),
-         ], [
-            'name'  => 'updated_at',
-            'data'  => 'updated_at',
-            'title' => trans('admin.updated_at'),
-         ], [
+         ],    [
             'name'       => 'edit',
             'data'       => 'edit',
             'title'      => trans('admin.edit'),

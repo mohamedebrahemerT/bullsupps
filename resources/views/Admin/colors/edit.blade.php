@@ -547,10 +547,7 @@
       {!! Form::label('name_en',trans('admin.name_en')) !!}
       {!! Form::text('name_en',$color->name_en,['class'=>'form-control']) !!}
     </div>
-    <div class="form-group">
-      {!! Form::label('color',trans('admin.color')) !!}
-      {!! Form::color('color',$color->color,['class'=>'form-control']) !!}
-    </div>
+     
     {!! Form::submit(trans('admin.save'),['class'=>'btn btn-primary']) !!}
     {!! Form::close() !!}
 

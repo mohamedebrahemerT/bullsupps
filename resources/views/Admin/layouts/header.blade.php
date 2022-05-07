@@ -1286,63 +1286,7 @@ color: #555;">
 
 
 
-     <!--li class="treeview {{ active_menu('colors')[0] }}">
-
-    <a href="#">
-
-      <i class="fa fa-paint-brush"></i> 
-
-      <span>
-
-         @if(session('lang')== 'ar')
-
-          {{MenueControll()->colors_name_ar}} 
-
-          @endif
-
-           @if(session('lang')== 'en')
-
-          {{MenueControll()->colors_name_en}} 
-
-          @endif
-
- 
-
-    </span>
-
-      <span class="pull-right-container">
-
-        <i class="fa fa-angle-left pull-right"></i>
-
-      </span>
-
-    </a>
-
-    <ul class="treeview-menu" style="{{ active_menu('colors')[1] }}">
-
-      <li class=""><a href="{{ url('admin/colors') }}"><i class="fa fa-paint-brush"></i> 
-
-
-
-   @if(session('lang')== 'ar')
-
-          {{MenueControll()->colors_name_ar}} 
-
-          @endif
-
-           @if(session('lang')== 'en')
-
-          {{MenueControll()->colors_name_en}} 
-
-          @endif
-
-    </a></li>
-
-      <li class=""><a href="{{ url('admin/colors/create') }}"><i class="fa fa-plus"></i> {{ trans('admin.add') }}</a></li>
-
-    </ul>
-
-  </li >
+  
 
 
 
@@ -1350,7 +1294,7 @@ color: #555;">
 
 
 
-     <li class="treeview {{ active_menu('sizes')[0] }}">
+     <!--li class="treeview {{ active_menu('sizes')[0] }}">
 
     <a href="#">
 
@@ -1601,7 +1545,40 @@ color: #555;">
     </ul>
 
   </li>
+   <li class="treeview {{ active_menu('colors')[0] }}">
 
+    <a href="#">
+
+      <i class="fa fa-paint-brush"></i> 
+
+      <span>
+
+        tags
+ 
+
+    </span>
+
+      <span class="pull-right-container">
+
+        <i class="fa fa-angle-left pull-right"></i>
+
+      </span>
+
+    </a>
+
+    <ul class="treeview-menu" style="{{ active_menu('colors')[1] }}">
+
+      <li class=""><a href="{{ url('admin/colors') }}"><i class="fa fa-paint-brush"></i> 
+
+tags
+
+    </a></li>
+
+      <li class=""><a href="{{ url('admin/colors/create') }}"><i class="fa fa-plus"></i> {{ trans('admin.add') }}</a></li>
+
+    </ul>
+
+  </li >
 
 
   <!--li class="treeview {{ active_menu('newes')[0] }}">

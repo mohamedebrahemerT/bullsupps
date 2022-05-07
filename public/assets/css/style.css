@@ -6357,6 +6357,7 @@ footer .widget_title {
     -ms-flex-align: center;
     align-items: center;
     position: relative;
+    direction: ltr;
 }
 
 .product.text-center .rating_wrap {
@@ -6552,6 +6553,8 @@ footer .widget_title {
     text-overflow: ellipsis;
     overflow: hidden;
     text-transform: capitalize;
+      direction: ltr;
+
 }
 
 .product_color_switch span {

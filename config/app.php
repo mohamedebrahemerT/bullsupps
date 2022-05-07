@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
              Collective\Html\HtmlServiceProvider::class,
                  Yajra\DataTables\DataTablesServiceProvider::class,
+                        'Intervention\Image\ImageServiceProvider',
     ],
 
     /*
@@ -234,6 +235,7 @@ return [
            'Form' => Collective\Html\FormFacade::class,
            'Html' => Collective\Html\HtmlFacade::class,
         "up"=>App\Http\Controllers\upload::class,
+               'ImageResize' => 'Intervention\Image\Facades\Image',
            
    
 
