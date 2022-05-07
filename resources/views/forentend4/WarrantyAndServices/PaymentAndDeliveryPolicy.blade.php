@@ -3,38 +3,38 @@
 
 
 @section('content')
+ <!-- START SECTION BREADCRUMB -->
+    <div class="breadcrumb_section page-title-mini">
+        <div class="custom-container">
+            <!-- STRART CONTAINER -->
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="page-title">
+                        <!-- <h1>Product Detail</h1> -->
+                        <ol class="breadcrumb justify-content-md-start">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Privacy Policy</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END CONTAINER-->
+    </div>
+    <!-- END SECTION BREADCRUMB -->
 
+    <!-- START MAIN CONTENT -->
+    <div class="main_content">
 
-
- <div class="container">
-
-  <ul class="breadcrumb">
-
-        <li><a href="{{url('/')}}/"> {{ trans('admin.Home') }}</a></li>
-
-        <li><a href="{{url('/')}}/PaymentAndDeliveryPolicy">{{ trans('admin.PaymentAndDeliveryPolicy') }}</a></li>
-
-      </ul>
-
-  <div class="row">
-
-                <div id="content" class="col-sm-12 item-article">
-
-    
-
-      <div class="page_warranity">
-
-    <!--div class="title-box">
-
-        <h1 class="text-left text-uppercase title-under">Warranty and services</h1>
-
-    </div-->
-
-    <h3 class="color title-decimal font30" data-content="1">
-
-             {{trans('admin.PaymentAndDeliveryPolicy')}}...
-</h3>
-
+        <!-- STAT SECTION FAQ -->
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="term_conditions">
+                            <h6>Privacy Policy</h6>
+                           
+                                
      @if(session('lang')=='ar')
                                 
  {!! $PaymentAndDeliveryPolicy->PaymentAndDeliveryPolicy_name_ar !!}
@@ -46,25 +46,21 @@
  {!! $PaymentAndDeliveryPolicy->PaymentAndDeliveryPolicy_name_en !!}
 
 @endif  
-       
-        <br>
-
-         <div class="image-about-us">
-
-        <img src="{{Storage::url($PaymentAndDeliveryPolicy->photo)}}" 
-                 data-src="{{Storage::url($PaymentAndDeliveryPolicy->photo)}}" alt="Image Client">
-             </div>
-        <br>
-</div>
-
-
-
+            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END SECTION FAQ -->
     </div>
+    <!-- END MAIN CONTENT -->
 
-    </div>
 
-</div>
+ 
 
+
+ 
 
 
 

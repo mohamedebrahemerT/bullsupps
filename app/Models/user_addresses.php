@@ -27,6 +27,9 @@ class user_addresses extends Model
 'gift',
 'FirstName',
 'LastName',
+'RecipientName',
+'RecipientMobileNumber',
+
     ];
 
 

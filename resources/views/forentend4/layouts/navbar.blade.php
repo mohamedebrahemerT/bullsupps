@@ -264,8 +264,9 @@
                                 {{Cart::instance('default')->count()}}
                             </span><span class="amount">Cart</span></a>
                             <div class="cart_box cart_right dropdown-menu dropdown-menu-right">
+                                 <span class="Cartcontent"></span>
                 @if (Cart::count() > 0)
-    <span class="Cartcontent"></span>
+   
                                 <ul class="cart_list cart_listhide">
                 @foreach (Cart::content() as $item)
 

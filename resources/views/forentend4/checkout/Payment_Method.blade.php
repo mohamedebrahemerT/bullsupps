@@ -73,7 +73,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6" id="Additional-info-tab" data-bs-toggle="tab" href="#Additional-info" role="tab" aria-controls="Additional-info" aria-selected="false">
+                                        
+                   <div class="col-md-6 " id="Additional-info-tab" data-bs-toggle="tab" href="#Additional-info" role="tab" aria-controls="Additional-info" aria-selected="false">
+
                                             <div class="contact_wrap Addressbox_style1 mb-3">
                                                 <div class="contact_text">
                                                     <div class="row bardhe justify-content-center">

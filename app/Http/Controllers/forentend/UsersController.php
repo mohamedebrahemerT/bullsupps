@@ -124,17 +124,18 @@ return view('forentend4.my-profile.my-profile',compact('user', 'orders'));
 
      public function Add_New_Address_Map_Step()
     {
+
         return view('forentend4.Add_New_Address.Add_New_Address_Map_Step');
     }
 
      public function Add_New_Address_Map ()
     {
-        
+         
           $data = $this->validate(request(),
          [
             'lat' => 'required',
             'lng' => 'required',
-            'user_id' => 'required',
+         
             'address' => 'required',
             'gift' => 'sometimes|nullable',
 
@@ -143,11 +144,13 @@ return view('forentend4.my-profile.my-profile',compact('user', 'orders'));
          ], [], [
             'lat' => trans('admin.lat'),
             'lng' => trans('admin.lng'),
-            'user_id' => trans('admin.user_id'),
+             
             'address' => trans('admin.address'),
             'gift' => trans('admin.gift'),
             
          ]);
+
+             $data['user_id'] =auth()->user()->id;
 
      $user_addresses=user_addresses::create($data);
 
@@ -162,17 +165,19 @@ return view('forentend4.my-profile.my-profile',compact('user', 'orders'));
          [
             'lat' => 'required',
             'lng' => 'required',
-            'user_id' => 'required',
+             
             'address' => 'required',
            
 
          ], [], [
             'lat' => trans('admin.lat'),
             'lng' => trans('admin.lng'),
-            'user_id' => trans('admin.user_id'),
+            
             'address' => trans('admin.address'),
             
          ]);
+                      $data['user_id'] =auth()->user()->id;
+
  $user_addresses=user_addresses::where('id',request('id'))->update($data);
 
       session()->flash('success', trans('address updated succesfully'));
@@ -237,6 +242,8 @@ return view('forentend4.my-profile.my-profile',compact('user', 'orders'));
     'FirstName'=> request('FirstName'),
     'LastName'=> request('LastName'),
     'Primary'=> request('Primary'),
+    'RecipientName'=> request('RecipientName'),
+    'RecipientMobileNumber'=> request('RecipientMobileNumber'),
 
  ]);
 
@@ -247,6 +254,7 @@ return view('forentend4.my-profile.my-profile',compact('user', 'orders'));
 
   public function Payment_Method()
     {
+
          if (user_addresses::where('user_id',auth()->user()->id)->count() ==0) 
               {
       session()->flash('danger', trans('You have to Add Your Address'));
@@ -254,10 +262,31 @@ return view('forentend4.my-profile.my-profile',compact('user', 'orders'));
        return redirect('Add_New_Address');
               }
 
+              
+
                if (Cart::instance('default')->count() == 0) 
             {
             return redirect()->route('shop.index');
              }
+
+          
+             if (!session('Addressbox_style1active')) 
+              {
+      session()->flash('danger', trans('You have to Select Delivery Address'));
+     
+       return redirect('Add_New_Address');
+              }
+
+         if (user_addresses::where('id',session('Addressbox_style1active'))->count() ==0) {
+             session()->flash('danger', trans('You have to Select Delivery Address'));
+     
+       return redirect('Add_New_Address');
+         }
+
+
+
+
+
         return view('forentend4.checkout.Payment_Method');
     }
 

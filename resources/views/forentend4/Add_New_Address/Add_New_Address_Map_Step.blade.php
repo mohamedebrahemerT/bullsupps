@@ -99,14 +99,14 @@
 
        <form  method="post" action="Add_New_Address_Map">
        @csrf 
-                            <div class="view_all">
+                            <!--div class="view_all">
                                 <a href="#">
                                     <h5 class="mb-0"><img class="back-arrow pe-2" src="assets/images/gift_icon.svg" alt="">Send my order as a gift <label class="switch" for="checkbox">
         <input type="checkbox" id="checkbox" name="gift" value="1" />
                                             <div class="slider round"></div>
                                           </label></h5>
                                 </a>
-                            </div>
+                            </div -->
                         </div>
                     </div>
                     <div class="col-12 mb-2 mb-4">
@@ -133,7 +133,7 @@
 
     <input type="hidden" value="{{ $lat }}" id="lat" name="lat">
     <input type="hidden" value="{{ $lng }}" id="lng" name="lng">
-    <input type="hidden" value="{{ auth()->user()->id }}"  name="user_id">
+    
 
                             <div class="col-md-12 ">
               {!! Form::label('address',trans('admin.address0')) !!}

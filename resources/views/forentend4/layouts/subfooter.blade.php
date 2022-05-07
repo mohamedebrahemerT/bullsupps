@@ -213,8 +213,8 @@
                     <div class="col-lg-4 order-lg-last">
                         <div class="widget mb-lg-0">
                             <ul class="terms-ul text-center align-items-center">
-                                <li><a href="{{url('/')}}/#" class="">Terms and Conditions </a></li>
-                                <li><a href="{{url('/')}}/#" class="">Privacy Policy </a></li>
+                                <li><a href="{{url('/')}}/term-condition" class="">Terms and Conditions </a></li>
+                                <li><a href="{{url('/')}}/Privacy-Policy" class="">Privacy Policy </a></li>
 
                             </ul>
                         </div>

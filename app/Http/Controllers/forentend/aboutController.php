@@ -130,7 +130,7 @@ class aboutController extends Controller
 
 
           
-           $PaymentAndDeliveryPolicy=PaymentAndDeliveryPolicy::find(2);
+           $PaymentAndDeliveryPolicy=PaymentAndDeliveryPolicy::find(1);
       
 
   return view('forentend4.WarrantyAndServices.PaymentAndDeliveryPolicy',compact('PaymentAndDeliveryPolicy'));

@@ -268,9 +268,9 @@ Route::post('affiliate/register', 'affiliateController@post_register');
 
 
  
- Route::get('/WarrantyAndServices','aboutController@WarrantyAndServices')->name('WarrantyAndServices.WarrantyAndServices');
+ Route::get('/term-condition','aboutController@WarrantyAndServices')->name('WarrantyAndServices.WarrantyAndServices');
 
- Route::get('/PaymentAndDeliveryPolicy','aboutController@PaymentAndDeliveryPolicy')->name('PaymentAndDeliveryPolicy.PaymentAndDeliveryPolicy');
+ Route::get('/Privacy-Policy','aboutController@PaymentAndDeliveryPolicy')->name('PaymentAndDeliveryPolicy.PaymentAndDeliveryPolicy');
  
 
  Route::get('/Support24','aboutController@Support24')->name('Support24.Support24');

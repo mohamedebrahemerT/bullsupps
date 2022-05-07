@@ -1,11 +1,16 @@
  @extends('forentend4.index')
  @section('javascript')
+
+
+
  
  <style type="text/css">
   .Addressbox_style1active
     {
           border: 2px solid #BF0426;
     }
+
+    
  </style>
 
 <script type="text/javascript">
@@ -169,9 +174,15 @@
                     @endforeach
 
                  
-                    <div class="col-xl-4 col-md-6">
+                    <div class="col-xl-4 col-md-6  ">
                         <a href="{{url('/')}}/Add_New_Address_Map_Step">
-                            <div class="contact_wrap Addressbox_style1">
+                            <div class="contact_wrap  " style="  text-align: left;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+  border-radius: 12px;
+  border: 1px solid #dee2e6;
+">
 
                                 <div class="contact_text">
                                     <div class="row bardhe justify-content-center">
