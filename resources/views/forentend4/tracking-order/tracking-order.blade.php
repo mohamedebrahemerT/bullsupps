@@ -6,9 +6,31 @@
 
  
 
+ <!-- START SECTION BREADCRUMB -->
+    <div class="breadcrumb_section page-title-mini">
+        <div class="custom-container">
+            <!-- STRART CONTAINER -->
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="page-title">
+                        <!-- <h1>Product Detail</h1> -->
+                        <ol class="breadcrumb justify-content-md-start">
+                            <li class="breadcrumb-item"><a href="{{url('/')}}/#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{url('/')}}/shop">Order Tracking </a></li>
+                            <li class="breadcrumb-item active">
+                         Order Tracking</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END CONTAINER-->
+    </div>
+    <!-- END SECTION BREADCRUMB -->
 
-
-
+<br>
+<br>
+ 
 
 
 
@@ -217,7 +239,9 @@ ol.progtrckr li.progtrckr-todo:before {
 
                     </div>
                 </div>
-
+<br>
+<br>
+ 
                 <div class="form-group">
 
                     <div class="col-sm-offset-2 col-sm-10">
@@ -262,5 +286,8 @@ ol.progtrckr li.progtrckr-todo:before {
 
 
 
+<br>
+<br>
+ 
 @endsection
 

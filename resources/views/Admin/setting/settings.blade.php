@@ -610,32 +610,32 @@
 
           <div class="form-group col-sm-4 col-md-4 col-lg-4"> 
      {{ Form::label('facebookLink', trans('admin.facebookLink'))  }}
-     {{ Form::text('facebookLink',settings()->facebookLink,['class'=>'form-control'])  }}
+     {{ Form::text('facebookLink',settings()->facebooklink,['class'=>'form-control'])  }}
      </div> 
 
        <div class="form-group col-sm-4 col-md-4 col-lg-4"> 
      {{ Form::label('TwitterLink', trans('admin.TwitterLink'))  }}
-     {{ Form::text('TwitterLink',settings()->TwitterLink,['class'=>'form-control'])  }}
+     {{ Form::text('twitterlink',settings()->twitterlink,['class'=>'form-control'])  }}
      </div> 
 
        <div class="form-group col-sm-4 col-md-4 col-lg-4"> 
      {{ Form::label('GmailLink', trans('admin.GmailLink'))  }}
-     {{ Form::text('GmailLink',settings()->GmailLink,['class'=>'form-control'])  }}
+     {{ Form::text('gmaillink',settings()->gmaillink,['class'=>'form-control'])  }}
      </div> 
 
        <div class="form-group col-sm-4 col-md-4 col-lg-4"> 
      {{ Form::label('LinkedinLink', trans('admin.LinkedinLink'))  }}
-     {{ Form::text('LinkedinLink',settings()->LinkedinLink,['class'=>'form-control'])  }}
+     {{ Form::text('linkedinlink',settings()->linkedinlink,['class'=>'form-control'])  }}
      </div> 
 
        <div class="form-group col-sm-4 col-md-4 col-lg-4"> 
      {{ Form::label('instagramLink', trans('admin.instagramLink'))  }}
-     {{ Form::text('instagramLink',settings()->instagramLink,['class'=>'form-control'])  }}
+     {{ Form::text('instgramlink',settings()->instgramlink,['class'=>'form-control'])  }}
      </div> 
 
        <div class="form-group col-sm-4 col-md-4 col-lg-4"> 
      {{ Form::label('mapLink', trans('admin.mapLink'))  }}
-     {{ Form::text('mapLink',settings()->mapLink,['class'=>'form-control'])  }}
+     {{ Form::text('maplink',settings()->maplink,['class'=>'form-control'])  }}
      </div> 
 
       <div class="form-group col-sm-6 col-md-4 col-lg-6"> 

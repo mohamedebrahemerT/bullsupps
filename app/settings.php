@@ -20,15 +20,19 @@ class settings extends Model
 					"language",
 					"status",
 					"maintenance",
-					'facebookLink',
-					'TwitterLink',
-					'GmailLink',
-					'LinkedinLink',
-					'instagramLink',
-					'mapLink',
+					  'facebooklink',
+'twitterlink',
+'gmaillink',
+'linkedinlink',
+'instgramlink',
+'maplink',
 					'phone',
 					'address_ar',
 					'address_en',
 					'profile',
 					 ];
+
+ 
+ 
+ 
 }

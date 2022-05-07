@@ -1116,6 +1116,13 @@ return [
            'attribute_values'=>'attribute values',
            'address0'=>'',
            'dataCretedsucsufully'=>'successfully registered',
+           'Orderid'=>'Order id',
+           'Getstatus'=>'Get status',
+           'put your order id here'=>'put your order id here',
+           'Underway'=>'Underway',
+           'itischarged'=>'it ischarged',
+           'Received'=>'Received',
+
 
 
 

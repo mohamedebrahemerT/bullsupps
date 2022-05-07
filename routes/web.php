@@ -323,6 +323,16 @@ Route::post('affiliate/register', 'affiliateController@post_register');
 
 
  Route::get('/shop','ShopController@index')->name('shop.index');
+
+ Route::post('/shop_Filter','ShopController@shop_Filter')->name('shop.shop_Filter');
+
+  Route::post('/shop_sorting','ShopController@shop_sorting')->name('shop.shop_sorting');
+
+
+ 
+
+ 
+
  Route::get('/quickview','ShopController@quickview');
 
  

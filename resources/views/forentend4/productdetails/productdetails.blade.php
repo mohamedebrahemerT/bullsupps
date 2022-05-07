@@ -74,6 +74,8 @@ var arr = [] //create arry
      
 
   $('input[name="attribute_value_ids"]').val(arr);
+
+  
     });
       
   </script>

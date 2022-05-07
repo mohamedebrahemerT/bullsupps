@@ -24,6 +24,9 @@ use App\otherDataColorForSliderEN;
 use App\affilaiateLinks;
 use App\otherData;
 use App\OtherDatasٍSiZes;
+use App\Models\attribute_values;
+use App\Models\product_variant;
+
  
 
 
@@ -43,602 +46,263 @@ class ShopController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function quickview()
-{
    
-      return    view('forentend4.productdetails.quickview');
-
  
-}
-
-public function Testzoom()
-{
-   $product=product::where('id',1)->first();
-        $filess=filess::where('file_type','productes')->
-                where('relation_id',1)->get();
-
-      
-  
-      return    view('forentend3.zoom.Testzoom',compact('product','filess'));
-
- 
-}
-    public function zoom()
-    {
-
-       $product=product::where('id',1)->first();
-        $filess=filess::where('file_type','productes')->
-                where('relation_id',1)->get();
-
-      return    view('forentend3.zoom.zoom',compact('product','filess'));
-    }
-
-    public function zoom2()
-    {
-
-       $product=product::where('id',1)->first();
-        $filess=filess::where('file_type','productes')->
-                where('relation_id',1)->get();
-
-      return    view('forentend3.zoom.zoom2',compact('product','filess'));
-    }
-
-
-
-public function Tags($id)
-{
-   
-               $categoryName =tags::where('id',$id)->first()->title_name_ar;
-
-              $Department =tags::where('id',$id)->first();
-
-                $Departments = DB::table('tags')->take(8)->get();
-                         
-          $products = Product::where('tag_id',
-                  $id)->where('status','active')->inrandomOrder()->paginate(9);
-
-
-                return view('forentend3.Tags.Tags')->with([
-            'products' => $products,
-            'Departments' => $Departments,
-            'categoryName'=>$categoryName,
-            'Department'=>$Department
-          
-        ]);
-}
-
-
-
-   
-
 
      public function index()
     { 
 
-       if (request('id') and request()->sort == 'low_high')
-             {        
-                      $id=request('id');
+           $pagination = 9;
+       // $categories = Department::all();
+        $categories = Department::take(4)->get();
+
+        if (request()->id) 
+        {
+
+    $products = Product::where('status','active')->where('department_id',request()->id);
             
-
-   $products = Product::where('department_id',
-                  $id)->where('status','active')->orderBy('price')->paginate(10);
-
-              if(session('lang') =='ar')
-        {
- $categoryName =Department::where('id',$id)->first()->dep_name_ar;
-        }
-        else
-        {
-            $categoryName =Department::where('id',$id)->first()->dep_name_en; 
-        }
-                 $photo =Department::where('id',$id)->first()->icon;
-
-                  $Departments = DB::table('departments')
-            ->where('parent',$id)->inrandomOrder()->get();
-
-
-    $Bestsellers=Product::where('status','active')->inrandomOrder()->paginate(9);
-      $NewArrivals=Product::where('status','active')->inrandomOrder()->paginate(9);
-
-                    $products2 = Product::where('status','active')->inrandomOrder()->orderBy('id','DESC')->paginate(15);
-                  
-
-              return view('forentend4.shop.shop')->with([
-            'products' => $products,
-            'products2' => $products2,
-            'Departments' => $Departments,
-            'categoryName' => $categoryName,
-            'photo'=>$photo,
-            'Bestsellers'=>$Bestsellers,
-            'NewArrivals'=>$NewArrivals,
-            'arrcolor'=>$arrcolor=1
-
-        ]);
-        } elseif (request('id') and request()->sort == 'high_low' )
-            {
-
-                      $id=request('id');
-   $products = Product::where('department_id',
-                  $id)->where('status','active')->orderBy('price','desc')->paginate(10);
-
-              if(session('lang') =='ar')
-        {
- $categoryName =Department::where('id',$id)->first()->dep_name_ar;
-        }
-        else
-        {
-            $categoryName =Department::where('id',$id)->first()->dep_name_en; 
-        }
-                 $photo =Department::where('id',$id)->first()->icon;
-
-                  $Departments = DB::table('departments')
-            ->where('parent',$id)->inrandomOrder()->get();
-
-
-    $Bestsellers=Product::where('status','active')->inrandomOrder()->paginate(9);
-      $NewArrivals=Product::where('status','active')->inrandomOrder()->paginate(9);
-
-                    $products2 = Product::where('status','active')->inrandomOrder()->orderBy('id','DESC')->paginate(15);
-  
-
-              return view('forentend4.shop.shop')->with([
-            'products' => $products,
-            'products2' => $products2,
-            'Departments' => $Departments,
-            'categoryName' => $categoryName,
-            'photo'=>$photo,
-            'Bestsellers'=>$Bestsellers,
-            'NewArrivals'=>$NewArrivals,
-            'arrcolor'=>$arrcolor1=2
-
-        ]);
-        } 
-
-
-        elseif (request('id') and request()->sort == 'theMostRecent' )
-             {
-
-                      $id=request('id');
-     $products = Product::where('department_id',
-                  $id)->where('status','active')->orderBy('id','desc')->paginate(10);
-
-              if(session('lang') =='ar')
-        {
- $categoryName =Department::where('id',$id)->first()->dep_name_ar;
-        }
-        else
-        {
-            $categoryName =Department::where('id',$id)->first()->dep_name_en; 
-        }
-                 $photo =Department::where('id',$id)->first()->icon;
-
-                  $Departments = DB::table('departments')
-            ->where('parent',$id)->inrandomOrder()->get();
-
-
-    $Bestsellers=Product::where('status','active')->inrandomOrder()->paginate(9);
-      $NewArrivals=Product::where('status','active')->inrandomOrder()->paginate(9);
-
-                    $products2 = Product::where('status','active')->inrandomOrder()->orderBy('id','DESC')->paginate(15);
-  
-
-              return view('forentend4.shop.shop')->with([
-            'products' => $products,
-            'products2' => $products2,
-            'Departments' => $Departments,
-            'categoryName' => $categoryName,
-            'photo'=>$photo,
-            'Bestsellers'=>$Bestsellers,
-            'NewArrivals'=>$NewArrivals,
-            'arrcolor'=>$arrcolor=0
-
-
-        ]);
-        } 
-
-          elseif (request('id') and request()->sort == 'moreRequests' )
-             {
-
-                      $id=request('id');
-      $products = Product::where('department_id',
-                  $id)->where('status','active')->inRandomOrder()->paginate(10);
-
-              if(session('lang') =='ar')
-        {
- $categoryName =Department::where('id',$id)->first()->dep_name_ar;
-        }
-        else
-        {
-            $categoryName =Department::where('id',$id)->first()->dep_name_en; 
-        }
-                 $photo =Department::where('id',$id)->first()->icon;
-
-                  $Departments = DB::table('departments')
-            ->where('parent',$id)->inrandomOrder()->get();
-
-
-    $Bestsellers=Product::where('status','active')->inrandomOrder()->paginate(9);
-      $NewArrivals=Product::where('status','active')->inrandomOrder()->paginate(9);
-
-                    $products2 = Product::where('status','active')->inrandomOrder()->orderBy('id','DESC')->paginate(15);
-  
-
-              return view('forentend4.shop.shop')->with([
-            'products' => $products,
-            'products2' => $products2,
-            'Departments' => $Departments,
-            'categoryName' => $categoryName,
-            'photo'=>$photo,
-            'Bestsellers'=>$Bestsellers,
-            'NewArrivals'=>$NewArrivals,
-            'arrcolor'=>$arrcolor=0
-
-
-        ]);
-        } 
-
-              elseif (request('id') and request('color') )
-             {
-  
-          
-
-                    $color=request('color'); 
-               
-            $colorName_photoColor_size = DB::table('colorName_photoColor_size')
-        ->where('color_name', 'LIKE', "%{$color}%")->groupBy('color_name')->
-        get();
-
-                          $IDOFPRODCUTS=[];
-                     foreach ($colorName_photoColor_size  as $value)
-                      {
-                       array_push($IDOFPRODCUTS, $value->product_id);
-                     }
-
-                      
-
-
-                      $id=request('id');
-       $products = Product::whereIn('id',$IDOFPRODCUTS)->where('department_id',
-                  $id)->where('status','active')->inRandomOrder()->paginate(10);
-
-              if(session('lang') =='ar')
-        {
- $categoryName =Department::where('id',$id)->first()->dep_name_ar;
-        }
-        else
-        {
-            $categoryName =Department::where('id',$id)->first()->dep_name_en; 
-        }
-                 $photo =Department::where('id',$id)->first()->icon;
-
-                  $Departments = DB::table('departments')
-            ->where('parent',$id)->inrandomOrder()->get();
-
-
-    $Bestsellers=Product::where('status','active')->inrandomOrder()->paginate(9);
-      $NewArrivals=Product::where('status','active')->inrandomOrder()->paginate(9);
-
-                    $products2 = Product::where('status','active')->inrandomOrder()->orderBy('id','DESC')->paginate(15);
-  
-
-              return view('forentend4.shop.shop')->with([
-            'products' => $products,
-            'products2' => $products2,
-            'Departments' => $Departments,
-            'categoryName' => $categoryName,
-            'photo'=>$photo,
-            'Bestsellers'=>$Bestsellers,
-            'NewArrivals'=>$NewArrivals,
-            'arrcolor'=>$arrcolor=0
-
-
-        ]);
-              }
-
-          elseif (request('id') and request('size') )
-             {
-
-          
-
-                    $size=request('size'); 
-               
-            $colorName_photoColor_size = DB::table('colorName_photoColor_size')
-        ->where('sizeType', 'LIKE', "%{$size}%")->groupBy('sizeType')->
-        get();
-
-                          $IDOFPRODCUTS=[];
-                     foreach ($colorName_photoColor_size  as $value)
-                      {
-                       array_push($IDOFPRODCUTS, $value->product_id);
-                     }
-
-                      
-
-
-                      $id=request('id');
-        $products = Product::whereIn('id',$IDOFPRODCUTS)->where('department_id',
-                  $id)->where('status','active')->inRandomOrder()->paginate(10);
-
-              if(session('lang') =='ar')
-        {
- $categoryName =Department::where('id',$id)->first()->dep_name_ar;
-        }
-        else
-        {
-            $categoryName =Department::where('id',$id)->first()->dep_name_en; 
-        }
-                 $photo =Department::where('id',$id)->first()->icon;
-
-                  $Departments = DB::table('departments')
-            ->where('parent',$id)->inrandomOrder()->get();
-
-
-    $Bestsellers=Product::where('status','active')->inrandomOrder()->paginate(9);
-      $NewArrivals=Product::where('status','active')->inrandomOrder()->paginate(9);
-
-                    $products2 = Product::where('status','active')->inrandomOrder()->orderBy('id','DESC')->paginate(15);
-  
-
-              return view('forentend4.shop.shop')->with([
-            'products' => $products,
-            'products2' => $products2,
-            'Departments' => $Departments,
-            'categoryName' => $categoryName,
-            'photo'=>$photo,
-            'Bestsellers'=>$Bestsellers,
-            'NewArrivals'=>$NewArrivals,
-            'arrcolor'=>$arrcolor=0
-
-
-        ]);
+            $categoryName =Department::where('id',request()->id)->first()->dep_name_en; 
+            
+        } else {
+            $products = Product::where('status','active');
+            $categoryName = 'Featured';
         }
 
-
-
-             elseif (request('id') and request('TradeMark') )
-             {
-
-          
-
-                     $TradeMark_id=request('TradeMark'); 
-               
-     
-                      
-
-
-                      $id=request('id');
-        $products = Product::where('trad_id',$TradeMark_id)->where('department_id',
-                  $id)->where('status','active')->inRandomOrder()->paginate(10);
-
-              if(session('lang') =='ar')
-        {
- $categoryName =Department::where('id',$id)->first()->dep_name_ar;
+        if (request()->sort == 'low_high') {
+            $products = $products->orderBy('price')->paginate($pagination);
+        } elseif (request()->sort == 'high_low') {
+            $products = $products->orderBy('price', 'desc')->paginate($pagination);
+        } else {
+            $products = $products->paginate($pagination);
         }
-        else
-        {
-            $categoryName =Department::where('id',$id)->first()->dep_name_en; 
-        }
-                 $photo =Department::where('id',$id)->first()->icon;
-
-                  $Departments = DB::table('departments')
-            ->where('parent',$id)->inrandomOrder()->get();
-
-
-    $Bestsellers=Product::where('status','active')->inrandomOrder()->paginate(9);
-      $NewArrivals=Product::where('status','active')->inrandomOrder()->paginate(9);
-
-                    $products2 = Product::where('status','active')->inrandomOrder()->orderBy('id','DESC')->paginate(15);
-  
-
-              return view('forentend4.shop.shop')->with([
-            'products' => $products,
-            'products2' => $products2,
-            'Departments' => $Departments,
-            'categoryName' => $categoryName,
-            'photo'=>$photo,
-            'Bestsellers'=>$Bestsellers,
-            'NewArrivals'=>$NewArrivals,
-            'arrcolor'=>$arrcolor=0
-
-
-        ]);
-            }
-         
-          elseif (request('id') and request('text_search') )
-            {
-
-
-
-          
-                 $query=request('text_search');
-
-                      $id=request('id');
-
-           
-
-            $products = Product::
-        where('title_name_ar', 'LIKE', "%{$query}%")
-        ->where('department_id',$id)
-        ->where('status','active')->inRandomOrder()->paginate(10);
-
-
-
-              if(session('lang') =='ar')
-        {
- $categoryName =Department::where('id',$id)->first()->dep_name_ar;
-        }
-        else
-        {
-            $categoryName =Department::where('id',$id)->first()->dep_name_en; 
-        }
-                 $photo =Department::where('id',$id)->first()->icon;
-
-                   $Departments = DB::table('departments')
-            ->where('parent',$id)->inrandomOrder()->get();
-
-
-    $Bestsellers=Product::where('status','active')->inrandomOrder()->paginate(9);
-      $NewArrivals=Product::where('status','active')->inrandomOrder()->paginate(9);
-
-  
-                    $products2 = Product::where('status','active')->inrandomOrder()->orderBy('id','DESC')->paginate(15);
-
-              return view('forentend4.shop.shop')->with([
-            'products' => $products,
-            'products2' => $products2,
-            'Departments' => $Departments,
-            'categoryName' => $categoryName,
-            'photo'=>$photo,
-            'Bestsellers'=>$Bestsellers,
-            'NewArrivals'=>$NewArrivals,
-            'arrcolor'=>$arrcolor=0
-
-
-        ]);
- 
-           }
-         
-
-          elseif (request()->id) 
-              {
-
-
-             
-
-          
-
-
-               $id=request('id');
-
-
-                        $Departments = DB::table('departments')
-            ->where('parent',$id)->inrandomOrder()->get();
-
-
-   $depIDS=[];
-foreach ($Departments as   $Department) 
-
-{
-    array_push($depIDS, $Department->id);
-}
-
- 
- 
-           
- 
- 
-
-
-                  $Department2 = Department::whereIn('parent',
-                 $depIDS)->inrandomOrder()->get();
-
-
-
-   $depIDS2=[];
-foreach ($Department2 as   $Department) 
-
-{
-    array_push($depIDS2, $Department->id);
-}
-
- 
-
-        
-
-             $products = Product::whereIn('department_id',
-                 $depIDS)->where('stock','>',0)->inrandomOrder()->get();
-
-
-             $products2 = Product::where('department_id',
-                  $id)->where('stock','>',0)->inrandomOrder()->paginate(15);
-
-
-         
-
-               if(session('lang') =='ar')
-        {
- $categoryName =Department::where('id',$id)->first()->dep_name_ar;
-        }
-        else
-        {
-            $categoryName =Department::where('id',$id)->first()->dep_name_en; 
-        }
-                 $photo =Department::where('id',$id)->first()->icon;
-
-                  $Departments = DB::table('departments')
-            ->where('parent',$id)->inrandomOrder()->get();
-
-
-    $Bestsellers=Product::where('status','active')->inrandomOrder()->paginate(9);
-     $NewArrivals=Product::where('status','active')->inrandomOrder()->paginate(9);
-
- 
-
-                return view('forentend4.shop.shop')->with([
-            'products' => $products,
-            'products2' => $products2,
-            'Departments' => $Departments,
-            'categoryName'=>$categoryName,
-            'photo'=>$photo,
-            'Bestsellers'=>$Bestsellers,
-            'NewArrivals'=>$NewArrivals,
-            'arrcolor'=>$arrcolor=0
-          
-        ]);
- 
-           
-        
-          
-               
-
-                
-            }
-
-
-
-
-             else {
-
-        
-  
-
-                    $products = Product::where('status','active')->inrandomOrder()->orderBy('id','DESC')->paginate(15);
-                    $products2 = Product::where('status','active')->inrandomOrder()->orderBy('id','DESC')->paginate(15);
-
-                    if (session('lang')=='ar')
-                                 {
-                $categoryName = 'التصنيفات';
-                                 }     
-
-                                  elseif (session('lang')=='en')
-                                 {
-                $categoryName = 'All Categories ';
-                                 }     
-           
-     
-  
-        
- $Bestsellers=Product::where('status','active')->inrandomOrder()->paginate(9);
-    $NewArrivals=Product::where('status','active')->inrandomOrder()->paginate(9);
-           
-
-    $Departments = DB::table('departments')
-            ->where('parent',null)->inrandomOrder()->get();
 
         return view('forentend4.shop.shop')->with([
             'products' => $products,
-            'products2' => $products2,
-            'Departments' => $Departments,
-            'categoryName'=>$categoryName,
-             'Bestsellers'=>$Bestsellers,
-            'NewArrivals'=>$NewArrivals,
-            'arrcolor'=>$arrcolor=0
-
-          
+            'categories' => $categories,
+            'categoryName' => $categoryName,
         ]);
- 
-         
-    }
+  }
+
+   public function shop_Filter()
+    { 
+        
+           $pagination = 9;
+        $categories = Department::all();
+
+        if (request()->id) 
+        {
+
+    $products = Product::where('status','active')->where('department_id',request()->id);
+            
+            $categoryName =Department::where('id',request()->id)->first()->dep_name_en; 
+            
+        } else {
+            $products = Product::where('status','active');
+            $categoryName = 'Featured';
+        }
+
+        if (request()->sort == 'low_high') {
+            $products = $products->orderBy('price')->paginate($pagination);
+        } elseif (request()->sort == 'high_low') {
+            $products = $products->orderBy('price', 'desc')->paginate($pagination);
+        }
+
+        elseif (request()->price_first and request()->price_second and request()->Brand_ids==null and  request()->attribute_value_ids==null) 
+        {
+              
+              $products = 
+             $products
+             ->inRandomOrder()->
+  whereBetween('price_offer',[request()->price_first,request()->price_second])
+             ->paginate($pagination);
+        }
+
+
+        elseif (request()->Brand_ids  and  request()->attribute_value_ids==null and request()->price_first ==null) 
+        {
+             $Brand_ids = request('Brand_ids');
+      $Brand_ids = explode(',', $Brand_ids);
+
+             $products = $products->whereIn('trad_id',   $Brand_ids )->paginate($pagination);
+        } 
+
+         elseif (request()->price_first and request()->price_second and request()->Brand_ids  and  request()->attribute_value_ids==null) 
+        {
+
+            $Brand_ids = request('Brand_ids');
+      $Brand_ids = explode(',', $Brand_ids);
+              
+              $products = 
+             $products
+             
+          ->whereIn('trad_id',   $Brand_ids )->
+  whereBetween('price_offer',[request()->price_first,request()->price_second])
+             ->paginate($pagination);
+        }
+
+        elseif (request()->attribute_value_ids  and request()->Brand_ids==null and request()->price_first ==null and request()->price_first ==null) 
+        {
+             $attribute_value_ids = request('attribute_value_ids');
+$attribute_value_ids = explode(',', $attribute_value_ids);
+
+     $product_variants =product_variant::whereIn('attribute_value_id',$attribute_value_ids)->get();
+
+            $product_ids=[];
+            foreach ($product_variants as $key => $product_variant) 
+            {
+                  $product_id=$product_variant->product_id;
+
+                  array_push( $product_ids,$product_id);
+            }
+              
+        $products = $products->whereIn('id',   $product_ids )->paginate($pagination);
+        }
+
+         elseif (request()->attribute_value_ids  and request()->Brand_ids==null and request()->price_first  and request()->price_first ) 
+        {
+
+
+             $attribute_value_ids = request('attribute_value_ids');
+$attribute_value_ids = explode(',', $attribute_value_ids);
+
+     $product_variants =product_variant::whereIn('attribute_value_id',$attribute_value_ids)->get();
+
+            $product_ids=[];
+            foreach ($product_variants as $key => $product_variant) 
+            {
+                  $product_id=$product_variant->product_id;
+
+                  array_push( $product_ids,$product_id);
+            }
+              
+        $products = $products->whereIn('id',   $product_ids )->paginate($pagination);
+        }
+          elseif (request()->Brand_ids and  request()->attribute_value_ids and request()->price_first ==null and request()->price_first ==null) 
+          {
+
+
+            $Brand_ids = request('Brand_ids');
+      $Brand_ids = explode(',', $Brand_ids);
+
+       $attribute_value_ids = request('attribute_value_ids');
+$attribute_value_ids = explode(',', $attribute_value_ids);
+
+     $product_variants =product_variant::whereIn('attribute_value_id',$attribute_value_ids)->get();
+
+            $product_ids=[];
+            foreach ($product_variants as $key => $product_variant) 
+            {
+                  $product_id=$product_variant->product_id;
+
+                  array_push( $product_ids,$product_id);
+            }
+              
+
+             $products = 
+             $products
+             ->whereIn('trad_id',   $Brand_ids)
+             ->whereIn('id',   $product_ids )
+             ->paginate($pagination);
+             
+          }
+
+          elseif (request()->Brand_ids and  request()->attribute_value_ids and request()->price_first  and request()->price_first ) 
+          {
+            
+               
+            $Brand_ids = request('Brand_ids');
+      $Brand_ids = explode(',', $Brand_ids);
+
+       $attribute_value_ids = request('attribute_value_ids');
+$attribute_value_ids = explode(',', $attribute_value_ids);
+
+     $product_variants =product_variant::whereIn('attribute_value_id',$attribute_value_ids)->get();
+
+            $product_ids=[];
+            foreach ($product_variants as $key => $product_variant) 
+            {
+                  $product_id=$product_variant->product_id;
+
+                  array_push( $product_ids,$product_id);
+            }
+              
+
+              $products = 
+             $products
+             ->whereIn('trad_id',   $Brand_ids)
+             ->whereIn('id',   $product_ids )->
+whereBetween('price_offer',[request()->price_first,request()->price_second])
+             ->paginate($pagination);
+             
+          }
+
+
+        else {
+            $products = $products->paginate($pagination);
+        }
+
+         return view('forentend4.shop.shop_Filter',[
+           'products' => $products,
+            'categories' => $categories,
+            'categoryName' => $categoryName,
+         ])->render();
+  }
+
+   public function shop_sorting()
+    { 
+
+        if (request()->Showing) {
+          $pagination =request()->Showing; 
+          
+
+
+        }
+        else
+        {
+           $pagination = 9; 
+        }
+
+           
+       // $categories = Department::all();
+        $categories = Department::take(4)->get();
+
+        if (request()->id) 
+        {
+
+    $products = Product::where('status','active')->where('department_id',request()->id);
+            
+            $categoryName =Department::where('id',request()->id)->first()->dep_name_en; 
+            
+        } else {
+            $products = Product::where('status','active');
+            $categoryName = 'Featured';
+        }
+
+        if (request()->sort == 'low_high') {
+            $products = $products->orderBy('price')->paginate($pagination);
+        } elseif (request()->sort == 'high_low') {
+            $products = $products->orderBy('price', 'desc')->paginate($pagination);
+        } 
+        elseif (request()->sort == 'newness') {
+            $products = $products->orderBy('id', 'desc')->paginate($pagination);
+        }
+
+        elseif (request()->sort == 'popularity') {
+            $products = $products->inRandomOrder()->paginate($pagination);
+        }
+         elseif (request()->sort == 'Default') {
+            $products = $products->paginate($pagination);
+        }
+
+        else {
+            $products = $products->inRandomOrder()->paginate($pagination);
+        }
+
+        return view('forentend4.shop.shop_Filter',[
+           'products' => $products,
+            'categories' => $categories,
+            'categoryName' => $categoryName,
+         ])->render();
   }
 
     /**

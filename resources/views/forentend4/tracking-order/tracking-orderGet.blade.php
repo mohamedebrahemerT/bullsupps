@@ -8,6 +8,28 @@
 
 
 
+ <!-- START SECTION BREADCRUMB -->
+    <div class="breadcrumb_section page-title-mini">
+        <div class="custom-container">
+            <!-- STRART CONTAINER -->
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="page-title">
+                        <!-- <h1>Product Detail</h1> -->
+                        <ol class="breadcrumb justify-content-md-start">
+                            <li class="breadcrumb-item"><a href="{{url('/')}}/#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{url('/')}}/shop">Order Tracking </a></li>
+                            <li class="breadcrumb-item active">
+                         Order Tracking</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END CONTAINER-->
+    </div>
+    <!-- END SECTION BREADCRUMB -->
+
 
 
 
@@ -326,17 +348,7 @@ $openticket=App\OrderShareWithAllVendor::where('order_id',$order->id)->first()->
 
             <ul class="list-group">
 
-                     <div class="order-container" style="background-color: #fff;
-
-border: 2px solid #000;
-
-margin-right: 1%;
-
-padding: 2%;
-
-height: 450px;
-
-">
+                     <div class="order-container"  >
 
                     <div class="order-header">
 
@@ -452,209 +464,33 @@ height: 450px;
                 </div> 
                      
 
-             
-
-
-
-
- <br>
-
-حالة   المنتج    :
-
-
-
-<span style="font-size:15px; " class="label
-
- {{$status=='neworder'?'label-primary' :'' }}
-
- {{$status=='waitshiping'?'label-info' :'' }}
-
-  {{$status=='shipped'?'label-success' :'' }}
-  {{$status=='returned'?'label-success' :'' }}
-  {{$status=='Received'?'label-success' :'' }}
-
-
-
-">
-
-   @if($status == 'neworder')
-
-   طلب جديد
-
-   @endif
-
-      @if($status == 'waitshiping')
-
-      بنتظر الشحن 
-
-   @endif
-
-
-      @if($status == 'shipped')
-
-      المشحون 
-
-   @endif
-
-
-      @if($status == 'returned')
-
-      المرتجع 
-
-   @endif
-
-
-      @if($status == 'Received')
-
-
-      المستلم 
-
-   @endif
-
-
-
- </span>
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
- @if($status == 'returned' )
-
- سبب   الارجاع 
-
- :   {{$ReasonForReturn}}
-
- @endif
-
-
-  <br>
-  <br>
-  <br>
- 
-
- @if($status == 'returned' )
-
-    شكوي المنتج   
-
- :   {{$openticket}}
-
- @endif
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">      {{trans('admin.areusureuwanttoreturn')}}      </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-
-
-      <div class="modal-body">
-         
-
-          <form method="post" action="{{url('/')}}/returningOrder">
-
-            @csrf
-
-            <input type="hidden" name="orderID" value="{{$order->id}}">
-
-            <label>{{trans('admin.couseofreturn')}}</label>
-
-          <textarea name="ReasonForReturn" class="form-control">
-              
-          </textarea>
-              
    
 
-                  
-      </div>
-
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{trans('admin.no')}}</button>
-
-
-
-        <button type="submit" class="btn btn-primary">{{trans('admin.yes')}}</button>
-
-      </div>
-       </form>
-
-
-    </div>
-  </div>
-</div>
-
-                
-
-               
-
-            </div>
-
-
-
-            <div class="spacer"></div>
-
-        </div>
-
-    </div>
-
 <br>
-
 <br>
-
 <br>
-
 <br>
-
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">        الشكاوي </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-  <form method="post" action="{{url('/')}}/openticket">
-
-            @csrf
-
-            <input type="hidden" name="orderID" value="{{$order->id}}">
-
-            <label> هل  تريد  فتح شكوي  لهذا  المنتج    ؟</label>
-
-          <textarea name="openticket" class="form-control">
-              
-          </textarea>
-              
-   
-
-                  
-      </div>
-
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{trans('admin.no')}}</button>
-
-
-
-        <button type="submit" class="btn btn-primary">{{trans('admin.yes')}}</button>
-
-      </div>
-       </form>
-      </div>
-      
-    </div>
-  </div>
-</div>
-
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 @endsection
 

@@ -19,6 +19,11 @@ class setting extends Controller
      {
 
            
+   
+
+
+
+
 
 
              $data= $this->validate(request(),[
@@ -31,20 +36,19 @@ class setting extends Controller
              'language' => 'sometimes|nullable',
              'status' => 'sometimes|nullable',
 
-             'facebookLink' => 'sometimes|nullable',
-             'TwitterLink' => 'sometimes|nullable',
-             'GmailLink' => 'sometimes|nullable',
-             'LinkedinLink' => 'sometimes|nullable',
-             'instagramLink' => 'sometimes|nullable',
+             'facebooklink' => 'sometimes|nullable',
+             'twitterlink' => 'sometimes|nullable',
+             'gmaillink' => 'sometimes|nullable',
+             'linkedinlink' => 'sometimes|nullable',
+             'instgramlink' => 'sometimes|nullable',
+             'maplink' => 'sometimes|nullable',
+             
+             
              'mapLink' => 'sometimes|nullable',
              'phone' => ['required', 'string', 'max:255'],
              'address_ar' => 'sometimes|nullable',
              'address_en' => 'sometimes|nullable',
              'profile' => 'sometimes|nullable',
-              
-
-
-
                ],[],[
               'namear'=>trans('admin.nameofsitearbic'),
               'nameaen'=>trans('admin.nameofsiteenglish'),
@@ -58,12 +62,14 @@ class setting extends Controller
               'status'=>trans('admin.status'),
               'maintenance'=>trans('admin.maintenance'),
               
-              'facebookLink'=>trans('admin.facebookLink'),
-              'TwitterLink'=>trans('admin.TwitterLink'),
-              'GmailLink'=>trans('admin.GmailLink'),
-              'LinkedinLink'=>trans('admin.LinkedinLink'),
-              'instagramLink'=>trans('admin.instagramLink'),
-            'mapLink'=>trans('admin.mapLink'),
+              'facebooklink'=>trans('admin.facebooklink'),
+              'twitterlink'=>trans('admin.twitterlink'),
+              'gmaillink'=>trans('admin.gmaillink'),
+              'linkedinlink'=>trans('admin.linkedinlink'),
+              'instgramlink'=>trans('admin.instgramlink'),
+              'maplink'=>trans('admin.maplink'),
+               
+               
             'phone'=>trans('admin.mapLink'),
             'address_en'=>trans('admin.address_en'),
               'address_ar'=>trans('admin.address_ar'),
@@ -150,7 +156,7 @@ class setting extends Controller
 
         return redirect('admin/settings');
 
-        //return Request();*/
+         
      } 
 
 

@@ -273,7 +273,10 @@ public function getPriceAttribute($price)
 
 
 
-
+  public function categories()
+    {
+        return $this->belongsToMany('App\Department');
+    }
 
 
 
