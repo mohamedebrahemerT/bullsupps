@@ -66,7 +66,7 @@
                               <a href="{{url('/')}}//shop/{{$product->id}}"><img src="{{Storage::url($product->photo)}}" alt="product1"></a>
                                             </td>
                                             <td class="product-name" data-title="Product">
-                          <a href="{{url('/')}}//shop/{{$product->id}}">
+                          <a href="{{url('/')}}/shop/{{$product->id}}">
 
 
                                                  @if(session('lang')=='ar')
