@@ -153,7 +153,12 @@
                                                                 <div class="chek-form">
                                                                     <div class="custome-checkbox">
       <input class="form-check-input" type="checkbox" name="checkbox" id="createaccount" disabled readonly>
-                                                                        <label class="form-check-label label_info" for="createaccount"><span>I agree to the <u><strong>Terms & Conditions</strong></u></span></label>
+                                                                        <label class="form-check-label label_info" for="createaccount"><span>I agree to the <u><strong>
+                   <a href="{{url('/')}}/term-condition">
+                                                                        Terms & Conditions
+                                                                        </a>
+
+                                                                    </strong></u></span></label>
                                                                     </div>
 
                                                                 </div>
