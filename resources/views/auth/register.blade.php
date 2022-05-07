@@ -62,7 +62,9 @@
                                         <div class="chek-form">
                                             <div class="custome-checkbox">
                                                 <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox2" value="" required>
-                                                <label class="form-check-label" for="exampleCheckbox2"><span>I agree to terms &amp; Policy.</span></label>
+                                                <label class="form-check-label" for="exampleCheckbox2"><span>I agree to 
+                                              <a href="{{url('/')}}/term-condition">  terms &amp; Policy.</a>
+                                            </span></label>
                                             </div>
                                         </div>
                                     </div>

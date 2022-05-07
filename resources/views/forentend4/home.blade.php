@@ -353,7 +353,7 @@
                             <div class="col-12">
                                 <div class="tab-style1 ptb3">
                                     <ul class="nav nav-tabs justify-content-center" role="tablist">
-  @foreach(App\Department::where('parent','!=',null)->take(8)->get() as $key =>  $Department)
+  @foreach(App\Department::whereIn('id',[415,417,253,276,294,300,321,413])->orderby('id','desc')->get() as $key =>  $Department)
                                         <li class="nav-item mb-10">
                                             <a class="nav-link  @if($key == 0)active @endif" 
                     id="arrival{{$key}}-tab" data-bs-toggle="tab" href="#arrival{{$key}}" role="tab" aria-controls="arrival{{$key}}" aria-selected="true">
@@ -376,14 +376,14 @@
                                     </ul>
                                 </div>
                                 <div class="tab_slider">
-  @foreach(App\Department::take(7)->get() as $key =>  $Department)
+   @foreach(App\Department::whereIn('id',[415,417,253,276,294,300,321,413])->orderby('id','desc')->get() as $key =>  $supdeep)
 
                                     <div class="tab-pane fade @if($key == 0) show active @endif" id="arrival{{$key}}" role="tabpanel" aria-labelledby="arrival{{$key}}-tab">
                                         <div class="product_slider carousel_slider owl-carousel owl-theme nav_style10" data-loop="true" data-dots="false" data-nav="true" data-margin="20" data-responsive='{"0":{"items": "1"}, "481":{"items": "2"}, "768":{"items": "3"}, "1199":{"items": "4"}}'>
     @foreach(App\product::
     where('status','active')->
-    where('department_id',$Department->id)
-    ->InrandomOrder()->take(7)
+    where('department_id',$supdeep->id)
+    ->take(7)
     ->get() as  $product)
                                             <div class="item">
                                                 <div class="product">
@@ -465,6 +465,7 @@
                                         </div>
                                     </div>
         @endforeach
+     
                                     
                                 </div>
                             </div>
@@ -488,6 +489,7 @@
 
             </div>
             <!-- END FLASH BANNER SECTION-->
+
             <!-- START SHOP BY BRAND SECTION -->
             <div class="container-fluid">
                 <div class="custom-container ptb">
@@ -536,6 +538,12 @@
                 </div>
             </div>
             <!-- END TOP SELLERS SECTION -->
+ 
+
+
+ 
+
+
 
         </div>
         <!-- END MAIN CONTENT -->

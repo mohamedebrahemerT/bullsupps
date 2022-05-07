@@ -124,7 +124,7 @@
 
                                                
                                             </ul>
-                                            <div class="d-lg-flex menu_banners row g-3 px-3">
+                                            <!--div class="d-lg-flex menu_banners row g-3 px-3">
                                                 <div class="col-lg-6">
                                                     <div class="header-banner">
                                                         <div class="sale-banner">
@@ -143,7 +143,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div -->
                                         </div>
                                     </li>
                                     

@@ -92,9 +92,9 @@ function myFunction2() {
                     <div class="col-12 mb-3">
                         <div class="heading_tab_header">
                             <div class="">
-
+<a href="{{url('/')}}/Add_New_Address">
                                 <h5 class="mb-0"><img class="back-arrow pe-3" src="{{url('/')}}/assets/images/Back_arrow.svg" alt="">Back to Address</h5>
-
+</a>
                             </div>
       <form method="post" action="{{url('/')}}/Save_AddressAddress_Step2">
 

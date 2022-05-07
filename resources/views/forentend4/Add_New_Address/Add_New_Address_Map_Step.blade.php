@@ -91,9 +91,14 @@
                     <div class="col-12 mb-2">
                         <div class="heading_tab_header">
                             <div class="">
-
+  <a href="{{url('/')}}/Add_New_Address">
                                 <h5 class="mb-0">
-                  <img class="back-arrow pe-3" src="{{url('/')}}/assets/images/Back_arrow.svg" alt="">Back to Address</h5>
+       
+                  <img class="back-arrow pe-3" src="{{url('/')}}/assets/images/Back_arrow.svg" alt="">Back to Address
+
+              </h5>
+                  </a>
+
 
                             </div>
 
