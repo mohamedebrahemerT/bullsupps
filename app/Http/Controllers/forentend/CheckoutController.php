@@ -110,6 +110,8 @@ use App\Mail\ExceptionOccured;
 
                 if (Cart::instance('default')->count() == 0) 
             {
+      session()->flash('danger', 'Your cart is empty. Shop now');
+
             return redirect()->route('shop.index');
              }
 

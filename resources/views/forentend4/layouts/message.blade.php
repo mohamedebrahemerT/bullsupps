@@ -38,7 +38,7 @@
             </div>
             @endif @if(count($errors) > 0)
             <div class="alert alert-danger">
-                <ul>
+                <ul style="list-style: none;">
                     @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                     @endforeach

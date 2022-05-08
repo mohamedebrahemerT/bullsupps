@@ -158,10 +158,17 @@
                         <img class="logo_dark" src="{{Storage::url(settings()->siteflag) }}" alt="logo">
                     </a>
                     <div class="product_search_form rounded_input align-items-center">
-                        <form>
+                        <form method="get" action="{{url('/')}}/search">
+
                             <div class="input-group">
-                                <input class="form-control" placeholder="Search Product..." required="" type="text">
-                                <button type="submit" class="search_btn2"><i class="fa fa-search"></i></button>
+                   <input class="form-control" placeholder="Search Product..." required="" type="text" name="text_search"
+                     @isset($query)
+                    value="{{$query}}"
+                    @endisset
+                    >
+
+
+      <button type="submit" class="search_btn2"><i class="fa fa-search"></i></button>
                             </div>
                         </form>
                     </div>

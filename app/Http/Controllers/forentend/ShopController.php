@@ -54,6 +54,7 @@ class ShopController extends Controller
     { 
 
            $pagination = 9;
+            $query='';
        // $categories = Department::all();
         $categories = Department::take(4)->get();
 
@@ -73,14 +74,31 @@ class ShopController extends Controller
             $products = $products->orderBy('price')->paginate($pagination);
         } elseif (request()->sort == 'high_low') {
             $products = $products->orderBy('price', 'desc')->paginate($pagination);
-        } else {
-            $products = $products->paginate($pagination);
         }
+
+        elseif (request('text_search') )
+            {
+                 $query=request('text_search');
+            
+    $products = $products->
+    where('title_name_en', 'LIKE', "%{$query}%")
+    ->paginate($pagination);
+
+         }
+
+
+         else 
+         {
+         return   $products = $products->paginate($pagination);
+        }
+
+          
 
         return view('forentend4.shop.shop')->with([
             'products' => $products,
             'categories' => $categories,
             'categoryName' => $categoryName,
+            'query'=> $query
         ]);
   }
 

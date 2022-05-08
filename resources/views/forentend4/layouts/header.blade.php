@@ -74,6 +74,20 @@ border: 1px solid #000;
   background-color: #c21232 !important;
   border-color: #fff !important;
 }
+
+.btn-close
+{
+    color: #fff;
+  background-color: #fff  ;
+
+}
+
+.alert-danger {
+  color: #fff;
+  background-color: #bf0426;
+  border-color: #f5c2c7;
+  text-align: center;
+}
     
 </style>
 

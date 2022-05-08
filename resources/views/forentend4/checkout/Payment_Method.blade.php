@@ -155,7 +155,7 @@
 
       <input class="form-check-input" type="checkbox" name="checkbox" id="456"    >
               <label class="form-check-label label_info" for="456"><span>I agree to the <u><strong>
-                   <a href="{{url('/')}}/term-condition">
+                   <a href="{{url('/')}}/term-condition" target="_blank">
                                                                         Terms & Conditions
                                                                         </a>
 
@@ -202,7 +202,7 @@
           <input class="form-check-input" type="checkbox" name="checkbox" id="createaccount22">
                 <label class="form-check-label label_info" for="createaccount22"><span>I agree to the <u><strong>
 
-                <a href="{{url('/')}}/term-condition">
+                <a href="{{url('/')}}/term-condition" target="_blank">
                 Terms & Conditions
             </a>
 

@@ -1,6 +1,8 @@
 @extends('forentend4.index')
 @section('content')
 
+
+ 
   
     <div class="custom-container plr-0">
         <!-- START SECTION BANNER -->
@@ -108,7 +110,7 @@
                                         <!-- Button trigger modal -->
 <!--button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{$product->id}}">
   Launch demo modal
-</button -->
+</button  -->
                                         <div class="product">
                                             <div class="megahearder">
                             <h6 class="product_title">
@@ -661,9 +663,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       
-      <div class="modal-body">
-              <div class="ajax_quick_view">
-        <div class="row">
+     <div class="row">
             <div class="col-lg-6 col-md-6 mb-4 mb-md-0">
                 <div class="product-image">
                     <div class="product_img_box">
@@ -802,8 +802,6 @@
                 </div>
             </div>
         </div>
-    </div>
-      </div>
        
     </div>
   </div>

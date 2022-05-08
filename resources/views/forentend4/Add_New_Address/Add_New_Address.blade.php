@@ -203,6 +203,30 @@
                     </div>
                 </div>
 
+                 <div class="row">
+                     <div class="col-9 mb-2">
+                                    <div class="d-grid gap-2">
+           
+
+                 
+
+                                    </div>
+
+                                </div>
+                                <div class="col-3 mb-2">
+                                    <div class="d-grid gap-2">
+                  
+                 <a href="{{url('/')}}/Payment_Method" class="btn btn-primary m-0" type="button">
+                    Next</a>
+                 
+
+                 
+
+                                    </div>
+
+                                </div>
+                            </div>
+
             </div>
         </div>
         <!-- END SECTION SHOP -->
