@@ -2389,4 +2389,48 @@ if (!function_exists('WhoWeAre')) {
 
 }
 
+if (!function_exists('rating')) {
+
+    function rating($product_id) 
+
+    {
+ $Reviews=App\Models\Reviews::where('product_id',$product_id)->get();
+ $Reviewscount=App\Models\Reviews::where('product_id',$product_id)->count();
+
+       $rating=0;
+   foreach($Reviews as   $Review)
+   {
+      $rating= $Review->rating +$rating;
+   }
+     
+        if ($Reviewscount == 0) 
+        {
+           $Reviewscount = 1;
+        }
+       return   $rating=$rating / $Reviewscount ;
+
+            
+
+    }
+
+
+}
+
+if (!function_exists('ratingcount')) {
+
+    function ratingcount($product_id) 
+
+    {
+  
+ $ratingcount=App\Models\Reviews::where('product_id',$product_id)->count();
+ 
+  return     $ratingcount ;
+
+}
+}
+
+ 
+
+
+
  

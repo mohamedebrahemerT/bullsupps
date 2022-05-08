@@ -68,9 +68,16 @@ color: #fff;
 border: 1px solid #000;
  
 }
+
+.alert-success {
+  color: #fff !important;
+  background-color: #c21232 !important;
+  border-color: #fff !important;
+}
     
 </style>
 
+ 
 </head>
 
 <body>

@@ -26,6 +26,7 @@ use App\otherData;
 use App\OtherDatasٍSiZes;
 use App\Models\attribute_values;
 use App\Models\product_variant;
+use App\Models\Reviews;
 
  
 
@@ -317,7 +318,8 @@ whereBetween('price_offer',[request()->price_first,request()->price_second])
     {
 
 
-
+        $Reviewscount = Reviews::where('product_id',$id)->count() ;
+        $Reviews = Reviews::where('product_id',$id)->get() ;
   
           Session()->forget('attribute_value_ids');
 
@@ -352,7 +354,10 @@ whereBetween('price_offer',[request()->price_first,request()->price_second])
             'mightAlsoLikes'=>$mightAlsoLikes,
             'filess'=>$filess,
             'ProductFromSamCats'=>$ProductFromSamCats,
-            'mightAlsoLikes2'=>$mightAlsoLikes2
+            'mightAlsoLikes2'=>$mightAlsoLikes2,
+            'Reviewscount'=>$Reviewscount,
+            'Reviews'=>$Reviews,
+            'id'=>$id
            
             
           

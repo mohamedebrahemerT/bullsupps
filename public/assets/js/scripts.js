@@ -738,21 +738,7 @@ PAGE JS
 
   
 
-    /*===================================*
-    23. RATING STAR JS
-    *===================================*/
-    $(document).ready(function() {
-        $('.star_rating span').on('click', function() {
-            var onStar = parseFloat($(this).data('value'), 10); // The star currently selected
-            var stars = $(this).parent().children('.star_rating span');
-            for (var i = 0; i < stars.length; i++) {
-                $(stars[i]).removeClass('selected');
-            }
-            for (i = 0; i < onStar; i++) {
-                $(stars[i]).addClass('selected');
-            }
-        });
-    });
+  
 
     /*===================================*
     24. CHECKBOX CHECK THEN ADD CLASS JS

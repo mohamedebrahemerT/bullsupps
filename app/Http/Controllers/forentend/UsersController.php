@@ -7,7 +7,7 @@ use App\Models\user_addresses;
 use App\Order;
 use App\OrderProduct;
         use Gloudemans\Shoppingcart\Facades\Cart;
-
+ use App\Models\Reviews;
 class UsersController extends Controller
 {
     /**
@@ -334,6 +334,42 @@ return view('forentend4.my-profile.my-profile',compact('user', 'orders'));
      return redirect('Payment_Method');
 
         
+    }
+
+
+
+      public function Add_review ()
+    {
+        
+    
+          $data = $this->validate(request(),
+         [
+            'rating' => 'required',
+            'review' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'product_id' => 'required',
+            
+         ], [], [
+            'rating' => trans('admin.rating'),
+            'review' => trans('admin.review'),
+            'name' => trans('admin.name'),
+            'email' => trans('admin.email'),
+            'product_id' => trans('admin.product_id'),
+            
+            
+         ]);
+
+          if(auth()->user())
+          {
+             $data['user_id'] =auth()->user()->id;
+          }
+                     
+
+ $Reviews=Reviews::create($data);
+
+      session()->flash('success', trans('Reviewed  succesfully'));
+      return back();
     }
 
     

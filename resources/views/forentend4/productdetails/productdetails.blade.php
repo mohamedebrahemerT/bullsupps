@@ -80,7 +80,30 @@ var arr = [] //create arry
       
   </script>
 
-  
+  <script type="text/javascript">
+      
+        /*===================================*
+    23. RATING STAR JS
+    *===================================*/
+    $(document).ready(function() {
+        $('.star_rating span').on('click', function() {
+            var onStar = parseFloat($(this).data('value'), 10); // The star currently selected
+            var stars = $(this).parent().children('.star_rating span');
+            for (var i = 0; i < stars.length; i++) {
+                $(stars[i]).removeClass('selected');
+            }
+            for (i = 0; i < onStar; i++) 
+            {
+                $(stars[i]).addClass('selected');
+            }
+
+  $('input[name="rating"]').val(onStar);
+
+
+            
+        });
+    });
+  </script>
 
 
 @endsection
@@ -111,55 +134,9 @@ var arr = [] //create arry
 
     <!-- START MAIN CONTENT -->
     <div class="main_content">
+ 
 
-
-        <aside class="sidebar bg-black">
-            <div class="toggle">
-                <a href="{{url('/')}}/#" class="burger js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
-                    <span class="bg-darkgray"></span>
-                </a>
-
-                <span class="bag-label">Your Cart</span>
-            </div>
-            <div class="side-inner">
-
-                <div class="cart_box cart_right dropdown-menu-right">
-                    <ul class="cart_list">
-                        <li>
-                            <a href="{{url('/')}}/#" class="item_remove"><i class="ion-close"></i></a>
-                            <a href="{{url('/')}}/#"><img src="{{url('/')}}/assets/images/products/pr-01.png" alt="cart_thumb1"></a>Variable product 001
-                            <span class="cart_quantity"> 1 x <span class="cart_amount"> <span class="price_symbole">AED</span></span>78.00</span>
-                        </li>
-
-                        <li>
-                            <a href="{{url('/')}}/#" class="item_remove"><i class="ion-close"></i></a>
-                            <a href="{{url('/')}}/#"><img src="{{url('/')}}/assets/images/products/pr-02.png" alt="cart_thumb2"></a>Ornare sed consequat
-                            <span class="cart_quantity"> 1 x <span class="cart_amount"> <span class="price_symbole">AED</span></span>81.00</span>
-                        </li>
-                        <li>
-                            <a href="{{url('/')}}/#" class="item_remove"><i class="ion-close"></i></a>
-                            <a href="{{url('/')}}/#"><img src="{{url('/')}}/assets/images/products/pr-02.png" alt="cart_thumb2"></a>Ornare sed consequat
-                            <span class="cart_quantity"> 1 x <span class="cart_amount"> <span class="price_symbole">AED</span></span>81.00</span>
-                        </li>
-                        <li>
-                            <a href="{{url('/')}}/#" class="item_remove"><i class="ion-close"></i></a>
-                            <a href="{{url('/')}}/#"><img src="{{url('/')}}/assets/images/products/pr-02.png" alt="cart_thumb2"></a>Ornare sed consequat
-                            <span class="cart_quantity"> 1 x <span class="cart_amount"> <span class="price_symbole">AED</span></span>81.00</span>
-                        </li>
-                    </ul>
-                    <div class="cart_footer">
-                        <p class="cart_total"><strong>Subtotal:</strong> <span class="cart_price"> <span class="price_symbole">AED</span></span>159.00</p>
-                        <p class="cart_buttons"><a href="{{url('/')}}/#" class="btn btn-secondary view-cart">View Cart</a><a href="{{url('/')}}/#" class="btn btn-primary checkout">Checkout</a></p>
-                        <p class="cart_buttons"><a href="{{url('/')}}/#" class="btn btn-primary btn-block">Continue Shopping</a></p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </aside>
-
+     
 
         <!-- START SECTION SHOP -->
         <div class="section">
@@ -216,10 +193,43 @@ var arr = [] //create arry
                                     <div class="col-12">
                                         <div class="product_description">
                                             <div class="rating_wrap">
-                                                <div class="rating">
-                                                    <div class="product_rate" style="width:80%"></div>
+ 
+
+                     <div class="rating">
+                     @if(rating($id) > 0 and  rating($id) < 1 )
+        <div class="product_rate" style="width:10%;"></div>
+        @elseif(rating($id) >= 1 and  rating($id) < 1.5)
+        <div class="product_rate" style="width:20%;"></div>
+          @elseif(rating($id) >= 1.5 and  rating($id) < 2)
+        <div class="product_rate" style="width:30%;"></div>
+        @elseif(rating($id) >= 2 and  rating($id) < 2.5)
+        <div class="product_rate" style="width:40%;"></div>
+
+           @elseif(rating($id) >= 2.5 and  rating($id) < 3)
+        <div class="product_rate" style="width:50%;"></div>
+
+        @elseif(rating($id) >= 3 and  rating($id) < 3.5)
+        <div class="product_rate" style="width:60%;"></div>
+
+         @elseif(rating($id) >= 3.5 and  rating($id) < 4)
+        <div class="product_rate" style="width:70%;"></div>
+
+           @elseif(rating($id) >= 4 and  rating($id) < 4.5)
+        <div class="product_rate" style="width:80%;"></div>
+
+         @elseif(rating($id) >= 4.5 and  rating($id) < 5)
+        <div class="product_rate" style="width:90%;"></div>
+
+         @elseif(rating($id) >= 5    )
+        <div class="product_rate" style="width:100%;"></div>
+        @endif
+
+
                                                 </div>
-                                                <span class="rating_num"><a href="{{url('/')}}/">(21)</a></span>
+
+
+        <span class="rating_num"><a href="{{url('/')
+        }}/">({{ratingcount($id)}})</a></span>
                                             </div>
                                         </div>
                                     </div>
@@ -399,10 +409,45 @@ var arr = [] //create arry
       @endif</a></h6>
 
                                             <div class="rating_wrap">
-                                                <div class="rating">
-                                                    <div class="product_rate" style="width:68%"></div>
+ 
+
+                     <div class="rating">
+                     @if(rating($id) > 0 and  rating($id) < 1 )
+        <div class="product_rate" style="width:10%;"></div>
+        @elseif(rating($id) >= 1 and  rating($id) < 1.5)
+        <div class="product_rate" style="width:20%;"></div>
+          @elseif(rating($id) >= 1.5 and  rating($id) < 2)
+        <div class="product_rate" style="width:30%;"></div>
+        @elseif(rating($id) >= 2 and  rating($id) < 2.5)
+        <div class="product_rate" style="width:40%;"></div>
+
+           @elseif(rating($product->id) >= 2.5 and  rating($product->id) < 3)
+        <div class="product_rate" style="width:50%;"></div>
+
+        @elseif(rating($product->id) >= 3 and  rating($product->id) < 3.5)
+        <div class="product_rate" style="width:60%;"></div>
+
+         @elseif(rating($product->id) >= 3.5 and  rating($product->id) < 4)
+        <div class="product_rate" style="width:70%;"></div>
+
+           @elseif(rating($product->id) >= 4 and  rating($product->id) < 4.5)
+        <div class="product_rate" style="width:80%;"></div>
+
+         @elseif(rating($product->id) >= 4.5 and  rating($product->id) < 5)
+        <div class="product_rate" style="width:90%;"></div>
+
+         @elseif(rating($product->id) >= 5    )
+        <div class="product_rate" style="width:100%;"></div>
+        @endif
+
+
                                                 </div>
+
+
+        <span class="rating_num"><a href="{{url('/')
+        }}/">({{ratingcount($product->id)}})</a></span>
                                             </div>
+
                                             <div class="product_price"><span class="price">AED {{$product->price_offer }}</span></div>
                                         </div>
                                     </li>
@@ -499,77 +544,127 @@ var arr = [] //create arry
                     <!-- Reviews Start -->
                     <div class="custom-container mb-3 border border-radius2 box_shadow1 p-4">
                         <div class="row">
-                            <h5 class="product_tab_title">Reviews (2)</h5>
+         <h5 class="product_tab_title">Reviews 
+
+            ( {{$Reviewscount}}  )</h5>
+
+            @foreach($Reviews as $Review)
+
                             <div class="col-lg-6">
                                 <ul class="list_none comment_list mt-4">
+
                                     <li>
                                         <div class="comment_img">
                                             <img src="{{url('/')}}/assets/images/user1.jpg" alt="user1" />
                                         </div>
                                         <div class="comment_block">
-                                            <div class="rating_wrap">
-                                                <div class="rating">
-                                                    <div class="product_rate" style="width:80%"></div>
+                                           <div class="rating_wrap">
+ 
+
+                     <div class="rating">
+                     @if(rating($id) > 0 and  rating($id) < 1 )
+        <div class="product_rate" style="width:10%;"></div>
+        @elseif(rating($id) >= 1 and  rating($id) < 1.5)
+        <div class="product_rate" style="width:20%;"></div>
+          @elseif(rating($id) >= 1.5 and  rating($id) < 2)
+        <div class="product_rate" style="width:30%;"></div>
+        @elseif(rating($id) >= 2 and  rating($id) < 2.5)
+        <div class="product_rate" style="width:40%;"></div>
+
+           @elseif(rating($product->id) >= 2.5 and  rating($product->id) < 3)
+        <div class="product_rate" style="width:50%;"></div>
+
+        @elseif(rating($product->id) >= 3 and  rating($product->id) < 3.5)
+        <div class="product_rate" style="width:60%;"></div>
+
+         @elseif(rating($product->id) >= 3.5 and  rating($product->id) < 4)
+        <div class="product_rate" style="width:70%;"></div>
+
+           @elseif(rating($product->id) >= 4 and  rating($product->id) < 4.5)
+        <div class="product_rate" style="width:80%;"></div>
+
+         @elseif(rating($product->id) >= 4.5 and  rating($product->id) < 5)
+        <div class="product_rate" style="width:90%;"></div>
+
+         @elseif(rating($product->id) >= 5    )
+        <div class="product_rate" style="width:100%;"></div>
+        @endif
+
+
                                                 </div>
+
+
+        <span class="rating_num"><a href="{{url('/')
+        }}/">({{ratingcount($product->id)}})</a></span>
                                             </div>
                                             <p class="customer_meta">
-                                                <span class="review_author">Alea Brooks</span>
-                                                <span class="comment-date">March 5, 2018</span>
+                                                <span class="review_author">{{$Review->name}}</span>
+                                                <span class="comment-date">{{$Review->created_at}}</span>
                                             </p>
                                             <div class="description">
-                                                <p>Lorem Ipsumin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate</p>
+                                                <p>
+                                                   {{$Review->review}} 
+                                                </p>
                                             </div>
                                         </div>
                                     </li>
                                 </ul>
                             </div>
-                            <div class="col-lg-6">
-                                <ul class="list_none comment_list mt-4">
-                                    <li>
-                                        <div class="comment_img">
-                                            <img src="{{url('/')}}/assets/images/user1.jpg" alt="user1" />
-                                        </div>
-                                        <div class="comment_block">
-                                            <div class="rating_wrap">
-                                                <div class="rating">
-                                                    <div class="product_rate" style="width:80%"></div>
-                                                </div>
-                                            </div>
-                                            <p class="customer_meta">
-                                                <span class="review_author">Grace Wong</span>
-                                                <span class="comment-date">June 17, 2018</span>
-                                            </p>
-                                            <div class="description">
-                                                <p>Lorem Ipsumin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
+
+                            @endforeach
+                            
                         </div>
 
                         <div class="row">
                             <div class="col">
                                 <div class="review_form field_form">
                                     <h5>Add a review</h5>
-                                    <form class="row mt-3">
+         <form class="row mt-3" method="post" action="{{url('/')}}/Add_review">
+            @csrf
                                         <div class="form-group col-12 mb-3">
                                             <div class="star_rating">
-                                                <span data-value="1"><i class="far fa-star"></i></span>
-                                                <span data-value="2"><i class="far fa-star"></i></span>
-                                                <span data-value="3"><i class="far fa-star"></i></span>
-                                                <span data-value="4"><i class="far fa-star"></i></span>
-                                                <span data-value="5"><i class="far fa-star"></i></span>
+
+                    <span data-value="1"><i class="far fa-star"></i></span>
+                     <span data-value="2"><i class="far fa-star"></i></span>
+                      <span data-value="3"><i class="far fa-star"></i></span>
+                        <span data-value="4"><i class="far fa-star"></i></span>
+                 <span data-value="5"><i class="far fa-star"></i></span>
+
                                             </div>
                                         </div>
                                         <div class="form-group col-12 mb-3">
-                                            <textarea required="required" placeholder="Your review *" class="form-control" name="message" rows="4"></textarea>
+                                            <textarea required="required" placeholder="Your review *" class="form-control" name="review" rows="4"></textarea>
                                         </div>
                                         <div class="form-group col-md-6 mb-3">
-                                            <input required="required" placeholder="Enter Name *" class="form-control" name="name" type="text">
+                                            <input required="required" placeholder="Enter Name *" class="form-control"
+                                             name="name" type="text"
+            }
+            }
+@if(auth()->user())
+value="{{ old('email', auth()->user()->name) }}" 
+ 
+                                                 @endif
+
+
+                                            >
                                         </div>
                                         <div class="form-group col-md-6 mb-3">
-                                            <input required="required" placeholder="Enter Email *" class="form-control" name="email" type="email">
+                                            <input required="required" placeholder="Enter Email *" class="form-control" name="email" type="email" 
+
+                                            @if(auth()->user())
+value="{{ old('email', auth()->user()->email) }}" 
+                                                 @endif
+
+                                             >
+
+      <input type="hidden" name="product_id" value="{{ $id}}">
+      <input type="hidden" name="rating" value="">
+
+
+
+ 
+
+
                                         </div>
 
                                         <div class="form-group col-12 mb-3">
@@ -647,12 +742,45 @@ var arr = [] //create arry
 
                                                     <div class="row">
                                                         <div class="col-auto me-auto">
-                                                            <div class="rating_wrap pt-2">
-                                                                <div class="rating">
-                                                                    <div class="product_rate" style="width:68%"></div>
-                                                                </div>
-                                                                <span class="rating_num">(15)</span>
-                                                            </div>
+                                                             <div class="rating_wrap">
+ 
+
+                     <div class="rating">
+                     @if(rating($id) > 0 and  rating($id) < 1 )
+        <div class="product_rate" style="width:10%;"></div>
+        @elseif(rating($id) >= 1 and  rating($id) < 1.5)
+        <div class="product_rate" style="width:20%;"></div>
+          @elseif(rating($id) >= 1.5 and  rating($id) < 2)
+        <div class="product_rate" style="width:30%;"></div>
+        @elseif(rating($id) >= 2 and  rating($id) < 2.5)
+        <div class="product_rate" style="width:40%;"></div>
+
+           @elseif(rating($product->id) >= 2.5 and  rating($product->id) < 3)
+        <div class="product_rate" style="width:50%;"></div>
+
+        @elseif(rating($product->id) >= 3 and  rating($product->id) < 3.5)
+        <div class="product_rate" style="width:60%;"></div>
+
+         @elseif(rating($product->id) >= 3.5 and  rating($product->id) < 4)
+        <div class="product_rate" style="width:70%;"></div>
+
+           @elseif(rating($product->id) >= 4 and  rating($product->id) < 4.5)
+        <div class="product_rate" style="width:80%;"></div>
+
+         @elseif(rating($product->id) >= 4.5 and  rating($product->id) < 5)
+        <div class="product_rate" style="width:90%;"></div>
+
+         @elseif(rating($product->id) >= 5    )
+        <div class="product_rate" style="width:100%;"></div>
+        @endif
+
+
+                                                </div>
+
+
+        <span class="rating_num"><a href="{{url('/')
+        }}/">({{ratingcount($id)}})</a></span>
+                                            </div>
                                                         </div>
                                                         <!-- <div class="col-auto">
                                                             <a href="{{url('/')}}/#"><img src="{{url('/')}}/assets/images/Addtocart_BTN.svg" alt="Add to cart"></a>

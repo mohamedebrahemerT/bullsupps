@@ -123,12 +123,45 @@
                                                 <span>{{ ratio($product->price,$product->price_offer) }}% OFF</span>
                                             </div>
                                         </div>
-                                        <div class="rating_wrap">
-                                            <div class="rating">
-                                                <div class="product_rate" style="width:68%"></div>
+                                         <div class="rating_wrap">
+ 
+
+                     <div class="rating">
+                     @if(rating($product->id) > 0 and  rating($product->id) < 1 )
+        <div class="product_rate" style="width:10%;"></div>
+        @elseif(rating($product->id) >= 1 and  rating($product->id) < 1.5)
+        <div class="product_rate" style="width:20%;"></div>
+          @elseif(rating($product->id) >= 1.5 and  rating($product->id) < 2)
+        <div class="product_rate" style="width:30%;"></div>
+        @elseif(rating($product->id) >= 2 and  rating($product->id) < 2.5)
+        <div class="product_rate" style="width:40%;"></div>
+
+           @elseif(rating($product->id) >= 2.5 and  rating($product->id) < 3)
+        <div class="product_rate" style="width:50%;"></div>
+
+        @elseif(rating($product->id) >= 3 and  rating($product->id) < 3.5)
+        <div class="product_rate" style="width:60%;"></div>
+
+         @elseif(rating($product->id) >= 3.5 and  rating($product->id) < 4)
+        <div class="product_rate" style="width:70%;"></div>
+
+           @elseif(rating($product->id) >= 4 and  rating($product->id) < 4.5)
+        <div class="product_rate" style="width:80%;"></div>
+
+         @elseif(rating($product->id) >= 4.5 and  rating($product->id) < 5)
+        <div class="product_rate" style="width:90%;"></div>
+
+         @elseif(rating($product->id) >= 5    )
+        <div class="product_rate" style="width:100%;"></div>
+        @endif
+
+
+                                                </div>
+
+
+        <span class="rating_num"><a href="{{url('/')
+        }}/">({{ratingcount($product->id)}})</a></span>
                                             </div>
-                                            <span class="rating_num">(15)</span>
-                                        </div>
                                         <div class="pr_desc">
                                              @if(session('lang')=='ar')
 {!! $product->content_name_ar !!}

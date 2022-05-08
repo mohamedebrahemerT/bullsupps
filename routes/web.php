@@ -505,6 +505,12 @@ Route::post('/paypal-checkout', 'PaymentController@payWithpaypal')->name('checko
 });
 
 
+
+  Route::group(['namespace'=>'forentend'],function(){
+
+    Route::post('/Add_review', 'UsersController@Add_review')->name('users.Add_review');
+
+});
  Auth::routes();
 Route::middleware('auth')->group(function () {
 
