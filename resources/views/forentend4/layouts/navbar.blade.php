@@ -269,7 +269,7 @@
 
                         <li class="li-divider"></li>
                         <li class="dropdown cart_dropdown">
-                            <a class="nav-link cart_trigger" href="#" data-bs-toggle="dropdown"><img src="{{url('/')}}/assets/images/cart_outline.svg"><span class="cart_count">
+                            <a class="nav-link cart_trigger" href="{{url('/')}}/cart" data-bs-toggle="dropdown"><img src="{{url('/')}}/assets/images/cart_outline.svg"><span class="cart_count">
 
                                 {{Cart::instance('default')->count()}}
                             </span><span class="amount">Cart</span></a>
