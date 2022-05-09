@@ -226,7 +226,7 @@
                         @else
 
                           <li class="dropdown cart_dropdown">
-                            <a class="nav-link cart_trigger" 
+                            <a  href="{{url('/')}}/my-profile" class="nav-link cart_trigger" 
                             href="sadasd" data-bs-toggle="dropdown">
 
                                 <img src="{{url('/')}}/assets/images/User.svg"><span class="amount">{{ Auth::user()->name }}</span></a>
@@ -269,7 +269,7 @@
 
                         <li class="li-divider"></li>
                         <li class="dropdown cart_dropdown">
-                            <a class="nav-link cart_trigger" href="{{url('/')}}/cart" data-bs-toggle="dropdown"><img src="{{url('/')}}/assets/images/cart_outline.svg"><span class="cart_count">
+                            <a class="nav-link cart_trigger" href="{{url('/')}}/cart"  ><img src="{{url('/')}}/assets/images/cart_outline.svg"><span class="cart_count">
 
                                 {{Cart::instance('default')->count()}}
                             </span><span class="amount">Cart</span></a>
