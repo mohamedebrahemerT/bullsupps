@@ -226,8 +226,10 @@
                         @else
 
                           <li class="dropdown cart_dropdown">
-                            <a  href="{{url('/')}}/my-profile" class="nav-link cart_trigger" 
-                            href="sadasd" data-bs-toggle="dropdown">
+
+                            <a  href="{{url('/')}}/my-profile"
+                             class="nav-link cart_trigger" 
+                            >
 
                                 <img src="{{url('/')}}/assets/images/User.svg"><span class="amount">{{ Auth::user()->name }}</span></a>
 
