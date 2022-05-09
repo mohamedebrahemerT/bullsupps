@@ -249,6 +249,8 @@
 <div class="modal fade" id="exampleModal{{$product->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content" style="padding: 10px;">
+
+           
       
      <div class="row">
             <div class="col-lg-6 col-md-6 mb-4 mb-md-0">
@@ -488,6 +490,18 @@ data-attribute_value-produt-id="{{$product->id}}"
                             <li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
                         </ul>
                     </div>
+                </div>
+                    <div class="modal-footer">
+                    
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+
+
+
+              
+    <a href="{{url('/')}}/cart" class="btn btn-secondary view-cart">View Cart</a>
+        <a href="{{url('/')}}/Checkout" class="btn btn-primary checkout">Checkout</a> 
+
+                     
                 </div>
             </div>
         </div>

@@ -515,7 +515,13 @@ $.notify("{{__('product added to cart')}}", "success");
 
                                                         <div class="list_product_action_box">
                                                             <ul class="list_none pr_action_btn">
-                                                                <li><a href="shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
+
+                                                               <li>
+            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#exampleModal{{$item->model->id}}" >
+                <i class="icon-magnifier-add"></i>
+            </a>
+        </li>
+
                                                                 <li class="add-to-cart">
 
 
