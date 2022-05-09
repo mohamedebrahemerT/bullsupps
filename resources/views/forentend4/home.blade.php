@@ -218,7 +218,14 @@
                                             </div>
 
                                                 <div class="row">
-                                                      <div class="col-auto">
+                                                    
+
+                                                    <div class="col-auto me-auto">
+                                                        <div class="product_price">
+              <span class="price xtra">AED {{$product->price_offer }}</span>
+                                                        </div>
+                                                    </div>
+  <div class="col-auto">
                       <div class="product_price">
                           <div class="on_sale">
      <span>{{ ratio($product->price,$product->price_offer) }}% OFF</span>
@@ -227,13 +234,6 @@
                             
                                                         </div>
                                                     </div>
-
-                                                    <div class="col-auto me-auto">
-                                                        <div class="product_price">
-              <span class="price xtra">AED {{$product->price_offer }}</span>
-                                                        </div>
-                                                    </div>
-
                                                   
 
                                                 </div>
