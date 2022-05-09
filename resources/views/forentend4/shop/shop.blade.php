@@ -176,9 +176,29 @@
 
                                         <div class="list_product_action_box">
                                             <ul class="list_none pr_action_btn">
-                                                <li class="add-to-cart"><a href="#"><i class="icon-basket-loaded"></i></a></li>
-                                                <li><a href="shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                <li><a href="#"><i class="icon-heart"></i></a></li>
+                                                <li class="add-to-cart">
+           
+
+ <a  id="add_to_cart" href="javascript:void(0)" data-tip="{{__('Add To Cart')}}" class="cart js-cart">
+  <i class="icon-basket-loaded"></i>
+<span class="hidden">{{ $product->id }}</span>
+
+                   </a>
+
+
+            </li>
+   
+   <li>
+            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#exampleModal{{$product->id}}" >
+                <i class="icon-magnifier-add"></i>
+            </a>
+        </li>
+
+                                                       <li>
+        <a id="add_to_Wishlist" href="javascript:void(0)" data-tip="{{__('Add to Wishlist')}}"><i class="icon-heart"></i>
+<span class="hidden">{{ $product->id }}</span>
+</a>
+     </li>
                                             </ul>
                                         </div>
                                     </div>
