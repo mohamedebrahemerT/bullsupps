@@ -141,7 +141,7 @@ class CartController extends Controller
         {
                $success_output = 
                '<div class="alert alert-danger">'
-               .trans('admin.Itemisalreadyinyourcart!').'
+               .'Item already in your cart !'.'
 </div>';  
                       $output = array('success'     =>  $success_output);
          return $output;
