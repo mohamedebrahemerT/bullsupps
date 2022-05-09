@@ -24,7 +24,14 @@
 
             </li>
                                                 
-                                                <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
+                                               <li>
+            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#exampleModal{{$product->id}}" >
+                <i class="icon-magnifier-add"></i>
+            </a>
+        </li>
+
+
+                                                
                                                 <li>
                                                     <a id="add_to_Wishlist" href="javascript:void(0)" data-tip="{{__('Add to Wishlist')}}"><i class="icon-heart"></i>
 <span class="hidden">{{ $product->id }}</span>

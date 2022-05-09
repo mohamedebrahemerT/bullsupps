@@ -95,9 +95,12 @@
 
 
             </li>
-                                                
-                                                <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                <li>
+                                                 <li>
+            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#exampleModal{{$product->id}}" >
+                <i class="icon-magnifier-add"></i>
+            </a>
+        </li>
+  <li>
                                                     <a id="add_to_Wishlist" href="javascript:void(0)" data-tip="{{__('Add to Wishlist')}}"><i class="icon-heart"></i>
 <span class="hidden">{{ $product->id }}</span>
 </a>
@@ -230,11 +233,13 @@
 
           
                             <div class="widget">
-                                <h5 class="widget_title">Filter</h5>
+                                <h5 class="widget_title"><a id="Filter_Price" class="btn btn-primary  " type="button">Filter Price</a></h5>
+
                                 <div class="filter_price">
                                     <div id="price_filter" data-min="0" data-max="500" data-min-value="50" data-max-value="300" data-price-sign="AED"></div>
                                     <div class="price_range">
                                         <span>Price: <span id="flt_price"></span></span>
+
        <input type="hidden" id="price_first" name="price_first">
         <input type="hidden" id="price_second" name="price_second">
 
@@ -245,6 +250,8 @@
                             </div>
 
                               </form>
+
+
                             <br>
 
 
@@ -460,26 +467,9 @@ var array = []
             $('input[name="price_first"]').val(ui.values[0]);
             $('input[name="price_second"]').val(ui.values[1]);
 
-                var From_data=$('#Filter_form').serialize();
-           $.ajax({
-            url:'{{ url("/shop_Filter") }}',
-            dataType:'html',
-            type:'post',
-            data:From_data,
-            success:function(data)
-            {
-                $('.shop_Filter').html(data);
-                $('.shop_Filter').removeClass('hidden');
-                $('.zzzzzzzzzz').addClass('hidden');
-                $('.paginationblocks').addClass('hidden');
-             
-            },
-
-           });
-
- 
+         
             }
- 
+    
 
         });
        
@@ -562,6 +552,36 @@ var array = []
     
 
  
+
+ <script type="text/javascript">
+      $(document).on('click','#Filter_Price',function(){
+
+       
+ 
+            
+       var From_data=$('#Filter_form').serialize();
+           $.ajax({
+            url:'{{ url("/shop_Filter") }}',
+            dataType:'html',
+            type:'post',
+            data:From_data,
+            success:function(data)
+            {
+                $('.shop_Filter').html(data);
+                $('.shop_Filter').removeClass('hidden');
+                $('.zzzzzzzzzz').addClass('hidden');
+                $('.paginationblocks').addClass('hidden');
+             
+            },
+
+           });
+
+ return 0; 
+    
+                    
+                     
+                    });
+  </script>
 
 </body>
 

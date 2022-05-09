@@ -86,10 +86,18 @@ class ShopController extends Controller
 
          }
 
+         elseif (request()->trad_id  ) {
+            $products = $products->where('trad_id', request()->trad_id)->paginate($pagination);
+        }
+
+         elseif (request()->tag_id  ) {
+            $products = $products->where('color_id', request()->tag_id)->paginate($pagination);
+        }
+
 
          else 
          {
-         return   $products = $products->paginate($pagination);
+             $products = $products->paginate($pagination);
         }
 
           
@@ -104,7 +112,12 @@ class ShopController extends Controller
 
    public function shop_Filter()
     { 
-        
+         if (request()->price_first == 0) 
+             {
+                  request()->price_first=1;
+             }
+           
+
            $pagination = 9;
         $categories = Department::all();
 
@@ -120,6 +133,8 @@ class ShopController extends Controller
             $categoryName = 'Featured';
         }
 
+      
+
         if (request()->sort == 'low_high') {
             $products = $products->orderBy('price')->paginate($pagination);
         } elseif (request()->sort == 'high_low') {
@@ -128,7 +143,9 @@ class ShopController extends Controller
 
         elseif (request()->price_first and request()->price_second and request()->Brand_ids==null and  request()->attribute_value_ids==null) 
         {
-              
+             
+
+
               $products = 
              $products
              ->inRandomOrder()->

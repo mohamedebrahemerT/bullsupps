@@ -231,4 +231,87 @@ var iib = text;
 
   </script>
 
+
+
+ <script type="text/javascript">
+      $(document).on('click','#cartEffect2',function(){
+
+       
+
+     var produt_id  = $(this).attr("data-produt-id");
+
+      var frm= $("#frm"+produt_id).serialize() ;
+      
+         
+        
+            
+         $.ajax({
+            url:"{{ url('/') }}/addToCart",
+            method:"POST",
+           data :frm,
+            dataType:"json",
+            beforeSend:function(){
+                      $('.cart_sucess').html('');
+            },
+            success:function(data)
+            {
+             
+             $('.cart_sucess').html(data.success);  
+
+
+$.notify("{{__('product added to cart')}}", "success");
+
+
+            $('#cartEffect').text("{{__('Data add to cart')}}");
+           
+             
+                $('.cart_count').html(data.count);
+               $('.homesubtotal').html(data.total);
+
+             $('.cart_listhide').hide();
+             $('.cart_listhide').html('');
+               
+               $('.Cartcontent').html(data.Cartcontent);
+             
+   
+             
+
+            }
+        });
+             return false;
+    
+    
+                    
+                     
+                    });
+  </script>
+
+
+  <script type="text/javascript">
+    $('.product_color_switch span,.product_size_switch span')
+    .on("click", function() {
+        $(this).siblings(this).removeClass('active').end().addClass('active');
+
+ 
+ 
+var arr = [] //create arry
+     $(".product_size_switch span.active").each(function() {
+  arr.push($(this).attr('data-attribute_value_id')) //push value in array
+})
+
+     var produt_id  = $(this).attr("data-attribute_value-produt-id");
+
+      
+     
+ document.getElementById("attribute_value_ids"+produt_id).value = arr; 
+
+   
+
+  
+    });
+      
+  </script>
+
+
+
  @yield('javascript')

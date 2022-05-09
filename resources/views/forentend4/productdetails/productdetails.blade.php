@@ -459,7 +459,7 @@ var arr = [] //create arry
                                 <h5 class="widget_title">tags</h5>
                                 <div class="tags">
                                     @foreach(App\Color::get() as $tag)
-                                    <a href="{{url('/')}}/shop">
+                                    <a href="{{url('/')}}/shop?tag_id={{$tag->id}}">
                                        {{  $tag->name_en}}
                                     </a>
                                     
@@ -700,7 +700,14 @@ value="{{ old('email', auth()->user()->email) }}"
                                                     <div class="product_action_box">
                                                         <ul class="list_none pr_action_btn">
                                                             <li class="add-to-cart"><a href="{{url('/')}}/#" class="cart js-cart"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                            <li><a href="{{url('/')}}/shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
+                                                           
+                                                            <li>
+            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#exampleModal{{$product->id}}" >
+                <i class="icon-magnifier-add"></i>
+            </a>
+        </li>
+
+                                                            
                                                             <li><a href="{{url('/')}}/#"><i class="icon-heart"></i></a></li>
                                                         </ul>
                                                     </div>
