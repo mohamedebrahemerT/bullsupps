@@ -771,7 +771,7 @@ color: #555;">
 
 
 
-           <li class="treeview {{ active_menu('countries')[0] }}">
+           <!--li class="treeview {{ active_menu('countries')[0] }}">
 
     <a href="#">
 
@@ -883,7 +883,7 @@ color: #555;">
 
 
 
-  </li>
+  </li  -->
 
 
 
@@ -1851,7 +1851,7 @@ tags
 
                  @if(auth()->guard('admin')->user()->photo)
 
-            <img src="{{Storage::url(auth()->guard('admin')->user()->photo)}}" class="img-circle" alt="User Image" width="30px" height="30px">
+            <img src="{{url('/')}}/forentend4/iconified/logo.png" class="img-circle" alt="User Image" width="30px" height="30px">
 
                 @endif
 
@@ -1859,7 +1859,7 @@ tags
 
                     @if(!auth()->guard('admin')->user()->photo)
 
-            <img src="{{url('/')}}/Desgin/Adminlte/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image" >
+            <img src="{{url('/')}}/forentend4/iconified/logo.png" class="img-circle" alt="User Image" >
 
                 @endif
 
@@ -2246,7 +2246,7 @@ tags
 
                  @if(auth()->guard('admin')->user()->photo)
 
-            <img src="{{Storage::url(auth()->guard('admin')->user()->photo)}}" class="img-circle" alt="User Image" width="30px" height="30px">
+            <img src="{{url('/')}}/forentend4/iconified/logo.png" class="img-circle" alt="User Image" width="30px" height="30px">
 
                 @endif
 
@@ -2254,7 +2254,7 @@ tags
 
                     @if(!auth()->guard('admin')->user()->photo)
 
-            <img src="{{url('/')}}/Desgin/Adminlte/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image" >
+            <img src="{{url('/')}}/forentend4/iconified/logo.png" class="img-circle" alt="User Image" >
 
                 @endif
 
