@@ -299,12 +299,49 @@ var arr = [] //create arry
   arr.push($(this).attr('data-attribute_value_id')) //push value in array
 })
 
+       
+
      var produt_id  = $(this).attr("data-attribute_value-produt-id");
 
-      
-     
- document.getElementById("attribute_value_ids"+produt_id).value = arr; 
+   
 
+      if (produt_id == null) 
+      {
+
+ 
+
+         $('input[name="attribute_value_ids_Filter"]').val(arr);
+      var From_data=$('#Filter_form').serialize();
+
+
+    $.ajax({
+            url:'{{ url("/shop_Filter") }}',
+            dataType:'html',
+            type:'post',
+            data:From_data,
+            success:function(data)
+            {
+                $('.shop_Filter').html(data);
+                $('.shop_Filter').removeClass('hidden');
+                $('.zzzzzzzzzz').addClass('hidden');
+                $('.paginationblocks').addClass('hidden');
+             
+            },
+
+           });
+
+
+    return 0 
+      }
+
+      else
+      {
+   
+    document.getElementById("attribute_value_ids"+produt_id).value = arr;
+        
+      }
+
+        
    
 
   

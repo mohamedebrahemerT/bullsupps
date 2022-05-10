@@ -256,7 +256,7 @@
                                 <h5 class="widget_title"><a id="Filter_Price" class="btn btn-primary  " type="button">Filter Price</a></h5>
 
                                 <div class="filter_price">
-                                    <div id="price_filter" data-min="0" data-max="500" data-min-value="50" data-max-value="300" data-price-sign="AED"></div>
+                                    <div id="price_filter" data-min="1" data-max="500" data-min-value="50" data-max-value="300" data-price-sign="AED"></div>
                                     <div class="price_range">
                                         <span>Price: <span id="flt_price"></span></span>
 
@@ -264,7 +264,12 @@
         <input type="hidden" id="price_second" name="price_second">
 
             <input type="hidden" name="Brand_ids"  value="">
-            <input type="hidden" name="attribute_value_ids" value="">
+            <input type="hidden" name="attribute_value_ids_Filter" value="">
+            <input type="hidden" name="Showing" value="">
+            <input type="hidden" name="sort" value="">
+      <input type="hidden" name="department_id" value="{{request('id')}}">
+
+
                                     </div>
                                 </div>
                             </div>
@@ -385,7 +390,7 @@
 @include('forentend4.layouts.extra-js')
  
 
- <script type="text/javascript">
+ <!--script type="text/javascript">
     $('.product_color_switch span,.product_size_switch span')
     .on("click", function() {
         $(this).siblings(this).removeClass('active').end().addClass('active');
@@ -422,7 +427,7 @@
   
     });
       
-  </script>
+  </script -->
 
 
   <script type="text/javascript">
@@ -507,20 +512,17 @@ var array = []
         {   
                var sort=this.value;
 
-               $.ajax({
-            url:'{{ url("/shop_sorting") }}',
+                $('input[name="sort"]').val(sort);
+
+      var From_data=$('#Filter_form').serialize();
+
+      
+      
+           $.ajax({
+            url:'{{ url("/shop_Filter") }}',
             dataType:'html',
             type:'post',
-        
-           data :{
-
-            _token:'{{ csrf_token() }}',
-
-            sort:sort,
-
-
-
-           },
+            data:From_data,
             success:function(data)
             {
                 $('.shop_Filter').html(data);
@@ -532,6 +534,8 @@ var array = []
 
            });
 
+                
+
         });
     </script>
 
@@ -541,20 +545,17 @@ var array = []
         {   
                var Showing=this.value;
 
-               $.ajax({
-            url:'{{ url("/shop_sorting") }}',
+               $('input[name="Showing"]').val(Showing);
+
+      var From_data=$('#Filter_form').serialize();
+
+      
+      
+           $.ajax({
+            url:'{{ url("/shop_Filter") }}',
             dataType:'html',
             type:'post',
-        
-           data :{
-
-            _token:'{{ csrf_token() }}',
-
-            Showing:Showing,
-
-
-
-           },
+            data:From_data,
             success:function(data)
             {
                 $('.shop_Filter').html(data);

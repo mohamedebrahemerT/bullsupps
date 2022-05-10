@@ -112,40 +112,28 @@ class ShopController extends Controller
 
    public function shop_Filter()
     { 
-         if (request()->price_first == 0) 
-             {
-                  request()->price_first=1;
-             }
            
-
            $pagination = 9;
-        $categories = Department::all();
-
-        if (request()->id) 
-        {
-
-    $products = Product::where('status','active')->where('department_id',request()->id);
-            
-            $categoryName =Department::where('id',request()->id)->first()->dep_name_en; 
-            
-        } else {
             $products = Product::where('status','active');
             $categoryName = 'Featured';
-        }
+          $categories = Department::all();
 
-      
+ 
+              
 
-        if (request()->sort == 'low_high') {
-            $products = $products->orderBy('price')->paginate($pagination);
-        } elseif (request()->sort == 'high_low') {
-            $products = $products->orderBy('price', 'desc')->paginate($pagination);
-        }
+                 if(
+            request()->price_first   !==null  and 
+            request()->price_second  !==null and
+            request()->Brand_ids ==null     and
+            request()->attribute_value_ids_Filter ==null and
+            request()->Showing ==null and
+            request()->sort ==null and
+            request()->department_id ==null  
+        ) 
 
-        elseif (request()->price_first and request()->price_second and request()->Brand_ids==null and  request()->attribute_value_ids==null) 
         {
              
-
-
+               
               $products = 
              $products
              ->inRandomOrder()->
@@ -153,18 +141,138 @@ class ShopController extends Controller
              ->paginate($pagination);
         }
 
-
-        elseif (request()->Brand_ids  and  request()->attribute_value_ids==null and request()->price_first ==null) 
+               elseif 
+             ( request()->price_first   ==null  and 
+            request()->price_second  ==null and
+            request()->Brand_ids !==null     and
+            request()->attribute_value_ids_Filter ==null and
+            request()->Showing ==null and
+            request()->sort ==null and
+            request()->department_id ==null ) 
         {
+          
              $Brand_ids = request('Brand_ids');
       $Brand_ids = explode(',', $Brand_ids);
 
              $products = $products->whereIn('trad_id',   $Brand_ids )->paginate($pagination);
         } 
+     
 
-         elseif (request()->price_first and request()->price_second and request()->Brand_ids  and  request()->attribute_value_ids==null) 
+ elseif 
+         (
+            request()->price_first  == null and 
+            request()->price_second == null and
+            request()->Brand_ids    == null   and
+            request()->attribute_value_ids_Filter !=null and
+            request()->Showing    == null and
+            request()->sort == null and
+            request()->department_id == null  
+          ) 
         {
+             
+             $attribute_value_ids = request('attribute_value_ids_Filter');
+$attribute_value_ids = explode(',', $attribute_value_ids);
 
+     $product_variants =product_variant::whereIn('attribute_value_id',$attribute_value_ids)->get();
+
+            $product_ids=[];
+            foreach ($product_variants as $key => $product_variant) 
+            {
+                  $product_id=$product_variant->product_id;
+
+                  array_push( $product_ids,$product_id);
+            }
+              
+        $products = $products->whereIn('id',   $product_ids )->paginate($pagination);
+        }
+
+
+        elseif 
+         (
+          request()->price_first  ==null and 
+            request()->price_second ==null and
+            request()->Brand_ids    ==null   and
+            request()->attribute_value_ids_Filter ==null and
+            request()->Showing    ==null and
+            request()->sort !==null and
+            request()->department_id ==null    
+          ) 
+        {
+            
+                ///sort
+            if (request()->sort == 'low_high') {
+            $products = $products->orderBy('price')->paginate($pagination);
+        } elseif (request()->sort == 'high_low') {
+            $products = $products->orderBy('price', 'desc')->paginate($pagination);
+        } 
+        elseif (request()->sort == 'newness') {
+            $products = $products->orderBy('id', 'desc')->paginate($pagination);
+        }
+
+        elseif (request()->sort == 'popularity') {
+            $products = $products->inRandomOrder()->paginate($pagination);
+        }
+         elseif (request()->sort == 'Default') {
+            $products = $products->paginate($pagination);
+        }
+        ///end sort 
+             
+              
+              
+         
+        }
+
+         elseif (
+           
+            request()->price_first  ==null and 
+            request()->price_second ==null and
+            request()->Brand_ids    ==null   and
+            request()->attribute_value_ids_Filter ==null and
+            request()->Showing    !==null and
+            request()->sort ==null and
+            request()->department_id ==null  
+         
+         )
+          {
+          $pagination =request()->Showing; 
+            $products = $products->inRandomOrder()->paginate($pagination);
+
+             
+         }
+
+           elseif (
+           
+            request()->price_first  ==null and 
+            request()->price_second ==null and
+            request()->Brand_ids    ==null   and
+            request()->attribute_value_ids_Filter ==null and
+            request()->Showing    ==null and
+            request()->sort ==null and
+            request()->department_id !==null  
+         
+         )
+          {
+             
+
+ $products = $products->where('department_id', request()->department_id)->paginate($pagination);
+         }
+
+ 
+      
+      elseif  
+         (
+            request()->price_first  !==null and 
+            request()->price_second !==null and
+            request()->Brand_ids     !==null   and
+            request()->attribute_value_ids_Filter ==null and
+            request()->Showing    ==null and
+            request()->sort ==null and
+            request()->department_id ==null  
+          ) 
+         
+        {
+            
+           
             $Brand_ids = request('Brand_ids');
       $Brand_ids = explode(',', $Brand_ids);
               
@@ -176,51 +284,23 @@ class ShopController extends Controller
              ->paginate($pagination);
         }
 
-        elseif (request()->attribute_value_ids  and request()->Brand_ids==null and request()->price_first ==null and request()->price_first ==null) 
-        {
-             $attribute_value_ids = request('attribute_value_ids');
-$attribute_value_ids = explode(',', $attribute_value_ids);
+          elseif (
+           
+            request()->price_first  !==null and 
+            request()->price_second !==null and
 
-     $product_variants =product_variant::whereIn('attribute_value_id',$attribute_value_ids)->get();
-
-            $product_ids=[];
-            foreach ($product_variants as $key => $product_variant) 
-            {
-                  $product_id=$product_variant->product_id;
-
-                  array_push( $product_ids,$product_id);
-            }
-              
-        $products = $products->whereIn('id',   $product_ids )->paginate($pagination);
-        }
-
-         elseif (request()->attribute_value_ids  and request()->Brand_ids==null and request()->price_first  and request()->price_first ) 
-        {
-
-
-             $attribute_value_ids = request('attribute_value_ids');
-$attribute_value_ids = explode(',', $attribute_value_ids);
-
-     $product_variants =product_variant::whereIn('attribute_value_id',$attribute_value_ids)->get();
-
-            $product_ids=[];
-            foreach ($product_variants as $key => $product_variant) 
-            {
-                  $product_id=$product_variant->product_id;
-
-                  array_push( $product_ids,$product_id);
-            }
-              
-        $products = $products->whereIn('id',   $product_ids )->paginate($pagination);
-        }
-          elseif (request()->Brand_ids and  request()->attribute_value_ids and request()->price_first ==null and request()->price_first ==null) 
+            request()->Brand_ids    ==null   and
+            request()->attribute_value_ids_Filter !==null and
+            request()->Showing    ==null and
+            request()->sort ==null and
+            request()->department_id ==null  
+         
+         )
           {
 
 
-            $Brand_ids = request('Brand_ids');
-      $Brand_ids = explode(',', $Brand_ids);
-
-       $attribute_value_ids = request('attribute_value_ids');
+          //  return 'price_first price_second attribute_value_ids_Filter';
+              $attribute_value_ids = request('attribute_value_ids_Filter');
 $attribute_value_ids = explode(',', $attribute_value_ids);
 
      $product_variants =product_variant::whereIn('attribute_value_id',$attribute_value_ids)->get();
@@ -232,24 +312,31 @@ $attribute_value_ids = explode(',', $attribute_value_ids);
 
                   array_push( $product_ids,$product_id);
             }
-              
-
+         
              $products = 
              $products
-             ->whereIn('trad_id',   $Brand_ids)
-             ->whereIn('id',   $product_ids )
+            ->whereIn('id',   $product_ids )->
+  whereBetween('price_offer',[request()->price_first,request()->price_second])
              ->paginate($pagination);
+         
              
-          }
+         }
 
-          elseif (request()->Brand_ids and  request()->attribute_value_ids and request()->price_first  and request()->price_first ) 
+          elseif (
+           
+            request()->price_first  !==null and 
+            request()->price_second !==null and
+
+            request()->Brand_ids    ==null   and
+            request()->attribute_value_ids_Filter ==null and
+            request()->Showing    !==null and
+            request()->sort ==null and
+            request()->department_id ==null  
+         
+         )
           {
-            
-               
-            $Brand_ids = request('Brand_ids');
-      $Brand_ids = explode(',', $Brand_ids);
-
-       $attribute_value_ids = request('attribute_value_ids');
+            // return 'price_first price_second Showing';
+  $attribute_value_ids = request('attribute_value_ids_Filter');
 $attribute_value_ids = explode(',', $attribute_value_ids);
 
      $product_variants =product_variant::whereIn('attribute_value_id',$attribute_value_ids)->get();
@@ -261,21 +348,1067 @@ $attribute_value_ids = explode(',', $attribute_value_ids);
 
                   array_push( $product_ids,$product_id);
             }
-              
 
-              $products = 
-             $products
-             ->whereIn('trad_id',   $Brand_ids)
-             ->whereIn('id',   $product_ids )->
-whereBetween('price_offer',[request()->price_first,request()->price_second])
+           $pagination =request()->Showing; 
+             $products = 
+             $products->
+  whereBetween('price_offer',[request()->price_first,request()->price_second])
              ->paginate($pagination);
-             
-          }
 
+         }
+             elseif (
+           
+            request()->price_first  !==null and 
+            request()->price_second !==null and
 
-        else {
-            $products = $products->paginate($pagination);
+            request()->Brand_ids    ==null   and
+            request()->attribute_value_ids_Filter ==null and
+            request()->Showing    ==null and
+            request()->sort !==null and
+            request()->department_id ==null  
+         
+         )
+          {
+            /// return price_first price_second sort
+       $attribute_value_ids = request('attribute_value_ids_Filter');
+$attribute_value_ids = explode(',', $attribute_value_ids);
+
+     $product_variants =product_variant::whereIn('attribute_value_id',$attribute_value_ids)->get();
+
+            $product_ids=[];
+            foreach ($product_variants as $key => $product_variant) 
+            {
+                  $product_id=$product_variant->product_id;
+
+                  array_push( $product_ids,$product_id);
+            }
+     ///sort
+            if (request()->sort == 'low_high') {
+            $products = $products->
+  whereBetween('price_offer',[request()->price_first,request()->price_second])
+            ->orderBy('price')->paginate($pagination);
+        } elseif (request()->sort == 'high_low') {
+            $products = $products
+            ->
+  whereBetween('price_offer',[request()->price_first,request()->price_second])
+            ->orderBy('price', 'desc')->paginate($pagination);
+        } 
+        elseif (request()->sort == 'newness') {
+            $products = $products
+            ->
+  whereBetween('price_offer',[request()->price_first,request()->price_second])
+            ->orderBy('id', 'desc')->paginate($pagination);
         }
+
+        elseif (request()->sort == 'popularity') {
+            $products = $products
+            ->
+  whereBetween('price_offer',[request()->price_first,request()->price_second])
+            ->inRandomOrder()->paginate($pagination);
+        }
+         elseif (request()->sort == 'Default') {
+            $products = $products
+            ->
+  whereBetween('price_offer',[request()->price_first,request()->price_second])
+            ->paginate($pagination);
+        }
+        ///end sort 
+
+         
+                   
+         }
+           
+
+          ////end price_first price_second with all/////////////
+          elseif (
+
+              request()->Brand_ids    !==null   and
+           
+            request()->price_first  !==null and 
+            request()->price_second !==null and
+            request()->attribute_value_ids_Filter ==null and
+            request()->Showing    ==null and
+            request()->sort ==null and
+            request()->department_id !==null  
+         
+         )
+          {
+            return 'price_first price_second Brand_ids department_id';
+         
+                    $products = $products->paginate($pagination);
+         }
+
+         ////end price_first price_second with all/////////////
+
+         ////start Brand_ids with all/////////////
+
+
+         elseif (
+           
+            request()->price_first  ==null and 
+            request()->price_second ==null and
+
+            request()->Brand_ids    !==null   and
+            request()->attribute_value_ids_Filter !==null and
+            request()->Showing    ==null and
+            request()->sort ==null and
+            request()->department_id ==null  
+         
+         )
+          {
+            return 'attribute_value_ids_Filter   Brand_ids';
+         
+                    $products = $products->paginate($pagination);
+         }
+
+          elseif (
+           
+            request()->price_first  ==null and 
+            request()->price_second ==null and
+
+            request()->Brand_ids    !==null   and
+            request()->attribute_value_ids_Filter ==null and
+            request()->Showing    !==null and
+            request()->sort ==null and
+            request()->department_id ==null  
+         
+         )
+          {
+            return 'Showing   Brand_ids';
+         
+                    $products = $products->paginate($pagination);
+         }
+
+
+          elseif (
+           
+            request()->price_first  ==null and 
+            request()->price_second ==null and
+
+            request()->Brand_ids    !==null   and
+            request()->attribute_value_ids_Filter ==null and
+            request()->Showing    ==null and
+            request()->sort !==null and
+            request()->department_id ==null  
+         
+         )
+          {
+            return 'sort   Brand_ids';
+         
+                    $products = $products->paginate($pagination);
+         }
+
+          elseif (
+           
+            request()->price_first  ==null and 
+            request()->price_second ==null and
+
+            request()->Brand_ids    !==null   and
+            request()->attribute_value_ids_Filter ==null and
+            request()->Showing    ==null and
+            request()->sort ==null and
+            request()->department_id !==null  
+         
+         )
+          {
+            return 'department_id   Brand_ids';
+                
+                    $products = $products->paginate($pagination);
+         }
+         ////start attribute_value_ids_Filter with all/////////////
+
+           elseif (
+           
+            request()->price_first  ==null and 
+            request()->price_second ==null and
+
+            request()->Brand_ids    ==null   and
+            request()->attribute_value_ids_Filter !==null and
+            request()->Showing    !==null and
+            request()->sort ==null and
+            request()->department_id ==null  
+         
+         )
+          {
+            return 'Showing   attribute_value_ids_Filter';
+             
+                    $products = $products->paginate($pagination);
+         }
+
+         elseif (
+           
+            request()->price_first  ==null and 
+            request()->price_second ==null and
+
+            request()->Brand_ids    ==null   and
+            request()->attribute_value_ids_Filter !==null and
+            request()->Showing    ==null and
+            request()->sort !==null and
+            request()->department_id ==null  
+         
+         )
+          {
+            return 'sort   attribute_value_ids_Filter';
+         
+                    $products = $products->paginate($pagination);
+         }
+
+          elseif (
+           
+            request()->price_first  ==null and 
+            request()->price_second ==null and
+
+            request()->Brand_ids    ==null   and
+            request()->attribute_value_ids_Filter !==null and
+            request()->Showing    ==null and
+            request()->sort ==null and
+            request()->department_id !==null  
+         
+         )
+          {
+            return 'department_id   attribute_value_ids_Filter';
+           
+                    $products = $products->paginate($pagination);
+         }
+         ////end attribute_value_ids_Filter with all/////////////
+
+         ////start Showing with all/////////////
+         elseif (
+           
+            request()->price_first  ==null and 
+            request()->price_second ==null and
+
+            request()->Brand_ids    ==null   and
+            request()->attribute_value_ids_Filter ==null and
+            request()->Showing    !==null and
+            request()->sort !==null and
+            request()->department_id ==null  
+         
+         )
+          {
+            return 'sort   Showing';
+           
+                    $products = $products->paginate($pagination);
+         }
+          elseif (
+           
+            request()->price_first  ==null and 
+            request()->price_second ==null and
+
+            request()->Brand_ids    ==null   and
+            request()->attribute_value_ids_Filter !==null and
+            request()->Showing    !==null and
+            request()->sort ==null and
+            request()->department_id !==null  
+         
+         )
+          {
+            return 'Showing   department_id';
+         
+                    $products = $products->paginate($pagination);
+         }
+         ////start sort with all/////////////
+
+
+          elseif (
+           
+            request()->price_first  ==null and 
+            request()->price_second ==null and
+
+            request()->Brand_ids    ==null   and
+            request()->attribute_value_ids_Filter !==null and
+            request()->Showing    ==null and
+            request()->sort !==null and
+            request()->department_id !==null  
+         
+         )
+          {
+            return 'sort   department_id';
+         
+                    $products = $products->paginate($pagination);
+         }
+         ////end sort with all/////////////
+         elseif (
+           
+            request()->price_first  !==null and 
+            request()->price_second !==null and
+            request()->Brand_ids    !==null   and
+
+            request()->attribute_value_ids_Filter !==null and
+            request()->Showing    ==null and
+            request()->sort ==null and
+            request()->department_id ==null  
+         
+         )
+          {
+           /// return 'price_first price_second Brand_ids attribute_value_ids_Filter..............';
+
+            $attribute_value_ids = request('attribute_value_ids_Filter');
+$attribute_value_ids = explode(',', $attribute_value_ids);
+
+     $product_variants =product_variant::whereIn('attribute_value_id',$attribute_value_ids)->get();
+
+            $product_ids=[];
+            foreach ($product_variants as $key => $product_variant) 
+            {
+                  $product_id=$product_variant->product_id;
+
+                  array_push( $product_ids,$product_id);
+            }
+             $Brand_ids = request('Brand_ids');
+      $Brand_ids = explode(',', $Brand_ids);
+              
+        $products =
+         $products
+         ->whereIn('id',   $product_ids )->
+  whereBetween('price_offer',[request()->price_first,request()->price_second])
+  ->whereIn('trad_id',   $Brand_ids )
+
+         ->paginate($pagination);
+ 
+         }
+
+           elseif (
+           
+            request()->price_first  !==null and 
+            request()->price_second !==null and
+            request()->Brand_ids    !==null   and
+
+            request()->attribute_value_ids_Filter ==null and
+            request()->Showing    !==null and
+            request()->sort ==null and
+            request()->department_id ==null  
+         
+         )
+          {
+
+
+         // return 'price_first price_second Brand_ids Showing  ..';
+           $pagination =request()->Showing;
+
+             $Brand_ids = request('Brand_ids');
+      $Brand_ids = explode(',', $Brand_ids);
+      $products = $products
+ ->whereIn('trad_id',   $Brand_ids )->
+  whereBetween('price_offer',[request()->price_first,request()->price_second])
+ ->paginate($pagination);
+
+         
+                    
+         }
+
+            elseif (
+           
+            request()->price_first  !==null and 
+            request()->price_second !==null and
+            request()->Brand_ids    !==null   and
+
+            request()->attribute_value_ids_Filter ==null and
+            request()->Showing    ==null and
+            request()->sort !==null and
+            request()->department_id ==null  
+         
+         )
+          {
+           // return 'price_first price_second Brand_ids sort';
+
+                $Brand_ids = request('Brand_ids');
+      $Brand_ids = explode(',', $Brand_ids);
+
+
+                if (request()->sort == 'low_high') {
+            $products = $products->
+  whereBetween('price_offer',[request()->price_first,request()->price_second])
+            ->orderBy('price_offer')->
+            whereIn('trad_id',   $Brand_ids )->
+             paginate($pagination);
+        } elseif (request()->sort == 'high_low') {
+            $products = $products->
+  whereBetween('price_offer',[request()->price_first,request()->price_second])
+  ->orderBy('price_offer', 'desc')
+  ->
+            whereIn('trad_id',   $Brand_ids )
+            ->paginate($pagination);
+        } 
+        elseif (request()->sort == 'newness') {
+            $products = $products->
+  whereBetween('price_offer',[request()->price_first,request()->price_second])
+            ->orderBy('id', 'desc')
+            ->
+            whereIn('trad_id',   $Brand_ids )
+            ->paginate($pagination);
+        }
+
+        elseif (request()->sort == 'popularity') {
+            $products = $products->
+  whereBetween('price_offer',[request()->price_first,request()->price_second])
+            ->inRandomOrder()
+            ->
+            whereIn('trad_id',   $Brand_ids )
+            ->paginate($pagination);
+        }
+         elseif (request()->sort == 'Default') {
+            $products = $products->
+  whereBetween('price_offer',[request()->price_first,request()->price_second])
+  ->
+            whereIn('trad_id',   $Brand_ids )
+            ->paginate($pagination);
+        }
+            
+    
+                    
+         }
+
+              elseif (
+           
+            request()->price_first  !==null and 
+            request()->price_second !==null and
+            request()->Brand_ids    !==null   and
+
+            request()->attribute_value_ids_Filter ==null and
+            request()->Showing    ==null and
+            request()->sort  ==null and
+            request()->department_id !==null  
+         
+         )
+          {
+            return 'price_first price_second Brand_ids department_id';
+         
+                    $products = $products->paginate($pagination);
+         }
+
+
+           elseif (
+           
+            request()->price_first  !==null and 
+            request()->price_second !==null and
+            request()->Brand_ids    !==null   and
+
+            request()->attribute_value_ids_Filter !==null and
+            request()->Showing    !==null and
+            request()->sort  ==null and
+            request()->department_id ==null  
+         
+         )
+          {
+            return 'price_first price_second Brand_ids attribute_value_ids_Filter Showing';
+         
+                    $products = $products->paginate($pagination);
+         }
+
+         elseif (
+           
+            request()->price_first  !==null and 
+            request()->price_second !==null and
+            request()->Brand_ids    !==null   and
+
+            request()->attribute_value_ids_Filter !==null and
+            request()->Showing     ==null and
+            request()->sort  !==null and
+            request()->department_id ==null  
+         
+         )
+          {
+
+         //return 'price_first price_second Brand_ids attribute_value_ids_Filter sort...';
+
+              $attribute_value_ids = request('attribute_value_ids_Filter');
+$attribute_value_ids = explode(',', $attribute_value_ids);
+
+     $product_variants =product_variant::whereIn('attribute_value_id',$attribute_value_ids)->get();
+
+            $product_ids=[];
+            foreach ($product_variants as $key => $product_variant) 
+            {
+                  $product_id=$product_variant->product_id;
+
+                  array_push( $product_ids,$product_id);
+            }
+
+             $Brand_ids = request('Brand_ids');
+      $Brand_ids = explode(',', $Brand_ids);
+
+
+                if (request()->sort == 'low_high') {
+            $products = $products->
+  whereBetween('price_offer',[request()->price_first,request()->price_second])
+            ->orderBy('price_offer')->
+            whereIn('trad_id',   $Brand_ids )->
+            whereIn('id',   $product_ids )->
+             paginate($pagination);
+        } elseif (request()->sort == 'high_low') {
+            $products = $products->
+  whereBetween('price_offer',[request()->price_first,request()->price_second])
+  ->orderBy('price_offer', 'desc')
+  ->
+            whereIn('trad_id',   $Brand_ids )
+            ->
+            whereIn('id',   $product_ids )->
+            paginate($pagination);
+        } 
+        elseif (request()->sort == 'newness') {
+            $products = $products->
+  whereBetween('price_offer',[request()->price_first,request()->price_second])
+            ->orderBy('id', 'desc')
+            ->
+            whereIn('trad_id',   $Brand_ids )->
+            whereIn('id',   $product_ids )
+            ->paginate($pagination);
+        }
+
+        elseif (request()->sort == 'popularity') {
+            $products = $products->
+  whereBetween('price_offer',[request()->price_first,request()->price_second])
+            ->inRandomOrder()
+            ->
+            whereIn('trad_id',   $Brand_ids )->
+             whereIn('id',   $product_ids )
+            ->paginate($pagination);
+        }
+         elseif (request()->sort == 'Default') {
+            $products = $products->
+  whereBetween('price_offer',[request()->price_first,request()->price_second])
+  ->
+            whereIn('trad_id',   $Brand_ids )->
+             whereIn('id',   $product_ids )
+            ->paginate($pagination);
+        }
+            
+    
+
+         
+                    
+         }
+
+           elseif (
+           
+            request()->price_first  !==null and 
+            request()->price_second !==null and
+            request()->Brand_ids    !==null   and
+
+            request()->attribute_value_ids_Filter !==null and
+            request()->Showing     ==null and
+            request()->sort  ==null and
+            request()->department_id !==null  
+         
+         )
+          {
+            return 'price_first price_second Brand_ids attribute_value_ids_Filter department_id';
+         
+                    $products = $products->paginate($pagination);
+         }
+
+           elseif (
+           
+            request()->price_first  !==null and 
+            request()->price_second !==null and
+            request()->Brand_ids    !==null   and
+
+            request()->attribute_value_ids_Filter !==null and
+            request()->Showing     !==null and
+            request()->sort  !==null and
+            request()->department_id ==null  
+         
+         )
+          {
+            //return 'price_first price_second Brand_ids attribute_value_ids_Filter  Showing sort.....';
+          $pagination =request()->Showing; 
+
+
+                   $attribute_value_ids = request('attribute_value_ids_Filter');
+$attribute_value_ids = explode(',', $attribute_value_ids);
+
+     $product_variants =product_variant::whereIn('attribute_value_id',$attribute_value_ids)->get();
+
+            $product_ids=[];
+            foreach ($product_variants as $key => $product_variant) 
+            {
+                  $product_id=$product_variant->product_id;
+
+                  array_push( $product_ids,$product_id);
+            }
+
+             $Brand_ids = request('Brand_ids');
+      $Brand_ids = explode(',', $Brand_ids);
+
+
+                if (request()->sort == 'low_high') {
+            $products = $products->
+  whereBetween('price_offer',[request()->price_first,request()->price_second])
+            ->orderBy('price_offer')->
+            whereIn('trad_id',   $Brand_ids )->
+            whereIn('id',   $product_ids )->
+             paginate($pagination);
+        } elseif (request()->sort == 'high_low') {
+            $products = $products->
+  whereBetween('price_offer',[request()->price_first,request()->price_second])
+  ->orderBy('price_offer', 'desc')
+  ->
+            whereIn('trad_id',   $Brand_ids )
+            ->
+            whereIn('id',   $product_ids )->
+            paginate($pagination);
+        } 
+        elseif (request()->sort == 'newness') {
+            $products = $products->
+  whereBetween('price_offer',[request()->price_first,request()->price_second])
+            ->orderBy('id', 'desc')
+            ->
+            whereIn('trad_id',   $Brand_ids )->
+            whereIn('id',   $product_ids )
+            ->paginate($pagination);
+        }
+
+        elseif (request()->sort == 'popularity') {
+            $products = $products->
+  whereBetween('price_offer',[request()->price_first,request()->price_second])
+            ->inRandomOrder()
+            ->
+            whereIn('trad_id',   $Brand_ids )->
+             whereIn('id',   $product_ids )
+            ->paginate($pagination);
+        }
+         elseif (request()->sort == 'Default') {
+            $products = $products->
+  whereBetween('price_offer',[request()->price_first,request()->price_second])
+  ->
+            whereIn('trad_id',   $Brand_ids )->
+             whereIn('id',   $product_ids )
+            ->paginate($pagination);
+        }
+            
+         
+                  
+         }
+
+
+          elseif (
+           
+            request()->price_first  !==null and 
+            request()->price_second !==null and
+            request()->Brand_ids    !==null   and
+
+            request()->attribute_value_ids_Filter !==null and
+            request()->Showing     !==null and
+            request()->sort  !==null and
+            request()->department_id !==null  
+         
+         )
+          {
+            return 'price_first price_second Brand_ids attribute_value_ids_Filter  Showing sort department_id';
+         
+                    $products = $products->paginate($pagination);
+         }
+
+          elseif (
+           
+            request()->price_first  !==null and 
+            request()->price_second !==null and
+            request()->Brand_ids    ==null   and
+
+            request()->attribute_value_ids_Filter ==null and
+            request()->Showing     !==null and
+            request()->sort  !==null and
+            request()->department_id ==null  
+         
+         )
+          {
+            return 'price_first price_second      Showing sort  ';
+         
+                    $products = $products->paginate($pagination);
+         }
+
+          elseif (
+           
+            request()->price_first  !==null and 
+            request()->price_second !==null and
+            request()->Brand_ids    !==null   and
+
+            request()->attribute_value_ids_Filter ==null and
+            request()->Showing     !==null and
+            request()->sort  !==null and
+            request()->department_id ==null  
+         
+         )
+          {
+           // return 'price_first price_second   Brand_ids   Showing sort .. ';
+ 
+          $pagination =request()->Showing; 
+
+             $Brand_ids = request('Brand_ids');
+      $Brand_ids = explode(',', $Brand_ids);
+
+
+                if (request()->sort == 'low_high') {
+            $products = $products->
+  whereBetween('price_offer',[request()->price_first,request()->price_second])
+            ->orderBy('price_offer')->
+            whereIn('trad_id',   $Brand_ids )->
+             paginate($pagination);
+        } elseif (request()->sort == 'high_low') {
+            $products = $products->
+  whereBetween('price_offer',[request()->price_first,request()->price_second])
+  ->orderBy('price_offer', 'desc')
+  ->
+            whereIn('trad_id',   $Brand_ids )->
+            paginate($pagination);
+        } 
+        elseif (request()->sort == 'newness') {
+            $products = $products->
+  whereBetween('price_offer',[request()->price_first,request()->price_second])
+            ->orderBy('id', 'desc')
+            ->
+            whereIn('trad_id',   $Brand_ids )
+            ->paginate($pagination);
+        }
+
+        elseif (request()->sort == 'popularity') {
+            $products = $products->
+  whereBetween('price_offer',[request()->price_first,request()->price_second])
+            ->inRandomOrder()
+            ->
+            whereIn('trad_id',   $Brand_ids )
+            ->paginate($pagination);
+        }
+         elseif (request()->sort == 'Default') {
+            $products = $products->
+  whereBetween('price_offer',[request()->price_first,request()->price_second])
+  ->
+            whereIn('trad_id',   $Brand_ids )
+            ->paginate($pagination);
+        }
+            
+         
+                    
+         }
+          elseif (
+           
+            request()->price_first  ==null and 
+            request()->price_second ==null and
+            request()->Brand_ids    ==null   and
+
+            request()->attribute_value_ids_Filter ==null and
+            request()->Showing     ==null and
+            request()->sort  !==null and
+            request()->department_id !==null  
+         
+         )
+          {
+            return 'sort department_id ';
+         
+                    $products = $products->paginate($pagination);
+         }
+
+         elseif (
+           
+            request()->price_first  ==null and 
+            request()->price_second ==null and
+            request()->Brand_ids    ==null   and
+
+            request()->attribute_value_ids_Filter ==null and
+            request()->Showing     !==null and
+            request()->sort  ==null and
+            request()->department_id !==null  
+         
+         )
+          {
+
+            return 'Showing department_id ';
+         
+                    $products = $products->paginate($pagination);
+         }
+
+          elseif (
+           
+            request()->price_first  ==null and 
+            request()->price_second ==null and
+            request()->Brand_ids    !==null   and
+
+            request()->attribute_value_ids_Filter ==null and
+            request()->Showing     !==null and
+            request()->sort  ==null and
+            request()->department_id !==null  
+         
+         )
+          {
+            return 'Showing department_id  Brand_ids';
+         
+                    $products = $products->paginate($pagination);
+         }
+
+            elseif (
+           
+            request()->price_first  !==null and 
+            request()->price_second !==null and
+            request()->Brand_ids    !==null   and
+
+            request()->attribute_value_ids_Filter ==null and
+            request()->Showing     !==null and
+            request()->sort  ==null and
+            request()->department_id !==null  
+         
+         )
+          {
+            return 'price_first price_second Brand_ids Showing department_id  Brand_ids';
+         
+                    $products = $products->paginate($pagination);
+         }
+
+            elseif (
+           
+            request()->price_first  !==null and 
+            request()->price_second !==null and
+            request()->Brand_ids    !==null   and
+
+            request()->attribute_value_ids_Filter !==null and
+            request()->Showing     !==null and
+            request()->sort  ==null and
+            request()->department_id !==null  
+         
+         )
+          {
+            return 'price_first price_second Brand_ids Showing department_id  Brand_ids attribute_value_ids_Filter';
+         
+                    $products = $products->paginate($pagination);
+         }
+
+         elseif (
+           
+            request()->price_first  ==null and 
+            request()->price_second ==null and
+            request()->Brand_ids    ==null   and
+
+            request()->attribute_value_ids_Filter ==null and
+            request()->Showing     !==null and
+            request()->sort  !==null and
+            request()->department_id !==null  
+         
+         )
+          {
+            return 'sort Showing department_id   ';
+         
+                    $products = $products->paginate($pagination);
+         }
+
+           elseif (
+           
+            request()->price_first  !==null and 
+            request()->price_second !==null and
+            request()->Brand_ids    ==null   and
+
+            request()->attribute_value_ids_Filter ==null and
+            request()->Showing     ==null and
+            request()->sort  !==null and
+            request()->department_id !==null  
+         
+         )
+          {
+            return 'price_first price_second sort   department_id   ';
+         
+                    $products = $products->paginate($pagination);
+         }
+
+          elseif (
+           
+            request()->price_first  !==null and 
+            request()->price_second !==null and
+            request()->Brand_ids    !==null   and
+
+            request()->attribute_value_ids_Filter ==null and
+            request()->Showing     ==null and
+            request()->sort  !==null and
+            request()->department_id !==null  
+         
+         )
+          {
+            return 'price_first price_second sort Brand_ids  department_id   ';
+         
+                    $products = $products->paginate($pagination);
+         }
+
+          elseif (
+           
+            request()->price_first  !==null and 
+            request()->price_second !==null and
+            request()->Brand_ids    !==null   and
+
+            request()->attribute_value_ids_Filter !==null and
+            request()->Showing     ==null and
+            request()->sort  !==null and
+            request()->department_id !==null  
+         
+         )
+          {
+            return 'price_first price_second sort Brand_ids attribute_value_ids_Filter  department_id   ';
+         
+                    $products = $products->paginate($pagination);
+         }
+
+          elseif (
+           
+            request()->price_first  ==null and 
+            request()->price_second ==null and
+            request()->Brand_ids    !==null   and
+
+            request()->attribute_value_ids_Filter ==null and
+            request()->Showing     ==null and
+            request()->sort  !==null and
+            request()->department_id !==null  
+         
+         )
+          {
+            return '  sort Brand_ids    department_id ........  ';
+         
+                    $products = $products->paginate($pagination);
+         }
+
+            elseif (
+           
+            request()->price_first  ==null and 
+            request()->price_second ==null and
+            request()->Brand_ids    ==null   and
+
+            request()->attribute_value_ids_Filter !==null and
+            request()->Showing     ==null and
+            request()->sort  !==null and
+            request()->department_id !==null  
+         
+         )
+          {
+            return '  sort     department_id  attribute_value_ids_Filter ';
+         
+                    $products = $products->paginate($pagination);
+         }
+
+          elseif (
+           
+            request()->price_first  ==null and 
+            request()->price_second ==null and
+            request()->Brand_ids    ==null   and
+
+            request()->attribute_value_ids_Filter !==null and
+            request()->Showing     !==null and
+            request()->sort  !==null and
+            request()->department_id !==null  
+         
+         )
+          {
+            return '  attribute_value_ids_Filter sort Showing    department_id   ';
+         
+                    $products = $products->paginate($pagination);
+         }
+
+          elseif (
+           
+            request()->price_first  !==null and 
+            request()->price_second !==null and
+            request()->Brand_ids    ==null   and
+
+            request()->attribute_value_ids_Filter ==null and
+            request()->Showing     !==null and
+            request()->sort  ==null and
+            request()->department_id !==null  
+         
+         )
+          {
+            return 'price_first  price_second    Showing    department_id   ';
+         
+                    $products = $products->paginate($pagination);
+         }
+          elseif (
+           
+            request()->price_first  ==null and 
+            request()->price_second ==null and
+            request()->Brand_ids    ==null   and
+
+            request()->attribute_value_ids_Filter !==null and
+            request()->Showing     !==null and
+            request()->sort  ==null and
+            request()->department_id !==null  
+         
+         )
+          {
+            return 'attribute_value_ids_Filter      Showing    department_id   ';
+         
+                    $products = $products->paginate($pagination);
+         }
+
+          elseif (
+           
+            request()->price_first  ==null and 
+            request()->price_second ==null and
+            request()->Brand_ids    !==null   and
+
+            request()->attribute_value_ids_Filter !==null and
+            request()->Showing     !==null and
+            request()->sort  !==null and
+            request()->department_id !==null  
+         
+         )
+          {
+            return '  attribute_value_ids_Filter sort Showing    department_id  Brand_ids ';
+         
+                    $products = $products->paginate($pagination);
+         }
+
+          elseif (
+           
+            request()->price_first  !==null and 
+            request()->price_second !==null and
+            request()->Brand_ids    ==null   and
+
+            request()->attribute_value_ids_Filter !==null and
+            request()->Showing     ==null and
+            request()->sort  !==null and
+            request()->department_id !==null  
+         
+         )
+          {
+            return 'price_first  price_second sort  department_id ';
+         
+                    $products = $products->paginate($pagination);
+         }
+
+          elseif (
+           
+            request()->price_first  !==null and 
+            request()->price_second !==null and
+            request()->Brand_ids    ==null   and
+
+            request()->attribute_value_ids_Filter ==null and
+            request()->Showing     ==null and
+            request()->sort  ==null and
+            request()->department_id !==null  
+         
+         )
+          {
+            return 'price_first  price_second    department_id ';
+         
+                    $products = $products->paginate($pagination);
+         }
+
+         elseif (
+           
+            request()->price_first  ==null and 
+            request()->price_second ==null and
+            request()->Brand_ids    ==null   and
+            request()->attribute_value_ids_Filter ==null and
+            request()->Showing    ==null and
+            request()->sort ==null and
+            request()->department_id ==null  
+         
+         )
+          {
+             return  request();
+
+                    $products = $products->paginate($pagination);
+         }
+        
+
+       
+            
+                    
+       
 
          return view('forentend4.shop.shop_Filter',[
            'products' => $products,
