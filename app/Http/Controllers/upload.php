@@ -45,10 +45,38 @@ class upload extends Controller
 
                  public function  delete_image($id)
                  {
-                       $file=filesss::find($id);
+                       $file=filess::find($id);
                        if (!empty($file)) 
                        {
                           Storage::delete($file->full_file);
+
+                              
+                                 if (file_exists($file->path))
+             {
+
+               unlink($file->path);
+             
+            }
+
+                   if (file_exists($file->name))
+             {
+
+               unlink($file->name);
+             
+            }
+
+               if (file_exists($file->file))
+             {
+
+               unlink($file->file);
+             
+            }
+
+           
+                        
+                        
+                                
+
                         $file->delete();
   
                        }

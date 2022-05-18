@@ -108,7 +108,7 @@ class productesController extends Controller
 
 
 
-     return 'test test';
+   
 
       $data = $this->validate(request(),
 
@@ -272,7 +272,7 @@ class productesController extends Controller
 
 
 
-  $image                   =       $request->file('file');
+               $image                   =       $request->file('file');
         $input['productzoomphoto']      =       time().'.'.$image->extension();
 
         $destinationPath         =    "productes".$id."/zoom";
@@ -392,6 +392,16 @@ class productesController extends Controller
 
                            $productes->photo=null;
 
+
+                           if (file_exists($productes->productzoomphoto))
+             {
+
+               unlink($productes->productzoomphoto);
+             
+            }
+                           $productes->productzoomphoto=null;
+            
+
                         $productes->save();
 
 
@@ -431,7 +441,7 @@ public function delete_imgofferphoto_dropzon_product($id)
    public function upload_img($id)
 
    {
-
+              
 
      
            if (request()->has('file'))
@@ -453,6 +463,43 @@ public function delete_imgofferphoto_dropzon_product($id)
                  $file->store("productes".$id);
 
 
+                 ///////////////////////////////////////////////
+   $image                   =       $request->file('file');
+        $input['zoomaftereid']      =       time().'.'.$image->extension();
+
+        $destinationPath         =    "productes".$id."/zoomaftereid";
+
+            if (!file_exists($destinationPath))
+             {
+            mkdir($destinationPath, 666, true);
+            }
+
+
+
+        $img                     =       ImageResize::make($image->path());
+
+
+    
+
+
+        // --------- [ Resize Image ] ---------------
+
+        $img->resize(810, 810, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save($destinationPath.'/'.$input['zoomaftereid']);
+               
+
+          $zoomaftereid=$destinationPath.'/'.$input['zoomaftereid'];
+                   
+
+
+
+      
+
+
+                 //////////////////////////////////////////////
+
+
 
               
 
@@ -460,7 +507,7 @@ public function delete_imgofferphoto_dropzon_product($id)
 
                    $add=filess::create([
 
-                'name'        => $name,
+                'name'        => $zoomaftereid,
 
                 'size'        => $size ,
 

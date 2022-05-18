@@ -341,66 +341,7 @@ class myproductesController extends Controller
                  $file->store("productes".$id);
 
 
-
-                $image                   =       $request->file('file');
-        $input['productzoomphoto']      =       time().'.'.$image->extension();
-
-        $destinationPath         =    "productes".$id."/zoom";
-
-            if (!file_exists($destinationPath))
-             {
-            mkdir($destinationPath, 666, true);
-            }
-
-
-
-        $img                     =       ImageResize::make($image->path());
-
-
-    
-
-
-        // --------- [ Resize Image ] ---------------
-
-        $img->resize(810, 900, function ($constraint) {
-            $constraint->aspectRatio();
-        })->save($destinationPath.'/'.$input['productzoomphoto']);
-               
-
-          $path=$destinationPath.'/'.$input['productzoomphoto'];
-                   
-////////////////////////////////////////////////////////
-            $image                   =       $request->file('file');
-        $input['thumb']      =       time().'.'.$image->extension();
-
-        $destinationPath         =    "productes".$id."/zoom/thumb";
-
-            if (!file_exists($destinationPath))
-             {
-            mkdir($destinationPath, 666, true);
-            }
-
-
-
-        $img                     =       ImageResize::make($image->path());
-
-
-    
-
-
-        // --------- [ Resize Image ] ---------------
-
-        $img->resize(150, 160, function ($constraint) {
-            $constraint->aspectRatio();
-        })->save($destinationPath.'/'.$input['thumb']);
-               
-
-          $file=$destinationPath.'/'.$input['thumb'];
-          ///////////////////////////////////////////////////
-
-
-
-          ////////////////////////////////////////////////////////
+                    //////////////////////dataimage//////////////////////////////////
             $image                   =       $request->file('file');
         $input['default']      =       time().'.'.$image->extension();
 
@@ -426,21 +367,87 @@ class myproductesController extends Controller
         })->save($destinationPath.'/'.$input['default']);
                
 
-          $name=$destinationPath.'/'.$input['default'];
-          ///////////////////////////////////////////////////
+          $dataimage=$destinationPath.'/'.$input['default'];
+          //////////////////// end dataimage///////////////////////////////
+
+
+
+////////////////////////////datazoom////////////////////////////////////
+
+                $image                   =       $request->file('file');
+        $input['productzoomphoto']      =       time().'.'.$image->extension();
+
+        $destinationPath         =    "productes".$id."/zoom";
+
+            if (!file_exists($destinationPath))
+             {
+            mkdir($destinationPath, 666, true);
+            }
+
+
+
+        $img                     =       ImageResize::make($image->path());
+
+
+    
+
+
+        // --------- [ Resize Image ] ---------------
+
+        $img->resize(800, 800, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save($destinationPath.'/'.$input['productzoomphoto']);
+               
+
+          $datazoom=$destinationPath.'/'.$input['productzoomphoto'];
+////////////////////////// end datazoom /////////////////////////////////          
+
+                   
+////////////////////////thumb////////////////////////////////
+            $image                   =       $request->file('file');
+        $input['thumb']      =       time().'.'.$image->extension();
+
+        $destinationPath         =    "productes".$id."/zoom/thumb";
+
+            if (!file_exists($destinationPath))
+             {
+            mkdir($destinationPath, 666, true);
+            }
+
+
+
+        $img                     =       ImageResize::make($image->path());
+
+
+    
+
+
+        // --------- [ Resize Image ] ---------------
+
+        $img->resize(100, 100, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save($destinationPath.'/'.$input['thumb']);
+               
+
+          $thumb=$destinationPath.'/'.$input['thumb'];
+          /////////////////////// end  thumb////////////////////////////
+
+
+
+       
 
 
 
 
                    $add=filess::create([
 
-                'name'        => $name,
-
+                  'name'        => $dataimage,
+                  'path'        => $datazoom ,
+                  'file'        => $thumb ,
+               
                 'size'        => $size ,
 
-                'file'        => $file ,
-
-                'path'        => $path ,
+              
 
                 'full_file'   => 'productes'.$id.'/'.$hashName ,
 
@@ -482,7 +489,7 @@ class myproductesController extends Controller
 
              {
 
-              // return  up::delete_image(request('id'));
+                up::delete_image(request('id'));
 
               $fid=request('id');
 
