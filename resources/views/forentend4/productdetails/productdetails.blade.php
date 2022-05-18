@@ -163,9 +163,10 @@ var arr = [] //create arry
 
                                         <div class="item">
     <a href="{{url('/')}}/" class="product_gallery_item @if($key == 0) active @endif"
-                                             data-image="{{Storage::url($file->full_file)}}" data-zoom-image="{{Storage::url($file->full_file)}}">
+                                           
+                                             data-image="{{url('/')}}/{{$file->name}}" data-zoom-image="{{url('/')}}/{{$file->path}}">
                                               
-                                                <img src="{{Storage::url($file->full_file)}}" alt="product_small_img1"  />
+                                                <img src="{{url('/')}}/{{$file->file}}" alt="product_small_img1"  />
 
                                             </a>
                                         </div>
