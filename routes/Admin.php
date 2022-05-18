@@ -635,7 +635,7 @@ Route::get('admin/affiliate', 'affiliateInadminController@affiliateData');
 
    Route::post('admin/upload/img/{id}', 'myproductesController@upload_img');
 
-   Route::post('admin/delete_img_dropzon', 'myproductesController@delete_img');
+   //Route::post('admin/delete_img_dropzon', 'myproductesController@delete_img');
 
    Route::post('admin/update_img_dropzon_myproduct/img/{id}', 'myproductesController@update_img_dropzon_myproduct');
 
