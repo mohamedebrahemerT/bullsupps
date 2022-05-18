@@ -1307,6 +1307,11 @@
         border-radius: 0px;
         margin: -50px auto 40px auto
     }
+    .shop_container.list .product_img2 {
+        float: left;
+        width: 100%;
+        max-width: none;
+    }
 }
 
 

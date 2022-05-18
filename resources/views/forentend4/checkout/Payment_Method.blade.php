@@ -59,7 +59,8 @@
                             <div class="col-12">
                                 <div class="tab-style">
                                     <div class="row nav nav-tabs" role="tablist">
-                                        <div class="col-md-6 active" id="Description-tab" data-bs-toggle="tab" href="#Description" role="tab" aria-controls="Description" aria-selected="true">
+                                     
+                                       <!--div class="col-md-6 active" id="Description-tab" data-bs-toggle="tab" href="#Description" role="tab" aria-controls="Description" aria-selected="true">
                                             <div class="contact_wrap Addressbox_style1 mb-3">
                                                 <div class="contact_text">
                                                     <div class="row bardhe justify-content-center">
@@ -72,9 +73,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div -->
                                         
-                   <div class="col-md-6 " id="Additional-info-tab" data-bs-toggle="tab" href="#Additional-info" role="tab" aria-controls="Additional-info" aria-selected="false">
+                   <div class="col-md-6   active" id="Additional-info-tab" data-bs-toggle="tab" href="#Additional-info" role="tab" aria-controls="Additional-info" aria-selected="false">
 
                                             <div class="contact_wrap Addressbox_style1 mb-3">
                                                 <div class="contact_text">
@@ -90,8 +91,9 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="tab-content shop_info_tab">
-                                        <div class="tab-pane fade show active" id="Description" role="tabpanel" aria-labelledby="Description-tab">
+                                        <!--div class="tab-pane fade " id="Description" role="tabpanel" aria-labelledby="Description-tab">
                                             <div class="row">
                                                 <div class="col-12">
                                                     <div class="border border-radius2 box_shadow1 p-3 p-md-4">
@@ -100,7 +102,7 @@
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-xs-12 col-md-8">
-                                                                <!-- CREDIT CARD FORM STARTS HERE -->
+                                                              
                                                                 <form role="form" id="payment-form" method="POST" action="javascript:void(0);">
                                                                     <div class="row">
                                                                         <div class="col-xs-12">
@@ -143,7 +145,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </form>
-                                                                <!-- CREDIT CARD FORM ENDS HERE -->
+                                                          
                                                             </div>
                                                         </div>
                                                     </div>
@@ -175,8 +177,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="Additional-info" role="tabpanel" aria-labelledby="Additional-info-tab">
+                                        </div  -->
+
+                                        <div class="tab-pane fade show active" id="Additional-info" role="tabpanel" aria-labelledby="Additional-info-tab">
                                             <div class="row">
                                                 <div class="col-12">
                                                     <div class="product_description">

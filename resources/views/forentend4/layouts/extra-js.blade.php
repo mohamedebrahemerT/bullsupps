@@ -74,7 +74,7 @@
                 $('.cart_sucess').html(data.success);  
 
 
-$.notify("{{__('product added to cart')}}", "success");
+ 
 
 
             $('#cartEffect').text("{{__('Data add to cart')}}");
@@ -85,11 +85,13 @@ $.notify("{{__('product added to cart')}}", "success");
 
              $('.cart_listhide').hide();
              $('.cart_listhide').html('');
+             $('.cart_listhide2').html('');
                
+               $('.Cartcontent2').html(data.Cartcontent2);
                $('.Cartcontent').html(data.Cartcontent);
              
 
-
+$('.js-menu-toggle').trigger('click');
 
 
                 }
@@ -130,7 +132,7 @@ $.notify("{{__('product added to cart')}}", "success");
              
              $('.cart_sucess').html(data.success);  
    
-$.notify("The product has been saved to my favorites!", "success");
+//$.notify("The product has been saved to my favorites!", "success");
 
             }
         });
@@ -163,6 +165,7 @@ $.notify("The product has been saved to my favorites!", "success");
 var iib = text;
  
        $("#b"+iib).hide();
+       $("#b2"+iib).hide();
             
 
         $.ajax({

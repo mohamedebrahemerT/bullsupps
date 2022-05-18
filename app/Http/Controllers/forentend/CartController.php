@@ -264,6 +264,40 @@ Cart::add(['id' => $product->id, 'name' => $name, 'qty' =>$qty, 'price' => $pric
                                      '.$items.'
                  
                                 </ul>';
+        //////////////////////////////////
+
+
+                                $items2='';
+             foreach ($cart_add as   $item) 
+        {
+            $items2.='
+            <li id="b2'.$item->rowId.'">
+     <form action="'.url('/').'/cartdestroy?'.$item->rowId.'" method="POST" id="dellshop">  
+      <input type="hidden" name="_token" value="'.csrf_token().'">
+    <input type="hidden" name="rowId" value="'.$item->rowId.'">
+
+      <a class="item_remove" id="Removeshop"><span class="hidden">'.$item->rowId.'</span>  <i style="color: #fff;cursor: pointer;" class="ion-close"></i></a>
+
+                        </form>
+
+                 <a href="'.url('/').'/shop/'.$item->model->id.'" style="color: #fff;cursor: pointer;">
+                 <img src="'.Storage::url($item->model->photo).'" alt="cart_thumb1">
+      '.$item->model->title_name_en.'
+                                            </a>
+         <span class="cart_quantity"> '.$item->qty.' x <span class="cart_amount"> <span class="price_symbole">AED</span></span>'.$item->subtotal.'</span>
+                                    </li>
+            ';
+             
+        }
+
+
+                        $Cartcontent2 ='<ul class="cart_list">
+                
+                                     '.$items2.'
+                 
+                                </ul>';
+
+ 
 
                           $output = array(
                         'success'     =>  $success_output,
@@ -272,7 +306,8 @@ Cart::add(['id' => $product->id, 'name' => $name, 'qty' =>$qty, 'price' => $pric
                         'subtotal'     =>  $subtotal,
                         'cart_add'     =>  $cart_add,
                         'tax'     =>  $tax,
-                        'Cartcontent'=>$Cartcontent
+                        'Cartcontent'=>$Cartcontent,
+                        'Cartcontent2'=>$Cartcontent2
                         
                       );
 

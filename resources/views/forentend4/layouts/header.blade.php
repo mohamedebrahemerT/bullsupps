@@ -96,12 +96,71 @@ border: 1px solid #000;
 
 <body>
 
-    <!-- LOADER -->
-    <!--div class="preloader">
-        <div class="lds-ellipsis">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </div -->
-    <!-- END LOADER -->
+              
+     
+  <aside class="sidebar bg-black ">
+            <div class="toggle">
+                <a href="#" class="burger js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
+                    <span class="bg-darkgray"></span>
+                </a>
+
+                <span class="bag-label">Your Cart</span>
+            </div>
+            <div class="side-inner">
+
+                <div class="cart_box cart_right dropdown-menu-right">
+                        <span class="Cartcontent2"></span>
+                @if (Cart::count() > 0)
+
+                    <ul class="cart_list cart_listhide2">
+                @foreach (Cart::content() as $item)
+
+                            <li id="b2{{$item->rowId}}">
+         <form action="{{ route('cart.destroy', $item->rowId) }}" method="POST" id="dellshop">  
+      {{ csrf_field() }}
+    <input type="hidden" name="rowId" value="{{ $item->rowId }}">
+
+      <a  class="item_remove" id="Removeshop"><span class="hidden">{{ $item->rowId }}</span>  <i style="color: #fff;cursor: pointer;" class="ion-close"></i></a>
+
+                        </form>
+
+                            <a href="{{url('/')}}/shop/{{ $item->model->id}}" style="color: #fff;cursor: pointer;">
+            <img src="{{Storage::url($item->model->photo)}}" alt="cart_thumb1"></a>
+                            @if(session('lang')=='ar')
+   {{ $item->model->title_name_ar }}
+   @endif
+   @if(session('lang')=='en')
+   {{ $item->model->title_name_en }}
+    @endif
+                            <span class="cart_quantity"> {{$item->qty}} x <span class="cart_amount"> <span class="price_symbole">AED</span></span>{{ $item->model->price_offer }}</span>
+                        </li>
+                @endforeach
+
+                        
+                    </ul>
+                      @else
+          
+            @endif
+                    <div class="cart_footer">
+                        <p class="cart_total"><strong>Subtotal:</strong> 
+                               <span class="cart_price">
+
+
+
+<span class="homesubtotal">
+<span class="price_symbole">AED</span>
+
+{{Cart::Subtotal()  }}
+</span>
+</span>
+                        </p>
+                        <p class="cart_buttons"><a href="{{url('/')}}/cart" class="btn btn-secondary view-cart">View Cart</a><a href="{{url('/')}}/Checkout" class="btn btn-primary checkout">Checkout</a></p>
+                        <p class="cart_buttons"><a href="{{url('/')}}/shop" class="btn btn-primary btn-block">Continue Shopping</a></p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>

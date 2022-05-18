@@ -32,7 +32,7 @@
              $('.cart_sucess').html(data.success);  
 
 
-$.notify("{{__('product added to cart')}}", "success");
+ 
 
 
             $('#cartEffect').text("{{__('Data add to cart')}}");
@@ -43,10 +43,14 @@ $.notify("{{__('product added to cart')}}", "success");
 
              $('.cart_listhide').hide();
              $('.cart_listhide').html('');
-               
+                  $('.cart_listhide2').html('');
+                   $('.Cartcontent2').html(data.Cartcontent2);
                $('.Cartcontent').html(data.Cartcontent);
+
+               
+              
              
-   
+   $('.js-menu-toggle').trigger('click');
              
 
             }
@@ -351,9 +355,9 @@ var arr = [] //create arry
                                             </div>
                                         </div>
                                         <div class="cart_btn">
-                                            <a href="{{url('/')}}/#" class="cart js-cart">
+                                            <a href="{{url('/')}}/#" class="cart ">
 
-             <button id="cartEffect1" class="btn btn-primary btn-lg btn-addtocart cart js-cart " type="button">Add to cart</button>
+             <button id="cartEffect1" class="btn btn-primary btn-lg btn-addtocart cart  " type="button">Add to cart</button>
 
              <a  class="add_wishlist" id="add_to_Wishlist" href="javascript:void(0)" data-tip="{{__('Add to Wishlist')}}"><i class="icon-heart"></i>
 <span class="hidden">{{ $product->id }}</span>
@@ -699,9 +703,21 @@ value="{{ old('email', auth()->user()->email) }}"
                                                     </a>
                                                     <div class="product_action_box">
                                                         <ul class="list_none pr_action_btn">
-                                                            <li class="add-to-cart"><a href="{{url('/')}}/#" class="cart js-cart"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
+                                                          
+                                                           <li class="add-to-cart">
+           
+
+ <a  id="add_to_cart" href="javascript:void(0)" data-tip="{{__('Add To Cart')}}" class="cart ">
+  <i class="icon-basket-loaded"></i>
+<span class="hidden">{{ $product->id }}</span>
+
+                   </a>
+
+
+            </li>
                                                            
                                                             <li>
+                                                                
             <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#exampleModal{{$product->id}}" >
                 <i class="icon-magnifier-add"></i>
             </a>

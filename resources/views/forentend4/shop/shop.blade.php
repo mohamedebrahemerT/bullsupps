@@ -2,6 +2,9 @@
 @include('forentend4.layouts.navbar')
 @include('forentend4.layouts.menue')
 @include('forentend4.layouts.message')
+
+ 
+
    <!-- START SECTION BREADCRUMB -->
     <div class="breadcrumb_section page-title-mini">
         <div class="custom-container">
@@ -87,7 +90,7 @@
                                                 <li class="add-to-cart">
            
 
- <a  id="add_to_cart" href="javascript:void(0)" data-tip="{{__('Add To Cart')}}" class="cart js-cart">
+ <a  id="add_to_cart" href="javascript:void(0)" data-tip="{{__('Add To Cart')}}" class="cart ">
   <i class="icon-basket-loaded"></i>
 <span class="hidden">{{ $product->id }}</span>
 
@@ -179,7 +182,7 @@
                                                 <li class="add-to-cart">
            
 
- <a  id="add_to_cart" href="javascript:void(0)" data-tip="{{__('Add To Cart')}}" class="cart js-cart">
+ <a  id="add_to_cart" href="javascript:void(0)" data-tip="{{__('Add To Cart')}}" class="cart ">
   <i class="icon-basket-loaded"></i>
 <span class="hidden">{{ $product->id }}</span>
 
@@ -353,6 +356,8 @@
 
 
 @include('forentend4.layouts.subfooter')
+
+
 
   
     <a href="#" class="scrollup" style="display: none;"><i class="ion-ios-arrow-up"></i></a>
@@ -602,7 +607,11 @@ var array = []
                     
                      
                     });
+
+
+
   </script>
+    <script src="{{url('/')}}/assets/js/main.js"></script>
 
 </body>
 

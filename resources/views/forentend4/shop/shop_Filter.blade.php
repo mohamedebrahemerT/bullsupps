@@ -15,7 +15,7 @@
                                                 <li class="add-to-cart">
            
 
- <a  id="add_to_cart" href="javascript:void(0)" data-tip="{{__('Add To Cart')}}" class="cart js-cart">
+ <a  id="add_to_cart" href="javascript:void(0)" data-tip="{{__('Add To Cart')}}" class="cart ">
   <i class="icon-basket-loaded"></i>
 <span class="hidden">{{ $product->id }}</span>
 

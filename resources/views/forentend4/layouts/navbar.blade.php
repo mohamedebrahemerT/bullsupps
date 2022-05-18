@@ -13,7 +13,9 @@
                         </div>
                         <div class="lng_dropdown">
                             <select name="countries" class="custome_select">
+                           
                             <option value='UAE' data-image="{{url('/')}}/assets/images/UAE.svg" data-title="English"> <a href="#" alt="UAE-country"><span>UAE</span></a></option>
+
                             <option value='KSA' data-image="assets/images/KSA.svg" data-title="France"> <a href="#" alt="KSA-country"><span>KSA</span></a></option>
                         </select>
                         </div>
@@ -127,7 +129,7 @@
                         <div class="heading_tab_header tobar">
                             <div class="heading_s2">
                                 <ul class="icon_list text-center text-lg-start">
-                                    <li><a href="#"><i class="ion-android-globe me-2"></i>العربية</a></li>
+                                    <!--li><a href="#"><i class="ion-android-globe me-2"></i>العربية</a></li-->
                                 </ul>
                             </div>
                             <div class="d-flex align-items-center justify-content-center justify-content-md-end">
@@ -287,7 +289,7 @@
       {{ csrf_field() }}
     <input type="hidden" name="rowId" value="{{ $item->rowId }}">
 
-      <a class="item_remove" id="Removeshop"><span class="hidden">{{ $item->rowId }}</span>  <i class="ion-close"></i></a>
+      <a  class="item_remove" id="Removeshop"><span class="hidden">{{ $item->rowId }}</span>  <i style="color: #fff;cursor: pointer;" class="ion-close"></i></a>
 
                         </form>
 
@@ -299,7 +301,9 @@
    {{ $item->model->title_name_en }}
     @endif
                                         </a>
-                                        <span class="cart_quantity"> {{$item->qty}} x <span class="cart_amount"> <span class="price_symbole">AED</span></span>    {{ $item->model->price_offer }}</span>
+                                        <span class="cart_quantity"> {{$item->qty}} x 
+                <span class="cart_amount"> 
+        <span class="price_symbole">AED</span></span>    {{ $item->model->price_offer }}</span>
                                     </li>
                 @endforeach
  
