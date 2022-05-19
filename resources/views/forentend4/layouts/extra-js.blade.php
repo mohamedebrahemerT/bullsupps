@@ -211,7 +211,7 @@ var iib = text;
              $('.cart_sucess').html(data.success);  
             
    $('.total').html(data.total);
-   $('.subtotal').html(data.total);
+   $('.subtotal').html(data.subtotal);
    $('.homesubtotal').html(data.total);
    $('.tax').html(data.tax);
    $('.cart_count').html(data.count);

@@ -312,7 +312,7 @@ return view('forentend4.my-profile.my-profile',compact('user', 'orders'));
 
                                            ->get();
  
-        return view('forentend4.checkout.Placed_Order_Confirmation',compact('OrderProducts'));
+        return view('forentend4.checkout.Placed_Order_Confirmation',compact('OrderProducts','order'));
     }
 
     public function active_user_addresses_id()

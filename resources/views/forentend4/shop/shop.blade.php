@@ -256,7 +256,9 @@
 
           
                             <div class="widget">
-                                <h5 class="widget_title"><a id="Filter_Price" class="btn btn-primary  " type="button">Filter Price</a></h5>
+                                <h5 class="widget_title">Filter Price</h5>
+                               
+
 
                                 <div class="filter_price">
                                     <div id="price_filter" data-min="1" data-max="500" data-min-value="50" data-max-value="300" data-price-sign="AED"></div>
@@ -275,6 +277,8 @@
 
                                     </div>
                                 </div>
+
+                                 <a id="Filter_Price" class="btn btn-primary  " type="button">ok</a>
                             </div>
 
                               </form>

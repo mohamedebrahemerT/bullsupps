@@ -65,8 +65,51 @@
  
 
         @endforeach
+ <!----------------------------------------------------------->
+  <li class="dropdown dropdown-mega-menu">
+                                        <a class="dropdown-item nav-link dropdown-toggler" 
+                                        href="#"
+                                         data-bs-toggle="dropdown">
+                                           
+                                            <span>
+      
+                                           
+                                              By Brands
+                                         
+                                        
+                                        </span></a>
+                                        <div class="dropdown-menu">
 
-        
+                         <ul class="mega-menu d-lg-flex">
+
+   @foreach(App\TradeMark::get() as  $TradeMark)
+                                                <li class="mega-menu-col col-lg-4">
+                                                    <ul>
+             <li class="dropdown-header">
+                  <a  style="color:#333333" href="{{url('/')}}/shop?trad_id={{$TradeMark->id}}">
+               @if(session('lang') == 'ar')
+ {{$TradeMark->name_ar}}
+  @elseif(session('lang') == 'en')
+ {{$TradeMark->name_en}}
+ @else
+ {{$TradeMark->name_en}}
+      @endif
+            </a> 
+         </li>
+
+          
+
+                                                        
+                                                    </ul>
+                                                </li>
+        @endforeach
+                                                 
+                                            </ul>
+                                        </div>
+                                    </li>
+
+
+
 
            
 

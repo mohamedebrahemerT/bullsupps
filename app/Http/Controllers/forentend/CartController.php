@@ -569,7 +569,7 @@ else
                           Cart::remove($id);
 
             $count=Cart::count();
-            $total='AED '.Cart::total();
+            $total='<strong>'.'AED '.Cart::total().' </strong>';
             $subtotal='AED '.Cart::subtotal();
             $cart_add=Cart::content();
             $tax='AED '.Cart::tax();
@@ -954,7 +954,7 @@ else
                     
 
             $count=Cart::count();
-            $total='AED '.Cart::total();
+            $total='<strong>'.'AED '.Cart::total().' </strong>';
             $subtotal='AED '.Cart::subtotal();
             $cart_add=Cart::content();
             $tax='AED '.Cart::tax();
@@ -1018,7 +1018,7 @@ else
                     
 
             $count=Cart::count();
-            $total='AED '.Cart::total();
+              $total='<strong>'.'AED '.Cart::total().' </strong>';
             $subtotal='AED '.Cart::subtotal();
             $cart_add=Cart::content();
             $tax='AED '.Cart::tax();

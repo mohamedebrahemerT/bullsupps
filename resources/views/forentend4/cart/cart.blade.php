@@ -550,7 +550,7 @@
             success:function(data)
             {
                $('.total').html(data.total);
-   $('.subtotal').html(data.total);
+   $('.subtotal').html(data.subtotal);
    $('.tax').html(data.tax);
 
 
@@ -597,7 +597,7 @@
             success:function(data)
             {
              $('.total').html(data.total);
-   $('.subtotal').html(data.total);
+   $('.subtotal').html(data.subtotal);
    $('.tax').html(data.tax);
 
 
@@ -792,7 +792,7 @@
          <input type="button" value="+" class="plus" id="plusservicesselected" data-id="{{$item->rowId}}">
                                                 </div>
                                             </td>
-                                            <td class="product-subtotal" data-title="Total">
+                <td class="product-subtotal" data-title="Total">
            <span id="{{$item->rowId}}"> AED  {{$item->subtotal}}</span>
                                             </td>
                                             <td class="product-remove" data-title="Remove">
@@ -860,7 +860,10 @@
                                     <tbody class="">
                                         <tr class="noborder">
                                             <td class="cart_total_label">Subtotal</td>
-                                            <td class="cart_total_amount subtotal">AED {{Cart::Subtotal()  }} </td>
+                                            <td class="cart_total_amount ">
+                                                <span class="subtotal">AED {{Cart::Subtotal()  }} </span>
+                                            
+                                        </td>
                                         </tr>
                                         <tr class="noborder">
                                             <td class="cart_total_label">Shipping Fee</td>
@@ -868,7 +871,8 @@
                                         </tr>
                                         <tr class="noborder">
                                             <td class="cart_total_label">Total<span class="text_gray float-end"> (Inclusive  of VAT)</span></td>
-                                            <td class="cart_total_amount total"><strong>AED {{Cart::Total()  }} </strong></td>
+                                            <td class="cart_total_amount total">
+                    <strong>AED {{Cart::Total()  }} </strong></td>
                                         </tr>
                                         <tr class="noborder">
                                             <td class="cart_total_label "><span class="text_gray">Estimate VAT</span>
