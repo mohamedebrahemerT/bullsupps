@@ -249,26 +249,16 @@ class productesController extends Controller
                  {
 
 
+                    if (!empty($test['file']))
+                     {
+                        Storage::delete($test['delte_file']);
+                     }
+        $data['photo'] =request()->file('file')->store("productes".$id);
+   
+                  
+                 }
 
-                    $data['photo']  = up::upload(
-
-                     [
-
-                        "file"=>"file",
-
-                        "upload_type"=> "single",
-
-                        "delte_file"=> "",
-
-                        "path" => "productes".$id,
-
-
-
-                     ]
-
-
-
-                  ); 
+  
 
 
 
@@ -298,11 +288,9 @@ class productesController extends Controller
                
 
           $data['productzoomphoto']=$destinationPath.'/'.$input['productzoomphoto'];
+                    
                     $productes = Product::find($id);  
-
       Product::where('id', $id)->update($data);
-
-
 
           return $data['photo'];
 
