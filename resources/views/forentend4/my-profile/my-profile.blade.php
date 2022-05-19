@@ -163,7 +163,7 @@
             $('.cart_sucess').html(data.success);  
 
 
-$.notify("{{__('product added to cart')}}", "success");
+//$.notify("{{__('product added to cart')}}", "success");
 
 
             $('#cartEffect').text("{{__('Data add to cart')}}");
@@ -453,7 +453,7 @@ $.notify("{{__('product added to cart')}}", "success");
                                     </div>
                                     <div class="card-body">
                                         <div class="row shop_container list">
-          <span class="cart_sucess"></span>
+          <!-- span class="cart_sucess"></span -->
 @if(Cart::instance('saveForLater')->count() > 0)
                 @foreach (Cart::instance('saveForLater')->content() as $item)
 

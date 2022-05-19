@@ -493,14 +493,7 @@ data-attribute_value-produt-id="{{$product->id}}"
                 </div>
                     <div class="modal-footer">
                     
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-
-
-
-              
-    <a href="{{url('/')}}/cart" class="btn btn-secondary view-cart">View Cart</a>
-        <a href="{{url('/')}}/Checkout" class="btn btn-primary checkout">Checkout</a> 
-
+                    
                      
                 </div>
             </div>

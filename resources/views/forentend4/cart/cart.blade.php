@@ -728,7 +728,7 @@
                             </div>
                             <div class="table-responsive shop_cart_table">
                                
-   <span class="cart_sucess"></span>
+   <!--span class="cart_sucess"></span -->
 
                 @if (session()->has('success_message'))
 
@@ -844,7 +844,7 @@
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-12 mb-3">
-                                                <span class="cart_sucessCoupon"></span>
+                         <!--span class="cart_sucessCoupon"></span -->
                                                 <button id="apply_coupon"  class="btn btn-primary" type="submit">Add</button>
                                             </div>
                                         </div>

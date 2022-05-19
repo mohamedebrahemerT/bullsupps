@@ -317,7 +317,7 @@
 				<div class="col-lg-10 offset-lg-1">
 					<div class="cart_container">
 						<div class="cart_title">MyWishlist </div>
-                              <span class="cart_sucess"></span>
+                              <!--span class="cart_sucess"></span -->
 
 						   @if (session()->has('success_message'))
                 <div class="alert alert-success cc">
