@@ -49,6 +49,13 @@
                                     <div class="form-group mb-3">
                                         <input type="text" required="" class="form-control" name="name" placeholder="Enter Your Name">
                                     </div>
+
+                                       <div class="form-group mb-3">
+                                        <input type="text" required="" class="form-control" name="lastname" placeholder="Enter Your last name">
+                                    </div>
+
+                                    
+
                                     <div class="form-group mb-3">
                                         <input type="text" required="" class="form-control" name="email" placeholder="Enter Your Email">
                                     </div>

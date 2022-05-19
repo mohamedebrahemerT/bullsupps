@@ -154,6 +154,7 @@ class M_V_L_R extends Controller
 		     $data=$this->Validate(request(),[
 
             'name' => ['required', 'string', 'max:255'],
+            'lastname' => ['required', 'string', 'max:255'],
        
 
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -164,6 +165,7 @@ class M_V_L_R extends Controller
             
 		     ],[],[
          'name' =>    'name',
+         'lastname' =>    'lastname',
 		    
          
             'email' =>    'email' ,
