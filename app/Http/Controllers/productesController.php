@@ -249,14 +249,14 @@ class productesController extends Controller
                  {
 
 
-                    if (!empty($test['file']))
+                    if (!empty(request('file')))
                      {
-                        Storage::delete($test['delte_file']);
+                        Storage::delete(request('file'));
                      }
         $data['photo'] =request()->file('file')->store("productes".$id);
    
                   
-                 }
+                      
 
   
 
