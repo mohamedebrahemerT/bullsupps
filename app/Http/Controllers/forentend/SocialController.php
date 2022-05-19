@@ -59,7 +59,7 @@ use App\Http\Controllers\Controller;
    
 
 
-
+dd($getInfo);
 
 
    $getInfo = Socialite::driver($provider)->user(); 
