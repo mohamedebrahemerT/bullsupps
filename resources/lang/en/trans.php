@@ -191,7 +191,7 @@ return [
     'password'=>'password',
     'value_ar'=>'value ar',
     'value_en'=>'value en',
-    ''=>'',
+    'address2'=>'address',
     ''=>'',
     ''=>'',
     ''=>'',

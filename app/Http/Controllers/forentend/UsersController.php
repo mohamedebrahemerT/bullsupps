@@ -145,7 +145,7 @@ return view('forentend4.my-profile.my-profile',compact('user', 'orders'));
             'lat' => trans('admin.lat'),
             'lng' => trans('admin.lng'),
              
-            'address' => trans('admin.address'),
+            'address' => trans('admin.address2'),
             'gift' => trans('admin.gift'),
             
          ]);

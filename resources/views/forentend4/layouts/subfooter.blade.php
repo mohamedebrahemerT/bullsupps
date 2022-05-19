@@ -356,7 +356,7 @@
                             </div>
                         </div>
                     </div>
-                     <span class="cart_sucess"> </span>
+                     <!--span class="cart_sucess"> </span -->
  <form action="{{ url('/') }}/addToCart" method="POST" id="frm{{$product->id}}" >
                              {{ csrf_field() }}
 

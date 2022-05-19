@@ -262,19 +262,23 @@ var iib = text;
              $('.cart_sucess').html(data.success);  
 
 
-$.notify("{{__('product added to cart')}}", "success");
+//$.notify("{{__('product added to cart')}}", "success");
 
 
-            $('#cartEffect').text("{{__('Data add to cart')}}");
+           // $('#cartEffect').text("{{__('Data add to cart')}}");
            
              
                 $('.cart_count').html(data.count);
                $('.homesubtotal').html(data.total);
 
-             $('.cart_listhide').hide();
              $('.cart_listhide').html('');
+             $('.cart_listhide2').html('');
                
+               $('.Cartcontent2').html(data.Cartcontent2);
                $('.Cartcontent').html(data.Cartcontent);
+             
+
+$('.js-menu-toggle').trigger('click');
              
    
              

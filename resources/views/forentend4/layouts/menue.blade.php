@@ -10,7 +10,11 @@
                                 <ul>
  @foreach(App\Department::where('parent' ,null)->get() as $key =>  $Department)
                                       <li class="dropdown dropdown-mega-menu">
-                                        <a class="dropdown-item nav-link dropdown-toggler" href="#" data-bs-toggle="dropdown"><i class="flaticon-plugins"></i> <span>
+                                        <a class="dropdown-item nav-link dropdown-toggler" 
+                                        href="#"
+                                         data-bs-toggle="dropdown">
+                                           
+                                            <span>
         @if(session('lang') == 'ar')
  {{$Department->dep_name_ar}}
   @elseif(session('lang') == 'en')
@@ -62,6 +66,8 @@
 
         @endforeach
 
+        
+
            
 
                                 
@@ -98,6 +104,10 @@
                                                 <li class="mega-menu-col col-lg-3">
                                                     <ul>
                 <li class="dropdown-header">
+                     @if( $Department->id == '257')
+                  <a  style="color: #333333;" href="{{url('/')}}/shop?id={{$subDepartment->id}}">
+                                        @endif
+
                       @if(session('lang') == 'ar')
  {{$subDepartment->dep_name_ar}}
   @elseif(session('lang') == 'en')
@@ -105,6 +115,10 @@
  @else
  {{$subDepartment->dep_name_en}}
       @endif
+
+       @if( $Department->id == '257')
+                   </a>
+                                        @endif
                 </li>
   @foreach(App\Department::where('parent' ,$subDepartment->id)->get() as $key =>  $subsubDepartment)
   <li><a class="dropdown-item nav-link nav_item" href="{{url('/')}}/shop?id={{$subsubDepartment->id}}">
@@ -121,6 +135,10 @@
                                                     </ul>
                                                 </li>
         @endforeach
+
+
+
+
 
                                                
                                             </ul>
@@ -148,6 +166,68 @@
                                     </li>
                                     
         @endforeach
+
+
+         <li class="dropdown dropdown-mega-menu">
+             <a class="dropdown-toggle nav-link"
+              href="#" data-bs-toggle="dropdown">
+                                           
+                                              By Brands
+                                         
+                                        </a>
+                                        <div class="dropdown-menu">
+                                            <ul class="mega-menu d-lg-flex">
+    @foreach(App\TradeMark::get() as  $TradeMark)
+
+                                                <li class="mega-menu-col col-lg-3">
+                                                    <ul>
+                <li class="dropdown-header">
+                    <a  style="color:#333333" href="{{url('/')}}/shop?trad_id={{$TradeMark->id}}">
+                     @if(session('lang') == 'ar')
+ {{$TradeMark->name_ar}}
+  @elseif(session('lang') == 'en')
+ {{$TradeMark->name_en}}
+ @else
+ {{$TradeMark->name_en}}
+      @endif
+  </a>
+                                       
+                </li>
+
+   
+                                                         
+                                                    </ul>
+                                                </li>
+        @endforeach
+
+
+
+        
+
+                                               
+                                            </ul>
+                                            <!--div class="d-lg-flex menu_banners row g-3 px-3">
+                                                <div class="col-lg-6">
+                                                    <div class="header-banner">
+                                                        <div class="sale-banner">
+                                                            <a class="hover_effect1" href="#">
+                                                                <img src="assets/images/shop_banner_img7.jpg" alt="shop_banner_img7">
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="header-banner">
+                                                        <div class="sale-banner">
+                                                            <a class="hover_effect1" href="#">
+                                                                <img src="assets/images/shop_banner_img8.jpg" alt="shop_banner_img8">
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div -->
+                                        </div>
+                                    </li>
                                    
                                    
  

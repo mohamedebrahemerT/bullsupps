@@ -142,9 +142,10 @@ use App\Mail\ExceptionOccured;
              */
             public function store(CheckoutRequest $request)
             {
-                 if ($this->productsAreNoLongerAvailable()) {
+                 if ($this->productsAreNoLongerAvailable()) 
+                 {
             return back()->withErrors('Sorry! One of the items in your cart is no longer avialble.');
-        }
+                  }
  
          
      return   $contents = Cart::content()->map(function ($item) {
@@ -365,13 +366,14 @@ use App\Mail\ExceptionOccured;
         foreach (Cart::content() as $item) {
             $product = Product::find($item->model->id);
 
-            $product->update(['quantity' => $product->quantity - $item->qty]);
+            $product->update(['stock' => $product->stock - $item->qty]);
         }
     }
 
              protected function productsAreNoLongerAvailable()
     {
-        foreach (Cart::content() as $item) {
+        foreach (Cart::content() as $item) 
+        {
             $product = Product::find($item->model->id);
             if ($product->stock < $item->qty) {
                 return true;

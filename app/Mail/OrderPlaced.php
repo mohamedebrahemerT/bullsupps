@@ -32,8 +32,7 @@ class OrderPlaced extends Mailable
     public function build()
     {
         return $this->to($this->order->billing_email, $this->order->billing_name)
-                    ->subject('
-تفاصيل طلبك من LEPALMIER       
+                    ->subject('Details of your order from bullsupps      
 ')
                     ->markdown('emails.orders.placed');
     }
