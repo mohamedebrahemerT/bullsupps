@@ -54,18 +54,9 @@ use App\Http\Controllers\Controller;
 
  {
 
-
-
-   
-
-
-
-
+           
 
    $getInfo = Socialite::driver($provider)->user(); 
-
-
-
  
       $email=$getInfo->email;
 

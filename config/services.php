@@ -58,7 +58,7 @@ return [
      'client_id' => '500395865150960',
      'client_secret' =>'54d81892a84de6ab24861d303ecb164c',
     // 'redirect' => 'https://ac4mt.org/callback/facebook/',
-     'redirect' => 'https://bullsupps.com/facebook/callback',
+     'redirect' => 'https://bullsupps.com/callback/facebook',
    ], 
 
 
