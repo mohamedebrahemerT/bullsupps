@@ -70,13 +70,11 @@ use App\Http\Controllers\Controller;
 
 
 
-            session()->flash('success',trans('admin.dataCretedsucsufully'));
+            //session()->flash('success',trans('admin.dataCretedsucsufully'));
 
+ 
 
-
-
-
-return redirect('/');
+return redirect('/Checkout');
 
  }
 
