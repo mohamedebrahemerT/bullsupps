@@ -74,7 +74,7 @@ use App\Http\Controllers\Controller;
 
  
 
-return redirect('/Checkout');
+return redirect('/');
 
  }
 
@@ -94,7 +94,7 @@ return redirect('/Checkout');
 
 
 
-return redirect('/Checkout');
+return redirect('/');
 
 
 
