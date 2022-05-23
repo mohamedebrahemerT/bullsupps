@@ -88,13 +88,14 @@ return redirect('/Checkout');
 
 
 
-            session()->flash('success',trans('admin.dataCretedsucsufully'));
+          //  session()->flash('success',trans('admin.dataCretedsucsufully'));
 
 
 
 
 
-return redirect('/');
+return redirect('/Checkout');
+
 
 
 
