@@ -257,7 +257,7 @@
                 <div class="product-image">
                     <div class="product_img_box">
 
-                        <img id="product_img" src="{{url('/')}}/{{$product->productzoomphoto}}" data-zoom-image="{{url('/')}}/{{$product->productzoomphoto}}" alt="product_img1" />
+                        <img id="product_img" src="{{Storage::url($product->photo)}}" data-zoom-image="{{url('/')}}/{{$product->productzoomphoto}}" alt="product_img1" />
 
                         <a href="#" class="product_img_zoom" title="Zoom">
                             <span class="linearicons-zoom-in"></span>
@@ -271,9 +271,9 @@
 
             @foreach($filess as $key => $file)
 
-                        <div class="item">
-                            <a href="#" class="product_gallery_item @if($key == 0) active @endif" data-image="{{Storage::url($file->full_file)}}" data-zoom-image="{{Storage::url($file->full_file)}}">
-                                <img src="{{Storage::url($file->full_file)}}" alt="product_small_img1" />
+                        <div class="item ">
+                            <a href="#" class="product_gallery_item @if($key == 0) active @endif" data-image="{{url('/')}}/{{$file->name}}" data-zoom-image="{{url('/')}}/{{$file->path}}">
+                                <img src="{{url('/')}}/{{$file->file}}" alt="product_small_img1" />
                             </a>
                         </div>
                       @endforeach
