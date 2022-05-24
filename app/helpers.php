@@ -7,7 +7,7 @@
      function TotalAfterShipingPrice()
 
    {
-           $city_id=null;
+          /* $city_id=null;
 
         if ($city_id) {
               if(App\statDistrebutionToZones::where('city_id',$city_id)->first())
@@ -41,11 +41,11 @@
 
         }
    
-
+*/
 
                  
 
-                 return $zoneprice  ;
+                 return $zoneprice = 0 ;
                   
 
                 
