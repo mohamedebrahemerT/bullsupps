@@ -14,7 +14,7 @@ Thank you for your order.
 **Items Ordered**
 
 @foreach ($order->products as $product)
-Name: {{ $product->name }} <br>
+Name: {{ $product->title_name_ar }} <br>
 Price:AED $product->price_offer}} <br>
 Quantity: {{ $product->pivot->quantity }} <br>
 @endforeach
