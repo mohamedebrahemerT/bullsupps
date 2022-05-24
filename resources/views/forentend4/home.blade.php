@@ -1,8 +1,5 @@
 @extends('forentend4.index')
 @section('content')
-
-
-  
   
     <div class="custom-container plr-0">
         <!-- START SECTION BANNER -->

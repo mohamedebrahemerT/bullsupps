@@ -6,17 +6,20 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Select Delivery Address</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">
+                         {{trans('admin.Select Delivery Address')}}
+                    
+                </h5>
                     <div class="d-flex align-items-center justify-content-center justify-content-md-end">
                         <div class="ms-3">
-                            <span class="text_dark"><b>Ship To:</b></span>
+                            <span class="text_dark"><b>{{trans('admin.Ship To')}}:</b></span>
                         </div>
                         <div class="lng_dropdown">
                             <select name="countries" class="custome_select">
                            
-                            <option value='UAE' data-image="{{url('/')}}/assets/images/UAE.svg" data-title="English"> <a href="#" alt="UAE-country"><span>UAE</span></a></option>
+                            <option value='UAE' data-image="{{url('/')}}/assets/images/UAE.svg" data-title="English"> <a href="#" alt="UAE-country"><span>{{trans('admin.UAE')}}</span></a></option>
 
-                            <option value='KSA' data-image="assets/images/KSA.svg" data-title="France"> <a href="#" alt="KSA-country"><span>KSA</span></a></option>
+                            <option value='KSA' data-image="assets/images/KSA.svg" data-title="France"> <a href="#" alt="KSA-country"><span>{{trans('admin.KSA')}}</span></a></option>
                         </select>
                         </div>
                     </div>
@@ -45,20 +48,25 @@
                                                             <div class="kolonat-hom align-content-center">
                                                                 <div class="ikonat-home"> <i class="linearicons-map"></i> </div>
                                                                 <div class="contact_text">
-                                                                    <span>{{$address->type}}</span>
+                                                      <span>{{$address->type}}</span>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="p-2 bd-highlight">
-             <a class="alink" href="{{url('/')}}/Add_New_Address_Step2/{{$address->id}}" Alt="Edit"><span><i class="linearicons-pencil5 text_green pe-2"></i>Edit</span></a>
+             <a class="alink" href="{{url('/')}}/Add_New_Address_Step2/{{$address->id}}" Alt="Edit"><span><i class="linearicons-pencil5 text_green pe-2"></i>
+             
+             {{trans('admin.Edit')}}
+         </span></a>
 
-              <a class="alink" href="{{url('/')}}/Delete_user_Address/{{$address->id}}" Alt="Delete"><span><i class="linearicons-trash2 text_default pe-2"></i>Delete</span></a> 
+              <a class="alink" href="{{url('/')}}/Delete_user_Address/{{$address->id}}" Alt="Delete"><span><i class="linearicons-trash2 text_default pe-2"></i>{{trans('admin.Delete')}}</span></a> 
                                                     </div>
                                                     <div class="p-2 bd-highlight">
                    @if($address->Primary == 1)
                                                         
-                                                        <div class="defultaddress">Default</div>
+                                                        <div class="defultaddress">
+                                                            {{trans('admin.Default')}}
+                                                        </div>
                @endif
 
            
@@ -69,15 +77,17 @@
                                                         <table class="table mb-0">
                                                             <tbody class="">
                                                                 <tr class="noborderall">
-                                                                    <td class="cart_total_label noborderall text_gray">Name:</td>
+                                                                    <td class="cart_total_label noborderall text_gray">{{trans('admin.address Name')}}:</td>
                                                                     <td class="cart_total_amount  noborderall">{{$address->Name}}</td>
                                                                 </tr>
                                                                 <tr class="noborderall">
-                                                                    <td class="cart_total_label noborderall text_gray">Address:</td>
+                                                                    <td class="cart_total_label noborderall text_gray"> {{trans('admin.Address')}}:</td>
                                                                     <td class="cart_total_amount  noborderall">{{$address->address}}</td>
                                                                 </tr>
                                                                 <tr class="noborderall">
-                                                                    <td class="cart_total_label noborderall text_gray">Mobile Number:</td>
+                                                                    <td class="cart_total_label noborderall text_gray">
+                                    {{trans('admin.Mobile Number')}}
+                                                                   :</td>
                                                                     <td class="cart_total_amount  noborderall">{{$address->Mobile}}</td>
                                                                 </tr>
                                                             </tbody>
@@ -105,10 +115,11 @@
                 </div>
                 <div class="modal-footer">
                     <div class="p-2 flex-grow-1 bd-highlight">
-                        <a class="alink" href="{{url('/')}}/Add_New_Address_Map_Step" Alt="Edit"><span><i class="linearicons-plus pe-2"></i>Add New Address</span></a>
+                        <a class="alink" href="{{url('/')}}/Add_New_Address_Map_Step" Alt="Edit"><span><i class="linearicons-plus pe-2"></i>
+                         {{trans('admin.Add New Address')}}</span></a>
                     </div>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Confirm</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{trans('admin.Cancel')}}</button>
+                    <button type="submit" class="btn btn-primary">{{trans('admin.Confirm')}}</button>
 
                      </form>
                 </div>
@@ -129,17 +140,29 @@
                         <div class="heading_tab_header tobar">
                             <div class="heading_s2">
                                 <ul class="icon_list text-center text-lg-start">
-                                    <!--li><a href="#"><i class="ion-android-globe me-2"></i>العربية</a></li-->
+                                    <!--li>
+                                       @if(app()->getLocale() == 'en')
+                                     <a href="{{url('/')}}/language/ar">
+                                        <i class="ion-android-globe me-2"></i>العربية</a>
+                                        @else
+                                        <a href="{{url('/')}}/language/en">
+                                        <i class="ion-android-globe me-2"></i> 
+                                        English
+                                    </a>
+
+                                        @endif
+
+                                    </li -->
                                 </ul>
                             </div>
                             <div class="d-flex align-items-center justify-content-center justify-content-md-end">
                                 <div class="ms-3 text_white ">
-                                    <span>Deliver To:</span>
+                                    <span> {{trans('admin.Deliver To')}}:</span>
                                 </div>
                                 <div class="lng_dropdown">
                                     <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                         <select name="countries" class="custome_select" disabled>
-                                    <option value='UAE' data-image="{{url('/')}}/assets/images/UAE.svg" data-title="English"> <a href="#" alt="UAE-country" ><span>UAE</span></a></option>
+                                    <option value='UAE' data-image="{{url('/')}}/assets/images/UAE.svg" data-title="English"> <a href="#" alt="UAE-country" ><span> {{trans('admin.UAE')}}</span></a></option>
                                     <!-- <option value='KSA' data-image="assets/images/KSA.svg" data-title="France"> <a href="#" alt="KSA-country"><span>KSA</span></a></option> -->
                                 </select>
                                     </a>
@@ -163,7 +186,7 @@
                         <form method="get" action="{{url('/')}}/search">
 
                             <div class="input-group">
-                   <input class="form-control" placeholder="Search Product..." required="" type="text" name="text_search"
+                   <input class="form-control" placeholder=" {{trans('admin.Search Product...')}}" required="" type="text" name="text_search"
                      @isset($query)
                     value="{{$query}}"
                     @endisset
@@ -181,41 +204,41 @@
                             <a class="nav-link cart_trigger" 
                             href="{{url('/')}}/login" >
 
-                                <img src="{{url('/')}}/assets/images/User.svg"><span class="amount">Login</span>
+                                <img src="{{url('/')}}/assets/images/User.svg"><span class="amount"> {{trans('admin.Login')}}</span>
                             </a>
 
                             <div class="cart_box cart_right dropdown-menu dropdown-menu-right">
                                 <ul class="cart_list">
                                     <li>
-                                        <span class="cart_quantity mb-2">Welcome To BullSupps</span>
+                                        <span class="cart_quantity mb-2">{{trans('admin.Welcome To BullSupps')}}</span>
                                          <a href="{{url('/')}}/login"> 
                                         <button type="submit" class="btn btn-primary btn-block" name="login">
-                                Log in
+                                {{trans('admin.Log in')}}
                                       
                                     </button>
                                     </a>
                                     </li>
 
                                     <li>
-                                        <span class="cart_quantity mb-2">Sign In With Social Media</span>
+                                        <span class="cart_quantity mb-2"> {{trans('admin.Sign In With Social Media')}}</span>
                                         <div>
 <a href="{{url('/')}}/auth/redirect/facebook">
-                                            <button type="submit" class="btn btn-facebook btn-block mb-2" name="Facebook"><i class="ion-social-facebook"></i>Facebook</button>
+                                            <button type="submit" class="btn btn-facebook btn-block mb-2" name="Facebook"><i class="ion-social-facebook"></i> {{trans('admin.Facebook')}}</button>
                                             </a>
 
                                         </div>
                                         <div>
 <a href="{{url('/')}}/auth/redirect/google">
 
-                                            <button type="submit" class="btn btn-google btn-block mb-2" name="Google"><i class="ion-social-googleplus"></i>Google</button>
+                                            <button type="submit" class="btn btn-google btn-block mb-2" name="Google"><i class="ion-social-googleplus"></i>{{trans('admin.Google')}}</button>
                                             </a>
 
                                         </div>
                                     </li>
                                     <li>
-                                        <span class="cart_quantity mb-2">Don't Have an Account?</span>
+                                        <span class="cart_quantity mb-2">{{trans('admin.Dont Have an Account?')}}</span>
                                           <a href="{{url('/')}}/register"> 
-                                        <button type="submit" class="btn btn-secondary btn-block" name="login">Sign Up</button>
+                                        <button type="submit" class="btn btn-secondary btn-block" name="login"> {{trans('admin.Sign Up')}}</button>
                                           <a href="{{url('/')}}/login"> 
                                     </li>
                                 </ul>
@@ -240,18 +263,18 @@
                                     
 
                                       <li>
-                                        <span class="cart_quantity mb-2">My Profile</span>
+                                        <span class="cart_quantity mb-2"> {{trans('admin.My Profile')}}</span>
                                           <a href="{{url('/')}}/my-profile"> 
-                                        <button type="submit" class="btn btn-secondary btn-block" name="login">My Profile</button>
+                                        <button type="submit" class="btn btn-secondary btn-block" name="login">{{trans('admin.My Profile')}} </button>
                                           <a href="{{url('/')}}/my-profile"> 
                                     </li>
 
                                     <li>
-            <span class="cart_quantity mb-2">Welcome  {{ Auth::user()->name }}</span>
+            <span class="cart_quantity mb-2"> {{trans('admin.Welcome')}}  {{ Auth::user()->name }}</span>
                                          <a href="{{ route('logout') }}"  onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"> 
                                         <button type="submit" class="btn btn-primary btn-block" name="login">
-                               Logout
+                                {{trans('admin.Logout')}}
                                       
                                     </button>
                                     </a>
@@ -276,7 +299,7 @@
                             <a class="nav-link cart_trigger" href="{{url('/')}}/cart"  ><img src="{{url('/')}}/assets/images/cart_outline.svg"><span class="cart_count">
 
                                 {{Cart::instance('default')->count()}}
-                            </span><span class="amount">Cart</span></a>
+                            </span><span class="amount"> {{trans('admin.Cart')}}</span></a>
                             <div class="cart_box cart_right dropdown-menu dropdown-menu-right">
                                  <span class="Cartcontent"></span>
                 @if (Cart::count() > 0)
@@ -303,7 +326,7 @@
                                         </a>
                                         <span class="cart_quantity"> {{$item->qty}} x 
                 <span class="cart_amount"> 
-        <span class="price_symbole">AED</span></span>    {{ $item->model->price_offer }}</span>
+        <span class="price_symbole"> {{trans('admin.AED')}}</span></span>    {{ $item->model->price_offer }}</span>
                                     </li>
                 @endforeach
  
@@ -312,14 +335,14 @@
           
             @endif
                                 <div class="cart_footer">
-                                    <p class="cart_total"><strong>Subtotal:</strong> 
+                                    <p class="cart_total"><strong> {{trans('admin.Subtotal')}}:</strong> 
 
         <span class="cart_price">
 
 
 
 <span class="homesubtotal">
-<span class="price_symbole">AED</span>
+<span class="price_symbole"> {{trans('admin.AED')}}</span>
 
 {{Cart::Subtotal()  }}
 </span>
@@ -327,8 +350,8 @@
 
 </p>
                                     <p class="cart_buttons">
-    <a href="{{url('/')}}/cart" class="btn btn-secondary view-cart">View Cart</a>
-        <a href="{{url('/')}}/Checkout" class="btn btn-primary checkout">Checkout</a></p>
+    <a href="{{url('/')}}/cart" class="btn btn-secondary view-cart"> {{trans('admin.View Cart')}}</a>
+        <a href="{{url('/')}}/Checkout" class="btn btn-primary checkout">{{trans('admin.Checkout')}}</a></p>
                                 </div>
                             </div>
                         </li>

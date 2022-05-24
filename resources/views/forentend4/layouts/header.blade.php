@@ -11,14 +11,18 @@
     <meta name="keywords" content="ecommerce, electronics store, Fashion store, furniture store,  bootstrap 4, clean, minimal, modern, online store, responsive, retail, shopping, ecommerce store">
 
     <!-- SITE TITLE -->
-    <title>BullSupps - Home Page</title>
+    <title>{{trans('admin.BullSupps')}} - {{trans('admin.Home Page')}}</title>
     <!-- Favicon Icon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{url('/')}}/assets/images/favicon.png">
     <!-- Animation CSS -->
     <link rel="stylesheet" href="{{url('/')}}/assets/css/animate.css">
     <!-- Latest Bootstrap min CSS -->
     <link rel="stylesheet" href="{{url('/')}}/assets/bootstrap/css/bootstrap.min.css">
-    <!-- <link rel="stylesheet" href="{{url('/')}}/assets/bootstrap/css/rtl_bootstrap.min.css"> -->
+        @if(app()->getLocale() == 'ar')
+     <link rel="stylesheet" href="{{url('/')}}/assets/bootstrap/css/rtl_bootstrap.min.css">
+    @endif
+
+
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
@@ -42,7 +46,15 @@
     <link rel="stylesheet" href="{{url('/')}}/assets/css/styles-m.css">
     <link rel="stylesheet" href="{{url('/')}}/assets/css/styles-l.css">
     <link rel="stylesheet" href="{{url('/')}}/assets/css/style.css">
-    <!-- <link rel="stylesheet" href="{{url('/')}}/assets/css/rtl-style.css"> -->
+        @if(app()->getLocale() == 'ar')
+
+   <link rel="stylesheet" href="{{url('/')}}/assets/css/rtl-style.css"> 
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;400;500;600&family=Exo:wght@200&family=Roboto:wght@300&display=swap" rel="stylesheet"> 
+    @endif
+
+
     <link rel="stylesheet" href="{{url('/')}}/assets/css/responsive.css">
 
 
@@ -94,7 +106,7 @@ border: 1px solid #000;
  
 </head>
 
-<body>
+<body   @if(app()->getLocale() == 'ar') style="font-family: 'Cairo', sans-serif;"  @endif>
 
     <!-- LOADER -->
     <!--div class="preloader">
@@ -112,7 +124,7 @@ border: 1px solid #000;
                     <span class="bg-darkgray"></span>
                 </a>
 
-                <span class="bag-label">Your Cart</span>
+                <span class="bag-label">{{trans('admin.Your Cart')}} </span>
             </div>
             <div class="side-inner">
 
@@ -140,7 +152,7 @@ border: 1px solid #000;
    @if(session('lang')=='en')
    {{ $item->model->title_name_en }}
     @endif
-                            <span class="cart_quantity"> {{$item->qty}} x <span class="cart_amount"> <span class="price_symbole">AED</span></span>{{ $item->model->price_offer }}</span>
+                            <span class="cart_quantity"> {{$item->qty}} x <span class="cart_amount"> <span class="price_symbole">{{trans('admin.AED')}}</span></span>{{ $item->model->price_offer }}</span>
                         </li>
                 @endforeach
 
@@ -150,20 +162,20 @@ border: 1px solid #000;
           
             @endif
                     <div class="cart_footer">
-                        <p class="cart_total"><strong>Subtotal:</strong> 
+                        <p class="cart_total"><strong>{{trans('admin.Subtotal')}}:</strong> 
                                <span class="cart_price">
 
 
 
 <span class="homesubtotal">
-<span class="price_symbole">AED</span>
+<span class="price_symbole">{{trans('admin.AED')}}</span>
 
 {{Cart::Subtotal()  }}
 </span>
 </span>
                         </p>
-                        <p class="cart_buttons"><a href="{{url('/')}}/cart" class="btn btn-secondary view-cart">View Cart</a><a href="{{url('/')}}/Checkout" class="btn btn-primary checkout">Checkout</a></p>
-                        <p class="cart_buttons"><a href="{{url('/')}}/shop" class="btn btn-primary btn-block">Continue Shopping</a></p>
+                        <p class="cart_buttons"><a href="{{url('/')}}/cart" class="btn btn-secondary view-cart">{{trans('admin.View Cart')}}</a><a href="{{url('/')}}/Checkout" class="btn btn-primary checkout">{{trans('admin.Checkout')}}</a></p>
+                        <p class="cart_buttons"><a href="{{url('/')}}/shop" class="btn btn-primary btn-block">{{trans('admin.Continue Shopping')}}</a></p>
 
                     </div>
 

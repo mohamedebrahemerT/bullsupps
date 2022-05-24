@@ -4,7 +4,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6 col-3">
                         <div class="categories_wrap">
                             <button type="button" data-bs-toggle="collapse" data-bs-target="#navCatContent" aria-expanded="false" class="categories_btn categories_menu">
-                            <span>All Categories </span><i class="linearicons-menu"></i>
+                            <span>{{trans('admin.All Categories')}} </span><i class="linearicons-menu"></i>
                         </button>
                             <div id="navCatContent" class="navbar collapse">
                                 <ul>
@@ -72,9 +72,9 @@
                                          data-bs-toggle="dropdown">
                                            
                                             <span>
-      
+      {{trans('admin.By Brands')}}
                                            
-                                              By Brands
+                                              
                                          
                                         
                                         </span></a>
@@ -115,7 +115,7 @@
 
                                 
                                 </ul>
-                                <div class="more_categories">More Categories</div>
+                                <div class="more_categories">   {{trans('admin.More Categories')}}</div>
                             </div>
                         </div>
                     </div>
@@ -214,8 +214,8 @@
          <li class="dropdown dropdown-mega-menu">
              <a class="dropdown-toggle nav-link"
               href="#" data-bs-toggle="dropdown">
-                                           
-                                              By Brands
+                                        {{trans('admin.By Brands')}}    
+                                              
                                          
                                         </a>
                                         <div class="dropdown-menu">

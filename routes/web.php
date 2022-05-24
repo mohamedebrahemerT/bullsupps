@@ -12,6 +12,9 @@
 
 */
 
+
+ 
+
            Route::resource('/admin/states','statesss'); 
 
        Route::resource('/counteries','countriess'); 
@@ -706,11 +709,20 @@ Route::post('/paytabs_response', function(Request $request){
 
  
  
-  Route::get('language/{lang}',function($lang){
-              session()->put('lang',$lang);
-        \App::setLocale($lang);
-        return redirect()->back();
-    });
+  
+
+
+  Route::get('/language/{lang}', function ($lang) {
+    if (!in_array($lang, ['en', 'ar'])) {        
+        abort(404);
+    }
+
+    App::setLocale($lang);
+    // Session
+    session()->put('lang', $lang);
+
+    return redirect()->back();
+});
 
   Route::get('/clear-cache', function() {
     $exitCode = Artisan::call('cache:clear');

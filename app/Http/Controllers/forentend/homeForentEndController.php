@@ -48,7 +48,7 @@ use Storage;
 use App\user;
 
 use Illuminate\Support\Facades\Auth;
-
+use Session;
 
 class homeForentEndController extends Controller
 
@@ -362,16 +362,13 @@ public function etisalatemirates()
     public function index()
 
     {
+         
 
-
-
-  
-
+    //session()->put('lang', 'ar');
+              
+        
+          
       session()->forget('ProdcutTitle');
-            
-      
-
-
          $DepartmentbannersHomesliderID=Departmentbanners::where('catname','بنرات رئيسية')->first()->id;
 
      $otherDataDepartmentbannersHomeSliders= otherDataDepartmentbanners::where('Departmentbanners_id',$DepartmentbannersHomesliderID)->inrandomOrder()->take(4)->get();
@@ -400,18 +397,7 @@ public function etisalatemirates()
 
     {
 
-
-
-                  if (session('lang') =='ar')
-
-                        {
-
-                          return redirect('/');
-
-                       }
-
-
-
+ 
 
 
       $Departments = DB::table('departments')
@@ -507,19 +493,7 @@ public function etisalatemirates()
       ->get();
 
 
-
-
-
-      session()->put('lang','en');
-
-
-
-      
-
-
-
-
-
+ 
       
 
       $newalymarket1=product::where('status','active')

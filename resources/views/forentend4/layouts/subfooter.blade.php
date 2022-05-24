@@ -59,7 +59,7 @@
                     <div class="widget">
                         <h6 class="widget_title">
                             @if(session('lang') == 'ar')
- {{$subDepartment->dep_name_ar}}
+ {{$Department->dep_name_ar}}
   @elseif(session('lang') == 'en')
  {{$Department->dep_name_en}}
  @else

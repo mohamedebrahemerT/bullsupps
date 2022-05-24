@@ -717,7 +717,7 @@ class PaymentController extends Controller
 
 
 
-         //Mail::send(new OrderPlaced($order));
+         Mail::send(new OrderPlaced($order));
 
 
 

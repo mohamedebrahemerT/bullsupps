@@ -21,6 +21,7 @@ class CartController extends Controller
             public function index()
               {
 
+  
             
                     $tax = config('cart.tax') / 100;
 
@@ -46,20 +47,8 @@ class CartController extends Controller
      $mightAlsoLike  = Product::inRandomOrder()->take(4)->get();
 
 
-
-             /*   return view('forentend.cart.cart')->with([
-                  'subtotal'=>$subtotal,
-                  'Total'=>$Total,
-                  'tax'=>$tax,
-                  'realmonytaxs'=>$realmonytaxs,
-                  'mightAlsoLike'=>$mightAlsoLike,
-                      'tax' => $tax,
-        'discount' => $discount,
-        'code' => $code,
-        'newSubtotal' => $newSubtotal,
-        'newTax' => $newTax,
-        'newTotal' => $newTotal,
-                ]);  */
+    
+ 
 
                     return view('forentend4.cart.cart')->with([
                   'subtotal'=>$subtotal,

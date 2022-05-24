@@ -23,12 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-        $lang='en';
-        $locale='en';
-        app()->setLocale($lang);
-        session()->put('lang', $locale);
-      
+       
        
 
     }
