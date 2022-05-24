@@ -15,7 +15,7 @@ Thank you for your order.
 
 @foreach ($order->products as $product)
 Name: {{ $product->title_name_ar }} <br>
-Price:AED $product->price_offer}} <br>
+Price:AED {{$product->price_offer}} <br>
 Quantity: {{ $product->pivot->quantity }} <br>
 @endforeach
 
@@ -28,5 +28,5 @@ Go to Website
 Thank you again for choosing us.
 
 Regards,<br>
-{{ config('app.name') }}
+bullsupps
 @endcomponent
