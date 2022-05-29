@@ -140,7 +140,7 @@
                         <div class="heading_tab_header tobar">
                             <div class="heading_s2">
                                 <ul class="icon_list text-center text-lg-start">
-                                    <!--li>
+                                    <li>
                                        @if(app()->getLocale() == 'en')
                                      <a href="{{url('/')}}/language/ar">
                                         <i class="ion-android-globe me-2"></i>العربية</a>
@@ -152,7 +152,7 @@
 
                                         @endif
 
-                                    </li -->
+                                    </li >
                                 </ul>
                             </div>
                             <div class="d-flex align-items-center justify-content-center justify-content-md-end">
