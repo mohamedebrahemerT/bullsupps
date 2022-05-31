@@ -363,11 +363,7 @@ public function etisalatemirates()
 
     {
    // return App::getLocale();
-    App::setLocale('ar');
-         
-
-    session()->put('lang', 'ar');
-              
+   
         
           
       session()->forget('ProdcutTitle');

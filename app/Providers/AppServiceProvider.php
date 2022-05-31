@@ -14,6 +14,10 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+               $lang='en';
+               session()->put('lang',$lang);
+                     
+
     }
 
     /**
@@ -23,12 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-          App::setLocale('ar');
-         
-
-    session()->put('lang', 'ar');
-   
-       
+          
 
     }
 }

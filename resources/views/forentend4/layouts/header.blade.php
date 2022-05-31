@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{url('/')}}/assets/css/animate.css">
     <!-- Latest Bootstrap min CSS -->
     <link rel="stylesheet" href="{{url('/')}}/assets/bootstrap/css/bootstrap.min.css">
-        @if(app()->getLocale() == 'ar')
+        @if(session('lang') == 'ar')
      <link rel="stylesheet" href="{{url('/')}}/assets/bootstrap/css/rtl_bootstrap.min.css">
     @endif
 
@@ -46,8 +46,7 @@
     <link rel="stylesheet" href="{{url('/')}}/assets/css/styles-m.css">
     <link rel="stylesheet" href="{{url('/')}}/assets/css/styles-l.css">
     <link rel="stylesheet" href="{{url('/')}}/assets/css/style.css">
-        @if(app()->getLocale() == 'ar')
-
+         @if(session('lang') == 'ar')
    <link rel="stylesheet" href="{{url('/')}}/assets/css/rtl-style.css"> 
    <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -106,7 +105,7 @@ border: 1px solid #000;
  
 </head>
 
-<body   @if(app()->getLocale() == 'ar') style="font-family: 'Cairo', sans-serif;"  @endif>
+<body    @if(session('lang') == 'ar') style="font-family: 'Cairo', sans-serif;"  @endif>
 
     <!-- LOADER -->
     <!--div class="preloader">

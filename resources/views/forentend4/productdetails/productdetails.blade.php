@@ -555,7 +555,7 @@ var arr = [] //create arry
 {!! $product->content_name_ar !!}
 @endif
   @if(session('lang')=='en')
-{!! $product->content_name_ar !!} 
+{!! $product->content_name_en !!} 
 @endif
                                 </div>
                             </div>

@@ -711,21 +711,8 @@ Route::post('/paytabs_response', function(Request $request){
  
   
 
+  
 
-  Route::get('/language/{lang}', function ($lang) {
-    if (!in_array($lang, ['en', 'ar'])) {        
-        abort(404);
-    }
-
-    App::setLocale($lang);
-    // Session
-    session()->put('lang', $lang);
-
-     // App::getLocale();
-
-     
-    return redirect()->back();
-});
 
   Route::get('/clear-cache', function() {
     $exitCode = Artisan::call('cache:clear');

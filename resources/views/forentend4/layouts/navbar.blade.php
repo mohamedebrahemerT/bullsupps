@@ -148,19 +148,19 @@
                         <div class="heading_tab_header tobar">
                             <div class="heading_s2">
                                 <ul class="icon_list text-center text-lg-start">
-                                    <!--li>
-                                       @if(app()->getLocale() == 'en')
-                                     <a href="{{url('/')}}/language/ar">
+                                    <li>
+                                      @if(session('lang') == 'en')
+                                     <a href="{{url('/')}}/admin/lang/ar">
                                         <i class="ion-android-globe me-2"></i>العربية</a>
                                         @else
-                                        <a href="{{url('/')}}/language/en">
+                                        <a href="{{url('/')}}/admin/lang/en">
                                         <i class="ion-android-globe me-2"></i> 
                                         English
                                     </a>
 
                                         @endif
 
-                                    </li -->
+                                    </li >
                                 </ul>
                             </div>
                             <div class="d-flex align-items-center justify-content-center justify-content-md-end">
