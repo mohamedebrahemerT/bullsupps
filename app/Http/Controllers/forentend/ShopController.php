@@ -63,11 +63,18 @@ class ShopController extends Controller
 
     $products = Product::where('status','active')->where('department_id',request()->id);
             
-            $categoryName =Department::where('id',request()->id)->first()->dep_name_en; 
+            $Department =Department::where('id',request()->id)->first(); 
+            $categoryName_en = $Department ->dep_name_en; 
+            $categoryName_ar = $Department ->dep_name_ar; 
+
+    session('lang') == 'en'?   $categoryName = $categoryName_en :   $categoryName =  $categoryName_ar ;
+
             
-        } else {
+        } else 
+        {
             $products = Product::where('status','active');
-            $categoryName = 'Featured';
+           
+    session('lang') == 'en'?   $categoryName = 'Featured' :   $categoryName = 'متميز';
         }
 
         if (request()->sort == 'low_high') {

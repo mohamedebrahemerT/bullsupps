@@ -721,6 +721,9 @@ Route::post('/paytabs_response', function(Request $request){
     // Session
     session()->put('lang', $lang);
 
+     // App::getLocale();
+
+     
     return redirect()->back();
 });
 

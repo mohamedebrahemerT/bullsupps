@@ -14,10 +14,17 @@
                     <div class="page-title">
                         <!-- <h1>Product Detail</h1> -->
                         <ol class="breadcrumb justify-content-md-start">
-                            <li class="breadcrumb-item"><a href="{{url('/')}}/#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="{{url('/')}}/shop">All Categories </a></li>
+                            <li class="breadcrumb-item"><a href="{{url('/')}}/"> {{trans('admin.Home')}}</a></li>
+                            <li class="breadcrumb-item"><a href="{{url('/')}}/shop">
+                            {{trans('admin.All Categories')}}</a></li>
+
+                            @if(isset($categoryName))
+
                             <li class="breadcrumb-item active">
                          {{ $categoryName}}</li>
+                         @endisset
+
+
                         </ol>
                     </div>
                 </div>
@@ -46,11 +53,11 @@
                                               
 
      <select class="form-control form-control-sm" id="sorting" name="sort">
-                  <option value="Default">Default sorting</option>
-                     <option value="popularity">Sort by popularity</option>
-                     <option value="newness">Sort by newness</option>
-            <option value="low_high">Sort by price: low to high</option>
-             <option value="high_low">Sort by price: high to low</option>
+                  <option value="Default">{{trans('admin.Default sorting')}}</option>
+                     <option value="popularity">{{trans('admin.Sort by popularity')}}</option>
+                     <option value="newness">{{trans('admin.Sort by newness')}}</option>
+            <option value="low_high">{{trans('admin.Sort by price: low to high')}}</option>
+             <option value="high_low">{{trans('admin.Sort by price: high to low')}}</option>
                                     </select>
                                         </div>
                                     </div>
@@ -61,7 +68,7 @@
                                         </div>
                                         <div class="custom_select">
                        <select class="form-control form-control-sm" id="Showing" name="Showing">
-                                        <option value="">Showing</option>
+                                        <option value="">{{trans('admin.Showing')}}</option>
                                         <option value="9">9</option>
                                         <option value="12">12</option>
                                         <option value="18">18</option>
@@ -123,10 +130,10 @@
       @endif
                                     </a></h6>
                                         <div class="product_price">
-                 <span class="price">AED {{$product->price_offer }}</span>
-                                            <del>AED {{$product->price }}</del>
+                 <span class="price">{{trans('admin.AED')}} {{$product->price_offer }}</span>
+                                            <del>{{trans('admin.AED')}} {{$product->price }}</del>
                                             <div class="on_sale">
-                                                <span>{{ ratio($product->price,$product->price_offer) }}% OFF</span>
+                                                <span>{{ ratio($product->price,$product->price_offer) }}% {{trans('admin.OFF')}}</span>
                                             </div>
                                         </div>
                                          <div class="rating_wrap">
@@ -224,7 +231,7 @@
                     <div class="col-lg-3 order-lg-first mt-4 pt-2 mt-lg-0 pt-lg-0">
                         <div class="sidebar">
                             <div class="widget">
-                                <h5 class="widget_title">FILTER BY:</h5>
+                                <h5 class="widget_title">{{trans('admin.FILTER BY')}}:</h5>
                                 <ul class="widget_categories">
                                      @foreach($categories as $key =>  $DepartmentFILTER)
                                     <li><a href="{{url('/')}}/shop?id={{$DepartmentFILTER->id}}">
@@ -256,14 +263,14 @@
 
           
                             <div class="widget">
-                                <h5 class="widget_title">Filter Price</h5>
+                                <h5 class="widget_title">{{trans('admin.Filter Price')}}</h5>
                                
 
 
                                 <div class="filter_price">
-                                    <div id="price_filter" data-min="1" data-max="500" data-min-value="50" data-max-value="300" data-price-sign="AED"></div>
+                                    <div id="price_filter" data-min="1" data-max="500" data-min-value="50" data-max-value="300" data-price-sign="{{trans('admin.AED')}}"></div>
                                     <div class="price_range">
-                                        <span>Price: <span id="flt_price"></span></span>
+                                        <span>{{trans('admin.Price')}}: <span id="flt_price"></span></span>
 
        <input type="hidden" id="price_first" name="price_first">
         <input type="hidden" id="price_second" name="price_second">
@@ -278,7 +285,7 @@
                                     </div>
                                 </div>
 
-                                 <a id="Filter_Price" class="btn btn-primary  " type="button">ok</a>
+                                 <a id="Filter_Price" class="btn btn-primary  " type="button">{{trans('admin.ok')}}</a>
                             </div>
 
                               </form>
@@ -288,7 +295,7 @@
 
 
  <div class="widget">
-                                <h5 class="widget_title">Brand</h5>
+                                <h5 class="widget_title">{{trans('admin.Brand')}}</h5>
                                 <ul class="list_brand">
 
     @foreach(App\TradeMark::get() as $Brand)
@@ -322,7 +329,18 @@
 
 
                             <div class="widget">
-             <h5 class="widget_title">{{$attribute->name_en}}</h5>
+             <h5 class="widget_title">
+
+    @if(session('lang') == 'ar')
+ {{$attribute->name_ar}}
+  @elseif(session('lang') == 'en')
+ {{$attribute->name_en}}
+ @else
+ {{$attribute->name_en}}
+      @endif
+
+               
+            </h5>
                                 <div class="product_size_switch">
     @foreach(App\Models\attribute_values::where('attribute_id',$attribute->id)->get() as $attribute_value)
              <span data-attribute_value_id="{{$attribute_value->id}}">

@@ -14,8 +14,8 @@
                 <div class="col-md-6">
                     <div class="page-title">
                         <ol class="breadcrumb justify-content-md-start">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">User Profile</li>
+                            <li class="breadcrumb-item"><a href="#">{{trans('admin.Home')}}</a></li>
+                            <li class="breadcrumb-item active">{{trans('admin.User Profile')}}</li>
                         </ol>
                     </div>
                 </div>
@@ -36,11 +36,11 @@
                         <div class="dashboard_menu">
                             <ul class="nav nav-tabs flex-column" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active"   href="{{url('/')}}/my-profile"  ><i class="icon-basket-loaded"></i>Order Details </a>
+                                    <a class="nav-link active"   href="{{url('/')}}/my-profile"  ><i class="icon-basket-loaded"></i>{{trans('admin.Order Details')}} </a>
                                 </li>
                                 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="login.html"><i class="ti-lock"></i>Logout</a>
+                                    <a class="nav-link" href="login.html"><i class="ti-lock"></i>{{trans('admin.Logout')}}</a>
                                 </li>
                             </ul>
                         </div>
@@ -51,7 +51,7 @@
                             <div class="tab-pane fade active show" id="orders" role="tabpanel" aria-labelledby="order-tab">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h3>Orders</h3>
+                                        <h3>{{trans('admin.Orders')}}</h3>
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
@@ -89,7 +89,7 @@
                                                 <div class="quantity">
                                                 </div>
                                             </td>
-                                            <td class="product-subtotal" data-title="Total">AED {{ presentPrice($product->price) }}</td>
+                                            <td class="product-subtotal" data-title="Total">{{trans('admin.AED')}} {{ $product->price }}</td>
                                         </tr>
             @endforeach
                                          

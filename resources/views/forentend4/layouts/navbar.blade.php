@@ -48,7 +48,15 @@
                                                             <div class="kolonat-hom align-content-center">
                                                                 <div class="ikonat-home"> <i class="linearicons-map"></i> </div>
                                                                 <div class="contact_text">
-                                                      <span>{{$address->type}}</span>
+                                                      <span>
+                                                        @if($address->type == 'Home')
+                       {{trans('admin.Home1')}}
+                                @else
+                                 {{trans('admin.work')}}
+
+                                @endif
+                                                         
+                                                    </span>
                                                                 </div>
                                                             </div>
                                                         </div>

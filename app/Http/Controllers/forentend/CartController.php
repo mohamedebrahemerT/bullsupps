@@ -219,14 +219,30 @@ Cart::add(['id' => $product->id, 'name' => $name, 'qty' =>$qty, 'price' => $pric
                 </div>';  
 
                 $count=Cart::count();
-            $total='AED '.Cart::total();
-            $subtotal='AED '.Cart::subtotal();
+            $total=trans('admin.AED').Cart::total();
+            $subtotal=trans('admin.AED').Cart::subtotal();
              $cart_add=Cart::content();
-            $tax='AED '.Cart::tax();
+            $tax=trans('admin.AED').Cart::tax();
 
                $items='';
              foreach ($cart_add as   $item) 
         {
+
+         if(session('lang') == 'ar')
+           {
+           $name= $item->model->title_name_ar;
+           }
+  elseif(session('lang') == 'en')
+       {
+           $name= $item->model->title_name_en;
+
+       }
+ else
+ {
+           $name= $item->model->title_name_en;
+
+ }
+
             $items.='
             <li id="b'.$item->rowId.'">
      <form action="'.url('/').'/cartdestroy?'.$item->rowId.'" method="POST" id="dellshop">  
@@ -239,9 +255,9 @@ Cart::add(['id' => $product->id, 'name' => $name, 'qty' =>$qty, 'price' => $pric
 
                  <a href="'.url('/').'/shop/'.$item->model->id.'">
                  <img src="'.Storage::url($item->model->photo).'" alt="cart_thumb1">
-      '.$item->model->title_name_en.'
+      '.$name.'
                                             </a>
-         <span class="cart_quantity"> '.$item->qty.' x <span class="cart_amount"> <span class="price_symbole">AED</span></span>'.$item->subtotal.'</span>
+         <span class="cart_quantity"> '.$item->qty.' x <span class="cart_amount"> <span class="price_symbole">'.trans('admin.AED').'</span></span>'.$item->subtotal.'</span>
                                     </li>
             ';
              
@@ -259,6 +275,21 @@ Cart::add(['id' => $product->id, 'name' => $name, 'qty' =>$qty, 'price' => $pric
                                 $items2='';
              foreach ($cart_add as   $item) 
         {
+
+if(session('lang') == 'ar')
+           {
+           $name= $item->model->title_name_ar;
+           }
+  elseif(session('lang') == 'en')
+       {
+           $name= $item->model->title_name_en;
+
+       }
+ else
+ {
+           $name= $item->model->title_name_en;
+
+ }
             $items2.='
             <li id="b2'.$item->rowId.'">
      <form action="'.url('/').'/cartdestroy?'.$item->rowId.'" method="POST" id="dellshop">  
@@ -271,9 +302,9 @@ Cart::add(['id' => $product->id, 'name' => $name, 'qty' =>$qty, 'price' => $pric
 
                  <a href="'.url('/').'/shop/'.$item->model->id.'" style="color: #fff;cursor: pointer;">
                  <img src="'.Storage::url($item->model->photo).'" alt="cart_thumb1">
-      '.$item->model->title_name_en.'
+      '.$name.'
                                             </a>
-         <span class="cart_quantity"> '.$item->qty.' x <span class="cart_amount"> <span class="price_symbole">AED</span></span>'.$item->subtotal.'</span>
+         <span class="cart_quantity"> '.$item->qty.' x <span class="cart_amount"> <span class="price_symbole">'.trans('admin.AED').'</span></span>'.$item->subtotal.'</span>
                                     </li>
             ';
              
@@ -558,10 +589,10 @@ else
                           Cart::remove($id);
 
             $count=Cart::count();
-            $total='<strong>'.'AED '.Cart::total().' </strong>';
-            $subtotal='AED '.Cart::subtotal();
+            $total='<strong>'.trans('admin.AED').Cart::total().' </strong>';
+            $subtotal=trans('admin.AED').Cart::subtotal();
             $cart_add=Cart::content();
-            $tax='AED '.Cart::tax();
+            $tax=trans('admin.AED').Cart::tax();
 
             $success_output = '<div class="alert alert-danger">
                 '.__("Item has been removed!").' 
@@ -884,12 +915,12 @@ else
                     
 
             $count=Cart::count();
-            $total='AED '.Cart::total();
-            $subtotal='AED '.Cart::subtotal();
+            $total=trans('admin.AED').Cart::total();
+            $subtotal=trans('admin.AED').Cart::subtotal();
             $cart_add=Cart::content();
-            $tax='AED '.Cart::tax();
+            $tax=trans('admin.AED').Cart::tax();
 
-                $totprice='AED '.$Cart->subtotal;
+                $totprice=trans('admin.AED').$Cart->subtotal;
                 $totIDS=$Cart->rowId; 
 
 
@@ -943,12 +974,12 @@ else
                     
 
             $count=Cart::count();
-            $total='<strong>'.'AED '.Cart::total().' </strong>';
-            $subtotal='AED '.Cart::subtotal();
+            $total='<strong>'.trans('admin.AED').Cart::total().' </strong>';
+            $subtotal=trans('admin.AED').Cart::subtotal();
             $cart_add=Cart::content();
-            $tax='AED '.Cart::tax();
+            $tax=trans('admin.AED').Cart::tax();
 
-                $totprice='AED '.$Cart->subtotal;
+                $totprice=trans('admin.AED').$Cart->subtotal;
                 $totIDS=$Cart->rowId; 
 
 
@@ -1007,12 +1038,12 @@ else
                     
 
             $count=Cart::count();
-              $total='<strong>'.'AED '.Cart::total().' </strong>';
-            $subtotal='AED '.Cart::subtotal();
+              $total='<strong>'.trans('admin.AED').Cart::total().' </strong>';
+            $subtotal=trans('admin.AED').Cart::subtotal();
             $cart_add=Cart::content();
-            $tax='AED '.Cart::tax();
+            $tax=trans('admin.AED').Cart::tax();
 
-                $totprice='AED '.$Cart->subtotal;
+                $totprice=trans('admin.AED').$Cart->subtotal;
                 $totIDS=$Cart->rowId; 
             
                        $output = array(
@@ -1057,10 +1088,10 @@ else
         ]);
 
                 $count=Cart::count();
-            $total='AED '.Cart::total();
-            $subtotal='AED '.Cart::subtotal();
+            $total=trans('admin.AED').Cart::total();
+            $subtotal=trans('admin.AED').Cart::subtotal();
             $cart_add=Cart::content();
-            $tax='AED '.Cart::tax();
+            $tax=trans('admin.AED').Cart::tax();
                
       if ($validator->fails()) 
         {

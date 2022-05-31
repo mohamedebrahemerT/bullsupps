@@ -698,9 +698,9 @@
                     <div class="page-title">
                         <!-- <h1>Product Detail</h1> -->
                         <ol class="breadcrumb justify-content-md-start">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                            <li class="breadcrumb-item active">Shopping Cart</li>
+                            <li class="breadcrumb-item"><a href="#">{{trans('admin.Home')}}</a></li>
+                       
+                            <li class="breadcrumb-item active">{{trans('admin.Shopping Cart')}}</li>
                         </ol>
                     </div>
                 </div>
@@ -724,7 +724,7 @@
                         <div class="border border-radius2 box_shadow1 p-3 p-md-4">
 
                             <div class="heading_s1 pb-3 underline">
-                                <h5 class="">Your Order</h5>
+                                <h5 class="">{{trans('admin.Your Order')}}</h5>
                             </div>
                             <div class="table-responsive shop_cart_table">
                                
@@ -793,7 +793,7 @@
                                                 </div>
                                             </td>
                 <td class="product-subtotal" data-title="Total">
-           <span id="{{$item->rowId}}"> AED  {{$item->subtotal}}</span>
+           <span id="{{$item->rowId}}"> {{trans('admin.AED')}}  {{$item->subtotal}}</span>
                                             </td>
                                             <td class="product-remove" data-title="Remove">
 
@@ -830,7 +830,7 @@
                     <div class="col-lg-4">
                         <div class="border border-radius2 box_shadow1 p-3 p-md-4">
                             <div class="heading_s1 mb-3">
-                                <h5>Add Promo Code</h5>
+                                <h5>{{trans('admin.Add Promo Code')}}</h5>
                             </div>
                             <div class="row">
                                 <div class="col-12">
@@ -839,13 +839,13 @@
                                         <div class="form-row">
 
                                             <div class="form-group col-lg-12 mb-3">
-    <input required="required" placeholder="Add Promo Code" class="form-control" name="code" type="text" id="code" >
+    <input required="required" placeholder="{{trans('admin.Add Promo Code')}}" class="form-control" name="code" type="text" id="code" >
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-lg-12 mb-3">
                          <!--span class="cart_sucessCoupon"></span -->
-                                                <button id="apply_coupon"  class="btn btn-primary" type="submit">Add</button>
+                                                <button id="apply_coupon"  class="btn btn-primary" type="submit">{{trans('admin.Add')}}</button>
                                             </div>
                                         </div>
                                     </form>
@@ -853,32 +853,32 @@
 
                             </div>
                             <div class="heading_s1 mb-3">
-                                <h6>Order Summary</h6>
+                                <h6>{{trans('admin.Order Summary')}}</h6>
                             </div>
                             <div class="table-responsive">
                                 <table class="table">
                                     <tbody class="">
                                         <tr class="noborder">
-                                            <td class="cart_total_label">Subtotal</td>
+                                            <td class="cart_total_label">{{trans('admin.Subtotal')}}</td>
                                             <td class="cart_total_amount ">
-                                                <span class="subtotal">AED {{Cart::Subtotal()  }} </span>
+                                                <span class="subtotal">{{trans('admin.AED')}} {{Cart::Subtotal()  }} </span>
                                             
                                         </td>
                                         </tr>
                                         <tr class="noborder">
-                                            <td class="cart_total_label">Shipping Fee</td>
-                                            <td class="cart_total_amount">Free Shipping</td>
+                                            <td class="cart_total_label">{{trans('admin.Shipping Fee')}} </td>
+                                            <td class="cart_total_amount">{{trans('admin.Shipping Fee')}}</td>
                                         </tr>
                                         <tr class="noborder">
-                                            <td class="cart_total_label">Total<span class="text_gray float-end"> (Inclusive  of VAT)</span></td>
+                                            <td class="cart_total_label">{{trans('admin.Total')}} <span class="text_gray float-end"> ({{trans('admin.Inclusive  of VAT')}})</span></td>
                                             <td class="cart_total_amount total">
-                    <strong>AED {{Cart::Total()  }} </strong></td>
+                    <strong>{{trans('admin.AED')}}  {{Cart::Total()  }} </strong></td>
                                         </tr>
                                         <tr class="noborder">
-                                            <td class="cart_total_label "><span class="text_gray">Estimate VAT</span>
+                                            <td class="cart_total_label "><span class="text_gray">{{trans('admin.Estimate VAT')}}</span>
                                             </td>
                                             <td class="cart_total_amount text_gray">
-                                                <span class="text_gray tax">AED {{ Cart::tax() }}</span></td>
+                                                <span class="text_gray tax">{{trans('admin.AED')}} {{ Cart::tax() }}</span></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -887,12 +887,12 @@
                                 <div class="col-12 mb-2">
                                     <div class="d-grid gap-2">
                   
-                 <a href="{{url('/')}}/Checkout" class="btn btn-primary m-0" type="button">
-                    Proceed To CheckOut</a>
+                 <a href="{{url('/')}}/Checkout" class="btn btn-primary m-0" type="button">{{trans('admin.Proceed To CheckOut')}} 
+                   </a>
                  
 
                 
-                                        <a href="{{url('/')}}/shop" class="btn btn-secondary m-0" type="button">Continue Shopping</a>
+                                        <a href="{{url('/')}}/shop" class="btn btn-secondary m-0" type="button">{{trans('admin.Continue Shopping')}} </a>
                                         
 
                                     </div>

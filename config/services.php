@@ -70,7 +70,7 @@ return [
  'google' => [
     'client_id'=>'331580208718-qcdmvavhnjokt6jk10ukvveigsca5rr3.apps.googleusercontent.com',
     'client_secret' =>'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',
-     'redirect'      =>url('/').'/callback/google',
+     'redirect'      =>'https://bullsupps.com/callback/google',
 ], 
  
     

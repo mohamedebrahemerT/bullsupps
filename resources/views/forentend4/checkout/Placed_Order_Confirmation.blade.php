@@ -15,10 +15,10 @@
                     <div class="page-title">
                         <!-- <h1>Product Detail</h1> -->
                         <ol class="breadcrumb justify-content-md-start">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                            <li class="breadcrumb-item"><a href="#">Shopping Cart</a></li>
-                            <li class="breadcrumb-item active">Payment Method</li>
+                            <li class="breadcrumb-item"><a href="{{url('/')}}">{{trans('admin.Home')}}</a></li>
+                         
+                            <li class="breadcrumb-item"><a href="{{url('/')}}/cart">{{trans('admin.Shopping Cart')}}</a></li>
+                            <li class="breadcrumb-item active">{{trans('admin.Payment Method')}}</li>
                         </ol>
                     </div>
                 </div>
@@ -37,13 +37,13 @@
                         <div class="border border-radius2 box_shadow1 p-3 p-md-4">
                             <ul class="step d-flex flex-nowrap">
                                 <li class="step-item ">
-                                    <a href="{{url('/')}}/Add_New_Address" class="">Shipping Address</a>
+                                    <a href="{{url('/')}}/Add_New_Address" class="">{{trans('admin.Shipping Address')}}</a>
                                 </li>
                                 <li class="step-item ">
-                                    <a href="{{url('/')}}/Payment_Method" class="">Payment</a>
+                                    <a href="{{url('/')}}/Payment_Method" class="">{{trans('admin.Payment')}}</a>
                                 </li>
                                 <li class="step-item ">
-                                    <a href="#!" class="">Order Placed </a>
+                                    <a href="#!" class="">{{trans('admin.Order Placed')}} </a>
                                 </li>
 
                             </ul>
@@ -57,10 +57,10 @@
                         <div class="text-center order_complete">
                             <i class="fas fa-check-circle"></i>
                             <div class="heading_s1">
-                 <h3>Your order is completed! and your Order number is #{{$order->id}}</h3>
+                 <h3>{{trans('admin.Your order is completed! and your Order number is')}} #{{$order->id}}</h3>
                             </div>
-                            <p>Thank you for your order! Your order is being processed and will be completed within 3-6 hours. You will receive an email confirmation when your order is completed.</p>
-                            <a href="{{url('/')}}/shop" class="btn btn-primary">Continue Shopping</a>
+                            <p>{{trans('admin.Thank you for your order! Your order is being processed and will be completed within 3-6 hours. You will receive an email confirmation when your order is completed.')}}</p>
+                            <a href="{{url('/')}}/shop" class="btn btn-primary">{{trans('admin.Continue Shopping')}}</a>
                         </div>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
                         <div class="border border-radius2 box_shadow1 p-3 p-md-4">
 
                             <div class="heading_s1 pb-3 underline">
-                                <h5 class="">Your Order</h5>
+                                <h5 class="">{{trans('admin.Your Order')}}</h5>
                             </div>
 
                             <div class="table-responsive shop_cart_table">
@@ -108,7 +108,7 @@
                                                 <div class="quantity">
                                                 </div>
                                             </td>
-                                            <td class="product-subtotal" data-title="Total">AED {{$OrderProduct->Subtotal}}</td>
+                                            <td class="product-subtotal" data-title="Total">{{trans('admin.AED')}} {{$OrderProduct->Subtotal}}</td>
                                         </tr>
             @endforeach
                                          

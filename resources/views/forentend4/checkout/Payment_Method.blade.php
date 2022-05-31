@@ -16,10 +16,10 @@
                     <div class="page-title">
                         <!-- <h1>Product Detail</h1> -->
                         <ol class="breadcrumb justify-content-md-start">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                            <li class="breadcrumb-item"><a href="#">Shopping Cart</a></li>
-                            <li class="breadcrumb-item active">Payment Method</li>
+                            <li class="breadcrumb-item"><a href="{{url('/')}}">{{trans('admin.Home')}}</a></li>
+                           
+                            <li class="breadcrumb-item"><a href="{{url('/')}}/cart">{{trans('admin.Shopping Cart')}}</a></li>
+                            <li class="breadcrumb-item active">{{trans('admin.Payment Method')}}</li>
                         </ol>
                     </div>
                 </div>
@@ -38,13 +38,13 @@
                         <div class="border border-radius2 box_shadow1 p-3 p-md-4">
                             <ul class="step d-flex flex-nowrap">
                                <li class="step-item ">
-                                    <a href="{{url('/')}}/Add_New_Address" class="">Shipping Address</a>
+                                    <a href="{{url('/')}}/Add_New_Address" class="">{{trans('admin.Shipping Address')}}</a>
                                 </li>
                                 <li class="step-item active">
-                                    <a href="{{url('/')}}/Payment_Method" class="">Payment</a>
+                                    <a href="{{url('/')}}/Payment_Method" class="">{{trans('admin.Payment')}}</a>
                                 </li>
                                 <li class="step-item ">
-                                    <a href="#!" class="">Order Placed </a>
+                                    <a href="#!" class="">{{trans('admin.Order Placed')}} </a>
                                 </li>
 
                             </ul>
@@ -83,7 +83,7 @@
                                                         <div class="feature-col col-xs-12 col-sm-6 col-md-6 kolonat-hom align-content-center">
                                                             <div class="ikonat-home"> <i class="linearicons-cash-dollar"></i> </div>
                                                             <div class="contact_text">
-                                                                <span>Pay With Cash</span>
+                                                                <span>{{trans('admin.Pay With Cash')}}</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -185,7 +185,14 @@
                                                     <div class="product_description">
                                                         <div class="cashdeliveryinst product_sort_info">
                                                             <ul>
-                                                                <li>Please note there is a non-refundable fee of AED 10.00 for our cash on delivery service. To save on this amount, <strong>please proceed with debit/credit card.</strong></li>
+                                                                <li> 
+{{trans('admin.Please note there is a non-refundable fee of AED 10.00 for our cash on delivery service To save on this amount')}}
+                                 
+                <strong>
+                             {{trans('admin.please proceed with debit/credit card')}}    </strong>
+
+
+                                                                </li>
 
                                                             </ul>
                                                         </div>
@@ -203,10 +210,10 @@
                                                             <div class="custome-checkbox">
 
           <input class="form-check-input" type="checkbox" name="checkbox" id="createaccount22">
-                <label class="form-check-label label_info" for="createaccount22"><span>I agree to the <u><strong>
+                <label class="form-check-label label_info" for="createaccount22"><span>{{trans('admin.I agree to the')}} <u><strong>
 
                 <a href="{{url('/')}}/term-condition" target="_blank">
-                Terms & Conditions
+                {{trans('admin.Terms and Conditions')}}
             </a>
 
             </strong></u></span></label>
@@ -215,7 +222,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="d-grid gap-2">
-           <button class="btn btn-primary m-0" type="submit">Proceed To CheckOut  </button>
+           <button class="btn btn-primary m-0" type="submit">{{trans('admin.Proceed To CheckOut')}}  </button>
                                                     </div>
 
                                                 </div>
@@ -226,7 +233,7 @@
                                         </div>
                                         <div class="tab-pane fade" id="Reviews" role="tabpanel" aria-labelledby="Reviews-tab">
                                             <div class="comments">
-                                                <h5 class="product_tab_title">2 Review For <span>Blue Dress For Woman</span></h5>
+                                                <h5 class="product_tab_title">{{trans('admin.2 Review For')}} <span>{{trans('admin.Blue Dress For Woman')}}</span></h5>
                                                 <ul class="list_none comment_list mt-4">
                                                     <li>
                                                         <div class="comment_img">
@@ -308,7 +315,7 @@
                                 <div class="border border-radius2 box_shadow1 p-3 p-md-4">
 
                                     <div class="heading_s1 pb-3 underline">
-                                        <h5 class="">Your Order</h5>
+                                        <h5 class="">{{trans('admin.Your Order')}}</h5>
                                     </div>
 
                                     <div class="table-responsive shop_cart_table">
@@ -354,7 +361,7 @@
                                                         <div class="quantity">
                                                         </div>
                                                     </td>
-                                                    <td class="product-subtotal" data-title="Total">AED {{$item->subtotal}}</td>
+                                                    <td class="product-subtotal" data-title="Total">{{trans('admin.AED')}} {{$item->subtotal}}</td>
                                                 </tr>
                 @endforeach
                                                 
@@ -362,7 +369,7 @@
 
                                         </table>
                                             @else
-          <h3> {{__('No items in Cart!')}}</h3>
+          <h3> {{trans('admin.No items in Cart!')}}</h3>
             @endif
                                     </div>
                                 </div>
@@ -373,28 +380,28 @@
                         <div class="border border-radius2 box_shadow1 p-3 p-md-4">
 
                             <div class="heading_s1 mb-3">
-                                <h5>Order Summary</h5>
+                                <h5>{{trans('admin.Order Summary')}}</h5>
                             </div>
                             <div class="table-responsive">
                                 <table class="table">
                                     <tbody class="">
                                         <tr class="noborder">
-                                            <td class="cart_total_label">Subtotal</td>
-                                            <td class="cart_total_amount">AED {{Cart::Subtotal()  }}</td>
+                                            <td class="cart_total_label">{{trans('admin.Subtotal')}}</td>
+                                            <td class="cart_total_amount">{{trans('admin.AED')}} {{Cart::Subtotal()  }}</td>
                                         </tr>
                                         <tr class="noborder">
-                                            <td class="cart_total_label">Shipping Fee</td>
-                                            <td class="cart_total_amount">Free Shipping</td>
+                                            <td class="cart_total_label">{{trans('admin.Shipping Fee')}}</td>
+                                            <td class="cart_total_amount">{{trans('admin.Free Shipping')}}</td>
                                         </tr>
                                         <tr class="noborder">
-                                            <td class="cart_total_label">Total<span class="text_gray float-end"> (Inclusive  of VAT)</span></td>
-                                            <td class="cart_total_amount"><strong>AED {{Cart::Total()  }}</strong></td>
+                                            <td class="cart_total_label">{{trans('admin.Total')}}<span class="text_gray float-end"> ({{trans('admin.Inclusive  of VAT')}})</span></td>
+                                            <td class="cart_total_amount"><strong>{{trans('admin.AED')}} {{Cart::Total()  }}</strong></td>
                                         </tr>
                                         <tr class="noborder">
-                                            <td class="cart_total_label "><span class="text_gray">Estimate VAT</span>
+                                            <td class="cart_total_label "><span class="text_gray">{{trans('admin.Estimate VAT')}}</span>
                                             </td>
                                             <td class="cart_total_amount text_gray">
-                                                <span class="text_gray">AED {{ Cart::tax() }}</span></td>
+                                                <span class="text_gray">{{trans('admin.AED')}} {{ Cart::tax() }}</span></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -423,11 +430,11 @@
                                 <div class="col-12 mt-4">
                                     <div class="heading_tab_header">
                                         <div class="heading_s2">
-                                            <h4>Ship To</h4>
+                                            <h4>{{trans('admin.Ship To')}}</h4>
                                            
                                         </div>
                                         <div class="view_all">
-                              <a href="{{url('/')}}/Add_New_Address_Step2/{{$user_address->id}}" class="text_default"><span>Edit</span></a>
+                              <a href="{{url('/')}}/Add_New_Address_Step2/{{$user_address->id}}" class="text_default"><span>{{trans('admin.Edit')}}</span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -444,21 +451,21 @@
                                             <table class="table mb-0">
                                                 <tbody class="">
                                                     <tr class="noborderall">
-                                                        <td class="cart_total_label noborderall text_gray">Name:</td>
+                                                        <td class="cart_total_label noborderall text_gray">{{trans('admin.address Name')}}:</td>
                                                         <td class="cart_total_amount text-right noborderall">{{$user_address->Name}}
                                                             <br>
 
                                                         </td>
                                                     </tr>
                                                     <tr class="noborderall">
-                                                        <td class="cart_total_label noborderall text_gray">Address:</td>
+                                                        <td class="cart_total_label noborderall text_gray">{{trans('admin.Address')}}:</td>
                                                         <td class="cart_total_amount text-right noborderall">
                                       {{$user_address->address}}
                                         {{$user_address->additional_info}}
                                                         </td>
                                                     </tr>
                                                     <tr class="noborderall">
-                                                        <td class="cart_total_label noborderall text_gray">Mobile Number:</td>
+                                                        <td class="cart_total_label noborderall text_gray">{{trans('admin.Mobile Number')}}:</td>
                                                         <td class="cart_total_amount text-right noborderall"> 
                                     {{$user_address->Mobile}}</td>
                                                     </tr>

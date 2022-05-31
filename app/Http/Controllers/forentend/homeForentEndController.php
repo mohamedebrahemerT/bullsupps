@@ -49,7 +49,7 @@ use App\user;
 
 use Illuminate\Support\Facades\Auth;
 use Session;
-
+use App;
 class homeForentEndController extends Controller
 
 {
@@ -362,9 +362,11 @@ public function etisalatemirates()
     public function index()
 
     {
+   // return App::getLocale();
+    App::setLocale('ar');
          
 
-    //session()->put('lang', 'ar');
+    session()->put('lang', 'ar');
               
         
           

@@ -5,7 +5,7 @@
 @section('content')
 
 @section('javascript')
-        <script type="text/javascript" src='https://maps.google.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyAGlTpZIZ49RVV5VX8KhzafRqjzaTRbnn0'></script>
+        <script type="text/javascript" src='https://maps.google.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyAGlTpZIZ49RVV5VX8KhzafRqjzaTRbnn0&language={{session("lang")}}'></script>
   <script type="text/javascript" src="{{url('/')}}/Desgin/Adminlte/dist/js/locationpicker.jquery.js"></script>
 
 <?php
@@ -44,10 +44,10 @@
                     <div class="page-title">
                         <!-- <h1>Product Detail</h1> -->
                         <ol class="breadcrumb justify-content-md-start">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                            <li class="breadcrumb-item"><a href="#">Shopping Cart</a></li>
-                            <li class="breadcrumb-item active">Add Your Address</li>
+                            <li class="breadcrumb-item"><a href="{{url('/')}}">{{trans('admin.Home')}}</a></li>
+                          
+                            <li class="breadcrumb-item"><a href="{{url('/')}}/cart">{{trans('admin.Shopping Cart')}}</a></li>
+                            <li class="breadcrumb-item active">{{trans('admin.Add Your Address')}}</li>
                         </ol>
                     </div>
                 </div>
@@ -69,13 +69,13 @@
                         <div class="border border-radius2 box_shadow1 p-3 p-md-4">
                             <ul class="step d-flex flex-nowrap">
                                 <li class="step-item active">
-                                    <a href="{{url('/')}}/Add_New_Address" class="">Shipping Address</a>
+                                    <a href="{{url('/')}}/Add_New_Address" class="">{{trans('admin.Shipping Address')}}</a>
                                 </li>
                                 <li class="step-item ">
-                                    <a href="{{url('/')}}/Payment_Method" class="">Payment</a>
+                                    <a href="{{url('/')}}/Payment_Method" class="">{{trans('admin.Payment')}}</a>
                                 </li>
                                 <li class="step-item ">
-                                    <a href="#!" class="">Order Placed </a>
+                                    <a href="#!" class="">{{trans('admin.Order Placed')}} </a>
                                 </li>
 
                             </ul>
@@ -94,7 +94,7 @@
   <a href="{{url('/')}}/Add_New_Address">
                                 <h5 class="mb-0">
        
-                  <img class="back-arrow pe-3" src="{{url('/')}}/assets/images/Back_arrow.svg" alt="">Back to Address
+                  <img class="back-arrow pe-3" src="{{url('/')}}/assets/images/Back_arrow.svg" alt="">{{trans('admin.Back to Address')}}
 
               </h5>
                   </a>
@@ -119,7 +119,7 @@
                         <div class="border border-radius2 box_shadow1 p-3 p-md-4">
 
                             <div class="heading_s1 pb-3 underline mb-0">
-                                <h5 class="">Add a New Address</h5>
+                                <h5 class="">{{trans('admin.Add a New Address')}}</h5>
                             </div>
                             <div class="row">
 
@@ -148,7 +148,7 @@
 
                                
 
-                                <button type="submit" title="Confirm Location" class="btn btn-primary"   name="submit" value="Submit">Confirm Location</button>
+                                <button type="submit" title="Confirm Location" class="btn btn-primary"   name="submit" value="Submit">{{trans('admin.Confirm Location')}}</button>
                             </div>
 
                             </form>

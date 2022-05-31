@@ -12,15 +12,15 @@
                     <div class="col-lg-6 col-md-12 col-sm-12 mb-md-3">
 
                         <div class="newsletter_text text_white">
-                            <h3><img src="{{url('/')}}/assets/images/newsletter_icon.svg" alt="news letter icon"> Join Our Newsletter Now</h3>
-                            <p>Subscribe to our newsletter, so that you can be the first to know about new offers and promotions. </p>
+                            <h3><img src="{{url('/')}}/assets/images/newsletter_icon.svg" alt="news letter icon">{{trans('admin.Join Our Newsletter Now')}} </h3>
+                            <p>{{trans('admin.Subscribe to our newsletter, so that you can be the first to know about new offers and promotions.')}} </p>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 col-sm-12">
                         <div class="newsletter_form2 rounded_input">
                             <form>
-                                <input type="text" required="" class="form-control" placeholder="Enter Email Address">
-                                <button type="submit" class="btn newsletter btn-dark btn-radius" name="submit" value="Submit">Subscribe</button>
+                                <input type="text" required="" class="form-control" placeholder="{{trans('admin.Enter Email')}}">
+                                <button type="submit" class="btn newsletter btn-dark btn-radius" name="submit" value="Submit">{{trans('admin.Subscribe')}}</button>
                             </form>
                         </div>
                     </div>
@@ -87,81 +87,34 @@
                 
                
                 
+ 
+                <div class="col-lg-2 col-md-4 col-sm-6">
+                    <div class="widget">
+                        <h6 class="widget_title">{{trans('admin.My Account')}}</h6>
+                        <ul class="widget_links">
+                            <li><a href="{{url('/')}}/#">{{trans('admin.My Account')}}</a></li>
+                            <li><a href="{{url('/')}}/#">{{trans('admin.Discount')}}</a></li>
+                            <li><a href="{{url('/')}}/#">{{trans('admin.Returns')}}</a></li>
+                            <li><a href="{{url('/')}}/#">{{trans('admin.Orders History')}}</a></li>
+                            <li><a href="{{url('/')}}/#">{{trans('admin.Order Tracking')}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-6">
+                    <div class="widget">
+                        <h6 class="widget_title">{{trans('admin.Promotions')}}</h6>
+                        <ul class="widget_links">
+                            <li><a href="{{url('/')}}/#">{{trans('admin.My Account')}}</a></li>
+                            <li><a href="{{url('/')}}/#">{{trans('admin.Discount')}}</a></li>
+                            <li><a href="{{url('/')}}/#">{{trans('admin.Returns')}}</a></li>
+                            <li><a href="{{url('/')}}/#">{{trans('admin.Orders History')}}</a></li>
+                            <li><a href="{{url('/')}}/#">{{trans('admin.Order Tracking')}}</a></li>
+                        </ul>
+                    </div>
+                </div>
 
               
-
-                <div class="col-lg-2 col-md-4 col-sm-6">
-                    <div class="widget">
-                        <h6 class="widget_title">Promotions</h6>
-                        <ul class="widget_links">
-                            <li><a href="{{url('/')}}/my-profile">My Account</a></li>
-                            <li><a href="{{url('/')}}/#">Discount</a></li>
-                            <li><a href="{{url('/')}}/my-profile">Returns</a></li>
-         <li><a href="{{url('/')}}/my-profile">Orders History</a></li>
-                            <li><a href="{{url('/')}}/tracking-order">Order Tracking</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-6">
-                    <div class="widget">
-                        <h6 class="widget_title">Offers</h6>
-                        <ul class="widget_links">
-                            <li><a href="{{url('/')}}/#">My Account</a></li>
-                            <li><a href="{{url('/')}}/#">Discount</a></li>
-                            <li><a href="{{url('/')}}/#">Returns</a></li>
-                            <li><a href="{{url('/')}}/#">Orders History</a></li>
-                            <li><a href="{{url('/')}}/#">Order Tracking</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-6">
-                    <div class="widget">
-                        <h6 class="widget_title">My Account</h6>
-                        <ul class="widget_links">
-                            <li><a href="{{url('/')}}/#">My Account</a></li>
-                            <li><a href="{{url('/')}}/#">Discount</a></li>
-                            <li><a href="{{url('/')}}/#">Returns</a></li>
-                            <li><a href="{{url('/')}}/#">Orders History</a></li>
-                            <li><a href="{{url('/')}}/#">Order Tracking</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-6">
-                    <div class="widget">
-                        <h6 class="widget_title">Promotions</h6>
-                        <ul class="widget_links">
-                            <li><a href="{{url('/')}}/#">My Account</a></li>
-                            <li><a href="{{url('/')}}/#">Discount</a></li>
-                            <li><a href="{{url('/')}}/#">Returns</a></li>
-                            <li><a href="{{url('/')}}/#">Orders History</a></li>
-                            <li><a href="{{url('/')}}/#">Order Tracking</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-6">
-                    <div class="widget">
-                        <h6 class="widget_title">Offers</h6>
-                        <ul class="widget_links">
-                            <li><a href="{{url('/')}}/#">My Account</a></li>
-                            <li><a href="{{url('/')}}/#">Discount</a></li>
-                            <li><a href="{{url('/')}}/#">Returns</a></li>
-                            <li><a href="{{url('/')}}/#">Orders History</a></li>
-                            <li><a href="{{url('/')}}/#">Order Tracking</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-6">
-                    <div class="widget">
-                        <h6 class="widget_title">My Account</h6>
-                        <ul class="widget_links">
-                            <li><a href="{{url('/')}}/#">My Account</a></li>
-                            <li><a href="{{url('/')}}/#">Discount</a></li>
-                            <li><a href="{{url('/')}}/#">Returns</a></li>
-                            <li><a href="{{url('/')}}/#">Orders History</a></li>
-                            <li><a href="{{url('/')}}/#">Order Tracking</a></li>
-                        </ul>
-                    </div>
-                </div>
+            
 
             </div>
         </div>
@@ -213,8 +166,8 @@
                     <div class="col-lg-4 order-lg-last">
                         <div class="widget mb-lg-0">
                             <ul class="terms-ul text-center align-items-center">
-                                <li><a href="{{url('/')}}/term-condition" class="">Terms and Conditions </a></li>
-                                <li><a href="{{url('/')}}/Privacy-Policy" class="">Privacy Policy </a></li>
+                                <li><a href="{{url('/')}}/term-condition" class="">{{trans('admin.Terms and Conditions')}} </a></li>
+                                <li><a href="{{url('/')}}/Privacy-Policy" class="">{{trans('admin.PrivacyPolicy')}} </a></li>
 
                             </ul>
                         </div>
@@ -226,7 +179,7 @@
             <div class="custom-container">
                 <div class="row text-lg-end">
                     <div class="col-lg-12">
-                        <p class="mb-lg-0 text-center">© 2021 All Rights Reserved by Bullsupps.com</p>
+                        <p class="mb-lg-0 text-center">© {{date('Y')}} {{trans('admin.All Rights Reserved by')}} Bullsupps.com</p>
                     </div>
 
 

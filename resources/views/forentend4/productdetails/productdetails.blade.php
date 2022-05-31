@@ -124,9 +124,9 @@ var arr = [] //create arry
                     <div class="page-title">
                         <!-- <h1>Product Detail</h1> -->
                         <ol class="breadcrumb justify-content-md-start">
-                            <li class="breadcrumb-item"><a href="{{url('/')}}/#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="{{url('/')}}/#">Pages</a></li>
-                            <li class="breadcrumb-item active">Product Detail</li>
+                            <li class="breadcrumb-item"><a href="{{url('/')}}/">{{trans('admin.Home')}}</a></li>
+                           
+                            <li class="breadcrumb-item active">{{trans('admin.Product Detail')}}</li>
                         </ol>
                     </div>
                 </div>
@@ -242,11 +242,12 @@ var arr = [] //create arry
                                         <div class="product_description">
                                             <div class="product_price">
                                                 <ul class="product-meta product_price">
-                                                    <li>Was: <del>AED {{$product->price }}</del></li>
-                                                    <li>Now: <span class="price pe-3">AED {{$product->price_offer }}</span> (Inclusive of VAT)</li>
-                                                    <li>Saving:
+                                                    <li>{{trans('admin.Was')}}: <del> {{trans('admin.AED')}}{{$product->price }}</del></li>
+                                                    <li>{{trans('admin.Now')}}: <span class="price pe-3">{{trans('admin.AED')}} {{$product->price_offer }}</span> ({{trans('admin.Inclusive of VAT')}})</li>
+                                                    <li>{{trans('admin.Saving')}}:
                                                         <div class="on_sale">
-                 <span>AED {{$product->price - $product->price_offer }} ({{ ratio($product->price,$product->price_offer) }}% Off)</span>
+                 <span>{{trans('admin.AED')}} {{$product->price - $product->price_offer }} ({{ ratio($product->price,$product->price_offer) }}%
+                 {{trans('admin.Off')}} )</span>
                                                         </div>
                                                     </li>
                                                 </ul>
@@ -317,8 +318,15 @@ var arr = [] //create arry
         where('attribute_id',$attribut->attribute_id)->get() as $attribute_value )
 
     <span data-attribute_value_id="{{ $attribute_value->attribute_value_id}}">
-                   {{ $attribute_value->value_en}}
-
+                  
+             
+                                                   @if(session('lang') == 'ar')
+ {{$attribute_value->value_ar}}
+  @elseif(session('lang') == 'en')
+ {{$attribute_value->value_en}}
+ @else
+ {{$attribute_value->value_en}}
+      @endif
 
                   
                </span>
@@ -337,8 +345,8 @@ var arr = [] //create arry
                                         <div class="product_description">
                                             <div class="deliveryinst product_sort_info">
                                                 <ul>
-                                                    <li>Order in 3 hrs 24 mins</li>
-                                                    <li>Free delivery by Tomorrow,{{ Carbon\Carbon::now()->addDay()->format('d-M-Y') }}</li>
+                                                    <li>{{trans('admin.Order in 3 hrs 24 mins')}}</li>
+                                                    <li>{{trans('admin.Free delivery by Tomorrow')}},{{ Carbon\Carbon::now()->addDay()->format('d-M-Y') }}</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -359,7 +367,7 @@ var arr = [] //create arry
                                         <div class="cart_btn">
                                             <a href="{{url('/')}}/#" class="cart ">
 
-             <button id="cartEffect1" class="btn btn-primary btn-lg btn-addtocart cart  " type="button">Add to cart</button>
+             <button id="cartEffect1" class="btn btn-primary btn-lg btn-addtocart cart  " type="button">{{trans('admin.Add to cart')}}</button>
 
              <a  class="add_wishlist" id="add_to_Wishlist" href="javascript:void(0)" data-tip="{{__('Add to Wishlist')}}"><i class="icon-heart"></i>
 <span class="hidden">{{ $product->id }}</span>
@@ -375,7 +383,7 @@ var arr = [] //create arry
                                     <hr />
 
                                     <div class="product_share">
-                                        <span>Share:</span>
+                                        <span>{{trans('admin.Share')}}:</span>
                                         <ul class="social_icons">
                                             <li><a href="{{url('/')}}/#"><i class="ion-social-facebook"></i></a></li>
                                             <li><a href="{{url('/')}}/#"><i class="ion-social-twitter"></i></a></li>
@@ -392,7 +400,7 @@ var arr = [] //create arry
                     <div class="col-xl-3 col-lg-4 mt-4 pt-2 mt-lg-0 pt-lg-0">
                         <div class="sidebar">
                             <div class="widget">
-                                <h5 class="widget_title">TOP RELATED</h5>
+                                <h5 class="widget_title">{{trans('admin.TOP RELATED')}}</h5>
                                 <ul class="widget_recent_post">
       @foreach(App\Product::
       where('status','active')->
@@ -462,11 +470,20 @@ var arr = [] //create arry
                                 </ul>
                             </div>
                             <div class="widget">
-                                <h5 class="widget_title">tags</h5>
+                                <h5 class="widget_title">{{trans('admin.tags')}}</h5>
                                 <div class="tags">
                                     @foreach(App\Color::get() as $tag)
                                     <a href="{{url('/')}}/shop?tag_id={{$tag->id}}">
-                                       {{  $tag->name_en}}
+
+                                           @if(session('lang') == 'ar')
+   {{  $tag->name_ar}}
+  @elseif(session('lang') == 'en')
+   {{  $tag->name_en}}
+ @else
+   {{  $tag->name_en}}
+      @endif
+                                       
+                                    
                                     </a>
                                     
         @endforeach
@@ -532,7 +549,7 @@ var arr = [] //create arry
                     <div class="custom-container mb-3 border border-radius2 box_shadow1 p-4">
                         <div class="row">
                             <div class="col-lg-12">
-                                <h5 class="product_tab_title">Product Details</h5>
+                                <h5 class="product_tab_title">{{trans('admin.Product Details')}}</h5>
                                 <div class="col-lg-12">
                                       @if(session('lang')=='ar')
 {!! $product->content_name_ar !!}
@@ -550,7 +567,7 @@ var arr = [] //create arry
                     <!-- Reviews Start -->
                     <div class="custom-container mb-3 border border-radius2 box_shadow1 p-4">
                         <div class="row">
-         <h5 class="product_tab_title">Reviews 
+         <h5 class="product_tab_title">  {{trans('admin.Reviews')}}
 
             ( {{$Reviewscount}}  )</h5>
 
@@ -624,7 +641,7 @@ var arr = [] //create arry
                         <div class="row">
                             <div class="col">
                                 <div class="review_form field_form">
-                                    <h5>Add a review</h5>
+                                    <h5>{{trans('admin.Add a review')}}</h5>
          <form class="row mt-3" method="post" action="{{url('/')}}/Add_review">
             @csrf
                                         <div class="form-group col-12 mb-3">
@@ -639,10 +656,10 @@ var arr = [] //create arry
                                             </div>
                                         </div>
                                         <div class="form-group col-12 mb-3">
-                                            <textarea required="required" placeholder="Your review *" class="form-control" name="review" rows="4"></textarea>
+                                            <textarea required="required" placeholder="{{trans('admin.Your review')}} *" class="form-control" name="review" rows="4"></textarea>
                                         </div>
                                         <div class="form-group col-md-6 mb-3">
-                                            <input required="required" placeholder="Enter Name *" class="form-control"
+                                            <input required="required" placeholder="{{trans('admin.Enter Name')}} *" class="form-control"
                                              name="name" type="text"
             }
             }
@@ -655,7 +672,7 @@ value="{{ old('email', auth()->user()->name) }}"
                                             >
                                         </div>
                                         <div class="form-group col-md-6 mb-3">
-                                            <input required="required" placeholder="Enter Email *" class="form-control" name="email" type="email" 
+                                            <input required="required" placeholder="{{trans('admin.Enter Email')}} *" class="form-control" name="email" type="email" 
 
                                             @if(auth()->user())
 value="{{ old('email', auth()->user()->email) }}" 
@@ -674,7 +691,7 @@ value="{{ old('email', auth()->user()->email) }}"
                                         </div>
 
                                         <div class="form-group col-12 mb-3">
-                                            <button type="submit" class="btn btn-primary" name="submit" value="Submit">Submit Review</button>
+                                            <button type="submit" class="btn btn-primary" name="submit" value="Submit">{{trans('admin.Submit Review')}}</button>
                                         </div>
                                     </form>
                                 </div>
@@ -691,7 +708,7 @@ value="{{ old('email', auth()->user()->email) }}"
                             <div class="col">
                                 <div class="col-12">
                                     <div class="heading_s1">
-                                        <h3>Releted Products</h3>
+                                        <h3>{{trans('admin.Releted Products')}}</h3>
                                     </div>
                                     <div class="product_slider carousel_slider owl-carousel owl-theme nav_style10" data-loop="true" data-dots="false" data-nav="true" data-margin="20" data-responsive='{"0":{"items": "1"}, "481":{"items": "2"}, "768":{"items": "3"}, "1199":{"items": "4"}}'>
  @foreach($mightAlsoLikes  as  $product)
@@ -752,14 +769,14 @@ value="{{ old('email', auth()->user()->email) }}"
                                                     <div class="row">
                                                         <div class="col-auto me-auto">
                                                             <div class="product_price">
-                 <span class="price xtra">AED {{$product->price_offer }}</span>
+                 <span class="price xtra">{{trans('admin.AED')}} {{$product->price_offer }}</span>
                                                             </div>
                                                         </div>
                                                         <div class="col-auto">
                                                             <div class="product_price">
-                           <del>AED {{$product->price }}</del>
+                           <del>{{trans('admin.AED')}} {{$product->price }}</del>
                                                                 <div class="on_sale">
-           <span>{{ ratio($product->price,$product->price_offer) }}% OFF</span>
+           <span>{{ ratio($product->price,$product->price_offer) }}% {{trans('admin.OFF')}}</span>
                                                                 </div>
                                                             </div>
                                                         </div>

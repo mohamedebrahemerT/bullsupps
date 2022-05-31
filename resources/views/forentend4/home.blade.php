@@ -40,8 +40,9 @@
                                     <i class="flaticon-shipped"></i>
                                 </div>
                                 <div class="icon_box_content">
-                                    <h5>Free Delivery</h5>
-                                    <p>If you are going to use of Lorem, you need to be sure there anything</p>
+                                    <h5>{{trans('admin.Free Delivery')}}
+</h5>
+                                    <p>{{trans('admin.If you are going to use of Lorem, you need to be sure there anything')}}</p>
                                 </div>
                             </div>
                         </div>
@@ -51,8 +52,8 @@
                                     <i class="flaticon-money-back"></i>
                                 </div>
                                 <div class="icon_box_content">
-                                    <h5>30 Day Return</h5>
-                                    <p>If you are going to use of Lorem, you need to be sure there anything</p>
+                                    <h5>{{trans('admin.30 Day Return')}}</h5>
+                                    <p>{{trans('admin.If you are going to use of Lorem, you need to be sure there anything')}}</p>
                                 </div>
                             </div>
                         </div>
@@ -62,8 +63,8 @@
                                     <i class="flaticon-support"></i>
                                 </div>
                                 <div class="icon_box_content">
-                                    <h5>27/4 Support</h5>
-                                    <p>If you are going to use of Lorem, you need to be sure there anything</p>
+                                    <h5>{{trans('admin.27/4 Support')}}</h5>
+                                    <p> {{trans('admin.If you are going to use of Lorem, you need to be sure there anything')}}</p>
                                 </div>
                             </div>
                         </div>
@@ -219,15 +220,16 @@
 
                                                     <div class="col-auto me-auto">
                                                         <div class="product_price">
-              <span class="price xtra">AED {{$product->price_offer }}</span>
+              <span class="price xtra">{{trans('admin.AED')}} {{$product->price_offer }}</span>
                                                         </div>
                                                     </div>
   <div class="col-auto">
                       <div class="product_price">
                           <div class="on_sale">
-     <span>{{ ratio($product->price,$product->price_offer) }}% OFF</span>
+     <span>{{ ratio($product->price,$product->price_offer) }}%  {{trans('admin.OFF')}}
+</span>
                                                             </div>
-                        <del>AED {{$product->price }}</del>
+                        <del>{{trans('admin.AED')}} {{$product->price }}</del>
                             
                                                         </div>
                                                     </div>
@@ -363,14 +365,14 @@
                                                 <div class="row">
                                                     <div class="col-auto me-auto">
                                                         <div class="product_price">
-                                                            <span class="price xtra">AED {{$product->price_offer }}</span>
+                                                            <span class="price xtra">{{trans('admin.AED')}} {{$product->price_offer }}</span>
                                                         </div>
                                                     </div>
                                                     <div class="col-auto">
                                                         <div class="product_price">
-                                                            <del>AED {{$product->price }}</del>
+                                                            <del>{{trans('admin.AED')}} {{$product->price }}</del>
                                                             <div class="on_sale">
-                                                                <span>{{ ratio($product->price,$product->price_offer) }}% OFF</span>
+                                                                <span>{{ ratio($product->price,$product->price_offer) }}% {{trans('admin.OFF')}}</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -414,10 +416,10 @@
                             <div class="col-12">
                                 <div class="heading_tab_header">
                                     <div class="heading_s2">
-                                        <h2>TOP SELLERS</h2>
+                                        <h2>{{trans('admin.TOP SELLERS')}}</h2>
                                     </div>
                                     <div class="view_all">
-                                        <a href="{{url('/')}}/shop" class="seeall"><span>SEE ALL</span></a>
+                                        <a href="{{url('/')}}/shop" class="seeall"><span>{{trans('admin.SEE ALL')}}</span></a>
                                     </div>
                                 </div>
                             </div>
@@ -554,14 +556,14 @@
                                                         <div class="row">
                                                             <div class="col-auto me-auto">
                                                                 <div class="product_price">
-            <span class="price xtra">AED {{$product->price_offer }}</span>
+            <span class="price xtra">{{trans('admin.AED')}} {{$product->price_offer }}</span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-auto">
                                                                 <div class="product_price">
-                                    <del>AED {{$product->price }}</del>
+                                    <del>{{trans('admin.AED')}} {{$product->price }}</del>
                                                                     <div class="on_sale">
-                                         <span>{{ ratio($product->price,$product->price_offer) }}% OFF</span>
+                                         <span>{{ ratio($product->price,$product->price_offer) }}% {{trans('admin.OFF')}}</span>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -608,10 +610,10 @@
                             <div class="col-12">
                                 <div class="heading_tab_header">
                                     <div class="heading_s2">
-                                        <h2>SHOP BY BRAND</h2>
+                                        <h2>{{trans('admin.SHOP BY BRAND')}}</h2>
                                     </div>
                                     <div class="view_all">
-                                        <a href="{{url('/')}}/shop" class="seeall"><span>SEE ALL</span></a>
+                                        <a href="{{url('/')}}/shop" class="seeall"><span>{{trans('admin.SEE ALL')}}</span></a>
                                     </div>
                                 </div>
                             </div>

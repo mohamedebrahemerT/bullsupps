@@ -90,13 +90,13 @@ return view('forentend4.my-profile.my-profile',compact('user', 'orders'));
         {
             $user->fill($input)->save();
 
-            return back()->with('success', 'Profile updated successfully!');
+            return back()->with('success', 'trans.Profile updated successfully!');
         }
 
         $user->password = bcrypt($request->password);
         $user->fill($input)->save();
 
-        return back()->with('success', 'Profile (and password) updated successfully!');
+        return back()->with('success', 'trans.Profile (and password) updated successfully!');
     }
 
     /**
@@ -154,7 +154,7 @@ return view('forentend4.my-profile.my-profile',compact('user', 'orders'));
 
      $user_addresses=user_addresses::create($data);
 
-      session()->flash('success', trans('address added succesfully'));
+      session()->flash('success', trans('admin.address added succesfully'));
       return redirect('Add_New_Address_Step2/'.$user_addresses->id);
     }
 
@@ -180,7 +180,7 @@ return view('forentend4.my-profile.my-profile',compact('user', 'orders'));
 
  $user_addresses=user_addresses::where('id',request('id'))->update($data);
 
-      session()->flash('success', trans('address updated succesfully'));
+      session()->flash('success', trans('admin.address updated succesfully'));
       return redirect('Add_New_Address_Step2/'.request('id'));
     }
 
@@ -204,7 +204,7 @@ return view('forentend4.my-profile.my-profile',compact('user', 'orders'));
     {
      $user_address =user_addresses::where('id',$id)->first();
      $user_address->delete();
-      session()->flash('danger','Address Delete succesfully');
+      session()->flash('danger',trans('admin.Address Delete succesfully'));
        
      
          return back();
@@ -258,7 +258,7 @@ return view('forentend4.my-profile.my-profile',compact('user', 'orders'));
 
  ]);
 
-      session()->flash('success', trans('address updated succesfully'));
+      session()->flash('success', trans('admin.address updated succesfully'));
       return redirect('/Payment_Method');
     }
 
@@ -283,13 +283,13 @@ return view('forentend4.my-profile.my-profile',compact('user', 'orders'));
           
              if (!session('Addressbox_style1active')) 
               {
-      session()->flash('danger', trans('You have to Select Delivery Address'));
+      session()->flash('danger', trans('admin.You have to Select Delivery Address'));
      
        return redirect('Add_New_Address');
               }
 
          if (user_addresses::where('id',session('Addressbox_style1active'))->count() ==0) {
-             session()->flash('danger', trans('You have to Select Delivery Address'));
+             session()->flash('danger', trans('admin.You have to Select Delivery Address'));
      
        return redirect('Add_New_Address');
          }

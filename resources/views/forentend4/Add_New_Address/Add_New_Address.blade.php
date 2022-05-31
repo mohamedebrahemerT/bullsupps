@@ -76,10 +76,10 @@
                     <div class="page-title">
                         <!-- <h1>Product Detail</h1> -->
                         <ol class="breadcrumb justify-content-md-start">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                            <li class="breadcrumb-item"><a href="#">Shopping Cart</a></li>
-                            <li class="breadcrumb-item active">Add Your Address</li>
+                            <li class="breadcrumb-item"><a href="{{url('/')}}">{{trans('admin.Home')}}</a></li>
+                       
+                            <li class="breadcrumb-item"><a href="{{url('/')}}/cart">{{trans('admin.Shopping Cart')}}</a></li>
+                            <li class="breadcrumb-item active">{{trans('admin.Add Your Address')}}</li>
                         </ol>
                     </div>
                 </div>
@@ -101,13 +101,13 @@
                         <div class="border border-radius2 box_shadow1 p-3 p-md-4">
                             <ul class="step d-flex flex-nowrap">
                                 <li class="step-item active">
-                                    <a href="{{url('/')}}/Add_New_Address" class="">Shipping Address</a>
+                                    <a href="{{url('/')}}/Add_New_Address" class="">{{trans('admin.Shipping Address')}}</a>
                                 </li>
                                 <li class="step-item ">
-     <a href="{{url('/')}}/Payment_Method" class="">Payment</a>
+     <a href="{{url('/')}}/Payment_Method" class="">{{trans('admin.Payment')}}</a>
                                 </li>
                                 <li class="step-item ">
-                                    <a href="#!" class="">Order Placed </a>
+                                    <a href="#!" class="">{{trans('admin.Order Placed')}} </a>
                                 </li>
 
                             </ul>
@@ -130,7 +130,7 @@
 
  
                    @if($address->Primary == 1)
-               <div class="ribbon"><span>Primary</span></div>
+               <div class="ribbon"><span>{{trans('admin.Primary')}}</span></div>
                @endif
                            
 
@@ -153,15 +153,15 @@
                                             <table class="table mb-0">
                                                 <tbody class="">
                                                     <tr class="noborderall">
-                                                        <td class="cart_total_label noborderall text_gray">Name:</td>
+                                                        <td class="cart_total_label noborderall text_gray">{{trans('admin.address2')}}:</td>
                                                         <td class="cart_total_amount text-right noborderall">{{$address->Name}}</td>
                                                     </tr>
                                                     <tr class="noborderall">
-                                                        <td class="cart_total_label noborderall text_gray">Address:</td>
+                                                        <td class="cart_total_label noborderall text_gray">{{trans('admin.Address')}}:</td>
                                                         <td class="cart_total_amount text-right noborderall">{{$address->address}}</td>
                                                     </tr>
                                                     <tr class="noborderall">
-                                                        <td class="cart_total_label noborderall text_gray">Mobile Number:</td>
+                                                        <td class="cart_total_label noborderall text_gray">{{trans('admin.Mobile Number')}}:</td>
                                                         <td class="cart_total_amount text-right noborderall">{{$address->Mobile}}</td>
                                                     </tr>
 
@@ -192,7 +192,7 @@
                                         <div class="feature-col col-xs-12 col-sm-6 col-md-6 kolonat-hom align-content-center">
                                             <div class="ikonat-home"> <i class="linearicons-plus"></i> </div>
                                             <div class="contact_text">
-                                                <span>Add New Address</span>
+                                                <span>{{trans('admin.Add New Address')}}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -217,7 +217,7 @@
                                     <div class="d-grid gap-2">
                   
                  <a href="{{url('/')}}/Payment_Method" class="btn btn-primary m-0" type="button">
-                    Next</a>
+                   {{trans('admin.Next')}} </a>
                  
 
                  
