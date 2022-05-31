@@ -364,14 +364,7 @@ public function etisalatemirates()
     {
    // return App::getLocale();
    
-             if (condition) 
-             {
-                 // code...
-             }else
-             {
-                
-             }
-          
+             
       session()->forget('ProdcutTitle');
          $DepartmentbannersHomesliderID=Departmentbanners::where('catname','بنرات رئيسية')->first()->id;
 
