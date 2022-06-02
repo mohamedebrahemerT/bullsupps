@@ -1271,7 +1271,7 @@ return [
             "Subscribe to our newsletter, so that you can be the first to know about new offers and promotions."=>"Subscribe to our newsletter, so that you can be the first to know about new offers and promotions.",
             "Admin Login"=>"Admin Login",
             "All Rights Reserved by"=>"All Rights Reserved by",
-            ""=>"",
+            "You can not delete this Address, It already associated with a Order..."=>"You can not delete this Address, It already associated with a Order...",
             ""=>"",
             ""=>"",
             ""=>"",

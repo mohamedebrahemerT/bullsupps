@@ -202,6 +202,18 @@ return view('forentend4.my-profile.my-profile',compact('user', 'orders'));
 
     public function Delete_user_Address($id)
     {
+       
+ $Ordersaddress=Order::where('address_id',$id)->where('user_id',auth()->user()->id)->get();
+
+ if ($Ordersaddress->count() > 0 )
+        {
+
+      session()->flash('danger',trans('admin.You can not delete this Address, It already associated with a Order...'));
+             return back();
+            
+        }
+
+
      $user_address =user_addresses::where('id',$id)->first();
      $user_address->delete();
       session()->flash('danger',trans('admin.Address Delete succesfully'));

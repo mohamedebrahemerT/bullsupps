@@ -3255,7 +3255,7 @@
 			'Order Tracking'=>'تتبع الطلب',
 			'Orders History'=>'تاريخ الطلبات',
 			'All Rights Reserved by'=>'جميع الحقوق محفوظة',
-			''=>'',
+			'You can not delete this Address, It already associated with a Order...'=>'لا يمكنك حذف هذا العنوان ، فهو مرتبط بالفعل بطلب...',
 			''=>'',
 			''=>'',
 			''=>'',
