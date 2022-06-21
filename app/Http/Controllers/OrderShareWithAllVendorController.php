@@ -727,7 +727,7 @@ $options= array(
                 session()->flash('success', trans('admin.agreebill'));
 
 
-              return redirect('admin/OrderShareWithAllVendor/'.$orderID);
+              return redirect('dmin/OrderShareWithAllVendor?status=waitshiping');
              
 
            
