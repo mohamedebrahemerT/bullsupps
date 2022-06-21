@@ -36,7 +36,7 @@ class OrderShareWithAllVendordatatables extends DataTable
 
 
 
-        ->addColumn('edit', 'Admin.OrderShareWithAllVendor.btn.edit')
+        ->addColumn('tracking_url', 'Admin.OrderShareWithAllVendor.btn.tracking_url')
 
          ->addColumn('delete', 'Admin.OrderShareWithAllVendor.btn.delete')
 
@@ -46,8 +46,7 @@ class OrderShareWithAllVendordatatables extends DataTable
 
          ->addColumn('showorder', 'Admin.OrderShareWithAllVendor.btn.showorder')
          ->addColumn('status', 'Admin.OrderShareWithAllVendor.btn.status')
-         ->addColumn('shipNow', 'Admin.OrderShareWithAllVendor.btn.shipNow')
-         ->addColumn('ReceivedNow', 'Admin.OrderShareWithAllVendor.btn.ReceivedNow')
+     
 
          ->addColumn('details', 'Admin.OrderShareWithAllVendor.btn.details')
          ->addColumn('ViewTheinvoice', 'Admin.OrderShareWithAllVendor.btn.ViewTheinvoice')
@@ -56,8 +55,7 @@ class OrderShareWithAllVendordatatables extends DataTable
        
         ->rawColumns([
 
-            'edit','delete','checkbox','shipped','showorder','status',
-            'shipNow','ReceivedNow','details','ViewTheinvoice'
+            'tracking_url','delete','checkbox','shipped','showorder','status','details','ViewTheinvoice'
 
         ]);
 
@@ -315,27 +313,7 @@ elseif (auth()->guard('admin')->user()->level == 'affiliate' )
 
                  return [
 
-                [
-
-                'name'=> 'checkbox',
-
-                'data'=> 'checkbox',
-
-               'title'=>'<input type="checkbox" onclick="checkall()" class="checck_all">  ',
-
-                 'exportable'=>false,
-
-                 'printable'=>false,
-
-                 'orderable'=>false,
-
-                 'searshable'=>false,
-
-
-
-
-
-            ],  
+            
 
                
               [
@@ -369,42 +347,8 @@ elseif (auth()->guard('admin')->user()->level == 'affiliate' )
 
              
   
-              [
-
-                'name'=> 'shipNow',
-
-                'data'=> 'shipNow',
-
-                'title'=>trans('admin.shipNow'),
-
-                 'exportable'=>false,
-
-                 'printable'=>false,
-
-                 'orderable'=>false,
-
-                 'searshable'=>false,
-            ],
-
-
-            
-              [
-
-                'name'=> 'ReceivedNow',
-
-                'data'=> 'ReceivedNow',
-
-                'title'=>trans('admin.ReceivedNow'),
-
-                 'exportable'=>false,
-
-                 'printable'=>false,
-
-                 'orderable'=>false,
-
-                 'searshable'=>false,
-            ],
-
+             
+   
             
   
 
@@ -412,11 +356,11 @@ elseif (auth()->guard('admin')->user()->level == 'affiliate' )
 
             [
 
-                'name'=> 'edit',
+                'name'=> 'tracking_url',
 
-                'data'=> 'edit',
+                'data'=> 'tracking_url',
 
-                'title'=>trans('admin.edit'),
+                'title'=>trans('admin.tracking_url'),
 
                  'exportable'=>false,
 
@@ -438,7 +382,7 @@ elseif (auth()->guard('admin')->user()->level == 'affiliate' )
 
                 'data'=> 'delete',
 
-               'title'=>trans('admin.delete'),
+               'title'=>trans('admin.status'),
 
                  'exportable'=>false,
 

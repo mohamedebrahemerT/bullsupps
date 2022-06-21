@@ -200,16 +200,7 @@
 
                      </div>  
 
-
-                       <div class="form-group col-sm-12 col-lg-12 col-md-12"> 
-
-              
-
-                     {{ Form::label('openticket',شكوي  المنتج ))  }}
-
-                    {{ Form::text('openticket',$OrderShareWithAllVendor->openticket,['class'=>'form-control openticket'])  }}
-
-                     </div>  
+ 
 
 
                       

@@ -1,32 +1,33 @@
-<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#dell_admin{{$id}}">{{trans('admin.delete') }}</button>
- 
-<!-- Modal -->
-<div id="dell_admin{{$id}}" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+@php
+$status=App\Order::where('id',$order_id)->first()->state;
+@endphp
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">{{trans('admin.delete') }} </h4>
-      </div>
+    
 
-         	  
-   {!! Form::open(['url'=>['admin/OrderShareWithAllVendor/'.$id],'method'=>'delete']) !!}
-      <div class="modal-body">
-<p>{{ trans('admin.WhoWeAre') }}</p>
-      </div>
-      <div class="modal-footer">
-      	 
+<span style="font-size:15px; " class="label
+
+ {{$status=='pending'?'label-primary' :'' }}
+
+ {{$status=='ready_for_collection'?'label-info' :'' }}
+
+  {{$status=='out_for_collection'?'label-success' :'' }}
+  {{$status=='collection_failed'?'label-success' :'' }}
+  {{$status=='collected'?'label-success' :'' }}
+  {{$status=='received_at_depot'?'label-success' :'' }}
+  {{$status=='out_for_delivery'?'label-success' :'' }}
+  {{$status=='delivery_complete'?'label-success' :'' }}
+  {{$status=='delivery_failed'?'label-success' :'' }}
+  {{$status=='return_to_origin'?'label-success' :'' }}
+  {{$status=='returned_to_origin'?'label-success' :'' }}
+  {{$status=='on_hold'?'label-success' :'' }}
+  {{$status=='scheduled'?'label-success' :'' }}
 
 
-     {!! Form::submit(trans('admin.delete'),['class'=>'btn btn-danger']) !!}
-        <button type="button" class="btn btn-default" data-dismiss="modal">{{trans('admin.close') }}</button>
 
-     
-      </div>
-      {{Form::close() }}
-    </div>
+">
 
-  </div>
-</div>
+  {{ $status }}
+
+
+ </span>
+

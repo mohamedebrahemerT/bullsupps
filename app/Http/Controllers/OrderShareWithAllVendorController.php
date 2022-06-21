@@ -276,9 +276,9 @@ public function ViewTheinvoiceprint($id)
 
     {
 
-            $title=trans('Admin.OrderShareWithAllVendor update');
+             $title=trans('Admin.OrderShareWithAllVendor update');
 
-        return  $OrderShareWithAllVendor=OrderShareWithAllVendor::find($id);
+           $OrderShareWithAllVendor=OrderShareWithAllVendor::find($id);
 
 
 
@@ -565,10 +565,25 @@ public function ViewTheinvoiceprint($id)
                {
 
 
-                  $order=Order::where('id',$orderID)->first();
+                     $order=Order::where('id',$orderID)->first();
+             
 
-
-                 $order->waitshiping=1;
+             $OrderProducts=OrderProduct::where('order_id',$orderID)->
+                                where('admin_id',1)
+                                           ->get(); 
+                $items='';
+           foreach ($OrderProducts as $key => $OrderProduct) 
+                                 {
+                                      $items.= '{
+                  "name": "'.$OrderProduct->product_idd->title_name_en.'",
+                  "quantity": '.$OrderProduct->quantity.',
+                  "parcel_barcode": "'.$OrderProduct->product_idd->id.'"
+                }';
+                                }   
+          
+                                            
+              
+             $order->waitshiping=1;
 
                  $order->save();
                 
@@ -591,17 +606,7 @@ public function ViewTheinvoiceprint($id)
 
                 Mail::send(new OrderPlaced($order));
 
-
-
-
-
-              
-
-
-
-
-
-           $ApprovalOfTheBills=OrderProduct::where('order_id',$orderID)->
+            $ApprovalOfTheBills=OrderProduct::where('order_id',$orderID)->
 
                                        where('admin_id',auth()->guard('admin')->user()->id)->get();
 
@@ -617,13 +622,113 @@ public function ViewTheinvoiceprint($id)
 
                              }
 
+                $access_token= access_token ();
 
+                if ( $order->tracking_url == null) 
+                {
+                    
+                 
+
+         $endpoint_url="http://api.staging.quiqup.com/orders";
+$string_json = '{
+  "kind": "partner_same_day",
+  "notes": "Here is a really important note",
+  "payment_amount": '.$order->billing_total.',
+  "payment_mode": "paid_on_delivery",
+  "disallowed_payment_types": [
+    "cash"
+  ],
+  
+  "scheduled_for": null,
+  "metadata": null,
+  "partner_order_id": "'.$orderID.'",
+  "required_documents": [
+    "customer_identification_photo"
+  ],
+  "origin": {
+    "contact_name": "'.settings()->nameen.'",
+    "contact_phone": "'.settings()->phone.'",
+    "partner_order_id": "'.$orderID.'",
+    "notes": "Go directly to the kitchen on the first floor",
+    "address": {
+      "address1": "'.settings()->address_en.'",
+      "address2": "'.settings()->address_en.'",
+      "coords": [
+        55.1631158,
+        25.0559987
+      ],
+      "country": "UAE",
+      "town": "Dubai"
+    }
+  },
+ "destination": {
+    "contact_name": "'.$order->billing_name.'",
+    "contact_phone": "'.$order->billing_phone.'",
+    "partner_order_id": "'.$orderID.'",
+    "share_tracking": true,
+    "notes": "Go directly to the kitchen on the first floor",
+    "address": {
+      "address1": "'.$order->address->address.'",
+      "address2": "'.$order->address->address.'",
+      "coords": [
+        '.$order->address->lat.',
+        '.$order->address->lng.'
+      ],
+      "country": "UAE",
+      "town": "Dubai"
+    }
+  },
+  "items": [
+  '.$items.'
+  ]
+}';
+
+$client = new \GuzzleHttp\Client();
+$options= array(
+  'headers'  => ['content-type' => 'application/json',    'Authorization' => 'Bearer ' . $access_token],
+  'body' => $string_json,
+ 
+);
+     $res = $client->post($endpoint_url, $options);
+        $response=$res->getBody()->getContents();
+             $response = json_decode($response, true);
+
+ 
+          $response=$response['order'];
+              $state =$response['state'];
+              $tracking_url =$response['tracking_url'];
+ 
+      $order->response=$response;
+      $order->state=$state;
+      $order->tracking_url=$tracking_url;
+      $order->save();
+
+     
+      }
+     
+/*
+      ///make reday for collect
+       $endpoint_url="http://api.staging.quiqup.com/orders/".$orderID."/ready_for_collection";
+$client = new \GuzzleHttp\Client();
+$options= array(
+  'headers'  => ['content-type' => 'application/json',    'Authorization' => 'Bearer ' . $access_token]
+ 
+);
+     $res = $client->PUT($endpoint_url, $options);
+        $response=$res->getBody()->getContents();
+             $response = json_decode($response, true);
+
+     $state =$response['state'];
+      $order->state=$state;
+      $order->save();
+ ///end make reday for collect
+  */
 
                 session()->flash('success', trans('admin.agreebill'));
 
 
-
-              return back()->withInput();
+              return redirect('admin/OrderShareWithAllVendor/'.$orderID);
+             
 
            
 

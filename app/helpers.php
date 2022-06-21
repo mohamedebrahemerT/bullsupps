@@ -2429,6 +2429,44 @@ if (!function_exists('ratingcount')) {
 }
 }
 
+
+if (!function_exists('access_token')) {
+
+    function access_token( ) 
+
+    {
+  
+  $endpoint_url="https://api.staging.quiqup.com/oauth/token";
+$string_json = '{
+    "grant_type": "client_credentials",
+    "client_id": "28687bc461c97c5cd104c2146085929c26f3b1037e2d305fc9b526523d06f797",
+    "client_secret": "d3af1a58e5e701afad3717f51a907484448372ff1d99d9354b0785b2fc954cd6"
+     
+}';
+
+$client = new \GuzzleHttp\Client();
+$options= array(
+  'headers'  => ['content-type' => 'application/json', 'Accept' => 'application/json'],
+  'body' => $string_json,
+ 
+);
+     $res = $client->post($endpoint_url, $options);
+        $response=$res->getBody()->getContents();
+             $access_token = json_decode($response, true);
+
+ 
+
+ 
+  return     $access_token['access_token'] ;
+
+  }
+}
+
+
+
+
+
+
  
 
 
